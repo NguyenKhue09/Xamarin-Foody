@@ -14,8 +14,8 @@
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.DisabledColor" Value="Red" />
-                <Setter Property="Shell.UnselectedColor" Value="Red" />
+                <!--<Setter Property="Shell.DisabledColor" Value="Red" />
+                <Setter Property="Shell.UnselectedColor" Value="Red" />-->
                 <Setter Property="Shell.TabBarUnselectedColor" Value="Red"/>
                 <Setter Property="Shell.TabBarTitleColor" Value="Red"/>
             </Style>
