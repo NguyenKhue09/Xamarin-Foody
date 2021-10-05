@@ -74,15 +74,16 @@ namespace Foody.Droid.Renderers
             };
 
             int[] colors = new int[]{
-                Android.Graphics.Color.ParseColor("#747474"),
-                Android.Graphics.Color.ParseColor("#007f42"),
-                Android.Graphics.Color.ParseColor("#747474"),
-            };
+            Android.Graphics.Color.ParseColor("#7E7E7E"),
+            Android.Graphics.Color.ParseColor("#07BDF6"),
+            Android.Graphics.Color.ParseColor("#747474"),
+    };
             ColorStateList navigationViewColorStateList = new ColorStateList(states, colors);
             bottomView.ItemIconTintList = navigationViewColorStateList;
             bottomView.ItemTextColor = navigationViewColorStateList;
-            bottomView.SetPadding(10, 5, 5, 10);
+            //bottomView.SetPadding(10, 5, 5, 10);
             bottomView.SetShiftMode(true, true);
+           
   
         }
 
