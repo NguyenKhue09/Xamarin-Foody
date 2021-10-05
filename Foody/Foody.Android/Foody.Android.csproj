@@ -121,7 +121,7 @@
     <AndroidResource Include="Resources\drawable\ramen.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\shopping-cart.png" />
+    <AndroidResource Include="Resources\drawable\shopping_cart.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\user.png" />
@@ -130,7 +130,7 @@
     <AndroidResource Include="Resources\drawable\ask.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\barcode-product.png" />
+    <AndroidResource Include="Resources\drawable\barcode_product.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\cart.png" />
@@ -142,7 +142,7 @@
     <AndroidResource Include="Resources\drawable\heart.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\list-interface-symbol.png" />
+    <AndroidResource Include="Resources\drawable\list_interface_symbol.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\logout.png" />
@@ -152,6 +152,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\pantry.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\setting.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

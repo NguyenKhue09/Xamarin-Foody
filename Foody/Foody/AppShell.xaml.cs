@@ -1,5 +1,4 @@
-﻿using Foody.ViewModels;
-using Foody.Views;
+﻿using Foody.Views;
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
@@ -11,8 +10,13 @@ namespace Foody
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+            NavigationPage.SetHasNavigationBar(this, false);
+            Routing.RegisterRoute(nameof(Home), typeof(Home));
+            Routing.RegisterRoute(nameof(Pantry), typeof(Pantry));
+            Routing.RegisterRoute(nameof(ShoppingList), typeof(ShoppingList));
+            Routing.RegisterRoute(nameof(MealPlan), typeof(MealPlan));
+           
+            
         }
 
     }

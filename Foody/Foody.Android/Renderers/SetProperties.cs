@@ -83,6 +83,7 @@ namespace Foody.Droid.Renderers
             bottomView.ItemTextColor = navigationViewColorStateList;
             //bottomView.SetPadding(10, 5, 5, 10);
             bottomView.SetShiftMode(true, true);
+           
   
         }
 

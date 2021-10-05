@@ -1,5 +1,4 @@
-﻿using Foody.Services;
-using Foody.Views;
+﻿using Foody.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,8 +11,6 @@ namespace Foody
         public App()
         {
             InitializeComponent();
-
-            DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
 
