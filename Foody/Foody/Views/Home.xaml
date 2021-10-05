@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Foody.Views.Home"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
+    <ContentPage.Content>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <yummy:PancakeView  Grid.Column="0" Grid.Row="0" BackgroundColor="#07BDF6" CornerRadius="0,0,15,15" HeightRequest="10" WidthRequest="500">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.75*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="0.5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="user.png" Grid.Column="0" Grid.Row="0" HeightRequest="48" WidthRequest="48" VerticalOptions="Center" HorizontalOptions="Center">
+                        
+                    </Image>
+                    <Label LineBreakMode="WordWrap" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Start">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Hi, Nguyễn Trà Vi&#x0a;" TextColor="White" FontAttributes="Bold" FontSize="15" />
+                                <Span Text="How are you today?" TextColor="White" FontSize="12" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Button ImageSource="setting.png" Grid.Column="2" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="#07BDF6" >
+                        
+                    </Button>
+                </Grid>
+            </yummy:PancakeView>
+
+            
+            
+            <ScrollView Grid.Column="0" Grid.Row="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <!--  Pantry, Shopping list , Meal Planner-->
+                    <Grid Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" ColumnSpacing="20" Padding="0, 30, 0, 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="140"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+
+                        <yummy:PancakeView  BackgroundGradientStartPoint="-1,0" BackgroundGradientEndPoint="0,1" Grid.Column="0" Grid.Row="0" BackgroundColor="#07BDF6" CornerRadius="15" VerticalOptions="Center" HorizontalOptions="Center">
+
+                            <yummy:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NavToPantry}"/>
+                            </yummy:PancakeView.GestureRecognizers>
+
+                            <yummy:PancakeView.BackgroundGradientStops>
+                                <yummy:GradientStopCollection>
+                                    <yummy:GradientStop Color="#59E38E" Offset="1" />
+                                    <yummy:GradientStop Color="#1884EC" Offset="0.5" />
+                                </yummy:GradientStopCollection>
+                            </yummy:PancakeView.BackgroundGradientStops>
+
+                            <Grid Padding="8">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="0.5*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Frame CornerRadius="20" BackgroundColor="White" Grid.Row="0" Grid.Column="0" Padding="20">
+                                    <Image Source="pantry.png"></Image>
+                                </Frame>
+                                <Label Text="Pantry" TextColor="White" FontAttributes="Bold" FontSize="13"  Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center">
+
+                                </Label>
+                            </Grid>
+                        </yummy:PancakeView>
+                        <yummy:PancakeView  BackgroundGradientStartPoint="-1,0" BackgroundGradientEndPoint="0,1" Grid.Column="1" Grid.Row="0" BackgroundColor="#07BDF6" CornerRadius="15" VerticalOptions="Center" HorizontalOptions="Center">
+
+                            <yummy:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NavToShoppingList}"/>
+                            </yummy:PancakeView.GestureRecognizers>
+                            
+                            <yummy:PancakeView.BackgroundGradientStops>
+                                <yummy:GradientStopCollection>
+                                    <yummy:GradientStop Color="#59E38E" Offset="1" />
+                                    <yummy:GradientStop Color="#1884EC" Offset="0.5" />
+                                </yummy:GradientStopCollection>
+                            </yummy:PancakeView.BackgroundGradientStops>
+                            
+                            <Grid Padding="8">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="0.5*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Frame CornerRadius="20" BackgroundColor="White" Grid.Row="0" Grid.Column="0" Padding="20">
+                                    <Image Source="shopping_cart.png"></Image>
+                                </Frame>
+                                <Label Text="Shopping List" TextColor="White" FontAttributes="Bold" FontSize="13"  Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center">
+
+                                </Label>
+                            </Grid>
+                        </yummy:PancakeView>
+                        <yummy:PancakeView  BackgroundGradientStartPoint="-1,0" BackgroundGradientEndPoint="0,1" Grid.Column="2" Grid.Row="0" BackgroundColor="#07BDF6" CornerRadius="15" VerticalOptions="Center" HorizontalOptions="Center">
+
+                            <yummy:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NavToMealPlanner}"/>
+                            </yummy:PancakeView.GestureRecognizers>
+                            
+                            <yummy:PancakeView.BackgroundGradientStops>
+                                <yummy:GradientStopCollection>
+                                    <yummy:GradientStop Color="#59E38E" Offset="1" />
+                                    <yummy:GradientStop Color="#1884EC" Offset="0.5" />
+                                </yummy:GradientStopCollection>
+                            </yummy:PancakeView.BackgroundGradientStops>
+                            
+                            <Grid Padding="8">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="0.5*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Frame CornerRadius="20" BackgroundColor="White" Grid.Row="0" Grid.Column="0" Padding="20">
+                                    <Image Source="egg.png"></Image>
+                                </Frame>
+                                <Label Text="Meal Planner" TextColor="White" FontAttributes="Bold" FontSize="13"  Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center">
+
+                                </Label>
+                            </Grid>
+                        </yummy:PancakeView>
+                    </Grid>
+
+                    <!--1-->
+                    <Label Text="Favorite Recipes" FontSize="25" FontAttributes="Bold" Grid.Column="0" Grid.Row="1" Padding="10, 40, 0 , 0"/>
+                    <!--2-->
+                    <Label Text="Popular Recipes" FontSize="25" FontAttributes="Bold" Grid.Column="0" Grid.Row="3" Padding="10, 20, 0 , 0"/>
+                    <!--3-->
+                    <Label Text="Random Recipes" FontSize="25" FontAttributes="Bold" Grid.Column="0" Grid.Row="5" Padding="10, 20, 0 , 0"/>
+                   
+                
+
+                </Grid>
+            </ScrollView>
+        </Grid>
+       
+        
+    </ContentPage.Content>
+</ContentPage>

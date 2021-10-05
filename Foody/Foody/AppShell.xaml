@@ -18,6 +18,7 @@
                 <Setter Property="Shell.UnselectedColor" Value="Red" />-->
                 <Setter Property="Shell.TabBarUnselectedColor" Value="Red"/>
                 <Setter Property="Shell.TabBarTitleColor" Value="Red"/>
+                <Setter Property="Shell.NavBarIsVisible" Value="False"/>
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" >
             </Style>
@@ -26,12 +27,12 @@
     </Shell.Resources>
 
 
-    <TabBar >
-        <ShellContent Title="About" Icon="icon_about.png" ContentTemplate="{DataTemplate local:AboutPage}" />
-        <ShellContent Title="Browse" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
-        <ShellContent Title="Browse" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
-        <ShellContent Title="Browse" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
-        <ShellContent Title="Browse" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
+    <TabBar Route="tabbar">
+        <ShellContent Icon="home.png" ContentTemplate="{DataTemplate local:Home}" />
+        <ShellContent Icon="store.png" ContentTemplate="{DataTemplate local:Pantry}" Route="pantry"/>
+        <ShellContent Icon="basket.png" ContentTemplate="{DataTemplate local:ShoppingList}" Route="shoppingList"/>
+        <ShellContent Icon="fork.png" ContentTemplate="{DataTemplate local:MealPlan}" Route="mealPlanner"/>
+        <ShellContent Icon="menu.png" ContentTemplate="{DataTemplate local:Menu}" />
     </TabBar>
 
 
