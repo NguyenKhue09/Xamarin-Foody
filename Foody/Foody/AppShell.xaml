@@ -27,11 +27,11 @@
     </Shell.Resources>
 
 
-    <TabBar >
+    <TabBar Route="tabbar">
         <ShellContent Icon="home.png" ContentTemplate="{DataTemplate local:Home}" />
-        <ShellContent Icon="store.png" ContentTemplate="{DataTemplate local:Pantry}" />
-        <ShellContent Icon="basket.png" ContentTemplate="{DataTemplate local:ShoppingList}" />
-        <ShellContent Icon="fork.png" ContentTemplate="{DataTemplate local:MealPlan}" />
+        <ShellContent Icon="store.png" ContentTemplate="{DataTemplate local:Pantry}" Route="pantry"/>
+        <ShellContent Icon="basket.png" ContentTemplate="{DataTemplate local:ShoppingList}" Route="shoppingList"/>
+        <ShellContent Icon="fork.png" ContentTemplate="{DataTemplate local:MealPlan}" Route="mealPlanner"/>
         <ShellContent Icon="menu.png" ContentTemplate="{DataTemplate local:Menu}" />
     </TabBar>
 
