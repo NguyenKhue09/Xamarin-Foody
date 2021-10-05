@@ -68,16 +68,16 @@ namespace Foody.Droid.Renderers
 
             // Change colors on different states
             int[][] states = new int[][]{
-            new int[]{-Android.Resource.Attribute.StateChecked},  // unchecked
-            new int[]{Android.Resource.Attribute.StateChecked},   // checked
-            new int[]{}                                // default
-    };
+                new int[]{-Android.Resource.Attribute.StateChecked},  // unchecked
+                new int[]{Android.Resource.Attribute.StateChecked},   // checked
+                new int[]{}                                // default
+            };
 
             int[] colors = new int[]{
-            Android.Graphics.Color.ParseColor("#747474"),
-            Android.Graphics.Color.ParseColor("#007f42"),
-            Android.Graphics.Color.ParseColor("#747474"),
-    };
+                Android.Graphics.Color.ParseColor("#747474"),
+                Android.Graphics.Color.ParseColor("#007f42"),
+                Android.Graphics.Color.ParseColor("#747474"),
+            };
             ColorStateList navigationViewColorStateList = new ColorStateList(states, colors);
             bottomView.ItemIconTintList = navigationViewColorStateList;
             bottomView.ItemTextColor = navigationViewColorStateList;
