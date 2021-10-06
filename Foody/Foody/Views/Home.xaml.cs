@@ -11,10 +11,12 @@ using Xamarin.Forms.Xaml;
 
 namespace Foody.Views
 {
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Home : ContentPage
     {
 
+                   
         private readonly HomeViewModel homeViewModel;
         public Home()
         {

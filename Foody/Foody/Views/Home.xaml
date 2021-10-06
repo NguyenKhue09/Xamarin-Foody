@@ -62,11 +62,11 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="0.3*"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="0.3*"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="0.3*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -178,16 +178,11 @@
 
                     <!--1-->
                     <Label Text="Favorite Recipes" FontSize="25" FontAttributes="Bold" Grid.Column="0" Grid.Row="1" Padding="10, 40, 0 , 0"/>
-                    
-                    <!--2-->
-                    <Label Text="Popular Recipes" FontSize="25" FontAttributes="Bold" Grid.Column="0" Grid.Row="3" Padding="10, 20, 0 , 0"/>
-                    <!--  List of All Foods  -->
                     <CarouselView
                         x:Name="carouselView_MicunaFood"
-                        Grid.Row="13"
-                        Grid.Column="2"
-                        Grid.ColumnSpan="3"
-                        HeightRequest="157"
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        HeightRequest="0"
                         ItemsSource="{Binding Foods}">
 
                         <CarouselView.ItemsLayout>
@@ -307,6 +302,10 @@
                         </CarouselView.ItemTemplate>
 
                     </CarouselView>
+                    <!--2-->
+                    <Label Text="Popular Recipes" FontSize="25" FontAttributes="Bold" Grid.Column="0" Grid.Row="3" Padding="10, 20, 0 , 0"/>
+                    <!--  List of All Foods  -->
+                    
                     <!--3-->
                     <Label Text="Random Recipes" FontSize="25" FontAttributes="Bold" Grid.Column="0" Grid.Row="5" Padding="10, 20, 0 , 0"/>
                    

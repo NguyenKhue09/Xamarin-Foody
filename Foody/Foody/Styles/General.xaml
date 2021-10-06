@@ -8,9 +8,9 @@
     mc:Ignorable="d">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="Texts.xaml" />
+        <!--<ResourceDictionary Source="Texts.xaml" />
         <ResourceDictionary Source="Icons.xaml" />
-        <ResourceDictionary Source="Responsive.xaml" />
+        <ResourceDictionary Source="Responsive.xaml" />-->
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

@@ -5,6 +5,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Styles/Texts.xaml" />
+        <ResourceDictionary Source="../Styles/Icons.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
     <!--#region Headline1-->
 
     <!--#endregion-->
