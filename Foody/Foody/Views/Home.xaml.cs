@@ -41,6 +41,17 @@ namespace Foody.Views
             await (App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/mealPlanner", true);
         }
 
-
+        async void OnImageNameTapped(object sender, EventArgs args)
+        {
+            try
+            {
+                //Code to execute on tapped event
+                await(App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/mealPlanner", true);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
