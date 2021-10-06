@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Foody.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -10,37 +11,31 @@ using Xamarin.Forms.Xaml;
 
 namespace Foody.Views
 {
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Home : ContentPage
     {
 
-        public ICommand NavToPantry => new Command(NavToPantryPage);
-        public ICommand NavToShoppingList => new Command(NavToShoppingListPage);
-        public ICommand NavToMealPlanner => new Command(NavToMealPlannerPage);
+                   
+        private readonly HomeViewModel homeViewModel;
         public Home()
         {
             InitializeComponent();
-            BindingContext = this;
-           
-        }
+            BindingContext = homeViewModel = new HomeViewModel();
 
-        async public void NavToPantryPage()
+        }
+        async void OnImageNameTapped(object sender, EventArgs args)
         {
-           
-            await (App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/pantry", true);
+            try
+            {
+                //Code to execute on tapped event
+                await (App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/mealPlanner", true);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
-
-        async public void NavToShoppingListPage()
-        {
-
-            await (App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/shoppingList", true);
-        }
-        async public void NavToMealPlannerPage()
-        {
-
-            await (App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/mealPlanner", true);
-        }
-
 
     }
 }

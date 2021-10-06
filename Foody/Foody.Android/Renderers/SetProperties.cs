@@ -30,7 +30,7 @@ namespace Foody.Droid.Renderers
             var parameters = bottomView.LayoutParameters;
             bottomView.ItemTextAppearanceActive = Android.Graphics.Color.Red;
             //bottomView.ItemIconTintList = myList;
-            parameters.Height = 200;
+            parameters.Height = 160;
             bottomView.LayoutParameters = parameters;
         }
 
@@ -63,7 +63,7 @@ namespace Foody.Droid.Renderers
 
             var parameters = bottomView.LayoutParameters;
             bottomView.ItemTextAppearanceActive = (global::Android.Graphics.Color.LightGreen);
-            parameters.Height = 200;
+            parameters.Height = 160;
             bottomView.LayoutParameters = parameters;
 
             // Change colors on different states
