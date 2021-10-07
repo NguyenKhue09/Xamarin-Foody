@@ -260,7 +260,6 @@
                                         Padding="5">
                                         <ffimageloading:CachedImage
                                             HorizontalOptions="CenterAndExpand"
-                                            VerticalOptions="CenterAndExpand"
                                             CacheDuration="30"
                                             DownsampleToViewSize="True"
                                             FadeAnimationForCachedImages="True"
