@@ -29,7 +29,7 @@
     <EmbeddedResource Update="Views\ShoppingList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Styles.xaml">
+    <EmbeddedResource Update="Styles\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

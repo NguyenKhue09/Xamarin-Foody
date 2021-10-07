@@ -2,10 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Foody.Views.Home"
+             BackgroundColor="#f5f5f5"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
 
     <ContentPage.Resources>
-        <ResourceDictionary Source="Styles.xaml" />
+        <ResourceDictionary Source="../Styles/Styles.xaml" />
     </ContentPage.Resources>
 
     <ContentPage.Content>
@@ -63,11 +64,11 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="0.3*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="0.9*"/>
                         <RowDefinition Height="0.3*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="1.25*"/>
                         <RowDefinition Height="0.3*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="1.25*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -178,24 +179,17 @@
 
                     <!--1-->
                     <Label Text="Favorite Recipes" FontSize="25" FontAttributes="Bold" Grid.Column="0" Grid.Row="1" Padding="10, 40, 0 , 0"/>
-                
-                    <!--2-->
-                    <Label Text="Popular Recipes" FontSize="25" FontAttributes="Bold" Grid.Column="0" Grid.Row="3" Padding="10, 20, 0 , 0"/>
-                    
-                    <!--3-->
-                    <Label Text="Random Recipes" FontSize="25" FontAttributes="Bold" Grid.Column="0" Grid.Row="5" Padding="10, 20, 0 , 0"/>
-                    <!--  Dynamic Food List  -->
                     <CollectionView
                         x:Name="collectionView_MicunaFood"
-                        Grid.Row="6"
+                        Grid.Row="2"
                         Grid.Column="0"
                         ItemsSource="{Binding Foods}"
-                        HeightRequest="0">
+                        HeightRequest="100">
 
                         <CollectionView.ItemsLayout>
                             <GridItemsLayout
                                 Orientation="Horizontal"
-                                HorizontalItemSpacing="35"
+                                HorizontalItemSpacing="5"
                                 SnapPointsType="MandatorySingle"
                                 SnapPointsAlignment="Center" />
                         </CollectionView.ItemsLayout>
@@ -207,18 +201,18 @@
 
                                     <Grid.RowDefinitions>
                                         <!--  0  -->
-                                        <RowDefinition Height="103" />
+                                        <RowDefinition Height="20" />
                                         <!--  1  -->
-                                        <RowDefinition Height="59" />
+                                        <RowDefinition Height="80" />
                                         <!--  2  -->
-                                        <RowDefinition Height="126" />
+                                        <RowDefinition Height="100" />
                                     </Grid.RowDefinitions>
 
                                     <Grid.ColumnDefinitions>
                                         <!--  0  -->
                                         <ColumnDefinition Width="15" />
                                         <!--  1  -->
-                                        <ColumnDefinition Width="160" />
+                                        <ColumnDefinition Width="140" />
                                         <!--  2  -->
                                         <ColumnDefinition Width="15" />
                                     </Grid.ColumnDefinitions>
@@ -229,111 +223,53 @@
                                         Grid.RowSpan="2"
                                         Grid.Column="0"
                                         Grid.ColumnSpan="3"
-                                        Margin="3,0,3,3"
-                                        CornerRadius="20"
+                                        Margin="8,0,8,3"
+                                        CornerRadius="25"
                                         Shadow="{yummy:ShadowMarkup BlurRadius=3}">
                                         <yummy:PancakeView.BackgroundGradientStops>
                                             <yummy:GradientStopCollection>
                                                 <yummy:GradientStop
                                                     Offset="0"
-                                                    Color="Aqua" />
+                                                    Color="White" />
                                                 <yummy:GradientStop
                                                     Offset="1"
-                                                    Color="Navy" />
+                                                    Color="White" />
                                             </yummy:GradientStopCollection>
                                         </yummy:PancakeView.BackgroundGradientStops>
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <!--  0  -->
-                                                <RowDefinition Height="0.32*" />
-                                                <!--  1  -->
-                                                <RowDefinition Height="0.086*" />
-                                                <!--  2  -->
-                                                <RowDefinition Height="Auto" />
-                                                <!--  3  -->
-                                                <RowDefinition Height="0.043*" />
-                                                <!--  4  -->
-                                                <RowDefinition Height="Auto" />
-                                                <!--  5  -->
-                                                <RowDefinition Height="0.032*" />
-                                                <!--  6  -->
-                                                <RowDefinition Height="0.054*" />
-                                                <!--  7  -->
-                                                <RowDefinition Height="Auto" />
-                                                <!--  8  -->
-                                                <RowDefinition Height="0.043*" />
-                                                <!--  9  -->
-                                                <RowDefinition Height="0.079*" />
-                                            </Grid.RowDefinitions>
 
-                                            <Grid.ColumnDefinitions>
-                                                <!--  0  -->
-                                                <ColumnDefinition Width="0.08*" />
-                                                <!--  1  -->
-                                                <ColumnDefinition Width="0.042*" />
-                                                <!--  2  -->
-                                                <ColumnDefinition Width="0.462*" />
-                                                <!--  3  -->
-                                                <ColumnDefinition Width="0.126*" />
-                                                <!--  4  -->
-                                                <ColumnDefinition Width="0.168*" />
-                                                <!--  5  -->
-                                                <ColumnDefinition Width="0.042*" />
-                                                <!--  6  -->
-                                                <ColumnDefinition Width="0.08*" />
-                                            </Grid.ColumnDefinitions>
-
+                                        <StackLayout Padding="0,50,0,0">
                                             <Label
-                                                Grid.Row="2"
-                                                Grid.Column="2"
-                                                Grid.ColumnSpan="3"
+                                                HorizontalOptions="CenterAndExpand"
+                                                VerticalOptions="CenterAndExpand"
+                                                FontAttributes="Bold"
+                                                FontSize="15"
                                                 Text="{Binding Name_Food}"
                                                 Style="{StaticResource TxtSubtitle1_2}" />
-
-                                            <Label
-                                                Grid.Row="4"
-                                                Grid.Column="2"
-                                                Grid.ColumnSpan="3"
-                                                MaxLines="2"
-                                                Text="{Binding Short_Description_Food}"
-                                                Style="{StaticResource TxtSubtitle2_1}" />
-
-                                            <Label
-                                                Grid.Row="7"
-                                                Grid.Column="2"
-                                                Text="{Binding Price_Food, StringFormat='{0:C2}'}"
-                                                Style="{StaticResource TxtSubtitle1_2}" />
-
-                                            <yummy:PancakeView
-                                                Grid.Row="6"
-                                                Grid.RowSpan="3"
-                                                Grid.Column="4"
-                                                Grid.ColumnSpan="2"
-                                                CornerRadius="20"
-                                                BackgroundColor="{DynamicResource colPrim}">
-                                                <Image
-                                                    HorizontalOptions="Center"
-                                                    VerticalOptions="Center"
-                                                    TranslationY="1"
-                                                    TranslationX="0.2"
-                                                    Source="{StaticResource icon_heart_line}" />
-                                            </yummy:PancakeView>
-
-                                        </Grid>
-
+                                        </StackLayout>
+           
                                     </yummy:PancakeView>
 
-                                    <ffimageloading:CachedImage
+                                    <Frame 
                                         Grid.Row="0"
                                         Grid.RowSpan="2"
                                         Grid.Column="1"
-                                        CacheDuration="30"
-                                        DownsampleToViewSize="True"
-                                        FadeAnimationForCachedImages="True"
-                                        FadeAnimationEnabled="True"
-                                        FadeAnimationDuration="100"
-                                        CacheType="All"
-                                        Source="{Binding Image_Food}" />
+                                        CornerRadius="30"
+                                        BackgroundColor="White"
+                                        HasShadow="True"
+                                        BorderColor="LightGray"
+                                        Padding="5">
+                                        <ffimageloading:CachedImage
+                                            HorizontalOptions="CenterAndExpand"
+                                            VerticalOptions="CenterAndExpand"
+                                            CacheDuration="30"
+                                            DownsampleToViewSize="True"
+                                            FadeAnimationForCachedImages="True"
+                                            FadeAnimationEnabled="True"
+                                            FadeAnimationDuration="100"
+                                            CacheType="All"
+                                            Source="{Binding Image_Food}" />
+                                    </Frame>
+
 
                                 </Grid>
 
@@ -341,6 +277,13 @@
                         </CollectionView.ItemTemplate>
 
                     </CollectionView>
+                    <!--2-->
+                    <Label Text="Popular Recipes" FontSize="25" FontAttributes="Bold" Grid.Column="0" Grid.Row="3" Padding="10, 20, 0 , 0"/>
+                    
+                    <!--3-->
+                    <Label Text="Random Recipes" FontSize="25" FontAttributes="Bold" Grid.Column="0" Grid.Row="5" Padding="10, 20, 0 , 0"/>
+                    <!--  Dynamic Food List  -->
+                    
 
 
                 </Grid>

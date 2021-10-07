@@ -8,6 +8,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Styles/Texts.xaml" />
         <ResourceDictionary Source="../Styles/Icons.xaml" />
+        <ResourceDictionary Source="../Themes/LightTheme.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <!--#region Headline1-->
