@@ -57,14 +57,12 @@
                 </Grid>
             </yummy:PancakeView>
 
-            
-            
             <ScrollView Grid.Column="0" Grid.Row="1">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="0.3*"/>
-                        <RowDefinition Height="0.9*"/>
+                        <RowDefinition Height="0.7*"/>
+                        <RowDefinition Height="0.4*"/>
+                        <RowDefinition Height="0.98*"/>
                         <RowDefinition Height="0.3*"/>
                         <RowDefinition Height="1.25*"/>
                         <RowDefinition Height="0.3*"/>
@@ -80,12 +78,16 @@
                             <RowDefinition Height="140"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="110"/>
                         </Grid.ColumnDefinitions>
 
-                        <yummy:PancakeView  BackgroundGradientStartPoint="-1,0" BackgroundGradientEndPoint="0,1" Grid.Column="0" Grid.Row="0" BackgroundColor="#07BDF6" CornerRadius="15" VerticalOptions="Center" HorizontalOptions="Center">
+                        <yummy:PancakeView  
+                            BackgroundGradientStartPoint="-1,0" BackgroundGradientEndPoint="0,1" 
+                            Grid.Column="0" Grid.Row="0" 
+                            BackgroundColor="#07BDF6" CornerRadius="25" 
+                            VerticalOptions="Center" HorizontalOptions="Center">
 
                             <yummy:PancakeView.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding NavToPantry}"/>
@@ -115,7 +117,11 @@
                                 </Label>
                             </Grid>
                         </yummy:PancakeView>
-                        <yummy:PancakeView  BackgroundGradientStartPoint="-1,0" BackgroundGradientEndPoint="0,1" Grid.Column="1" Grid.Row="0" BackgroundColor="#07BDF6" CornerRadius="15" VerticalOptions="Center" HorizontalOptions="Center">
+                        <yummy:PancakeView  
+                            BackgroundGradientStartPoint="-1,0" BackgroundGradientEndPoint="0,1" 
+                            Grid.Column="1" Grid.Row="0" 
+                            BackgroundColor="#07BDF6" CornerRadius="25" 
+                            VerticalOptions="Center" HorizontalOptions="Center">
 
                             <yummy:PancakeView.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding NavToShoppingList}"/>
@@ -145,7 +151,11 @@
                                 </Label>
                             </Grid>
                         </yummy:PancakeView>
-                        <yummy:PancakeView  BackgroundGradientStartPoint="-1,0" BackgroundGradientEndPoint="0,1" Grid.Column="2" Grid.Row="0" BackgroundColor="#07BDF6" CornerRadius="15" VerticalOptions="Center" HorizontalOptions="Center">
+                        <yummy:PancakeView  
+                            BackgroundGradientStartPoint="-1,0" BackgroundGradientEndPoint="0,1" 
+                            Grid.Column="2" Grid.Row="0" 
+                            BackgroundColor="#07BDF6" CornerRadius="25" 
+                            VerticalOptions="Center" HorizontalOptions="Center">
 
                             <yummy:PancakeView.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding NavToMealPlanner}"/>
@@ -197,7 +207,7 @@
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
 
-                                <Grid WidthRequest="190">
+                                <Grid WidthRequest="190" Padding="0,15,0,0">
 
                                     <Grid.RowDefinitions>
                                         <!--  0  -->
@@ -260,7 +270,6 @@
                                         Padding="5">
                                         <ffimageloading:CachedImage
                                             HorizontalOptions="CenterAndExpand"
-                                            VerticalOptions="CenterAndExpand"
                                             CacheDuration="30"
                                             DownsampleToViewSize="True"
                                             FadeAnimationForCachedImages="True"
