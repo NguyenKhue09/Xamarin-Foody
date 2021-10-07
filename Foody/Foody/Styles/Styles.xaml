@@ -7,27 +7,10 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Styles/Texts.xaml" />
-        <ResourceDictionary Source="../Styles/Icons.xaml" />
+        <ResourceDictionary Source="../Themes/LightTheme.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <!--#region Headline1-->
-
-    <!--#endregion-->
-
-
-    <!--#region Headline2-->
-
-    <!--#endregion-->
-
-
-    <!--#region Headline3-->
-
-    <!--#endregion-->
-
-
-    <!--#region Headline4-->
-
-    <!--#endregion-->
+    
 
 
     <!--#region Headline5-->
@@ -38,20 +21,7 @@
         <Setter Property="FontSize" Value="{StaticResource TxtSizeH5_24}" />
         <Setter Property="FontFamily" Value="OpenSans_ExtraBold" />
     </Style>
-    <!--#endregion-->
-
-
-    <!--#region Headline6-->
-
-    <!--#endregion-->
-
-
-    <!--#region Title-->
-
-    <!--#endregion-->
-
-
-    <!--#region Subtitle1-->
+   
     <Style
         x:Key="TxtSubtitle1_1"
         TargetType="Label">
@@ -108,27 +78,7 @@
     <!--#endregion-->
 
 
-    <!--#region Body2-->
-
-    <!--#endregion-->
-
-
-    <!--#region Button-->
-
-    <!--#endregion-->
-
-
-    <!--#region Caption-->
-
-    <!--#endregion-->
-
-
-    <!--#region Overline-->
-
-    <!--#endregion-->
-
-
-    <!--#region Visual States Manager-->
+    <!--#region Visual States Manager--><!--
     <Style
         x:Key="vsm_fontIconChanged"
         TargetType="Image">
@@ -150,7 +100,7 @@
                 </VisualStateGroup>
             </VisualStateGroupList>
         </Setter>
-    </Style>
+    </Style>-->
 
 
     <Style

@@ -1,4 +1,4 @@
-﻿using Foody.CodeFontIcons;
+﻿
 using Foody.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,22 +16,22 @@ namespace Foody.Services
                 new Category
                 {
                     Name_Category="Fast food",
-                    Image_Category=MonettelliFontIcons.icon_fast_food_line
+                    
                 },
                 new Category
                 {
                     Name_Category="Dessert",
-                    Image_Category=MonettelliFontIcons.icon_dessert_line
+                    
                 },
                 new Category
                 {
                     Name_Category="Beer",
-                    Image_Category=MonettelliFontIcons.icon_beer_line
+                    
                 },
                 new Category
                 {
                     Name_Category="Gourmet Food",
-                    Image_Category=MonettelliFontIcons.icon_gourmet_food_line
+                   
                 },
             };
             #endregion
@@ -45,7 +45,7 @@ namespace Foody.Services
                     VarietyFoods=new VarietyFood
                     {
                           Name_VarietyFood="Gourmet Food",
-                          Image_VarietyFood=MonettelliFontIcons.icon_gourmet_food_line
+                          
                     },
                     Name_Food="Black ramen",
                     Image_Food="https://raw.githubusercontent.com/danielmonettelli/Area51/main/Foods/img_black_ramen.png",
@@ -59,7 +59,7 @@ namespace Foody.Services
                     VarietyFoods=new VarietyFood
                     {
                         Name_VarietyFood="Gourmet Food",
-                        Image_VarietyFood=MonettelliFontIcons.icon_gourmet_food_line
+                        
                     },
                     Name_Food="Avocado of the gods",
                     Image_Food="https://raw.githubusercontent.com/danielmonettelli/Area51/main/Foods/img_avocado_of_the_gods.png",
@@ -73,7 +73,7 @@ namespace Foody.Services
                     VarietyFoods=new VarietyFood
                     {
                       Name_VarietyFood="Gourmet Food",
-                      Image_VarietyFood=MonettelliFontIcons.icon_gourmet_food_line
+                      
                     },
                     Name_Food="Arctic salad",
                     Image_Food="https://raw.githubusercontent.com/danielmonettelli/Area51/main/Foods/img_arctic_salad.png",
@@ -87,7 +87,7 @@ namespace Foody.Services
                     VarietyFoods=new VarietyFood
                     {
                         Name_VarietyFood="Gourmet Food",
-                        Image_VarietyFood=MonettelliFontIcons.icon_gourmet_food_line
+                        
                     },
                     Name_Food="Vegetable streaky",
                     Image_Food="https://raw.githubusercontent.com/danielmonettelli/Area51/main/Foods/img_vegetable_streaky.png",
@@ -101,7 +101,7 @@ namespace Foody.Services
                     VarietyFoods=new VarietyFood
                     {
                         Name_VarietyFood="Gourmet Food",
-                        Image_VarietyFood=MonettelliFontIcons.icon_gourmet_food_line
+                        
                     },
                     Name_Food="Pumpkin cream",
                     Image_Food="https://raw.githubusercontent.com/danielmonettelli/Area51/main/Foods/img_pumpkin_cream.png",
@@ -115,7 +115,7 @@ namespace Foody.Services
                     VarietyFoods=new VarietyFood
                     {
                         Name_VarietyFood="Gourmet Food",
-                        Image_VarietyFood=MonettelliFontIcons.icon_gourmet_food_line
+                        
                     },
                     Name_Food="Paradise salad",
                     Image_Food="https://raw.githubusercontent.com/danielmonettelli/Area51/main/Foods/img_paradise_salad.png",
@@ -129,7 +129,7 @@ namespace Foody.Services
                     VarietyFoods=new VarietyFood
                     {
                         Name_VarietyFood="Gourmet Food",
-                        Image_VarietyFood=MonettelliFontIcons.icon_gourmet_food_line
+                        
                     },
                     Name_Food="Fruit salad",
                     Image_Food="https://raw.githubusercontent.com/danielmonettelli/Area51/main/Foods/img_fruit_salad.png",
@@ -143,7 +143,7 @@ namespace Foody.Services
                     VarietyFoods=new VarietyFood
                     {
                         Name_VarietyFood="Fast food",
-                        Image_VarietyFood=MonettelliFontIcons.icon_fast_food_line
+                        
                     },
                     Name_Food="Cheese Shack Burger",
                     Image_Food="https://raw.githubusercontent.com/danielmonettelli/Area51/main/Fast_Foods/img_cheese_shack_burger.png",
@@ -157,7 +157,7 @@ namespace Foody.Services
                     VarietyFoods=new VarietyFood
                     {
                         Name_VarietyFood="Fast food",
-                        Image_VarietyFood=MonettelliFontIcons.icon_fast_food_line
+                        
                     },
                     Name_Food="Patty Bun",
                     Image_Food="https://raw.githubusercontent.com/danielmonettelli/Area51/main/Fast_Foods/img_patty_bun.png",
@@ -171,7 +171,7 @@ namespace Foody.Services
                     VarietyFoods=new VarietyFood
                     {
                         Name_VarietyFood="Fast food",
-                        Image_VarietyFood=MonettelliFontIcons.icon_fast_food_line
+                       
                     },
                     Name_Food="Vegetarian Hamburger",
                     Image_Food="https://raw.githubusercontent.com/danielmonettelli/Area51/main/Fast_Foods/img_vegetarian_hamburger.png",
@@ -185,7 +185,7 @@ namespace Foody.Services
                     VarietyFoods=new VarietyFood
                     {
                         Name_VarietyFood="Dessert",
-                        Image_VarietyFood=MonettelliFontIcons.icon_dessert_line
+                        
                     },
                     Name_Food="Chocolate Gradient",
                     Image_Food="https://raw.githubusercontent.com/danielmonettelli/Area51/main/Ice_Creams/img_chocolate_gradient.png",
@@ -199,7 +199,7 @@ namespace Foody.Services
                     VarietyFoods=new VarietyFood
                     {
                         Name_VarietyFood="Dessert",
-                        Image_VarietyFood=MonettelliFontIcons.icon_dessert_line
+                        
                     },
                     Name_Food="Creamy Fusion",
                     Image_Food="https://raw.githubusercontent.com/danielmonettelli/Area51/main/Ice_Creams/img_creamy_fusion.png",
@@ -213,7 +213,7 @@ namespace Foody.Services
                     VarietyFoods=new VarietyFood
                     {
                         Name_VarietyFood="Dessert",
-                        Image_VarietyFood=MonettelliFontIcons.icon_dessert_line
+                        
                     },
                     Name_Food="Magic Cone",
                     Image_Food="https://raw.githubusercontent.com/danielmonettelli/Area51/main/Ice_Creams/img_magic_cone.png",
@@ -227,7 +227,7 @@ namespace Foody.Services
                     VarietyFoods=new VarietyFood
                     {
                         Name_VarietyFood="Dessert",
-                        Image_VarietyFood=MonettelliFontIcons.icon_dessert_line
+                        
                     },
                     Name_Food="Sweet Oasis",
                     Image_Food="https://raw.githubusercontent.com/danielmonettelli/Area51/main/Ice_Creams/img_sweet_oasis.png",
@@ -241,7 +241,7 @@ namespace Foody.Services
                     VarietyFoods=new VarietyFood
                     {
                         Name_VarietyFood="Beer",
-                        Image_VarietyFood=MonettelliFontIcons.icon_beer_line
+                        
                     },
                     Name_Food="Bintang",
                     Image_Food="https://raw.githubusercontent.com/danielmonettelli/Area51/main/Beers/img_bintang.png",
@@ -255,7 +255,7 @@ namespace Foody.Services
                     VarietyFoods=new VarietyFood
                     {
                         Name_VarietyFood="Beer",
-                        Image_VarietyFood=MonettelliFontIcons.icon_beer_line
+                       
                     },
                     Name_Food="Carlsberg",
                     Image_Food="https://raw.githubusercontent.com/danielmonettelli/Area51/main/Beers/img_carlsberg.png",
@@ -269,7 +269,7 @@ namespace Foody.Services
                     VarietyFoods=new VarietyFood
                     {
                         Name_VarietyFood="Beer",
-                        Image_VarietyFood=MonettelliFontIcons.icon_beer_line
+                        
                     },
                     Name_Food="Corona",
                     Image_Food="https://raw.githubusercontent.com/danielmonettelli/Area51/main/Beers/img_corona.png",

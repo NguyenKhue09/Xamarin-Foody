@@ -18,6 +18,5 @@ namespace Foody.Models
     public class VarietyFood
     {
         public string Name_VarietyFood { get; set; }
-        public string Image_VarietyFood { get; set; }
     }
 }

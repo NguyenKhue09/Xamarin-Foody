@@ -2,10 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Foody.Views.Home"
+             BackgroundColor="#f5f5f5"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
 
     <ContentPage.Resources>
-        <ResourceDictionary Source="Styles.xaml" />
+        <ResourceDictionary Source="../Styles/Styles.xaml" />
     </ContentPage.Resources>
 
     <ContentPage.Content>
@@ -56,18 +57,16 @@
                 </Grid>
             </yummy:PancakeView>
 
-            
-            
             <ScrollView Grid.Column="0" Grid.Row="1">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="0.7*"/>
+                        <RowDefinition Height="0.4*"/>
+                        <RowDefinition Height="0.98*"/>
                         <RowDefinition Height="0.3*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="1.25*"/>
                         <RowDefinition Height="0.3*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="0.3*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="1.25*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -79,12 +78,16 @@
                             <RowDefinition Height="140"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="110"/>
                         </Grid.ColumnDefinitions>
 
-                        <yummy:PancakeView  BackgroundGradientStartPoint="-1,0" BackgroundGradientEndPoint="0,1" Grid.Column="0" Grid.Row="0" BackgroundColor="#07BDF6" CornerRadius="15" VerticalOptions="Center" HorizontalOptions="Center">
+                        <yummy:PancakeView  
+                            BackgroundGradientStartPoint="-1,0" BackgroundGradientEndPoint="0,1" 
+                            Grid.Column="0" Grid.Row="0" 
+                            BackgroundColor="#07BDF6" CornerRadius="25" 
+                            VerticalOptions="Center" HorizontalOptions="Center">
 
                             <yummy:PancakeView.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding NavToPantry}"/>
@@ -114,7 +117,11 @@
                                 </Label>
                             </Grid>
                         </yummy:PancakeView>
-                        <yummy:PancakeView  BackgroundGradientStartPoint="-1,0" BackgroundGradientEndPoint="0,1" Grid.Column="1" Grid.Row="0" BackgroundColor="#07BDF6" CornerRadius="15" VerticalOptions="Center" HorizontalOptions="Center">
+                        <yummy:PancakeView  
+                            BackgroundGradientStartPoint="-1,0" BackgroundGradientEndPoint="0,1" 
+                            Grid.Column="1" Grid.Row="0" 
+                            BackgroundColor="#07BDF6" CornerRadius="25" 
+                            VerticalOptions="Center" HorizontalOptions="Center">
 
                             <yummy:PancakeView.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding NavToShoppingList}"/>
@@ -144,7 +151,11 @@
                                 </Label>
                             </Grid>
                         </yummy:PancakeView>
-                        <yummy:PancakeView  BackgroundGradientStartPoint="-1,0" BackgroundGradientEndPoint="0,1" Grid.Column="2" Grid.Row="0" BackgroundColor="#07BDF6" CornerRadius="15" VerticalOptions="Center" HorizontalOptions="Center">
+                        <yummy:PancakeView  
+                            BackgroundGradientStartPoint="-1,0" BackgroundGradientEndPoint="0,1" 
+                            Grid.Column="2" Grid.Row="0" 
+                            BackgroundColor="#07BDF6" CornerRadius="25" 
+                            VerticalOptions="Center" HorizontalOptions="Center">
 
                             <yummy:PancakeView.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding NavToMealPlanner}"/>
@@ -178,46 +189,52 @@
 
                     <!--1-->
                     <Label Text="Favorite Recipes" FontSize="25" FontAttributes="Bold" Grid.Column="0" Grid.Row="1" Padding="10, 40, 0 , 0"/>
-                    <CarouselView
-                        x:Name="carouselView_MicunaFood"
+                    <CollectionView
+                        x:Name="collectionView_MicunaFood"
                         Grid.Row="2"
                         Grid.Column="0"
-                        HeightRequest="0"
-                        ItemsSource="{Binding Foods}">
+                        ItemsSource="{Binding Foods}"
+                        HeightRequest="100">
 
-                        <CarouselView.ItemsLayout>
-                            <LinearItemsLayout
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout
                                 Orientation="Horizontal"
-                                SnapPointsType="MandatorySingle" />
-                        </CarouselView.ItemsLayout>
+                                HorizontalItemSpacing="5"
+                                SnapPointsType="MandatorySingle"
+                                SnapPointsAlignment="Center" />
+                        </CollectionView.ItemsLayout>
 
-                        <CarouselView.ItemTemplate>
+                        <CollectionView.ItemTemplate>
                             <DataTemplate>
 
-                                <Grid>
+                                <Grid WidthRequest="190" Padding="0,15,0,0">
+
                                     <Grid.RowDefinitions>
                                         <!--  0  -->
-                                        <RowDefinition Height="0.076*" />
+                                        <RowDefinition Height="20" />
                                         <!--  1  -->
-                                        <RowDefinition Height="0.924*" />
+                                        <RowDefinition Height="80" />
+                                        <!--  2  -->
+                                        <RowDefinition Height="100" />
                                     </Grid.RowDefinitions>
 
                                     <Grid.ColumnDefinitions>
                                         <!--  0  -->
-                                        <ColumnDefinition Width="0.577*" />
+                                        <ColumnDefinition Width="15" />
                                         <!--  1  -->
-                                        <ColumnDefinition Width="0.196*" />
+                                        <ColumnDefinition Width="140" />
                                         <!--  2  -->
-                                        <ColumnDefinition Width="0.227*" />
+                                        <ColumnDefinition Width="15" />
                                     </Grid.ColumnDefinitions>
+
 
                                     <yummy:PancakeView
                                         Grid.Row="1"
+                                        Grid.RowSpan="2"
                                         Grid.Column="0"
-                                        Grid.ColumnSpan="2"
-                                        Margin="3,3,0,3"
-                                        CornerRadius="20"
-                                        HeightRequest="145"
+                                        Grid.ColumnSpan="3"
+                                        Margin="8,0,8,3"
+                                        CornerRadius="25"
                                         Shadow="{yummy:ShadowMarkup BlurRadius=3}">
                                         <yummy:PancakeView.BackgroundGradientStops>
                                             <yummy:GradientStopCollection>
@@ -226,90 +243,57 @@
                                                     Color="White" />
                                                 <yummy:GradientStop
                                                     Offset="1"
-                                                     Color="White" />
+                                                    Color="White" />
                                             </yummy:GradientStopCollection>
                                         </yummy:PancakeView.BackgroundGradientStops>
 
-                                        <Grid>
-
-                                            <Grid.RowDefinitions>
-                                                <!--  0  -->
-                                                <RowDefinition Height="0.2*" />
-                                                <!--  1  -->
-                                                <RowDefinition Height="Auto" />
-                                                <!--  2  -->
-                                                <RowDefinition Height="0.055*" />
-                                                <!--  3  -->
-                                                <RowDefinition Height="Auto" />
-                                                <!--  4  -->
-                                                <RowDefinition Height="0.11*" />
-                                                <!--  5  -->
-                                                <RowDefinition Height="Auto" />
-                                                <!--  6  -->
-                                                <RowDefinition Height="0.2*" />
-                                            </Grid.RowDefinitions>
-
-                                            <Grid.ColumnDefinitions>
-                                                <!--  0  -->
-                                                <ColumnDefinition Width="23" />
-                                                <!--  1  -->
-                                                <ColumnDefinition Width="0.49*" />
-                                                <!--  2  -->
-                                                <ColumnDefinition Width="0.064*" />
-                                                <!--  3  -->
-                                                <ColumnDefinition Width="0.422*" />
-                                            </Grid.ColumnDefinitions>
-
+                                        <StackLayout Padding="0,50,0,0">
                                             <Label
-                                                Grid.Row="1"
-                                                Grid.Column="1"
+                                                HorizontalOptions="CenterAndExpand"
+                                                VerticalOptions="CenterAndExpand"
+                                                FontAttributes="Bold"
+                                                FontSize="15"
                                                 Text="{Binding Name_Food}"
                                                 Style="{StaticResource TxtSubtitle1_2}" />
-
-                                            <Label
-                                                Grid.Row="3"
-                                                Grid.Column="1"
-                                                MaxLines="3"
-                                                Text="{Binding Short_Description_Food}"
-                                                Style="{StaticResource TxtSubtitle2_1}" />
-
-                                            <Label
-                                                Grid.Row="5"
-                                                Grid.Column="1"
-                                                Text="{Binding Price_Food, StringFormat='{0:C2}'}"
-                                                Style="{StaticResource TxtSubtitle1_2}" />
-
-                                        </Grid>
-
+                                        </StackLayout>
+           
                                     </yummy:PancakeView>
 
-                                    <ffimageloading:CachedImage
+                                    <Frame 
                                         Grid.Row="0"
                                         Grid.RowSpan="2"
                                         Grid.Column="1"
-                                        Grid.ColumnSpan="2"
-                                        CacheDuration="30"
-                                        DownsampleToViewSize="True"
-                                        FadeAnimationForCachedImages="True"
-                                        FadeAnimationEnabled="True"
-                                        FadeAnimationDuration="100"
-                                        CacheType="All"
-                                        Source="{Binding Image_Food}" />
+                                        CornerRadius="30"
+                                        BackgroundColor="White"
+                                        HasShadow="True"
+                                        BorderColor="LightGray"
+                                        Padding="5">
+                                        <ffimageloading:CachedImage
+                                            HorizontalOptions="CenterAndExpand"
+                                            CacheDuration="30"
+                                            DownsampleToViewSize="True"
+                                            FadeAnimationForCachedImages="True"
+                                            FadeAnimationEnabled="True"
+                                            FadeAnimationDuration="100"
+                                            CacheType="All"
+                                            Source="{Binding Image_Food}" />
+                                    </Frame>
+
 
                                 </Grid>
 
                             </DataTemplate>
-                        </CarouselView.ItemTemplate>
+                        </CollectionView.ItemTemplate>
 
-                    </CarouselView>
+                    </CollectionView>
                     <!--2-->
                     <Label Text="Popular Recipes" FontSize="25" FontAttributes="Bold" Grid.Column="0" Grid.Row="3" Padding="10, 20, 0 , 0"/>
-                    <!--  List of All Foods  -->
                     
                     <!--3-->
                     <Label Text="Random Recipes" FontSize="25" FontAttributes="Bold" Grid.Column="0" Grid.Row="5" Padding="10, 20, 0 , 0"/>
-                   
-                
+                    <!--  Dynamic Food List  -->
+                    
+
 
                 </Grid>
             </ScrollView>
