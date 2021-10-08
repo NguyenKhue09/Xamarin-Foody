@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Foody.Views.Home"
              BackgroundColor="#f5f5f5"
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+             NavigationPage.HasNavigationBar="False"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
 
     <ContentPage.Resources>
         <ResourceDictionary Source="../Styles/Styles.xaml" />
@@ -56,6 +58,8 @@
                     </Image>
                 </Grid>
             </yummy:PancakeView>
+            
+            
 
             <ScrollView Grid.Column="0" Grid.Row="1" VerticalScrollBarVisibility="Never">
                 <Grid>
@@ -190,11 +194,13 @@
                     <!--1-->
                     <Label Text="Favorite Recipes" FontSize="25" FontAttributes="Bold" Grid.Column="0" Grid.Row="1" Padding="10, 40, 0 , 0"/>
                     <CollectionView
-                        x:Name="collectionView_MicunaFood"
+                        x:Name="favorite_Recipes_Foody"
                         Grid.Row="2"
                         Grid.Column="0"
                         ItemsSource="{Binding Foods}"
-                        HeightRequest="100">
+                        HeightRequest="100"
+                        SelectionMode="Single"
+                        SelectionChanged="favorite_Recipes_Foody_SelectionChanged">
 
                         <CollectionView.ItemsLayout>
                             <GridItemsLayout
@@ -203,6 +209,8 @@
                                 SnapPointsType="MandatorySingle"
                                 SnapPointsAlignment="Center" />
                         </CollectionView.ItemsLayout>
+
+                        
 
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
@@ -227,7 +235,16 @@
                                         <ColumnDefinition Width="15" />
                                     </Grid.ColumnDefinitions>
 
-
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#f5f5f5" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    
                                     <yummy:PancakeView
                                         Grid.Row="1"
                                         Grid.RowSpan="2"

@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:anim="clr-namespace:Xamanimation;assembly=Xamanimation"
+             x:Class="Foody.Views.DetailsRecipe.DetailRecipe"
+             NavigationPage.HasNavigationBar="True"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
+
+
+    <ContentPage.Resources>
+        <!--<StyleSheet>
+            <![CDATA[
+
+              .btn {
+                height: 44;
+                font-size: 16;
+              }
+            
+              ^ImageButton {
+                background-color: transparent;
+              }
+            
+
+              ]]>
+        </StyleSheet>-->
+
+        <!-- ANIMATIONS -->
+        <anim:FadeToAnimation x:Key="FakeNavBarFadeOut" Target="{x:Reference FakeNavBar}" Opacity="0" Duration="500"/>
+        <anim:FadeToAnimation x:Key="FakeNavBarFadeIn" Target="{x:Reference FakeNavBar}" Opacity="1" Duration="500" />
+        <ResourceDictionary Source="../../Styles/Styles.xaml" />
+    </ContentPage.Resources>
+    
+    
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="88"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+
+            <Grid Grid.RowSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="360" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <ScrollView Grid.Row="0" Grid.RowSpan="2">
+                    <ScrollView.Behaviors>
+                        <anim:ScrollViewScrollBehavior x:Name="Scroll" />
+                    </ScrollView.Behaviors>
+                    <StackLayout 
+                            Margin="15,15,15,15"
+                            Spacing="20">
+                        
+                        <Frame Visual="Material"
+                           d:IsVisible="False">
+                        <Frame.Behaviors>
+                            <anim:AnimateProgressDouble 
+                                        TargetProperty="VisualElement.Scale"
+                                        Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
+                                        From="1"
+                                        To="0.75"
+                                        Minimum="320"
+                                        Maximum="400"/>
+                            <anim:AnimateProgressDouble 
+                                        TargetProperty="VisualElement.Opacity"
+                                        Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
+                                        From="1"
+                                        To="0.9"
+                                        Minimum="0"
+                                        Maximum="320"/>
+                            <anim:AnimateProgressDouble 
+                                        TargetProperty="VisualElement.Opacity"
+                                        Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
+                                        From="0.9"
+                                        To="0"
+                                        Minimum="320"
+                                        Maximum="400"/>
+                        </Frame.Behaviors>
+
+                     
+                    </Frame>
+                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
+
+
+
+
+
+
+            <FlexLayout
+            Direction="Row"
+            Padding="15,42,15,15">
+                <ImageButton 
+                FlexLayout.Shrink="0" Source="pantry.png">
+
+                </ImageButton>
+                <BoxView FlexLayout.Grow="1" />
+                <ImageButton 
+                FlexLayout.Shrink="0" Source="pantry.png">
+
+                </ImageButton>
+                <ImageButton 
+                FlexLayout.Shrink="0" Source="pantry.png">
+
+                </ImageButton>
+            </FlexLayout>
+
+
+
+            <!-- FAKE NAVIGATIONBAR -->
+            <FlexLayout 
+            x:Name="FakeNavBar"
+           BackgroundColor="White"
+            Direction="Row"
+            Opacity="0"
+            Padding="15,42,15,15">
+                <FlexLayout.Triggers>
+                    <DataTrigger TargetType="FlexLayout"
+                                Binding="{Binding ScrollY, 
+                                        Source={x:Reference Scroll}, 
+                                        Converter={StaticResource ComparisonConverter},
+                                        ConverterParameter='180;>'}"
+                                Value="true">
+                        <DataTrigger.EnterActions>
+                            <anim:BeginAnimation
+                                    Animation="{StaticResource FakeNavBarFadeIn}" />
+                        </DataTrigger.EnterActions>
+                        <DataTrigger.ExitActions>
+                            <anim:BeginAnimation
+                                    Animation="{StaticResource FakeNavBarFadeOut}" />
+                        </DataTrigger.ExitActions>
+                    </DataTrigger>
+                </FlexLayout.Triggers>
+                <ImageButton 
+                FlexLayout.Shrink="0" Source="pantry.png">
+
+                </ImageButton>
+                <Label
+                Text="Cole Clark Fat Lady 2 Blackwood Blackwood" 
+                FontSize="18"
+                Margin="10,0"
+                VerticalOptions="Center"
+                TextColor="Black"
+                LineBreakMode="TailTruncation"
+                FlexLayout.AlignSelf="Center"
+                FlexLayout.Grow="1" />
+                <ImageButton 
+                FlexLayout.Shrink="0" Source="pantry.png">
+
+                </ImageButton>
+            </FlexLayout>
+
+
+
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

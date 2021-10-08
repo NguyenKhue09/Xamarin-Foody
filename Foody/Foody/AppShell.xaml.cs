@@ -10,7 +10,6 @@ namespace Foody
         public AppShell()
         {
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
             Routing.RegisterRoute(nameof(Home), typeof(Home));
             Routing.RegisterRoute(nameof(Pantry), typeof(Pantry));
             Routing.RegisterRoute(nameof(ShoppingList), typeof(ShoppingList));

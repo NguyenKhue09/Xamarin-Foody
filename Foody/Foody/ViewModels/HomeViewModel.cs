@@ -13,7 +13,7 @@ namespace Foody.ViewModels
     {
         public ObservableRangeCollection<Food> Foods { get; set; }
 
-        public ObservableRangeCollection<FoodsViewModel> DynamicFoods { get; set; }
+       
         public ICommand NavToPantry => new Command(NavToPantryPage);
         public ICommand NavToShoppingList => new Command(NavToShoppingListPage);
         public ICommand NavToMealPlanner => new Command(NavToMealPlannerPage);
@@ -23,7 +23,7 @@ namespace Foody.ViewModels
             Foods = new ObservableRangeCollection<Food>();
             Foods.AddRange(Repository.Foods);
 
-            DynamicFoods = new ObservableRangeCollection<FoodsViewModel>();
+           
         }
 
         async public void NavToPantryPage()

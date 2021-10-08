@@ -1,4 +1,5 @@
 ﻿using Foody.ViewModels;
+using Foody.Views.DetailsRecipe;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -37,5 +38,17 @@ namespace Foody.Views
             }
         }
 
+        async private void favorite_Recipes_Foody_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedItem = e.CurrentSelection.FirstOrDefault();
+
+            if (selectedItem != null)
+            {
+                
+                await Navigation.PushAsync(new DetailRecipe());
+            }
+
+            favorite_Recipes_Foody.SelectedItem = null;
+        }
     }
 }
