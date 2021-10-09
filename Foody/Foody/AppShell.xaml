@@ -28,7 +28,7 @@
 
 
     <TabBar Route="tabbar">
-        <ShellContent Icon="home.png" ContentTemplate="{DataTemplate local:Home}" />
+        <ShellContent Icon="home.png" ContentTemplate="{DataTemplate local:Home}" Route="home"/>
         <ShellContent Icon="store.png" ContentTemplate="{DataTemplate local:Pantry}" Route="pantry"/>
         <ShellContent Icon="basket.png" ContentTemplate="{DataTemplate local:ShoppingList}" Route="shoppingList"/>
         <ShellContent Icon="fork.png" ContentTemplate="{DataTemplate local:MealPlan}" Route="mealPlanner"/>

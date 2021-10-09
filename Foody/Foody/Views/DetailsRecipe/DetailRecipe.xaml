@@ -7,7 +7,6 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
 
-
     <ContentPage.Resources>
         <!--<StyleSheet>
             <![CDATA[
@@ -31,17 +30,14 @@
         <ResourceDictionary Source="../../Styles/Styles.xaml" />
     </ContentPage.Resources>
     
-    
-
-    <ContentPage.Content>
-        <Grid>
+    <ContentPage.Content >
+        <Grid RowSpacing="0" x:Name="GridDetail">
             <Grid.RowDefinitions>
-                <RowDefinition Height="88"/>
+                <RowDefinition Height="60"/>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-
-            <Grid Grid.RowSpan="2">
+            <Grid Grid.RowSpan="2" RowSpacing="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="360" />
                     <RowDefinition Height="*" />
@@ -50,7 +46,7 @@
                     <ScrollView.Behaviors>
                         <anim:ScrollViewScrollBehavior x:Name="Scroll" />
                     </ScrollView.Behaviors>
-                    <StackLayout 
+                    <StackLayout
                             Margin="15,15,15,15"
                             Spacing="20">
                         
@@ -79,10 +75,10 @@
                                         Minimum="320"
                                         Maximum="400"/>
                         </Frame.Behaviors>
-
-                     
+                    
                     </Frame>
-                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                        <Label Text="{Binding Name_Food}" TextColor="Black" FontSize="Large" Padding="0,85,0,0" FontAttributes="Bold"/>
+                        <Image Source="{Binding Image_Food}" Aspect="Fill" HeightRequest="250" WidthRequest="300" HorizontalOptions="Center"/>
                         <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
                         <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
                         <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
@@ -109,44 +105,33 @@
                 </ScrollView>
             </Grid>
 
-
-
-
-
-
             <FlexLayout
             Direction="Row"
-            Padding="15,42,15,15">
-                <ImageButton 
-                FlexLayout.Shrink="0" Source="pantry.png">
-
-                </ImageButton>
-                <BoxView FlexLayout.Grow="1" />
-                <ImageButton 
-                FlexLayout.Shrink="0" Source="pantry.png">
-
-                </ImageButton>
-                <ImageButton 
-                FlexLayout.Shrink="0" Source="pantry.png">
-
-                </ImageButton>
+                 Padding="8,14"
+            >
+                <Image 
+                FlexLayout.Shrink="0" Source="left_arrow.png" HeightRequest="32" WidthRequest="32">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                                Tapped="TapGestureRecognizer_Tapped"
+                                 />
+                    </Image.GestureRecognizers>
+                </Image>
             </FlexLayout>
-
-
 
             <!-- FAKE NAVIGATIONBAR -->
             <FlexLayout 
             x:Name="FakeNavBar"
            BackgroundColor="White"
             Direction="Row"
-            Opacity="0"
-            Padding="15,42,15,15">
+            Opacity="0" Padding="8,14"
+            >
                 <FlexLayout.Triggers>
                     <DataTrigger TargetType="FlexLayout"
                                 Binding="{Binding ScrollY, 
                                         Source={x:Reference Scroll}, 
                                         Converter={StaticResource ComparisonConverter},
-                                        ConverterParameter='180;>'}"
+                                        ConverterParameter='250;>'}"
                                 Value="true">
                         <DataTrigger.EnterActions>
                             <anim:BeginAnimation
@@ -158,27 +143,25 @@
                         </DataTrigger.ExitActions>
                     </DataTrigger>
                 </FlexLayout.Triggers>
-                <ImageButton 
-                FlexLayout.Shrink="0" Source="pantry.png">
-
-                </ImageButton>
+                <Image 
+                FlexLayout.Shrink="0" Source="left_arrow.png" HeightRequest="32" WidthRequest="32">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                                Tapped="TapGestureRecognizer_Tapped"
+                                 />
+                    </Image.GestureRecognizers>
+                </Image>
                 <Label
-                Text="Cole Clark Fat Lady 2 Blackwood Blackwood" 
-                FontSize="18"
-                Margin="10,0"
+                Text="{Binding Name_Food}" 
+                FontSize="Large"
+                Margin="15,0"
+                FontAttributes="Bold"
                 VerticalOptions="Center"
                 TextColor="Black"
                 LineBreakMode="TailTruncation"
                 FlexLayout.AlignSelf="Center"
                 FlexLayout.Grow="1" />
-                <ImageButton 
-                FlexLayout.Shrink="0" Source="pantry.png">
-
-                </ImageButton>
             </FlexLayout>
-
-
-
 
         </Grid>
 

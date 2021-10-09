@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Foody.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,24 @@ namespace Foody.Views.DetailsRecipe
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DetailRecipe : ContentPage
     {
-        public DetailRecipe()
+        public DetailRecipe(Models.Food food)
         {
             InitializeComponent();
-            
+            BindingContext = food;
+        }
+
+
+        async private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            try
+            {
+                //Code to execute on tapped event
+                await(App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/home", true);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
