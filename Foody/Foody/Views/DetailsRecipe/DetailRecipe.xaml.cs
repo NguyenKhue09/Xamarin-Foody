@@ -17,6 +17,7 @@ namespace Foody.Views.DetailsRecipe
         {
             InitializeComponent();
             BindingContext = food;
+            
         }
 
 
@@ -32,5 +33,7 @@ namespace Foody.Views.DetailsRecipe
                 throw ex;
             }
         }
+
+       
     }
 }
