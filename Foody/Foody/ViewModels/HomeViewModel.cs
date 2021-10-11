@@ -12,8 +12,8 @@ namespace Foody.ViewModels
     public class HomeViewModel : BaseViewModel
     {
         public ObservableRangeCollection<Food> Foods { get; set; }
-
-       
+        
+        
         public ICommand NavToPantry => new Command(NavToPantryPage);
         public ICommand NavToShoppingList => new Command(NavToShoppingListPage);
         public ICommand NavToMealPlanner => new Command(NavToMealPlannerPage);

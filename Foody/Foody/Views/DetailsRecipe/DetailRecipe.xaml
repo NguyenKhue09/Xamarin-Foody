@@ -5,7 +5,7 @@
              x:Class="Foody.Views.DetailsRecipe.DetailRecipe"
              NavigationPage.HasNavigationBar="True"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit" >
 
     <ContentPage.Resources>
         <!--<StyleSheet>
@@ -42,6 +42,7 @@
                     <RowDefinition Height="360" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
+
                 <ScrollView Grid.Row="0" Grid.RowSpan="2">
                     <ScrollView.Behaviors>
                         <anim:ScrollViewScrollBehavior x:Name="Scroll" />
@@ -119,7 +120,7 @@
                 </Image>
             </FlexLayout>
 
-            <!-- FAKE NAVIGATIONBAR -->
+             <!--FAKE NAVIGATIONBAR--> 
             <FlexLayout 
             x:Name="FakeNavBar"
            BackgroundColor="White"
