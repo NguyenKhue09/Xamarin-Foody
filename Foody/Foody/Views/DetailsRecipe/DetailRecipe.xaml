@@ -182,7 +182,7 @@
                 </Image>
             </FlexLayout>
 
-            <!-- FAKE NAVIGATIONBAR -->
+             <!--FAKE NAVIGATIONBAR--> 
             <FlexLayout 
                 x:Name="FakeNavBar"
                 BackgroundColor="White"

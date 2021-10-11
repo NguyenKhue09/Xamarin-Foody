@@ -23,9 +23,27 @@ namespace Foody.Views
         public Home()
         {
             InitializeComponent();
+            CheckFavorite(true);
             BindingContext = homeViewModel = new HomeViewModel();
 
         }
+
+
+        void CheckFavorite(bool x)
+        {
+            if (x)
+            {
+                lb.Height = new GridLength(0.98, GridUnitType.Star);
+                col.Height = new GridLength(0.3, GridUnitType.Star);
+            }
+            else
+            {
+                lb.Height = 0;
+                col.Height = 0;
+            }
+            
+        }
+
         async void OnImageNameTapped(object sender, EventArgs args)
         {
             try
