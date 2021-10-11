@@ -9,7 +9,7 @@
     xmlns:converters="clr-namespace:Foody.Converters">
 
     <converters:ComparisonConverter x:Key="ComparisonConverter"/>
-    <converters:ScrollValueConverter x:Key="ScrollValueConverter"/>
+    
 
     <!--#region Color Range-->
     <Color x:Key="colPrim">#000000</Color>

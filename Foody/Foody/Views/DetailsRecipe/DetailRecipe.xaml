@@ -5,10 +5,20 @@
              x:Class="Foody.Views.DetailsRecipe.DetailRecipe"
              NavigationPage.HasNavigationBar="True"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit" >
+             xmlns:controls="clr-namespace:SegmentedControl.FormsPlugin.Abstractions;assembly=SegmentedControl.FormsPlugin.Abstractions"
+             xmlns:tabs1="http://sharpnado.com">
 
     <ContentPage.Resources>
-        <!--<StyleSheet>
+
+        <Style x:Key="SegmentedTabStyle" TargetType="tabs1:SegmentedTabItem">
+            <Setter Property="SelectedTabColor" Value="Pink" />
+            <Setter Property="LabelSize" Value="14" />
+            <Setter Property="SelectedLabelColor" Value="#F0F0F3" />
+            <Setter Property="UnselectedLabelColor" Value="Gray" />
+            
+        </Style>
+        
+        <StyleSheet>
             <![CDATA[
 
               .btn {
@@ -16,13 +26,13 @@
                 font-size: 16;
               }
             
-              ^ImageButton {
+              ^Image {
                 background-color: transparent;
               }
             
 
               ]]>
-        </StyleSheet>-->
+        </StyleSheet>
 
         <!-- ANIMATIONS -->
         <anim:FadeToAnimation x:Key="FakeNavBarFadeOut" Target="{x:Reference FakeNavBar}" Opacity="0" Duration="500"/>
@@ -42,12 +52,11 @@
                     <RowDefinition Height="360" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-
-                <ScrollView Grid.Row="0" Grid.RowSpan="2">
+                <ScrollView Grid.Row="0" Grid.RowSpan="2" VerticalScrollBarVisibility="Never">
                     <ScrollView.Behaviors>
                         <anim:ScrollViewScrollBehavior x:Name="Scroll" />
                     </ScrollView.Behaviors>
-                    <StackLayout
+                    <StackLayout x:Name="SegContent"
                             Margin="15,15,15,15"
                             Spacing="20">
                         
@@ -78,30 +87,87 @@
                         </Frame.Behaviors>
                     
                     </Frame>
-                        <Label Text="{Binding Name_Food}" TextColor="Black" FontSize="Large" Padding="0,85,0,0" FontAttributes="Bold"/>
-                        <Image Source="{Binding Image_Food}" Aspect="Fill" HeightRequest="250" WidthRequest="300" HorizontalOptions="Center"/>
-                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                        <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                        <Label Text="{Binding Name_Food}" TextColor="Black" FontSize="Large" Padding="0,50,0,0" FontAttributes="Bold"/>
+                        <Image Source="{Binding Image_Food}" Aspect="Fill" HeightRequest="250" WidthRequest="300" HorizontalOptions="Center">
+                            <Image.Behaviors>
+                                <anim:AnimateProgressDouble 
+                                    TargetProperty="VisualElement.Opacity"
+                                    Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
+                                    Minimum="0"
+                                    Maximum="250"
+                                    From="1"
+                                    To="0"/>
+                            </Image.Behaviors>
+                        </Image>
+
+
+                        <Frame BackgroundColor="Orange" Padding="0">
+                            <tabs1:TabHostView x:Name="TabHost"  
+                                Grid.Row="4"
+                                HeightRequest="40"
+                                Margin="0,0,0,0"
+                                VerticalOptions="Center"
+                                BackgroundColor="#F0F0F3"
+                                
+                               
+                                CornerRadius="20"
+                                IsSegmented="True"
+                                SegmentedHasSeparator="False"
+                                SegmentedOutlineColor="Pink"
+                                TabType="Fixed"
+                                SelectedIndex="{Binding Source={x:Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}">
+                                <tabs1:TabHostView.Tabs>
+                                    <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Quote" IsSelected="True" TabIndex="0"/>
+                                    <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Movies" TabIndex="1"/>
+                                    <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Meme" TabIndex="2"/>
+                                </tabs1:TabHostView.Tabs>
+                            </tabs1:TabHostView>
+                        </Frame>
+                       
+
+                        <tabs1:ViewSwitcher x:Name="Switcher" SelectedIndex="{Binding SelectedViewModelIndex, Mode=TwoWay}">
+                            <ContentView TabIndex="0" >
+                                <StackLayout>
+                                    <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large" ></Label>
+                                    <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                    <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                    <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                    <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                    <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                    <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                    <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                    <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                    <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                    <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                    <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                    <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                    <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                    <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                    <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                    <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                    <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                    <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                    <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                    <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                </StackLayout>
+                            </ContentView>
+                            <ContentView TabIndex="1">
+                                <Label Text="cmmmmmmmmmmmmmmmmmmmmm">
+
+                                </Label>
+                            </ContentView>
+                            <ContentView TabIndex="2">
+                                <Label Text="adkjahfkjadsfsjd">
+
+                                </Label>
+                            </ContentView>
+                        </tabs1:ViewSwitcher>
+
+                       
+
+
+
+                        
                     </StackLayout>
                 </ScrollView>
             </Grid>
@@ -122,11 +188,10 @@
 
              <!--FAKE NAVIGATIONBAR--> 
             <FlexLayout 
-            x:Name="FakeNavBar"
-           BackgroundColor="White"
-            Direction="Row"
-            Opacity="0" Padding="8,14"
-            >
+                x:Name="FakeNavBar"
+                BackgroundColor="White"
+                Direction="Row"
+                Opacity="0" Padding="8,14">
                 <FlexLayout.Triggers>
                     <DataTrigger TargetType="FlexLayout"
                                 Binding="{Binding ScrollY, 
