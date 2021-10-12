@@ -16,7 +16,7 @@ namespace Foody.Data
             restService = service;
         }
 
-        public Task<List<Recipe>> GetRecipes()
+        public Task<Recipe> GetRecipes()
         {
             return restService.GetRecipes();
         }

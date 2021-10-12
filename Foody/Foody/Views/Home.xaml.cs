@@ -21,7 +21,7 @@ namespace Foody.Views
                    
         private readonly HomeViewModel homeViewModel;
 
-        private List<Recipe> test;
+        private Recipe test = new Recipe();
         public Home() 
         {
             InitializeComponent();
@@ -66,7 +66,8 @@ namespace Foody.Views
             base.OnAppearing();
 
             test = await App.RecipeManager.GetRecipes();
-            Debug.WriteLine(test);
+            favorite_Recipes_Foody.ItemsSource = test.results;
+            Debug.WriteLine(test.results[0].title);
             Debug.WriteLine("vlvlvlvlvlvlvlvlvlvlv");
         }
 

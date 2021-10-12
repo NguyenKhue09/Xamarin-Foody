@@ -15,7 +15,7 @@ namespace Foody.Services.RecipeApiCall
         HttpClient client;
         JsonSerializerOptions serializerOptions;
 
-        public List<Recipe> Recipes { get; private set; }
+        public Recipe Recipes { get; private set; }
 
         
         public RestService()
@@ -28,22 +28,32 @@ namespace Foody.Services.RecipeApiCall
             };
         }
 
-        public async Task<List<Recipe>> GetRecipes()
+        public async Task<Recipe> GetRecipes()
         {
-            Recipes = new List<Recipe>();
+            
+            Recipes = new Recipe();
 
-            Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/recipes/complexSearch?{Constants.Constants.NUMBER}&{Constants.Constants.APIKEY}&{Constants.Constants.RECIPE_TYPE}&{Constants.Constants.DIET}&{Constants.Constants.ADDRECIPEINFORMATION}&{Constants.Constants.FILLINGREDIENTS}&{Constants.Constants.RECIPENUTRITION}", string.Empty));
+            Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/recipes/complexSearch?number={Constants.Constants.NUMBER}&apiKey={Constants.Constants.APIKEY}&type={Constants.Constants.RECIPE_TYPE}&diet={Constants.Constants.DIET}&addRecipesInformation={Constants.Constants.ADDRECIPEINFORMATION}&fillIngredients={Constants.Constants.FILLINGREDIENTS}&addRecipeNutrition={Constants.Constants.RECIPENUTRITION}", string.Empty));
             try
             {
+           
                 HttpResponseMessage response = await client.GetAsync(uri);
+                Debug.WriteLine("CallAPI");
                 if (response.IsSuccessStatusCode)
                 {
+
+                   
                     string content = await response.Content.ReadAsStringAsync();
-                    Recipes = JsonSerializer.Deserialize<List<Recipe>>(content, serializerOptions);
+                    Recipes = JsonSerializer.Deserialize<Recipe>(content, serializerOptions);
+                   
+                } else
+                {
+                    Debug.WriteLine("Thatbai");
                 }
             }
             catch (Exception ex)
             {
+                
                 Debug.WriteLine(@"\tERROR {0}", ex.Message);
             }
 

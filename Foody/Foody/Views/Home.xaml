@@ -197,7 +197,7 @@
                         x:Name="favorite_Recipes_Foody"
                         Grid.Row="2"
                         Grid.Column="0"
-                        ItemsSource="{Binding Foods}"
+                        
                         HeightRequest="100"
                         SelectionMode="Single"
                         SelectionChanged="favorite_Recipes_Foody_SelectionChanged"
@@ -265,13 +265,14 @@
                                             </yummy:GradientStopCollection>
                                         </yummy:PancakeView.BackgroundGradientStops>
 
-                                        <StackLayout Padding="0,50,0,0">
+                                        <StackLayout Padding="8,50,8,8">
                                             <Label
                                                 HorizontalOptions="CenterAndExpand"
                                                 VerticalOptions="CenterAndExpand"
                                                 FontAttributes="Bold"
+                                                Margin="0"
                                                 FontSize="15"
-                                                Text="{Binding Name_Food}"
+                                                Text="{Binding title}"
                                                 Style="{StaticResource TxtSubtitle1_2}" />
                                         </StackLayout>
            
@@ -281,11 +282,11 @@
                                         Grid.Row="0"
                                         Grid.RowSpan="2"
                                         Grid.Column="1"
-                                        CornerRadius="30"
+                                        CornerRadius="25"
                                         BackgroundColor="White"
                                         HasShadow="True"
                                         BorderColor="LightGray"
-                                        Padding="5">
+                                        Padding="0">
                                         <ffimageloading:CachedImage
                                             HorizontalOptions="CenterAndExpand"
                                             CacheDuration="30"
@@ -293,8 +294,9 @@
                                             FadeAnimationForCachedImages="True"
                                             FadeAnimationEnabled="True"
                                             FadeAnimationDuration="100"
+                                            Aspect="AspectFit"
                                             CacheType="All"
-                                            Source="{Binding Image_Food}" />
+                                            Source="{Binding image}" />
                                     </Frame>
 
 
