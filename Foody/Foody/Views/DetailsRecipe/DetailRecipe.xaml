@@ -52,7 +52,7 @@
                     <RowDefinition Height="360" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <ScrollView Grid.Row="0" Grid.RowSpan="2" VerticalScrollBarVisibility="Never">
+                <ScrollView  Grid.Row="0" Grid.RowSpan="2" VerticalScrollBarVisibility="Never" x:Name="scroll" SizeChanged="scroll_SizeChanged">
                     <ScrollView.Behaviors>
                         <anim:ScrollViewScrollBehavior x:Name="Scroll" />
                     </ScrollView.Behaviors>
@@ -98,8 +98,7 @@
                             </Image.Behaviors>
                         </Image>
 
-
-                        <Frame  Padding="10" >
+                        <Frame x:Name="thu" Padding="10" >
                             <tabs1:TabHostView x:Name="TabHost"  
                                 Grid.Row="4"
                                 HeightRequest="40"
@@ -111,6 +110,7 @@
                                 SegmentedHasSeparator="False"
                                 SegmentedOutlineColor="#F0F0F3"
                                 TabType="Fixed"
+                                SelectedTabIndexChanged="TabHost_SelectedTabIndexChanged"
                                 SelectedIndex="{Binding Source={x:Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}">
                                 <tabs1:TabHostView.Tabs>
                                     <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Instructions" IsSelected="True" TabIndex="0"/>
@@ -119,7 +119,29 @@
                                 </tabs1:TabHostView.Tabs>
                             </tabs1:TabHostView>
                         </Frame>
-                       
+                        <StackLayout x:Name="faketab1" Padding="8,0,0,8" >
+                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large" ></Label>
+                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                        </StackLayout>
 
                         <tabs1:ViewSwitcher x:Name="Switcher" SelectedIndex="{Binding SelectedViewModelIndex, Mode=TwoWay}">
                             <ContentView TabIndex="0">
@@ -148,22 +170,74 @@
                                 </StackLayout>
                             </ContentView>
                             <ContentView TabIndex="1" Padding="8,0,0,8">
-                                <Label Text="cmmmmmmmmmmmmmmmmmmmmm">
-
-                                </Label>
+                                <StackLayout>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                    <Label Text="cmmmmmmmmmmmmmmmmmmmmm"/>
+                                </StackLayout>
                             </ContentView>
                             <ContentView TabIndex="2" Padding="8,0,0,8">
-                                <Label Text="adkjahfkjadsfsjd">
-
-                                </Label>
+                                <StackLayout>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                </StackLayout>
                             </ContentView>
                         </tabs1:ViewSwitcher>
-
-                       
-
-
-
-                        
                     </StackLayout>
                 </ScrollView>
             </Grid>
