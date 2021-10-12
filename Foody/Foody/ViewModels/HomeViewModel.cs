@@ -6,6 +6,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Foody.Models;
 using Foody.Services;
+using System.Diagnostics;
 
 namespace Foody.ViewModels
 {
@@ -30,6 +31,7 @@ namespace Foody.ViewModels
         {
 
             await (App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/pantry", true);
+           
         }
 
         async public void NavToShoppingListPage()

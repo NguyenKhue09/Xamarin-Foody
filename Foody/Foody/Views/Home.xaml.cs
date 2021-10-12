@@ -20,14 +20,18 @@ namespace Foody.Views
 
                    
         private readonly HomeViewModel homeViewModel;
-        public Home()
+
+        private List<Recipe> test;
+        public Home() 
         {
             InitializeComponent();
             CheckFavorite(true);
             BindingContext = homeViewModel = new HomeViewModel();
+            
 
         }
 
+        
 
         void CheckFavorite(bool x)
         {
@@ -50,12 +54,23 @@ namespace Foody.Views
             {
                 //Code to execute on tapped event
                 await (App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/mealPlanner", true);
+                
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            test = await App.RecipeManager.GetRecipes();
+            Debug.WriteLine(test);
+            Debug.WriteLine("vlvlvlvlvlvlvlvlvlvlv");
+        }
+
+        
 
         async private void favorite_Recipes_Foody_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

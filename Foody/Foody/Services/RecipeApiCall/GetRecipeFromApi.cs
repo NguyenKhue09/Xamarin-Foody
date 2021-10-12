@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
+
 namespace Foody.Services.RecipeApiCall
 {
     public class RestService
@@ -15,6 +16,8 @@ namespace Foody.Services.RecipeApiCall
         JsonSerializerOptions serializerOptions;
 
         public List<Recipe> Recipes { get; private set; }
+
+        
         public RestService()
         {
             client = new HttpClient();
@@ -25,11 +28,11 @@ namespace Foody.Services.RecipeApiCall
             };
         }
 
-        public async Task<List<Recipe>> RefreshDataAsync()
+        public async Task<List<Recipe>> GetRecipes()
         {
             Recipes = new List<Recipe>();
 
-            Uri uri = new Uri(string.Format("https://api.spoonacular.com/recipes/complexSearch?number=1&apiKey=81455f24ea284e348fc9bcd3822aa152&type=vegetarian&diet=vegan&addRecipesInformation=true&fillIngredients=true&addRecipeNutrition=true", string.Empty));
+            Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/recipes/complexSearch?{Constants.Constants.NUMBER}&{Constants.Constants.APIKEY}&{Constants.Constants.RECIPE_TYPE}&{Constants.Constants.DIET}&{Constants.Constants.ADDRECIPEINFORMATION}&{Constants.Constants.FILLINGREDIENTS}&{Constants.Constants.RECIPENUTRITION}", string.Empty));
             try
             {
                 HttpResponseMessage response = await client.GetAsync(uri);
