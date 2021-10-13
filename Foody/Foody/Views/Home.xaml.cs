@@ -65,26 +65,32 @@ namespace Foody.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            homeViewModel.GetRecipes();
+            //homeViewModel.GetRecipes();
+            homeViewModel.GetRandomRecipes();
         }
 
 
 
-        async private void favorite_Recipes_Foody_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (favorite_Recipes_Foody.SelectedItem != null)
-            {
-                Debug.WriteLine("Choose");
-                Result recipe = (Result)favorite_Recipes_Foody.SelectedItem;
-                recipe.SelectedViewModelIndex = 0;
-                await Navigation.PushAsync(new DetailRecipe(recipe));
-            }
+        //async private void favorite_Recipes_Foody_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    if (favorite_Recipes_Foody.SelectedItem != null)
+        //    {
+        //        Debug.WriteLine("Choose");
+        //        Result recipe = (Result)favorite_Recipes_Foody.SelectedItem;
+        //        recipe.SelectedViewModelIndex = 0;
+        //        await Navigation.PushAsync(new DetailRecipe(recipe));
+        //    }
 
-            favorite_Recipes_Foody.SelectedItem = null;
-        }
+        //    favorite_Recipes_Foody.SelectedItem = null;
+        //}
 
         async private void collectionView_Popular_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
         }
+
+        private void random_recipes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+        }
+
     }
 }
