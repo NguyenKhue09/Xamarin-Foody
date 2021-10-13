@@ -52,7 +52,7 @@
                     <RowDefinition Height="360" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <ScrollView  Grid.Row="0" Grid.RowSpan="2" VerticalScrollBarVisibility="Never" x:Name="scroll" SizeChanged="scroll_SizeChanged">
+                <ScrollView  Grid.Row="0" Grid.RowSpan="2" VerticalScrollBarVisibility="Never" >
                     <ScrollView.Behaviors>
                         <anim:ScrollViewScrollBehavior x:Name="Scroll" />
                     </ScrollView.Behaviors>
@@ -98,7 +98,7 @@
                             </Image.Behaviors>
                         </Image>
 
-                        <Frame x:Name="thu" Padding="10" >
+                        <Frame  Padding="10" >
                             <tabs1:TabHostView x:Name="TabHost"  
                                 Grid.Row="4"
                                 HeightRequest="40"
@@ -110,7 +110,6 @@
                                 SegmentedHasSeparator="False"
                                 SegmentedOutlineColor="#F0F0F3"
                                 TabType="Fixed"
-                                SelectedTabIndexChanged="TabHost_SelectedTabIndexChanged"
                                 SelectedIndex="{Binding Source={x:Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}">
                                 <tabs1:TabHostView.Tabs>
                                     <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Instructions" IsSelected="True" TabIndex="0"/>
@@ -119,29 +118,7 @@
                                 </tabs1:TabHostView.Tabs>
                             </tabs1:TabHostView>
                         </Frame>
-                        <StackLayout x:Name="faketab1" Padding="8,0,0,8" >
-                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large" ></Label>
-                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                            <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
-                        </StackLayout>
+                        
 
                         <tabs1:ViewSwitcher x:Name="Switcher" SelectedIndex="{Binding SelectedViewModelIndex, Mode=TwoWay}">
                             <ContentView TabIndex="0">
@@ -267,7 +244,7 @@
                                 Binding="{Binding ScrollY, 
                                         Source={x:Reference Scroll}, 
                                         Converter={StaticResource ComparisonConverter},
-                                        ConverterParameter='250;>'}"
+                                        ConverterParameter='280;>'}"
                                 Value="true">
                         <DataTrigger.EnterActions>
                             <anim:BeginAnimation
@@ -279,24 +256,54 @@
                         </DataTrigger.ExitActions>
                     </DataTrigger>
                 </FlexLayout.Triggers>
-                <Image 
-                FlexLayout.Shrink="0" Source="left_arrow.png" HeightRequest="32" WidthRequest="32">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer
-                                Tapped="TapGestureRecognizer_Tapped"
-                                 />
-                    </Image.GestureRecognizers>
-                </Image>
-                <Label
-                Text="{Binding Name_Food}" 
-                FontSize="Large"
-                Margin="15,0"
-                FontAttributes="Bold"
-                VerticalOptions="Center"
-                TextColor="Black"
-                LineBreakMode="TailTruncation"
-                FlexLayout.AlignSelf="Center"
-                FlexLayout.Grow="1" />
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="80"/>
+                    </Grid.RowDefinitions>
+                    <FlexLayout Grid.Row="0">
+                        <Image 
+                        FlexLayout.Shrink="0" Source="left_arrow.png" HeightRequest="32" WidthRequest="32" >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                        Tapped="TapGestureRecognizer_Tapped"
+                                         />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label
+                            Text="{Binding Name_Food}" 
+                            FontSize="Large"
+                            FontAttributes="Bold"
+                            Margin="25,15"
+                            VerticalOptions="Center"
+                            TextColor="Black"
+                            LineBreakMode="TailTruncation"
+                            FlexLayout.AlignSelf="Center"
+                            FlexLayout.Grow="1" />
+                    </FlexLayout>
+                    
+                    <StackLayout Grid.Row="1" >
+                        <Frame Padding="10" Margin="0">
+                            <tabs1:TabHostView 
+                                    HeightRequest="40"
+                                    Margin="0,0,0,0"
+                                    VerticalOptions="Center"
+                                    BackgroundColor="#F0F0F3"
+                                    CornerRadius="20"
+                                    IsSegmented="True"
+                                    SegmentedHasSeparator="False"
+                                    SegmentedOutlineColor="#F0F0F3"
+                                    TabType="Fixed"
+                                    SelectedIndex="{Binding Source={x:Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}">
+                                <tabs1:TabHostView.Tabs>
+                                    <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Instructions" IsSelected="True" />
+                                    <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Ingredients" TabIndex="1"/>
+                                    <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Nutrition" TabIndex="2"/>
+                                </tabs1:TabHostView.Tabs>
+                            </tabs1:TabHostView>
+                        </Frame>
+                    </StackLayout>
+                </Grid>
             </FlexLayout>
 
         </Grid>

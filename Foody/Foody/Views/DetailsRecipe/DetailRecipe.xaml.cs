@@ -34,17 +34,8 @@ namespace Foody.Views.DetailsRecipe
             }
         }
 
-        private void TabHost_SelectedTabIndexChanged(object sender, SelectedPositionChangedEventArgs e)
-        {
-            if (TabHost.SelectedIndex != 0 )
-            {
-                faketab1.IsVisible = false;
-            }
-        }
+       
 
-        private void scroll_SizeChanged(object sender, EventArgs e)
-        {
-        }
-            
+         
     }
 }
