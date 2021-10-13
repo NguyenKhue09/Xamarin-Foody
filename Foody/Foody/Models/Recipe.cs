@@ -193,6 +193,8 @@ namespace Foody.Models
         public int likes { get; set; }
         public List<object> usedIngredients { get; set; }
         public List<object> unusedIngredients { get; set; }
+
+        public int SelectedViewModelIndex { get; set; }
     }
 
     public class Recipe

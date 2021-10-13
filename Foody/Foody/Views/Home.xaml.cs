@@ -21,7 +21,7 @@ namespace Foody.Views
                    
         private readonly HomeViewModel homeViewModel;
 
-        private Recipe test = new Recipe();
+        
         public Home() 
         {
             InitializeComponent();
@@ -37,6 +37,7 @@ namespace Foody.Views
         {
             if (x)
             {
+                
                 lb.Height = new GridLength(0.98, GridUnitType.Star);
                 col.Height = new GridLength(0.3, GridUnitType.Star);
             }
@@ -61,29 +62,29 @@ namespace Foody.Views
                 throw ex;
             }
         }
-        protected async override void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            test = await App.RecipeManager.GetRecipes();
-            favorite_Recipes_Foody.ItemsSource = test.results;
-            Debug.WriteLine(test.results[0].title);
-            Debug.WriteLine("vlvlvlvlvlvlvlvlvlvlv");
+            homeViewModel.GetRecipes();
         }
 
-        
+
 
         async private void favorite_Recipes_Foody_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selectedItem = e.CurrentSelection.FirstOrDefault();
-
             if (favorite_Recipes_Foody.SelectedItem != null)
             {
-                Food food = (Food)favorite_Recipes_Foody.SelectedItem;
-                await Navigation.PushAsync(new DetailRecipe(food));
+                Debug.WriteLine("Choose");
+                Result recipe = (Result)favorite_Recipes_Foody.SelectedItem;
+                recipe.SelectedViewModelIndex = 0;
+                await Navigation.PushAsync(new DetailRecipe(recipe));
             }
 
             favorite_Recipes_Foody.SelectedItem = null;
+        }
+
+        async private void collectionView_Popular_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
         }
     }
 }

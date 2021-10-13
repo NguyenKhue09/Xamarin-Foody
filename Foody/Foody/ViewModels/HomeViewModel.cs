@@ -13,8 +13,8 @@ namespace Foody.ViewModels
     public class HomeViewModel : BaseViewModel
     {
         public ObservableRangeCollection<Food> Foods { get; set; }
-        
-        
+        public ObservableRangeCollection<Result> Recipes { get; set; }
+
         public ICommand NavToPantry => new Command(NavToPantryPage);
         public ICommand NavToShoppingList => new Command(NavToShoppingListPage);
         public ICommand NavToMealPlanner => new Command(NavToMealPlannerPage);
@@ -22,9 +22,18 @@ namespace Foody.ViewModels
         {
 
             Foods = new ObservableRangeCollection<Food>();
+            Recipes = new ObservableRangeCollection<Result>();
             Foods.AddRange(Repository.Foods);
 
            
+        }
+
+        async public void GetRecipes()
+        {
+            Recipe results = new Recipe();
+
+            results = await App.RecipeManager.GetRecipes();
+            Recipes.AddRange(results.results);
         }
 
         async public void NavToPantryPage()

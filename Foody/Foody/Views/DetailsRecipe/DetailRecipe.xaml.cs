@@ -13,10 +13,10 @@ namespace Foody.Views.DetailsRecipe
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DetailRecipe : ContentPage
     {
-        public DetailRecipe(Models.Food food)
+        public DetailRecipe(Result recipe)
         {
             InitializeComponent();
-            BindingContext = food;
+            BindingContext = recipe;
             
         }
 

@@ -197,11 +197,10 @@
                         x:Name="favorite_Recipes_Foody"
                         Grid.Row="2"
                         Grid.Column="0"
-                        
                         HeightRequest="100"
                         SelectionMode="Single"
-                        SelectionChanged="favorite_Recipes_Foody_SelectionChanged"
-                        >
+                        ItemsSource="{Binding Recipes}"
+                        SelectionChanged="favorite_Recipes_Foody_SelectionChanged">
 
                         <CollectionView.ItemsLayout>
                             <GridItemsLayout
@@ -219,20 +218,20 @@
                                 <Grid WidthRequest="190" Padding="0,15,0,0">
 
                                     <Grid.RowDefinitions>
-                                        <!--  0  -->
+                                           
                                         <RowDefinition Height="20" />
-                                        <!--  1  -->
+                                           
                                         <RowDefinition Height="80" />
-                                        <!--  2  -->
+                                           
                                         <RowDefinition Height="100" />
                                     </Grid.RowDefinitions>
 
                                     <Grid.ColumnDefinitions>
-                                        <!--  0  -->
+                                            
                                         <ColumnDefinition Width="15" />
-                                        <!--  1  -->
+                                           
                                         <ColumnDefinition Width="145" />
-                                        <!--  2  -->
+                                            
                                         <ColumnDefinition Width="15" />
                                     </Grid.ColumnDefinitions>
 
@@ -265,11 +264,12 @@
                                             </yummy:GradientStopCollection>
                                         </yummy:PancakeView.BackgroundGradientStops>
 
-                                        <StackLayout Padding="8,50,8,8">
+                                        <StackLayout Padding="8,60,8,8">
                                             <Label
                                                 HorizontalOptions="CenterAndExpand"
                                                 VerticalOptions="CenterAndExpand"
                                                 FontAttributes="Bold"
+                                                HorizontalTextAlignment="Center"
                                                 Margin="0"
                                                 FontSize="15"
                                                 Text="{Binding title}"
@@ -286,17 +286,25 @@
                                         BackgroundColor="White"
                                         HasShadow="True"
                                         BorderColor="LightGray"
-                                        Padding="0">
-                                        <ffimageloading:CachedImage
-                                            HorizontalOptions="CenterAndExpand"
-                                            CacheDuration="30"
-                                            DownsampleToViewSize="True"
-                                            FadeAnimationForCachedImages="True"
-                                            FadeAnimationEnabled="True"
-                                            FadeAnimationDuration="100"
-                                            Aspect="AspectFit"
-                                            CacheType="All"
-                                            Source="{Binding image}" />
+                                        Padding="8">
+                                        <Frame
+                                             Padding="0"
+                                             CornerRadius="20"
+                                             BackgroundColor="White"
+                                             HasShadow="False">
+                                            <ffimageloading:CachedImage
+                                                x:Name="image_loading"
+                                                CacheDuration="30"
+                                                DownsampleToViewSize="True"
+                                                FadeAnimationForCachedImages="True"
+                                                FadeAnimationEnabled="True"
+                                                FadeAnimationDuration="100"
+                                                LoadingPlaceholder="reload.gif"
+                                                Aspect="AspectFit"
+                                                CacheType="All"
+                                                Source="{Binding image}" />
+                                        </Frame>
+
                                     </Frame>
 
 
@@ -313,7 +321,9 @@
                         Grid.Row="4"
                         Grid.Column="0"
                         ItemsSource="{Binding Foods}"
-                        HeightRequest="100">
+                        HeightRequest="100"
+                        SelectionMode="Single"
+                        SelectionChanged="collectionView_Popular_SelectionChanged">
 
                         <CollectionView.ItemsLayout>
                             <GridItemsLayout
@@ -379,6 +389,7 @@
                                     </yummy:PancakeView>
 
                                     <Frame 
+                                        x:Name="frame"
                                         Grid.Row="0"
                                         Grid.RowSpan="2"
                                         Grid.Column="1"
@@ -386,16 +397,21 @@
                                         BackgroundColor="White"
                                         HasShadow="True"
                                         BorderColor="LightGray"
-                                        Padding="5">
+                                        Padding="8">
+
                                         <ffimageloading:CachedImage
-                                            HorizontalOptions="CenterAndExpand"
+                                            x:Name="loading_Image"
+                                            LoadingPlaceholder="reload.gif"
                                             CacheDuration="30"
                                             DownsampleToViewSize="True"
                                             FadeAnimationForCachedImages="True"
                                             FadeAnimationEnabled="True"
                                             FadeAnimationDuration="100"
+                                            Aspect="AspectFill"
                                             CacheType="All"
                                             Source="{Binding Image_Food}" />
+
+
                                     </Frame>
 
 
