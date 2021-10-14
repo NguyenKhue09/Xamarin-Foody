@@ -66,7 +66,7 @@ namespace Foody.Views
         {
             base.OnAppearing();
             //homeViewModel.GetRecipes();
-            homeViewModel.GetRandomRecipes();
+            //homeViewModel.GetRandomRecipes();
         }
 
 
