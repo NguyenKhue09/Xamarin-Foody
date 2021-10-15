@@ -20,19 +20,24 @@ namespace Foody.Views
 
                    
         private readonly HomeViewModel homeViewModel;
-        public Home()
+
+        
+        public Home() 
         {
             InitializeComponent();
             CheckFavorite(true);
             BindingContext = homeViewModel = new HomeViewModel();
+            
 
         }
 
+        
 
         void CheckFavorite(bool x)
         {
             if (x)
             {
+                
                 lb.Height = new GridLength(0.98, GridUnitType.Star);
                 col.Height = new GridLength(0.3, GridUnitType.Star);
             }
@@ -50,24 +55,36 @@ namespace Foody.Views
             {
                 //Code to execute on tapped event
                 await (App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/mealPlanner", true);
+                
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            homeViewModel.GetRecipes();
+        }
+
+
 
         async private void favorite_Recipes_Foody_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selectedItem = e.CurrentSelection.FirstOrDefault();
-
             if (favorite_Recipes_Foody.SelectedItem != null)
             {
-                Food food = (Food)favorite_Recipes_Foody.SelectedItem;
-                await Navigation.PushAsync(new DetailRecipe(food));
+                Debug.WriteLine("Choose");
+                Result recipe = (Result)favorite_Recipes_Foody.SelectedItem;
+                recipe.SelectedViewModelIndex = 0;
+                await Navigation.PushAsync(new DetailRecipe(recipe));
             }
 
             favorite_Recipes_Foody.SelectedItem = null;
+        }
+
+        async private void collectionView_Popular_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
         }
     }
 }

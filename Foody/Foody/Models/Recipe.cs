@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Foody.Models
 {
     // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
-    public class Us
+        public class Us
     {
         public double amount { get; set; }
         public string unitShort { get; set; }
@@ -27,7 +28,8 @@ namespace Foody.Models
 
     public class ExtendedIngredient
     {
-        public int id { get; set; }
+        
+        //public int id { get; set; }
         public string aisle { get; set; }
         public string image { get; set; }
         public string consistency { get; set; }
@@ -191,10 +193,13 @@ namespace Foody.Models
         public int likes { get; set; }
         public List<object> usedIngredients { get; set; }
         public List<object> unusedIngredients { get; set; }
+
+        public int SelectedViewModelIndex { get; set; }
     }
 
     public class Recipe
     {
+        //[JsonProperty("results")]
         public List<Result> results { get; set; }
     }
 }
