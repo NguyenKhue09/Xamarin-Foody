@@ -15,7 +15,6 @@
             <Setter Property="LabelSize" Value="14" />
             <Setter Property="SelectedLabelColor" Value="Black" />
             <Setter Property="UnselectedLabelColor" Value="Gray" />
-            
         </Style>
         
         <StyleSheet>
@@ -110,6 +109,7 @@
                                 SegmentedHasSeparator="False"
                                 SegmentedOutlineColor="#F0F0F3"
                                 TabType="Fixed"
+                                SelectedTabIndexChanged="TabHost_SelectedTabIndexChanged"
                                 SelectedIndex="{Binding Source={x:Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}">
                                 <tabs1:TabHostView.Tabs>
                                     <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Instructions" IsSelected="True" TabIndex="0"/>
@@ -244,7 +244,7 @@
                                 Binding="{Binding ScrollY, 
                                         Source={x:Reference Scroll}, 
                                         Converter={StaticResource ComparisonConverter},
-                                        ConverterParameter='250;>'}"
+                                        ConverterParameter='285;>'}"
                                 Value="true">
                         <DataTrigger.EnterActions>
                             <anim:BeginAnimation
@@ -271,7 +271,7 @@
                             </Image.GestureRecognizers>
                         </Image>
                         <Label
-                            Text="{Binding Name_Food}" 
+                            Text="{Binding title}" 
                             FontSize="Large"
                             FontAttributes="Bold"
                             Margin="25,15"
@@ -283,20 +283,22 @@
                     </FlexLayout>
                     
                     <StackLayout Grid.Row="1" >
-                        <Frame Padding="10" Margin="0">
-                            <tabs1:TabHostView 
-                                    HeightRequest="40"
-                                    Margin="0,0,0,0"
-                                    VerticalOptions="Center"
-                                    BackgroundColor="#F0F0F3"
-                                    CornerRadius="20"
-                                    IsSegmented="True"
-                                    SegmentedHasSeparator="False"
-                                    SegmentedOutlineColor="#F0F0F3"
-                                    TabType="Fixed"
-                                    SelectedIndex="{Binding Source={x:Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}">
+                        <Frame  Padding="10" >
+                            <tabs1:TabHostView x:Name="TabHost1"  
+                                Grid.Row="4"
+                                HeightRequest="40"
+                                Margin="0,0,0,0"
+                                VerticalOptions="Center"
+                                BackgroundColor="#F0F0F3"
+                                CornerRadius="20"
+                                IsSegmented="True"
+                                SegmentedHasSeparator="False"
+                                SegmentedOutlineColor="#F0F0F3"
+                                TabType="Fixed"
+                                SelectedTabIndexChanged="TabHost_SelectedTabIndexChanged"
+                                SelectedIndex="{Binding Source={x:Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}">
                                 <tabs1:TabHostView.Tabs>
-                                    <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Instructions" IsSelected="True" />
+                                    <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Instructions" IsSelected="True" TabIndex="0"/>
                                     <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Ingredients" TabIndex="1"/>
                                     <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Nutrition" TabIndex="2"/>
                                 </tabs1:TabHostView.Tabs>

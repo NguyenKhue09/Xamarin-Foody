@@ -1,12 +1,471 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:tabs1="http://sharpnado.com"
+             BackgroundColor="#f5f5f5" 
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:controls="clr-namespace:Foody.ViewModels"
              x:Class="Foody.Views.Pantry">
+
+
+    <ContentPage.Resources>
+        <Style x:Key="SegmentedTabStyle" TargetType="tabs1:SegmentedTabItem">
+            <Setter Property="SelectedTabColor" Value="#07BDF6" />
+            <Setter Property="LabelSize" Value="18" />
+            <Setter Property="SelectedLabelColor" Value="White" />
+            <Setter Property="UnselectedLabelColor" Value="Gray" />
+        </Style>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <!--Header-->
+            <yummy:PancakeView x:Name="headPantry"  Grid.Column="0" Grid.Row="0" BackgroundColor="#07BDF6" CornerRadius="0,0,10,10"  WidthRequest="500">
+                <StackLayout>
+                <Grid x:Name="ptManage" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="0.9*"/>
+                    </Grid.ColumnDefinitions>
+                        <!--dòng 1 -->
+                        <Label Text="PANTRY" FontSize="28" 
+                               FontAttributes="Bold" Margin="0,10"
+                               HorizontalOptions="Center" VerticalOptions="CenterAndExpand" 
+                               TextColor="White" 
+                               Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"/>
+                        <Image Source="wrench.png" HeightRequest="24" WidthRequest="24"
+                               VerticalOptions="CenterAndExpand" HorizontalOptions="Start" 
+                               Grid.Column="1" Grid.Row="0"/>
+                        <Image Source="menu1.png" HeightRequest="24" WidthRequest="24"
+                               VerticalOptions="CenterAndExpand" HorizontalOptions="End" 
+                               Grid.Column="1" Grid.Row="0" Margin="0,0,20,0"/>
+                        <!--dòng 2-->
+                        <Frame CornerRadius="10" Padding="0" HasShadow="False" BorderColor="#D8D8D8" 
+                               Grid.Column="0" Grid.Row="1" 
+                               HeightRequest="80" WidthRequest="280" Margin="0,0,10,30"
+                               HorizontalOptions="End" VerticalOptions="Center">
+                            <controls:CustomEntry  Keyboard="Text" FontSize="18" Placeholder="Add New Item to Pantry"  HeightRequest="55"  Margin="10,0,0,0"></controls:CustomEntry>
+                        </Frame>
+                        <Frame  CornerRadius="10" Padding="0" HasShadow="False" BorderColor="#D8D8D8" 
+                               Grid.Column="1" Grid.Row="1" 
+                               HeightRequest="80" WidthRequest="65" Margin="0,0,0,30"
+                               HorizontalOptions="Start" VerticalOptions="Center">
+                            <Image Source="plus1.png"  Margin="21"/>
+                        </Frame>
+
+                    </Grid>
+                    <Label x:Name="pantry" Text="PANTRY" FontSize="28" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" TextColor="White" />
+                </StackLayout>
+            </yummy:PancakeView>
+            
+            <StackLayout  Grid.Column="0" Grid.Row="1">
+                <!--Tab view-->
+                <Frame HorizontalOptions="Center" CornerRadius="30" Margin="6" Padding="8">
+                    <tabs1:TabHostView x:Name="TabPantry"  
+                                        HeightRequest="40"
+                                        Margin="0,0,0,0"
+                                        VerticalOptions="Center"
+                                        BackgroundColor="White"
+                                        CornerRadius="20"
+                                        IsSegmented="True"
+                                        SegmentedHasSeparator="False"
+                                        SegmentedOutlineColor="White"
+                                        TabType="Fixed"
+                                        SelectedIndex="{Binding Source={x:Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}"
+                                        SelectedTabIndexChanged="TabPantry_SelectedTabIndexChanged">
+                        <tabs1:TabHostView.Tabs>
+                            <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Manage" IsSelected="True" TabIndex="0" Margin="30,0"/>
+                            <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Explore" TabIndex="1"/>
+                            <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Search" TabIndex="2"/>
+                        </tabs1:TabHostView.Tabs>
+                    </tabs1:TabHostView>
+                </Frame>
+                <!--Conten of pages-->
+                <tabs1:ViewSwitcher x:Name="Switcher" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
+                    <!--page 1-->
+                    <ContentView TabIndex="0" Padding="8,0,0,8">
+                        <ScrollView Padding="8,0,0,8" VerticalScrollBarVisibility="Never">
+                            <StackLayout>
+                                <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large" ></Label>
+                                <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                                <Label Text="VLVLVLLVVLVLLV" TextColor="Black" FontSize="Large"></Label>
+                            </StackLayout>
+                        </ScrollView>
+                    </ContentView>
+                    <!--page 2-->
+                    <ContentView TabIndex="1" >
+                        <ScrollView Padding="8,0,0,8" VerticalScrollBarVisibility="Never">
+                            <StackLayout>
+                                <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition x:Name="lb"/>
+                                    <RowDefinition x:Name="col"/>
+                                    <RowDefinition Height="0.3*"/>
+                                    <RowDefinition Height="0.98*"/>
+                                    <RowDefinition Height="0.3*"/>
+                                    <RowDefinition Height="0.98*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <!--1-->
+                                <Label Text="Recipes With ingredients from your pantry" FontSize="25" FontAttributes="Bold" Grid.Column="0" Grid.Row="0" Padding="10, 40, 0 , 0" />
+                                <CollectionView
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    HeightRequest="100"
+                                    SelectionMode="Single"
+                                    ItemsSource="{Binding Recipes}">
+                                    <CollectionView.ItemsLayout>
+                                        <GridItemsLayout
+                                            Orientation="Horizontal"
+                                            HorizontalItemSpacing="13"
+                                            SnapPointsType="MandatorySingle"
+                                            SnapPointsAlignment="Center" />
+                                    </CollectionView.ItemsLayout>
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+
+                                            <Grid WidthRequest="190" Padding="0,15,0,0">
+
+                                                <Grid.RowDefinitions>
+
+                                                    <RowDefinition Height="20" />
+
+                                                    <RowDefinition Height="80" />
+
+                                                    <RowDefinition Height="100" />
+                                                </Grid.RowDefinitions>
+
+                                                <Grid.ColumnDefinitions>
+
+                                                    <ColumnDefinition Width="15" />
+
+                                                    <ColumnDefinition Width="145" />
+
+                                                    <ColumnDefinition Width="15" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup Name="CommonStates">
+                                                        <VisualState Name="Selected">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="BackgroundColor" Value="#f5f5f5" />
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+
+                                                <yummy:PancakeView
+                                                    Grid.Row="1"
+                                                    Grid.RowSpan="2"
+                                                    Grid.Column="0"
+                                                    Grid.ColumnSpan="3"
+                                                    Margin="8,0,8,3"
+                                                    CornerRadius="25"
+                                                    Shadow="{yummy:ShadowMarkup BlurRadius=3}">
+                                                    <yummy:PancakeView.BackgroundGradientStops>
+                                                        <yummy:GradientStopCollection>
+                                                            <yummy:GradientStop
+                                                                Offset="0"
+                                                                Color="White" />
+                                                            <yummy:GradientStop
+                                                                Offset="1"
+                                                                Color="White" />
+                                                        </yummy:GradientStopCollection>
+                                                    </yummy:PancakeView.BackgroundGradientStops>
+
+                                                    <StackLayout Padding="8,60,8,8">
+                                                        <Label
+                                                            HorizontalOptions="CenterAndExpand"
+                                                            VerticalOptions="CenterAndExpand"
+                                                            FontAttributes="Bold"
+                                                            HorizontalTextAlignment="Center"
+                                                            Margin="0"
+                                                            FontSize="15"
+                                                            Text="{Binding title}"
+                                                            Style="{StaticResource TxtSubtitle1_2}" />
+                                                        <Label Text="hhhhh"/>
+                                                    </StackLayout>
+
+                                                </yummy:PancakeView>
+
+                                                <Frame 
+                                                    Grid.Row="0"
+                                                    Grid.RowSpan="2"
+                                                    Grid.Column="1"
+                                                    CornerRadius="25"
+                                                    BackgroundColor="White"
+                                                    HasShadow="True"
+                                                    BorderColor="LightGray"
+                                                    Padding="8">
+                                                    <Frame
+                                                         Padding="0"
+                                                         CornerRadius="20"
+                                                         BackgroundColor="White"
+                                                         HasShadow="False">
+                                                        <ffimageloading:CachedImage
+                                                            x:Name="image_loading"
+                                                            CacheDuration="30"
+                                                            DownsampleToViewSize="True"
+                                                            FadeAnimationForCachedImages="True"
+                                                            FadeAnimationEnabled="True"
+                                                            FadeAnimationDuration="100"
+                                                            LoadingPlaceholder="reload.gif"
+                                                            Aspect="AspectFit"
+                                                            CacheType="All"
+                                                            Source="{Binding image}" />
+                                                    </Frame>
+
+                                                </Frame>
+
+
+                                            </Grid>
+
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                                <!--2-->
+                                <Label Text="Popular Recipes" FontSize="25" FontAttributes="Bold" Grid.Column="0" Grid.Row="2" Padding="10, 20, 0 , 0"/>
+                                <CollectionView
+                                    x:Name="collectionView_Popular"
+                                    Grid.Row="3"
+                                    Grid.Column="0"
+                                    ItemsSource="{Binding Foods}"
+                                    HeightRequest="100"
+                                    SelectionMode="Single">
+                                    <CollectionView.ItemsLayout>
+                                        <GridItemsLayout
+                                            Orientation="Horizontal"
+                                            HorizontalItemSpacing="13"
+                                            SnapPointsType="MandatorySingle"
+                                            SnapPointsAlignment="Center" />
+                                    </CollectionView.ItemsLayout>
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid WidthRequest="190" Padding="0,15,0,0">
+                                                <Grid.RowDefinitions>
+                                                    <!--  0  -->
+                                                    <RowDefinition Height="20" />
+                                                    <!--  1  -->
+                                                    <RowDefinition Height="80" />
+                                                    <!--  2  -->
+                                                    <RowDefinition Height="100" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <!--  0  -->
+                                                    <ColumnDefinition Width="15" />
+                                                    <!--  1  -->
+                                                    <ColumnDefinition Width="145" />
+                                                    <!--  2  -->
+                                                    <ColumnDefinition Width="15" />
+                                                </Grid.ColumnDefinitions>
+                                                <yummy:PancakeView
+                                                    Grid.Row="1"
+                                                    Grid.RowSpan="2"
+                                                    Grid.Column="0"
+                                                    Grid.ColumnSpan="3"
+                                                    Margin="8,0,8,3"
+                                                    CornerRadius="25"
+                                                    Shadow="{yummy:ShadowMarkup BlurRadius=3}">
+                                                    <yummy:PancakeView.BackgroundGradientStops>
+                                                        <yummy:GradientStopCollection>
+                                                            <yummy:GradientStop
+                                                                Offset="0"
+                                                                Color="White" />
+                                                            <yummy:GradientStop
+                                                                Offset="1"
+                                                                Color="White" />
+                                                        </yummy:GradientStopCollection>
+                                                    </yummy:PancakeView.BackgroundGradientStops>
+                                                    <StackLayout Padding="0,50,0,0">
+                                                        <Label
+                                                            HorizontalOptions="CenterAndExpand"
+                                                            VerticalOptions="CenterAndExpand"
+                                                            FontAttributes="Bold"
+                                                            FontSize="15"
+                                                            Text="{Binding Name_Food}"
+                                                            Style="{StaticResource TxtSubtitle1_2}" />
+                                                    </StackLayout>
+                                                </yummy:PancakeView>
+                                                <Frame 
+                                                    x:Name="frame"
+                                                    Grid.Row="0"
+                                                    Grid.RowSpan="2"
+                                                    Grid.Column="1"
+                                                    CornerRadius="30"
+                                                    BackgroundColor="White"
+                                                    HasShadow="True"
+                                                    BorderColor="LightGray"
+                                                    Padding="8">
+                                                    <ffimageloading:CachedImage
+                                                        x:Name="loading_Image"
+                                                        LoadingPlaceholder="reload.gif"
+                                                        CacheDuration="30"
+                                                        DownsampleToViewSize="True"
+                                                        FadeAnimationForCachedImages="True"
+                                                        FadeAnimationEnabled="True"
+                                                        FadeAnimationDuration="100"
+                                                        Aspect="AspectFill"
+                                                        CacheType="All"
+                                                        Source="{Binding Image_Food}" />
+                                                </Frame>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                                <!--3-->
+                                <Label Text="Try A New Recipes" FontSize="25" FontAttributes="Bold" Grid.Column="0" Grid.Row="4" Padding="10, 20, 0 , 0"/>
+                                <CollectionView
+                                    x:Name="collectionView_Random"
+                                    Grid.Row="5"
+                                    Grid.Column="0"
+                                    ItemsSource="{Binding Foods}"
+                                    HeightRequest="100">
+                                    <CollectionView.ItemsLayout>
+                                        <GridItemsLayout
+                                            Orientation="Horizontal"
+                                            HorizontalItemSpacing="13"
+                                            SnapPointsType="MandatorySingle"
+                                            SnapPointsAlignment="Center" />
+                                    </CollectionView.ItemsLayout>
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid WidthRequest="190" Padding="0,15,0,0">
+                                                <Grid.RowDefinitions>
+                                                    <!--  0  -->
+                                                    <RowDefinition Height="20" />
+                                                    <!--  1  -->
+                                                    <RowDefinition Height="80" />
+                                                    <!--  2  -->
+                                                    <RowDefinition Height="100" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <!--  0  -->
+                                                    <ColumnDefinition Width="15" />
+                                                    <!--  1  -->
+                                                    <ColumnDefinition Width="145" />
+                                                    <!--  2  -->
+                                                    <ColumnDefinition Width="15" />
+                                                </Grid.ColumnDefinitions>
+                                                <yummy:PancakeView
+                                                    Grid.Row="1"
+                                                    Grid.RowSpan="2"
+                                                    Grid.Column="0"
+                                                    Grid.ColumnSpan="3"
+                                                    Margin="8,0,8,3"
+                                                    CornerRadius="25"
+                                                    Shadow="{yummy:ShadowMarkup BlurRadius=3}">
+                                                    <yummy:PancakeView.BackgroundGradientStops>
+                                                        <yummy:GradientStopCollection>
+                                                            <yummy:GradientStop
+                                                                Offset="0"
+                                                                Color="White" />
+                                                            <yummy:GradientStop
+                                                                Offset="1"
+                                                                Color="White" />
+                                                        </yummy:GradientStopCollection>
+                                                    </yummy:PancakeView.BackgroundGradientStops>
+                                                    <StackLayout Padding="0,50,0,0">
+                                                        <Label
+                                                            HorizontalOptions="CenterAndExpand"
+                                                            VerticalOptions="CenterAndExpand"
+                                                            FontAttributes="Bold"
+                                                            FontSize="15"
+                                                            Text="{Binding Name_Food}"
+                                                            Style="{StaticResource TxtSubtitle1_2}" />
+                                                    </StackLayout>
+                                                </yummy:PancakeView>
+                                                <Frame 
+                                                    Grid.Row="0"
+                                                    Grid.RowSpan="2"
+                                                    Grid.Column="1"
+                                                    CornerRadius="30"
+                                                    BackgroundColor="White"
+                                                    HasShadow="True"
+                                                    BorderColor="LightGray"
+                                                    Padding="5">
+                                                    <ffimageloading:CachedImage
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        CacheDuration="30"
+                                                        DownsampleToViewSize="True"
+                                                        FadeAnimationForCachedImages="True"
+                                                        FadeAnimationEnabled="True"
+                                                        FadeAnimationDuration="100"
+                                                        CacheType="All"
+                                                        Source="{Binding Image_Food}" />
+                                                </Frame>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </Grid>
+                            </StackLayout>
+                        </ScrollView>
+                    </ContentView>
+                    <!--page 3-->
+                    <ContentView TabIndex="2" Padding="8,0,0,8">
+                        <StackLayout>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                            <Label Text="adkjahfkjadsfsjd"/>
+                        </StackLayout>
+                    </ContentView>
+                </tabs1:ViewSwitcher>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
