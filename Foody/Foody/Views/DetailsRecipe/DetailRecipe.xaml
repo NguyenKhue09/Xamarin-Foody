@@ -257,7 +257,7 @@
                                 Binding="{Binding ScrollY, 
                                         Source={x:Reference Scroll}, 
                                         Converter={StaticResource ComparisonConverter},
-                                        ConverterParameter='280;>'}"
+                                        ConverterParameter='250;>'}"
                                 Value="true">
                         <DataTrigger.EnterActions>
                             <anim:BeginAnimation
