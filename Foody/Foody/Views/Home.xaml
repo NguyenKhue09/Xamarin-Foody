@@ -193,7 +193,7 @@
 
                     <!--1-->
                     <Label Text="Favorite Recipes" FontSize="25" FontAttributes="Bold" Grid.Column="0" Grid.Row="1" Padding="10, 40, 0 , 0" />
-                    <!--<CollectionView
+                    <CollectionView
                         x:Name="favorite_Recipes_Foody"
                         Grid.Row="2"
                         Grid.Column="0"
@@ -313,7 +313,7 @@
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
 
-                    </CollectionView>-->
+                    </CollectionView>
                     <!--2-->
                     <Label Text="Popular Recipes" FontSize="25" FontAttributes="Bold" Grid.Column="0" Grid.Row="3" Padding="10, 20, 0 , 0"/>
                     <CollectionView
