@@ -38,8 +38,9 @@ namespace Foody.Views.DetailsRecipe
             }
         }
 
-       
+        private void TabHost_SelectedTabIndexChanged(object sender, SelectedPositionChangedEventArgs e)
+        {
 
-         
+        }
     }
 }

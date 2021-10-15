@@ -38,8 +38,8 @@ namespace Foody.Views
             if (x)
             {
                 
-                lb.Height = new GridLength(0.98, GridUnitType.Star);
-                col.Height = new GridLength(0.3, GridUnitType.Star);
+                lb.Height = new GridLength(0.4, GridUnitType.Star);
+                col.Height = new GridLength(0.98, GridUnitType.Star);
             }
             else
             {
