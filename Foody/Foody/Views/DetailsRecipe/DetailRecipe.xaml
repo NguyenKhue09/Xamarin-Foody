@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:anim="clr-namespace:Xamanimation;assembly=Xamanimation"
+             x:Class="Foody.Views.DetailsRecipe.DetailRecipe"
+             NavigationPage.HasNavigationBar="True"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:tabs1="http://sharpnado.com"
+             Shell.TabBarIsVisible="False">
+
+    <ContentPage.Resources>
+
+        <Style x:Key="SegmentedTabStyle" TargetType="tabs1:SegmentedTabItem">
+            <Setter Property="SelectedTabColor" Value="#1884EC" />
+            <Setter Property="LabelSize" Value="14" />
+            <Setter Property="SelectedLabelColor" Value="Black" />
+            <Setter Property="UnselectedLabelColor" Value="Gray" />
+        </Style>
+        
+        <StyleSheet>
+            <![CDATA[
+
+              .btn {
+                height: 44;
+                font-size: 16;
+              }
+            
+              ^Image {
+                background-color: transparent;
+              }
+            
+
+              ]]>
+        </StyleSheet>
+
+        <!-- ANIMATIONS -->
+        <anim:FadeToAnimation x:Key="FakeNavBarFadeOut" Target="{x:Reference FakeNavBar}" Opacity="0" Duration="500"/>
+        <anim:FadeToAnimation x:Key="FakeNavBarFadeIn" Target="{x:Reference FakeNavBar}" Opacity="1" Duration="500" />
+        <ResourceDictionary Source="../../Styles/Styles.xaml" />
+    </ContentPage.Resources>
+    
+    <ContentPage.Content >
+        <Grid RowSpacing="0" x:Name="GridDetail">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.RowSpan="2" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="360" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <ScrollView  Grid.Row="0" Grid.RowSpan="2" VerticalScrollBarVisibility="Never" >
+                    <ScrollView.Behaviors>
+                        <anim:ScrollViewScrollBehavior x:Name="Scroll" />
+                    </ScrollView.Behaviors>
+                    <StackLayout x:Name="SegContent">
+                        
+                        <Frame Visual="Material"
+                           d:IsVisible="False">
+                            <Frame.Behaviors>
+                                <anim:AnimateProgressDouble 
+                                            TargetProperty="VisualElement.Scale"
+                                            Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
+                                            From="1"
+                                            To="0.75"
+                                            Minimum="320"
+                                            Maximum="400"/>
+                                <anim:AnimateProgressDouble 
+                                            TargetProperty="VisualElement.Opacity"
+                                            Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
+                                            From="1"
+                                            To="0.9"
+                                            Minimum="0"
+                                            Maximum="320"/>
+                                <anim:AnimateProgressDouble 
+                                            TargetProperty="VisualElement.Opacity"
+                                            Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
+                                            From="0.9"
+                                            To="0"
+                                            Minimum="320"
+                                            Maximum="400"/>
+                            </Frame.Behaviors>
+                    
+                        </Frame>
+                        <Label Text="{Binding recipe.title}" TextColor="Black" FontSize="Large" Padding="8,50,0,0" FontAttributes="Bold"/>
+                        <Image Source="{Binding recipe.image}" Aspect="AspectFill" HeightRequest="250" WidthRequest="300" HorizontalOptions="Center">
+                            <Image.Behaviors>
+                                <anim:AnimateProgressDouble 
+                                    TargetProperty="VisualElement.Opacity"
+                                    Progress="{Binding ScrollY, Source={x:Reference Scroll}}"
+                                    Minimum="0"
+                                    Maximum="250"
+                                    From="1"
+                                    To="0"/>
+                            </Image.Behaviors>
+                        </Image>
+
+                        <Frame  Padding="10" >
+                            <tabs1:TabHostView x:Name="TabHost"  
+                                Grid.Row="4"
+                                HeightRequest="40"
+                                Margin="0,0,0,0"
+                                VerticalOptions="Center"
+                                BackgroundColor="#F0F0F3"
+                                CornerRadius="20"
+                                IsSegmented="True"
+                                SegmentedHasSeparator="False"
+                                SegmentedOutlineColor="#F0F0F3"
+                                TabType="Fixed"
+                                SelectedTabIndexChanged="TabHost_SelectedTabIndexChanged"
+                                SelectedIndex="{Binding Source={x:Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}">
+                                <tabs1:TabHostView.Tabs>
+                                    <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Instructions" IsSelected="True" TabIndex="0"/>
+                                    <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Ingredients" TabIndex="1"/>
+                                    <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Nutrition" TabIndex="2"/>
+                                </tabs1:TabHostView.Tabs>
+                            </tabs1:TabHostView>
+                        </Frame>
+
+
+                        <tabs1:ViewSwitcher x:Name="Switcher" SelectedIndex="{Binding recipe.SelectedViewModelIndex, Mode=TwoWay}">
+                            <ContentView TabIndex="0" BackgroundColor="#ededed">
+                                <ListView x:Name="LstInstructions"  VerticalScrollBarVisibility="Never" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True" ItemsSource="{Binding recipe.analyzedInstructions[0].steps}">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Grid Margin="10">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"></RowDefinition>
+                                                    </Grid.RowDefinitions>
+
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Frame Grid.Row="0" Grid.Column="0"  Padding="0" CornerRadius="30" BackgroundColor="#1884EC" HasShadow="False" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center" VerticalOptions="Center">
+                                                        <Label Text="{Binding number}" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+                                                    </Frame>
+                                                    <Label Text="{Binding step}" Padding="8" Grid.Row="0" Grid.Column="1" FontSize="15" VerticalOptions="Center" HorizontalTextAlignment="Start" TextColor="Black"></Label>
+                                                </Grid>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </ContentView>
+                            <ContentView TabIndex="1" BackgroundColor="#ededed">
+                                <ListView x:Name="LstIngredients"  VerticalScrollBarVisibility="Never" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True" ItemsSource="{Binding recipe.extendedIngredients}">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Grid Margin="10">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"></RowDefinition>
+                                                    </Grid.RowDefinitions>
+
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Frame Grid.Row="0" Grid.Column="0" CornerRadius="20" HasShadow="False" Margin="8,0,0,0" Padding="16">
+                                                        <ffimageloading:CachedImage Source="{Binding image, StringFormat='https://spoonacular.com/cdn/ingredients_100x100/{0:F0}'}" HeightRequest="50"  WidthRequest="50" Aspect="AspectFill"></ffimageloading:CachedImage>
+                                                    </Frame>
+                                                    <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" Padding="8">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="{Binding amount, StringFormat=' {0:F0}'}" FontAttributes="Bold" FontSize="17" TextColor="Black"></Span>
+                                                                <Span Text="{Binding unit, StringFormat=' {0:F0}'}" FontAttributes="Bold" FontSize="17" TextColor="Black"></Span>
+                                                                <Span Text="{Binding name, StringFormat=' {0:F0} '}" FontSize="17" TextColor="Black"></Span>
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                </Grid>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </ContentView>
+                            <ContentView TabIndex="2" Padding="8,0,0,8">
+                                <StackLayout>
+                                    <Frame HasShadow="False" HeightRequest="20" CornerRadius="5" HorizontalOptions="Fill" Padding="0" BackgroundColor="Silver" IsClippedToBounds="True">
+                                        <AbsoluteLayout>
+                                            <ContentView AbsoluteLayout.LayoutFlags="All" 
+                                                AbsoluteLayout.LayoutBounds="{Binding setProgresBarValue(1)}" 
+                                                BackgroundColor="CadetBlue">           
+                                                <Label Text="33%" 
+                                                   FontSize="Small" 
+                                                   HorizontalOptions="Center" 
+                                                   VerticalOptions="Center" 
+                                                   TextColor="White" 
+                                                   FontAttributes="Bold" />             
+                                            </ContentView>
+                                        </AbsoluteLayout>
+                                    </Frame>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                    <Label Text="adkjahfkjadsfsjd"/>
+                                </StackLayout>
+                            </ContentView>
+                        </tabs1:ViewSwitcher>
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
+
+            <FlexLayout
+            Direction="Row"
+                 Padding="8,14"
+            >
+                <Image 
+                FlexLayout.Shrink="0" Source="left_arrow.png" HeightRequest="32" WidthRequest="32">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                                Tapped="TapGestureRecognizer_Tapped"
+                                 />
+                    </Image.GestureRecognizers>
+                </Image>
+            </FlexLayout>
+
+             <!--FAKE NAVIGATIONBAR--> 
+            <FlexLayout 
+                x:Name="FakeNavBar"
+                BackgroundColor="White"
+                Direction="Row"
+                Opacity="0" Padding="8,14">
+                <FlexLayout.Triggers>
+                    <DataTrigger TargetType="FlexLayout"
+                                Binding="{Binding ScrollY, 
+                                        Source={x:Reference Scroll}, 
+                                        Converter={StaticResource ComparisonConverter},
+                                        ConverterParameter='285;>'}"
+                                Value="true">
+                        <DataTrigger.EnterActions>
+                            <anim:BeginAnimation
+                                    Animation="{StaticResource FakeNavBarFadeIn}" />
+                        </DataTrigger.EnterActions>
+                        <DataTrigger.ExitActions>
+                            <anim:BeginAnimation
+                                    Animation="{StaticResource FakeNavBarFadeOut}" />
+                        </DataTrigger.ExitActions>
+                    </DataTrigger>
+                </FlexLayout.Triggers>
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="80"/>
+                    </Grid.RowDefinitions>
+                    <FlexLayout Grid.Row="0">
+                        <Image 
+                        FlexLayout.Shrink="0" Source="left_arrow.png" HeightRequest="32" WidthRequest="32" >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                        Tapped="TapGestureRecognizer_Tapped"
+                                         />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label
+                            Text="{Binding recipe.title}" 
+                            FontSize="Large"
+                            FontAttributes="Bold"
+                            Margin="25, 15"
+                            VerticalOptions="CenterAndExpand"
+                            VerticalTextAlignment="Center"
+                            TextColor="Black"
+                            LineBreakMode="TailTruncation"
+                            FlexLayout.AlignSelf="Center"
+                            FlexLayout.Grow="1" />
+                    </FlexLayout>
+
+                    <!--<FlexLayout Grid.Row="1" >
+                        <Frame Padding="10" Margin="0">
+                            <tabs1:TabHostView 
+                                    HeightRequest="40"
+                                    Margin="0,0,0,0"
+                                    VerticalOptions="Center"
+                                    BackgroundColor="#F0F0F3"
+                                    CornerRadius="20"
+                                    IsSegmented="True"
+                                    SegmentedHasSeparator="False"
+                                    SegmentedOutlineColor="#F0F0F3"
+                                    TabType="Fixed"
+                                    SelectedIndex="{Binding Source={x:Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}">
+                                <tabs1:TabHostView.Tabs>
+                                    <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Instructions" IsSelected="True" TabIndex="0"/>
+                                    <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Ingredients" TabIndex="1"/>
+                                    <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Nutrition" TabIndex="2"/>
+                                </tabs1:TabHostView.Tabs>
+                            </tabs1:TabHostView>
+                        </Frame>
+                    </FlexLayout>-->
+                </Grid>
+            </FlexLayout>
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

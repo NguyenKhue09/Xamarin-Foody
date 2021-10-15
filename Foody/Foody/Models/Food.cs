@@ -13,6 +13,7 @@ namespace Foody.Models
         public double Price_Food { get; set; }
         public string Short_Description_Food { get; set; }
         public string Long_Description_Food { get; set; }
+
     }
 
     public class VarietyFood

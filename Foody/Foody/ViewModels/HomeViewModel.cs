@@ -6,14 +6,16 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Foody.Models;
 using Foody.Services;
+using System.Diagnostics;
 
 namespace Foody.ViewModels
 {
     public class HomeViewModel : BaseViewModel
     {
         public ObservableRangeCollection<Food> Foods { get; set; }
+        public ObservableRangeCollection<Result> Recipes { get; set; }
+        public ObservableRangeCollection<Result> RandomRecipes { get; set; }
 
-        public ObservableRangeCollection<FoodsViewModel> DynamicFoods { get; set; }
         public ICommand NavToPantry => new Command(NavToPantryPage);
         public ICommand NavToShoppingList => new Command(NavToShoppingListPage);
         public ICommand NavToMealPlanner => new Command(NavToMealPlannerPage);
@@ -21,15 +23,35 @@ namespace Foody.ViewModels
         {
 
             Foods = new ObservableRangeCollection<Food>();
+            Recipes = new ObservableRangeCollection<Result>();
+            RandomRecipes = new ObservableRangeCollection<Result>();
             Foods.AddRange(Repository.Foods);
 
-            DynamicFoods = new ObservableRangeCollection<FoodsViewModel>();
+           
+        }
+
+        async public void GetRecipes()
+        {
+            Recipe results = new Recipe();
+
+            results = await App.RecipeManager.GetRecipes();
+            Recipes.AddRange(results.results);
+        }
+
+        async public void GetRandomRecipes()
+        {
+            Recipe results = new Recipe();
+
+            results = await App.RecipeManager.GetRecipes();
+            RandomRecipes.AddRange(results.results);
+            
         }
 
         async public void NavToPantryPage()
         {
 
             await (App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/pantry", true);
+           
         }
 
         async public void NavToShoppingListPage()
