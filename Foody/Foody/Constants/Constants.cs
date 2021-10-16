@@ -10,7 +10,7 @@ namespace Foody.Constants
         public static string BASEURL = "https://api.spoonacular.com";
         public static string BASE_IMAGE_URL = "https://spoonacular.com/cdn/ingredients_100x100/";
         public static int  NUMBER = 50;
-        public static string APIKEY = "8b0d84ce7ec14719b84aa7deb47154bf";
+        public static string APIKEY = "e8096985f30b45bf8e3212115a218cc5";
         public static string RECIPE_TYPE = "vegetarian";
         public static string DIET = "vegan";
         public static bool  ADDRECIPEINFORMATION = true;

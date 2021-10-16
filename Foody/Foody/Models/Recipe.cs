@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace Foody.Models
 {
@@ -52,6 +53,9 @@ namespace Foody.Models
         public double amount { get; set; }
         public string unit { get; set; }
         public double percentOfDailyNeeds { get; set; }
+
+        public Rectangle rectangle { get; set;}
+        public string color { get; set; }
     }
 
     public class Property
