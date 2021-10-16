@@ -65,12 +65,16 @@
                 </StackLayout>
             </yummy:PancakeView>
             
-            <StackLayout  Grid.Column="0" Grid.Row="1">
+            <Grid  Grid.Column="0" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition x:Name="tabPantry" />
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
                 <!--Tab view-->
-                <Frame HorizontalOptions="Center" CornerRadius="30" Margin="6" Padding="8">
+                <Frame HorizontalOptions="Center" CornerRadius="30" Margin="6" Padding="8" Grid.Row="0" Grid.Column="0">
                     <tabs1:TabHostView x:Name="TabPantry"  
                                         HeightRequest="40"
-                                        Margin="0,0,0,0"
+                                        Margin="2"
                                         VerticalOptions="Center"
                                         BackgroundColor="White"
                                         CornerRadius="20"
@@ -81,14 +85,14 @@
                                         SelectedIndex="{Binding Source={x:Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}"
                                         SelectedTabIndexChanged="TabPantry_SelectedTabIndexChanged">
                         <tabs1:TabHostView.Tabs>
-                            <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Manage" IsSelected="True" TabIndex="0" Margin="30,0"/>
-                            <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Explore" TabIndex="1"/>
+                            <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Manage" IsSelected="True" TabIndex="0"/>
+                            <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Explore" TabIndex="1" Padding="30,0"/>
                             <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Search" TabIndex="2"/>
                         </tabs1:TabHostView.Tabs>
                     </tabs1:TabHostView>
                 </Frame>
                 <!--Conten of pages-->
-                <tabs1:ViewSwitcher x:Name="Switcher" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
+                <tabs1:ViewSwitcher x:Name="Switcher" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}" Grid.Row="1" Grid.Column="0">
                     <!--page 1-->
                     <ContentView TabIndex="0" Padding="8,0,0,8">
                         <ScrollView Padding="8,0,0,8" VerticalScrollBarVisibility="Never">
@@ -118,10 +122,9 @@
                         </ScrollView>
                     </ContentView>
                     <!--page 2-->
-                    <ContentView TabIndex="1" >
-                        <ScrollView Padding="8,0,0,8" VerticalScrollBarVisibility="Never">
-                            <StackLayout>
-                                <Grid >
+                    <ContentView TabIndex="1" Padding="8,0,0,8" >
+                        <ScrollView VerticalScrollBarVisibility="Never" >
+                            <Grid >
                                 <Grid.RowDefinitions>
                                     <RowDefinition x:Name="lb"/>
                                     <RowDefinition x:Name="col"/>
@@ -425,7 +428,6 @@
                                     </CollectionView.ItemTemplate>
                                 </CollectionView>
                             </Grid>
-                            </StackLayout>
                         </ScrollView>
                     </ContentView>
                     <!--page 3-->
@@ -465,7 +467,7 @@
                         </StackLayout>
                     </ContentView>
                 </tabs1:ViewSwitcher>
-            </StackLayout>
+            </Grid>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
