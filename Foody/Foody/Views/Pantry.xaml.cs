@@ -43,12 +43,14 @@ namespace Foody.Views
                 headPantry.HeightRequest = 180;
                 pantry.IsVisible = false;
                 ptManage.IsVisible = true;
+                tabPantry.Height = new GridLength(0.4, GridUnitType.Star);
             }
             else
             {
                 headPantry.HeightRequest = 80;
                 pantry.IsVisible = true;
                 ptManage.IsVisible = false;
+                tabPantry.Height = new GridLength(0.33, GridUnitType.Star);
             }
         }
     }
