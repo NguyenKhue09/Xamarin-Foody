@@ -66,6 +66,7 @@ namespace Foody.Views
         {
             base.OnAppearing();
             homeViewModel.GetRecipes();
+            //homeViewModel.GetRandomRecipes();
         }
 
 
@@ -86,5 +87,10 @@ namespace Foody.Views
         async private void collectionView_Popular_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
         }
+
+        private void random_recipes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+        }
+
     }
 }

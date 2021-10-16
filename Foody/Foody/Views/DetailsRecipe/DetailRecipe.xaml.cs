@@ -1,4 +1,5 @@
 ﻿using Foody.Models;
+using Foody.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,14 @@ namespace Foody.Views.DetailsRecipe
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DetailRecipe : ContentPage
     {
+        private readonly DetailRecipeViewModel detailRecipeViewModel;
         public DetailRecipe(Result recipe)
         {
             InitializeComponent();
-            BindingContext = recipe;
-            
+            BindingContext = detailRecipeViewModel = new DetailRecipeViewModel(recipe);
+            //LstInstructions.ItemsSource = recipe.analyzedInstructions[0].steps;
+
+
         }
 
 
