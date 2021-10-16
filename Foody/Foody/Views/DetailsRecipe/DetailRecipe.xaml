@@ -6,6 +6,7 @@
              NavigationPage.HasNavigationBar="True"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:tabs1="http://sharpnado.com"
              Shell.TabBarIsVisible="False">
 
@@ -45,6 +46,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="*" />
+                <RowDefinition Height="70" />
             </Grid.RowDefinitions>
 
             <Grid Grid.RowSpan="2" RowSpacing="0">
@@ -179,7 +181,7 @@
                                     </ListView.ItemTemplate>
                                 </ListView>
                             </ContentView>
-                            <ContentView TabIndex="2" Padding="8,0,0,8">
+                            <ContentView TabIndex="2" Padding="8,0,0,8" BackgroundColor="#ededed">
                                 <ListView x:Name="LstNutrition"  VerticalScrollBarVisibility="Never" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True" ItemsSource="{Binding  newNutrients}">
 
                                     <ListView.ItemTemplate>
@@ -229,16 +231,56 @@
                 </ScrollView>
             </Grid>
 
-            <FlexLayout
-            Direction="Row"
-                 Padding="8,14"
-            >
-                <Image 
-                FlexLayout.Shrink="0" Source="left_arrow.png" HeightRequest="32" WidthRequest="32">
+            <Frame Grid.Row="2" BackgroundColor="#ededed" HasShadow="False" Padding="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Frame Grid.Column="0" Grid.Row="0" Margin="10" BackgroundColor="#08BCF0" CornerRadius="30" HasShadow="False" Padding="8">
+                        <FlexLayout Direction="Row" JustifyContent="SpaceEvenly" HorizontalOptions="Center" VerticalOptions="Center" Padding="0">
+                            <Image Source="subtraction.png" HeightRequest="20" WidthRequest="15"  VerticalOptions="Center"></Image>
+                            <Label Text="2" TextColor="White" FontSize="Medium" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+                            <Image Source="plus1.png" HeightRequest="15" WidthRequest="15"  VerticalOptions="Center"></Image>
+                        </FlexLayout>
+                    </Frame>
+
+                    <Frame Grid.Column="1" Grid.Row="0" HorizontalOptions="End" Margin="10" BackgroundColor="Aqua" CornerRadius="50" WidthRequest="30" HeightRequest="40" HasShadow="True" Padding="8">
+                        <Image Source="heart_white.png" HeightRequest="40" WidthRequest="40"></Image>
+                    </Frame>
+                    
+                    <yummy:PancakeView 
+                            BackgroundGradientStartPoint="-0.5,-0.5" BackgroundGradientEndPoint="0.5,0.5" 
+                            Grid.Column="2" Grid.Row="0" 
+                            BackgroundColor="#07BDF6" CornerRadius="25" 
+                            VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="50">
+
+                        <yummy:PancakeView.GestureRecognizers>
+                            <TapGestureRecognizer/>
+                        </yummy:PancakeView.GestureRecognizers>
+
+                        <yummy:PancakeView.BackgroundGradientStops>
+                            <yummy:GradientStopCollection>
+                                <yummy:GradientStop Color="#59E38E" Offset="1" />
+                                <yummy:GradientStop Color="#1884EC" Offset="0.3" />
+                            </yummy:GradientStopCollection>
+                        </yummy:PancakeView.BackgroundGradientStops>
+
+                        <Label Text="Add To List" FontAttributes="Bold" FontSize="Large" Padding="8" TextColor="White"></Label>
+                    </yummy:PancakeView>
+                </Grid>
+            </Frame>
+           
+            
+            <FlexLayout Direction="Row" Padding="8,14">
+                <Image FlexLayout.Shrink="0" Source="left_arrow.png" HeightRequest="32" WidthRequest="32">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer
-                                Tapped="TapGestureRecognizer_Tapped"
-                                 />
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                     </Image.GestureRecognizers>
                 </Image>
             </FlexLayout>
