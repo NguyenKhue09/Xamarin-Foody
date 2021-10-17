@@ -20,8 +20,7 @@ namespace Foody.Views.DetailsRecipe
             InitializeComponent();
             BindingContext = detailRecipeViewModel = new DetailRecipeViewModel(recipe);
             //LstInstructions.ItemsSource = recipe.analyzedInstructions[0].steps;
-
-
+           
         }
 
 
@@ -43,5 +42,7 @@ namespace Foody.Views.DetailsRecipe
         {
 
         }
+
+      
     }
 }
