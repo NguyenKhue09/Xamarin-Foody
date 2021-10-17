@@ -20,13 +20,14 @@ namespace Foody.Views.DetailsRecipe
             InitializeComponent();
             BindingContext = detailRecipeViewModel = new DetailRecipeViewModel(recipe);
             //LstInstructions.ItemsSource = recipe.analyzedInstructions[0].steps;
-
-
+           
         }
 
 
         async private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
+           
+
             try
             {
                 //Code to execute on tapped event
@@ -42,5 +43,7 @@ namespace Foody.Views.DetailsRecipe
         {
 
         }
+
+      
     }
 }
