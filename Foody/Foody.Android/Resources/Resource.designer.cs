@@ -19645,7 +19645,7 @@ namespace Foody.Droid
 			public const int heart = 2131165300;
 			
 			// aapt resource value: 0x7F070075
-			public const int heart_white = 2131165301;
+			public const int heart_outline = 2131165301;
 			
 			// aapt resource value: 0x7F070076
 			public const int home = 2131165302;
