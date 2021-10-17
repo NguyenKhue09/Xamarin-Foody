@@ -83,6 +83,7 @@ namespace Foody.ViewModels
 
         public void PlusCount()
         {
+   
             NumberOfIngredient += 1;
             Debug.WriteLine(NumberOfIngredient);
             changeAmountIngredients(NumberOfIngredient);
@@ -93,8 +94,10 @@ namespace Foody.ViewModels
             
             for (int i = 0; i < newList.Count; i++)
             {
-               
+
+                extendedIngredients[i] = newList[i];
                 extendedIngredients[i].amount = double.Parse(recipe.extendedIngredients[i].amount.ToString()) * amount;
+               
             }
             
         }
