@@ -150,7 +150,7 @@
                                 </ListView>
                             </ContentView>
                             <ContentView TabIndex="1" BackgroundColor="#ededed">
-                                <ListView x:Name="LstIngredients"  VerticalScrollBarVisibility="Never" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True" ItemsSource="{Binding extendedIngredients}">
+                                <ListView x:Name="LstIngredients"  VerticalScrollBarVisibility="Never" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True" ItemsSource="{Binding extendedIngredients, Mode=TwoWay}">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <ViewCell>

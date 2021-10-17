@@ -47,6 +47,7 @@ namespace Foody.ViewModels
             numberOfIngredient = 1;
             newList = jsonCloneObject(recipe.extendedIngredients);
             extendedIngredients = new ObservableCollection<ExtendedIngredient>(newList);
+            changeAmountIngredients(numberOfIngredient);
             sub = new Command(() => SubCount());
             plus = new Command(() => PlusCount());
         }
@@ -74,10 +75,10 @@ namespace Foody.ViewModels
 
         public void SubCount()
         {
-            if (NumberOfIngredient > 1)
+            if (numberOfIngredient > 0)
             {
                 NumberOfIngredient -= 1;
-                changeAmountIngredients(NumberOfIngredient);
+                changeAmountIngredients(numberOfIngredient);
             }
         }
 
@@ -91,13 +92,14 @@ namespace Foody.ViewModels
         
         public void changeAmountIngredients(int amount)
         {
-            
+            Debug.WriteLine(amount);
             for (int i = 0; i < newList.Count; i++)
             {
 
                 extendedIngredients[i] = newList[i];
                 extendedIngredients[i].amount = double.Parse(recipe.extendedIngredients[i].amount.ToString()) * amount;
-               
+                Debug.WriteLine(extendedIngredients[0].amount);
+
             }
             
         }
