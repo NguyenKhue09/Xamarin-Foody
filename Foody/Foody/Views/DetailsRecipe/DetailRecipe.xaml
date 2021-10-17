@@ -6,13 +6,14 @@
              NavigationPage.HasNavigationBar="True"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:tabs1="http://sharpnado.com"
              Shell.TabBarIsVisible="False">
 
     <ContentPage.Resources>
 
         <Style x:Key="SegmentedTabStyle" TargetType="tabs1:SegmentedTabItem">
-            <Setter Property="SelectedTabColor" Value="#1884EC" />
+            <Setter Property="SelectedTabColor" Value="#08BCF0" />
             <Setter Property="LabelSize" Value="14" />
             <Setter Property="SelectedLabelColor" Value="Black" />
             <Setter Property="UnselectedLabelColor" Value="Gray" />
@@ -45,6 +46,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="*" />
+                <RowDefinition Height="70" />
             </Grid.RowDefinitions>
 
             <Grid Grid.RowSpan="2" RowSpacing="0">
@@ -85,7 +87,7 @@
                             </Frame.Behaviors>
                     
                         </Frame>
-                        <Label Text="{Binding recipe.title}" TextColor="Black" FontSize="Large" Padding="8,50,0,0" FontAttributes="Bold"/>
+                        <Label Text="{Binding recipe.title}" TextColor="Black" FontSize="Medium" Padding="8,50,0,0" FontAttributes="Bold"/>
                         <Image Source="{Binding recipe.image}" Aspect="AspectFill" HeightRequest="250" WidthRequest="300" HorizontalOptions="Center">
                             <Image.Behaviors>
                                 <anim:AnimateProgressDouble 
@@ -137,7 +139,7 @@
                                                         <ColumnDefinition Width="*"></ColumnDefinition>
                                                     </Grid.ColumnDefinitions>
 
-                                                    <Frame Grid.Row="0" Grid.Column="0"  Padding="0" CornerRadius="30" BackgroundColor="#1884EC" HasShadow="False" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center" VerticalOptions="Center">
+                                                    <Frame Grid.Row="0" Grid.Column="0"  Padding="0" CornerRadius="30" BackgroundColor="#08BCF0" HasShadow="False" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center" VerticalOptions="Center">
                                                         <Label Text="{Binding number}" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
                                                     </Frame>
                                                     <Label Text="{Binding step}" Padding="8" Grid.Row="0" Grid.Column="1" FontSize="15" VerticalOptions="Center" HorizontalTextAlignment="Start" TextColor="Black"></Label>
@@ -179,69 +181,106 @@
                                     </ListView.ItemTemplate>
                                 </ListView>
                             </ContentView>
-                            <ContentView TabIndex="2" Padding="8,0,0,8">
-                                <StackLayout>
-                                    <Frame HasShadow="False" HeightRequest="20" CornerRadius="5" HorizontalOptions="Fill" Padding="0" BackgroundColor="Silver" IsClippedToBounds="True">
-                                        <AbsoluteLayout>
-                                            <ContentView AbsoluteLayout.LayoutFlags="All" 
-                                                AbsoluteLayout.LayoutBounds="{Binding setProgresBarValue(1)}" 
-                                                BackgroundColor="CadetBlue">           
-                                                <Label Text="33%" 
-                                                   FontSize="Small" 
-                                                   HorizontalOptions="Center" 
-                                                   VerticalOptions="Center" 
-                                                   TextColor="White" 
-                                                   FontAttributes="Bold" />             
-                                            </ContentView>
-                                        </AbsoluteLayout>
-                                    </Frame>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                    <Label Text="adkjahfkjadsfsjd"/>
-                                </StackLayout>
+                            <ContentView TabIndex="2" Padding="8,0,0,8" BackgroundColor="#ededed">
+                                <ListView x:Name="LstNutrition"  VerticalScrollBarVisibility="Never" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True" ItemsSource="{Binding  newNutrients}">
+
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Grid ColumnSpacing="0" Margin="8,8,8,8">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"></RowDefinition>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                                                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Text="{Binding name}" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" TextColor="Black"></Label>
+                                                    <Frame HasShadow="False" HeightRequest="10" Grid.Row="0" Grid.Column="1"  CornerRadius="10" HorizontalOptions="Fill" Padding="0" BackgroundColor="#B5C8CC" IsClippedToBounds="True">
+                                                        <AbsoluteLayout>
+                                                            <ContentView AbsoluteLayout.LayoutFlags="All" 
+                                                                AbsoluteLayout.LayoutBounds="{Binding rectangle}" 
+                                                                BackgroundColor="{Binding color, Converter={StaticResource ColorFromHexConverter}}">
+                                                            </ContentView>
+                                                            <Label Text="{Binding percentOfDailyNeeds, StringFormat='{0:0.00}%'}" 
+                                                                   Margin="65,0,0,0"
+                                                                   FontSize="Small"
+                                                                   HorizontalTextAlignment="Center"
+                                                                   HorizontalOptions="Center"
+                                                                   VerticalOptions="Center"
+                                                                   TextColor="Black"/>
+                                                        </AbsoluteLayout>
+                                                    </Frame>
+                                                    <Label Grid.Row="0" Grid.Column="2" HorizontalOptions="Start" Padding="4,0,0,0">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="{Binding amount}" TextColor="Black"></Span>
+                                                                <Span Text="{Binding unit}" TextColor="Black"></Span>
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                </Grid>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
                             </ContentView>
                         </tabs1:ViewSwitcher>
                     </StackLayout>
                 </ScrollView>
             </Grid>
 
-            <FlexLayout
-            Direction="Row"
-                 Padding="8,14"
-            >
-                <Image 
-                FlexLayout.Shrink="0" Source="left_arrow.png" HeightRequest="32" WidthRequest="32">
+            <Frame Grid.Row="2" BackgroundColor="#ededed" HasShadow="False" Padding="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Frame Grid.Column="0" Grid.Row="0" Margin="10" BackgroundColor="#08BCF0" CornerRadius="30" HasShadow="False" Padding="8">
+                        <FlexLayout Direction="Row" JustifyContent="SpaceEvenly" HorizontalOptions="Center" VerticalOptions="Center" Padding="0">
+                            <Image Source="subtraction.png" HeightRequest="20" WidthRequest="15"  VerticalOptions="Center"></Image>
+                            <Label Text="2" TextColor="White" FontSize="Medium" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+                            <Image Source="plus1.png" HeightRequest="15" WidthRequest="15"  VerticalOptions="Center"></Image>
+                        </FlexLayout>
+                    </Frame>
+
+                    <Frame Grid.Column="1" Grid.Row="0" HorizontalOptions="End" Margin="10" BackgroundColor="Aqua" CornerRadius="50" WidthRequest="30" HeightRequest="40" HasShadow="True" Padding="8">
+                        <Image Source="heart_white.png" HeightRequest="40" WidthRequest="40"></Image>
+                    </Frame>
+                    
+                    <yummy:PancakeView 
+                            BackgroundGradientStartPoint="-0.5,-0.5" BackgroundGradientEndPoint="0.5,0.5" 
+                            Grid.Column="2" Grid.Row="0" 
+                            BackgroundColor="#07BDF6" CornerRadius="25" 
+                            VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="50">
+
+                        <yummy:PancakeView.GestureRecognizers>
+                            <TapGestureRecognizer/>
+                        </yummy:PancakeView.GestureRecognizers>
+
+                        <yummy:PancakeView.BackgroundGradientStops>
+                            <yummy:GradientStopCollection>
+                                <yummy:GradientStop Color="#59E38E" Offset="1" />
+                                <yummy:GradientStop Color="#1884EC" Offset="0.3" />
+                            </yummy:GradientStopCollection>
+                        </yummy:PancakeView.BackgroundGradientStops>
+
+                        <Label Text="Add To List" FontAttributes="Bold" FontSize="Large" Padding="8" TextColor="White"></Label>
+                    </yummy:PancakeView>
+                </Grid>
+            </Frame>
+           
+            
+            <FlexLayout Direction="Row" Padding="8,14">
+                <Image FlexLayout.Shrink="0" Source="left_arrow.png" HeightRequest="32" WidthRequest="32">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer
-                                Tapped="TapGestureRecognizer_Tapped"
-                                 />
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                     </Image.GestureRecognizers>
                 </Image>
             </FlexLayout>
@@ -272,9 +311,8 @@
                 <Grid RowSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="45"/>
-                        <RowDefinition Height="80"/>
                     </Grid.RowDefinitions>
-                    <FlexLayout Grid.Row="0">
+                    <FlexLayout Grid.Row="0" Direction="Row">
                         <Image 
                         FlexLayout.Shrink="0" Source="left_arrow.png" HeightRequest="32" WidthRequest="32" >
                             <Image.GestureRecognizers>
@@ -285,15 +323,14 @@
                         </Image>
                         <Label
                             Text="{Binding recipe.title}" 
-                            FontSize="Large"
+                            FontSize="Medium"
                             FontAttributes="Bold"
-                            Margin="25, 15"
-                            VerticalOptions="CenterAndExpand"
-                            VerticalTextAlignment="Center"
+                            Margin="15,0,0,15"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            MaxLines="1"
                             TextColor="Black"
-                            LineBreakMode="TailTruncation"
-                            FlexLayout.AlignSelf="Center"
-                            FlexLayout.Grow="1" />
+                            LineBreakMode="TailTruncation"/>
                     </FlexLayout>
 
                     <!--<FlexLayout Grid.Row="1" >

@@ -9,6 +9,7 @@
     xmlns:converters="clr-namespace:Foody.Converters">
 
     <converters:ComparisonConverter x:Key="ComparisonConverter"/>
+    <converters:ColorFromHexConverter x:Key="ColorFromHexConverter"/>
     
 
     <!--#region Color Range-->
