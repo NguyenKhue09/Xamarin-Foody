@@ -50,20 +50,19 @@ namespace Foody.Views
         {
             if (TabPantry.SelectedIndex == 0)
             {
-                headPantry.HeightRequest = 180;
+                headPantry.HeightRequest = 150;
                 pantry.IsVisible = false;
                 ptManage.IsVisible = true;
                 tabPantry.Height = new GridLength(0.4, GridUnitType.Star);
             }
             else
             {
-                headPantry.HeightRequest = 80;
+                headPantry.HeightRequest = 70;
                 pantry.IsVisible = true;
                 ptManage.IsVisible = false;
                 tabPantry.Height = new GridLength(0.33, GridUnitType.Star);
             }
         }
-
         async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             try

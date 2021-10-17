@@ -234,12 +234,12 @@
             <Frame Grid.Row="2" BackgroundColor="#ededed" HasShadow="False" Padding="0">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="60"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
-                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
-                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="50"></ColumnDefinition>
+                        <ColumnDefinition Width="130"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     
                     <Frame Grid.Column="0" Grid.Row="0" Margin="10" BackgroundColor="#08BCF0" CornerRadius="30" HasShadow="False" Padding="8">
@@ -250,7 +250,7 @@
                         </FlexLayout>
                     </Frame>
 
-                    <Frame Grid.Column="1" Grid.Row="0" HorizontalOptions="End" Margin="10" BackgroundColor="Aqua" CornerRadius="50" WidthRequest="30" HeightRequest="40" HasShadow="True" Padding="8">
+                    <Frame Grid.Column="1" Grid.Row="0" HorizontalOptions="End" Margin="10" BackgroundColor="Aqua" CornerRadius="50" WidthRequest="45" HeightRequest="60" HasShadow="True" Padding="0">
                         <Image Source="heart_white.png" HeightRequest="40" WidthRequest="40"></Image>
                     </Frame>
                     
@@ -258,7 +258,7 @@
                             BackgroundGradientStartPoint="-0.5,-0.5" BackgroundGradientEndPoint="0.5,0.5" 
                             Grid.Column="2" Grid.Row="0" 
                             BackgroundColor="#07BDF6" CornerRadius="25" 
-                            VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="50">
+                            VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="50">
 
                         <yummy:PancakeView.GestureRecognizers>
                             <TapGestureRecognizer/>
