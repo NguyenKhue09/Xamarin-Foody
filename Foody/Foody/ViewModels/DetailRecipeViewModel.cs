@@ -1,10 +1,13 @@
-﻿using Foody.Models;
+﻿using Foody.Converters;
+using Foody.Models;
 using MvvmHelpers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Xamarin.Forms;
 
@@ -12,13 +15,22 @@ namespace Foody.ViewModels
 {
     public class DetailRecipeViewModel : BaseViewModel
     {
-
+        public event PropertyChangedEventHandler PropertyChanged;
         public INavigation Navigation;
         public Result recipe { get; set; }
         public List<Nutrient> newNutrients { get; set; }
         public ObservableCollection<ExtendedIngredient> extendedIngredients { get; set; }
 
-       
+        public ObservableCollection<ExtendedIngredient> ExtendedIngredients
+        {
+            get { return extendedIngredients; }
+            set
+            {
+                extendedIngredients = value;
+                NotifyPropertyChanged();
+            }
+        }
+
 
         public int numberOfIngredient;
        
@@ -52,6 +64,12 @@ namespace Foody.ViewModels
             plus = new Command(() => PlusCount());
         }
 
+
+        protected virtual void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         public List<Nutrient> setProgresBarValue(List<Nutrient> nutrients)
         {
             
@@ -75,7 +93,7 @@ namespace Foody.ViewModels
 
         public void SubCount()
         {
-            if (numberOfIngredient > 0)
+            if (numberOfIngredient > 1)
             {
                 NumberOfIngredient -= 1;
                 changeAmountIngredients(numberOfIngredient);
@@ -95,11 +113,10 @@ namespace Foody.ViewModels
             Debug.WriteLine(amount);
             for (int i = 0; i < newList.Count; i++)
             {
-
-                extendedIngredients[i] = newList[i];
-                extendedIngredients[i].amount = double.Parse(recipe.extendedIngredients[i].amount.ToString()) * amount;
-                Debug.WriteLine(extendedIngredients[0].amount);
-
+                newList[i].amount = double.Parse(recipe.extendedIngredients[i].amount.ToString()) * amount;
+                newList[i].amountIngre = new Fraction(newList[i].amount).ToString();
+                Debug.WriteLine(new Fraction(0.75).ToString());
+                ExtendedIngredients[i] = newList[i];
             }
             
         }

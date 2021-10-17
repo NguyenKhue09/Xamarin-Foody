@@ -26,7 +26,8 @@ namespace Foody.Views.DetailsRecipe
 
         async private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            
+           
+
             try
             {
                 //Code to execute on tapped event

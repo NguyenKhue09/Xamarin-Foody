@@ -169,7 +169,7 @@
                                                     <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" Padding="8">
                                                         <Label.FormattedText>
                                                             <FormattedString>
-                                                                <Span Text="{Binding amount, StringFormat=' {0:F0}'}" FontAttributes="Bold" FontSize="17" TextColor="Black"></Span>
+                                                                <Span Text="{Binding amountIngre, StringFormat=' {0:F0}'}" FontAttributes="Bold" FontSize="17" TextColor="Black"></Span>
                                                                 <Span Text="{Binding unit, StringFormat=' {0:F0}'}" FontAttributes="Bold" FontSize="17" TextColor="Black"></Span>
                                                                 <Span Text="{Binding name, StringFormat=' {0:F0} '}" FontSize="17" TextColor="Black"></Span>
                                                             </FormattedString>

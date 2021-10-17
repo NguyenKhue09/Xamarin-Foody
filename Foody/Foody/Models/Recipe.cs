@@ -40,6 +40,7 @@ namespace Foody.Models
         public string originalString { get; set; }
         public string originalName { get; set; }
         public double amount { get; set; }
+        public string amountIngre { get; set; }
         public string unit { get; set; }
         public List<string> meta { get; set; }
         public List<string> metaInformation { get; set; }
