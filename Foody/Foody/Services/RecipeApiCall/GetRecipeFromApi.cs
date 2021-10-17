@@ -17,8 +17,9 @@ namespace Foody.Services.RecipeApiCall
 
         public Recipe Recipes { get; private set; }
         public Recipe RandomRecipes { get; private set; }
+        public Recipe PopularRecipes { get; private set; }
 
-        
+
         public RestService()
         {
             client = new HttpClient();
@@ -63,6 +64,43 @@ namespace Foody.Services.RecipeApiCall
             }
 
             return Recipes;
+        }
+        // popular Recipe 
+        public async Task<Recipe> GetPopularRecipes()
+        {
+
+            PopularRecipes = new Recipe();
+
+            Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/recipes/complexSearch?number=" +
+                $"{Constants.Constants.NUMBER}&apiKey={Constants.Constants.APIKEY}&type={Constants.Constants.POPULAR_RECIPE_TYPE}" +
+                $"&diet={Constants.Constants.POPULAR_DIET}&addRecipesInformation={Constants.Constants.ADDRECIPEINFORMATION}" +
+                $"&fillIngredients={Constants.Constants.FILLINGREDIENTS}&addRecipeNutrition={Constants.Constants.RECIPENUTRITION}", string.Empty));
+            try
+            {
+
+                HttpResponseMessage response = await client.GetAsync(uri);
+                Debug.WriteLine("CallAPI");
+                if (response.IsSuccessStatusCode)
+                {
+
+
+                    string content = await response.Content.ReadAsStringAsync();
+                    PopularRecipes = JsonSerializer.Deserialize<Recipe>(content, serializerOptions);
+
+                }
+                else
+                {
+                    Debug.WriteLine("Thatbai");
+                    PopularRecipes.results = new List<Result>();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
+
+            return PopularRecipes;
         }
 
         public async Task<Recipe> GetRandomRecipes()

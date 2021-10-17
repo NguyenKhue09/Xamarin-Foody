@@ -9,7 +9,7 @@ namespace Foody.ViewModels
 {
     public class DetailRecipeViewModel: BaseViewModel
     {
-
+        
 
         public Result recipe { get; set; }
 

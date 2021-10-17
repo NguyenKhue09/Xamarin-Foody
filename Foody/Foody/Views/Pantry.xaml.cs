@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,9 +18,15 @@ namespace Foody.Views
         {
             InitializeComponent();
             CheckFavorite(true);
-            BindingContext = pantryViewModel = new PantryViewModel();
+            BindingContext = pantryViewModel = new PantryViewModel( Navigation );
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            pantryViewModel.GetPopularRecipes();
+            //homeViewModel.GetRandomRecipes();
+        }
         void CheckFavorite(bool x)
         {
             if (x)
@@ -28,11 +34,15 @@ namespace Foody.Views
 
                 lb.Height = new GridLength(0.4, GridUnitType.Star);
                 col.Height = new GridLength(0.98, GridUnitType.Star);
+                PTnormal.Height = 0;
+                PTlist.Height = new GridLength(1, GridUnitType.Star);
             }
             else
             {
                 lb.Height = 0;
                 col.Height = 0;
+                PTnormal.Height = new GridLength(1, GridUnitType.Star);
+                PTlist.Height = 0;
             }
 
         }
@@ -51,6 +61,20 @@ namespace Foody.Views
                 pantry.IsVisible = true;
                 ptManage.IsVisible = false;
                 tabPantry.Height = new GridLength(0.33, GridUnitType.Star);
+            }
+        }
+
+        async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            try
+            {
+                //Code to execute on tapped event
+                await Navigation.PushAsync(new PagePantrySetting());
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }

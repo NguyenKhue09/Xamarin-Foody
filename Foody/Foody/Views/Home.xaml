@@ -96,14 +96,12 @@
                             <yummy:PancakeView.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding NavToPantry}"/>
                             </yummy:PancakeView.GestureRecognizers>
-
                             <yummy:PancakeView.BackgroundGradientStops>
                                 <yummy:GradientStopCollection>
                                     <yummy:GradientStop Color="#59E38E" Offset="1" />
                                     <yummy:GradientStop Color="#1884EC" Offset="0.5" />
                                 </yummy:GradientStopCollection>
                             </yummy:PancakeView.BackgroundGradientStops>
-
                             <Grid Padding="8">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
