@@ -3,7 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:tabs1="http://sharpnado.com"
              BackgroundColor="#f5f5f5" 
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:controls="clr-namespace:Foody.ViewModels"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:controls="clr-namespace:Foody.ViewModels"
+             xmlns:chips="clr-namespace:Xamarin.Forms.Chips;assembly=Xamarin.Forms.Chips"
              x:Class="Foody.Views.Pantry">
 
 
@@ -95,7 +98,13 @@
                         <tabs1:TabHostView.Tabs>
                             <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Manage" IsSelected="True" TabIndex="0"/>
                             <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Explore" TabIndex="1" Padding="30,0"/>
-                            <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Search" TabIndex="2"/>
+                            <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Search" TabIndex="2">
+                                <tabs1:SegmentedTabItem.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="showpopup_Clicked">
+                                        
+                                    </TapGestureRecognizer>
+                                </tabs1:SegmentedTabItem.GestureRecognizers>
+                            </tabs1:SegmentedTabItem>
                         </tabs1:TabHostView.Tabs>
                     </tabs1:TabHostView>
                 </Frame>
@@ -448,39 +457,741 @@
                         </ScrollView>
                     </ContentView>
                     <!--page 3-->
-                    <ContentView TabIndex="2" Padding="8,0,0,8">
+                    <ContentView TabIndex="2">
                         <StackLayout>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
-                            <Label Text="adkjahfkjadsfsjd"/>
+                            <FlexLayout Direction="Row" Wrap="Wrap" Padding="8" AlignItems="Center" AlignContent="SpaceBetween" BackgroundColor="White" Margin="0">
+                                <chips:Chip
+                                    Text="African"
+                                    BackgroundColor="#F5F5F5"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="African"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="African">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                                <chips:Chip
+                                    Text="American"
+                                    BackgroundColor="#F5F5F5"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="American"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="American">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                                <chips:Chip
+                                    Text="British"
+                                    BackgroundColor="#F5F5F5"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="British"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="British">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                                <chips:Chip
+                                    Text="Cajun"
+                                    BackgroundColor="#F5F5F5"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="Cajun"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="Cajun">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                                <chips:Chip
+                                    Text="Carribbean"
+                                    BackgroundColor="#F5F5F5"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="Carribbean"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="Carribbean">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                                <chips:Chip
+                                    Text="Chinese"
+                                    BackgroundColor="#F5F5F5"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="Chinese"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="Chinese">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                                <chips:Chip
+                                    Text="Eastern European"
+                                    BackgroundColor="#F5F5F5"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="Eastern European"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="Eastern European">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                                <chips:Chip
+                                    Text="European"
+                                    BackgroundColor="#F5F5F5"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="European"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="European">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                                <chips:Chip
+                                    Text="French"
+                                    BackgroundColor="#F5F5F5"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="French"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="French">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                                <chips:Chip
+                                    Text="German"
+                                    BackgroundColor="#F5F5F5"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="German"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="German">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                                <chips:Chip
+                                    Text="Greek"
+                                    BackgroundColor="#F5F5F5"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="Greek"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="Greek">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                                <chips:Chip
+                                    Text="Indian"
+                                    BackgroundColor="#F5F5F5"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="Indian"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="Indian">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                                <chips:Chip
+                                    Text="Irish"
+                                    BackgroundColor="#F5F5F5"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="Irish"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="Irish">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                                <chips:Chip
+                                    Text="Italian"
+                                    BackgroundColor="#F5F5F5"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="Italian"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="Italian">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                                <chips:Chip
+                                    Text="Janpanese"
+                                    BackgroundColor="#F5F5F5"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="Janpanese"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="Janpanese">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                                <chips:Chip
+                                    Text="Jewish"
+                                    BackgroundColor="#F5F5F5"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="Jewish"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="Jewish">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                                <chips:Chip
+                                    Text="Korean"
+                                    BackgroundColor="#F5F5F5"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="Korean"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="Korean">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                                <chips:Chip
+                                    Text="Latin American"
+                                    BackgroundColor="#F5F5F5"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="Latin American"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="Latin American">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                                <chips:Chip
+                                    Text="Mediterranean"
+                                    BackgroundColor="#F5F5F5"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="Mediterranean"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="Mediterranean">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                                <chips:Chip
+                                    Text="Mexican"
+                                    BackgroundColor="#F5F5F5"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="Mexican"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="Mexican">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                                <chips:Chip
+                                    Text="Middle Eastern"
+                                    BackgroundColor="#F5F5F5"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="Middle Eastern"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="Middle Eastern">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                                <chips:Chip
+                                    Text="Nordic"
+                                    BackgroundColor="#F5F5F5"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="Nordic"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="Nordic">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                                <chips:Chip
+                                    Text="Southern"
+                                    BackgroundColor="#F5F5F5"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="Southern"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="Southern">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                                <chips:Chip
+                                    Text="Spanish"
+                                    BackgroundColor="#F5F5F5"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="Spanish"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="Spanish">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                                <chips:Chip
+                                    Text="Thai"
+                                    BackgroundColor="#F5F5F5"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="Thai"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="Thai">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                                <chips:Chip
+                                    Text="Vietnamese"
+                                    IsToggleable="True"
+                                    AutoToggle="True"
+                                    BackgroundColor="#F5F5F5"
+                                    Padding="8"
+                                    Margin="8"
+                                    SelectCommand="{Binding ChipSelectedCommand}"
+                                    SelectCommandParameter="Vietnamese"
+                                    UnselectCommand="{Binding ChipUnselectedCommand}"
+                                    UnselectCommandParameter="Vietnamese">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                                    <Setter Property="TextColor" Value="#828082" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </chips:Chip>
+                            </FlexLayout>
+                            
+
+                            
                         </StackLayout>
                     </ContentView>
                 </tabs1:ViewSwitcher>
