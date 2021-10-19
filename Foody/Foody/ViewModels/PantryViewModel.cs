@@ -1,6 +1,8 @@
 ﻿using Foody.Models;
 using Foody.Views;
+using Foody.Views.PopUp;
 using MvvmHelpers;
+using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,6 +19,12 @@ namespace Foody.ViewModels
 
         public ObservableRangeCollection<Result> PopularRecipes { get; set; }
         public Command NavToPantry { get; }
+        public Command Test { get; }
+
+        public Command ChipSelectedCommand { get; }
+        public Command ChipUnselectedCommand { get; }
+
+
         INavigation Navigation;
 
         public PantryViewModel(INavigation MainPageNav)
@@ -24,6 +32,9 @@ namespace Foody.ViewModels
             Navigation = MainPageNav;
             PopularRecipes = new ObservableRangeCollection<Result>();
             NavToPantry = new Command(async () => await OpenOtherPage(), () => !IsBusy);
+            Test = new Command(async () => await showpopup_Clicked(), () => !IsBusy);
+            ChipSelectedCommand = new Command<string>(chipSelected);
+            ChipUnselectedCommand = new Command<string>(chipUnSelected);
         }
 
         public async Task OpenOtherPage()
@@ -39,10 +50,27 @@ namespace Foody.ViewModels
             PopularRecipes.AddRange(results.results);
         }
 
+        async private Task showpopup_Clicked()
+        {
+            await Navigation.PushPopupAsync(new SearchPopUp());
+        }
+
         public PantryViewModel()
         {
             SelectedTabIndex = 0;
         }
 
+
+        public void chipSelected(string value)
+        {
+            Debug.WriteLine($"S + {value}");
+
+        }
+
+        public void chipUnSelected(string value)
+        {
+            Debug.WriteLine($"U + {value}");
+
+        }
     }
 }
