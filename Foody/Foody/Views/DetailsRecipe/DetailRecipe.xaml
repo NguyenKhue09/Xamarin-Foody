@@ -242,7 +242,7 @@
                         <ColumnDefinition Width="1.5*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     
-                    <Frame Grid.Column="0" Grid.Row="0" Margin="10" BackgroundColor="#08BCF0" CornerRadius="30" HasShadow="False" Padding="8">
+                    <Frame Grid.Column="0" Grid.Row="0" Margin="6" BackgroundColor="#08BCF0" CornerRadius="30" HasShadow="False" Padding="8">
                         <FlexLayout Direction="Row" JustifyContent="SpaceBetween" HorizontalOptions="Center" VerticalOptions="Center" Padding="0" AlignItems="Center">
                             <Image x:Name="sub" Source="subtraction.png" HeightRequest="20" WidthRequest="15"  VerticalOptions="Center" Margin="8,0,0,0">
                                 <Image.GestureRecognizers>
@@ -262,7 +262,7 @@
                         </FlexLayout>
                     </Frame>
 
-                    <Frame Grid.Column="1" Grid.Row="0" HorizontalOptions="End" Margin="0,12,4,12" BackgroundColor="White" CornerRadius="60" WidthRequest="30" HeightRequest="30" HasShadow="False" Padding="10">
+                    <Frame Grid.Column="1" Grid.Row="0" HorizontalOptions="End" Margin="6"  BackgroundColor="White" CornerRadius="60" WidthRequest="30" HeightRequest="30" HasShadow="False" Padding="10">
                         <Image Source="heart_outline.png" HeightRequest="35" WidthRequest="35"></Image>
                     </Frame>
                     

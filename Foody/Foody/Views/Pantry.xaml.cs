@@ -1,4 +1,6 @@
 ﻿using Foody.ViewModels;
+using Foody.Views.PopUp;
+using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -63,6 +65,7 @@ namespace Foody.Views
                 ptManage.IsVisible = false;
                 tabPantry.Height = new GridLength(0.33, GridUnitType.Star);
             }
+           
         }
         async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
@@ -77,5 +80,14 @@ namespace Foody.Views
                 throw ex;
             }
         }
+
+
+
+        async private void showpopup_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushPopupAsync(new SearchPopUp());
+        }
+
+
     }
 }
