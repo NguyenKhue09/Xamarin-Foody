@@ -26,5 +26,10 @@ namespace Foody.Views
         {
 
         }
+
+        private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
+        {
+
+        }
     }
 }
