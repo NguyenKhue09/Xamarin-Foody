@@ -10,16 +10,21 @@ using Xamarin.Forms.Xaml;
 namespace Foody.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Menu : ContentPage
+    public partial class CreateAccount : ContentPage
     {
-        public Menu()
+        public CreateAccount()
         {
             InitializeComponent();
         }
 
-        private void test_Clicked(object sender, EventArgs e)
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new CreateAccount());
+            Navigation.PushAsync(new Login());
+        }
+
+        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

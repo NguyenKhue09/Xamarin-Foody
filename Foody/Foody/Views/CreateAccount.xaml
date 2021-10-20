@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:Foody.ViewModels" 
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="Foody.Views.CreateAccount">
+    <ContentPage.Content>
+        <StackLayout >
+
+            <yummy:PancakeView  BackgroundColor="#f5f5f5" CornerRadius="0,0,15,15" HeightRequest="80" WidthRequest="500" Padding="0">
+                <!--<ffimageloadingsvg:SvgCachedImage WidthRequest="350" HeightRequest="250" Source="Logo.svg" Margin="0" />-->
+                <Image WidthRequest="350" HeightRequest="80" Source="Logo.png" Aspect="AspectFill"/>
+            </yummy:PancakeView>
+
+            <StackLayout Margin="20,0,20,0">
+                <Label Text="Welcome Back!"
+                       FontSize="37" TextColor="Black" Padding="15" FontAttributes="Bold"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="CenterAndExpand" />
+
+
+                <Label Text="Email" 
+                       FontSize="18" TextColor="Black" FontAttributes="Bold"/>
+                <Frame CornerRadius="10" Padding="0" HasShadow="False" BorderColor="#D8D8D8">
+                    <controls:CustomEntry x:Name="txtUserId" Keyboard="Text"  FontSize="20" HeightRequest="55"  Margin="10,0,0,0"></controls:CustomEntry>
+                </Frame>
+
+                <Label Text="Password" 
+                       FontSize="18" TextColor="Black" FontAttributes="Bold"/>
+                <Frame CornerRadius="10" Padding="0" HasShadow="False" BorderColor="#D8D8D8">
+                    <controls:CustomEntry x:Name="Password" Keyboard="Text" FontSize="20" IsPassword="True" HeightRequest="55"  Margin="10,0,0,0"></controls:CustomEntry>
+                </Frame>
+
+                <Label x:Name="btnforgotPass" Text="Forgot Password?" 
+                        FontSize="18" TextColor="Black" FontAttributes="Bold"
+                        HorizontalOptions="End">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1">
+                        </TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Button x:Name="btnLogin" Text="Login" 
+                        FontSize="30" TextColor="White" BackgroundColor="#55CCAA"
+                        HeightRequest="80" CornerRadius="15"/>
+                <Label Text="Or Continue With"
+                       FontSize="18" TextColor="#A49A9A" HorizontalOptions="Center"/>
+                
+                <Button x:Name="btnLoginGG" 
+                        BackgroundColor="White"
+                        ImageSource="iconG48.png" 
+                        Text="Sign in with Google" FontSize="25" TextColor="#A49A9A"
+                        HeightRequest="80" CornerRadius="15"/>
+
+            </StackLayout>
+
+            <Label LineBreakMode="WordWrap"
+                     HorizontalOptions="Center" VerticalOptions="EndAndExpand"
+                    >
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped">
+                    </TapGestureRecognizer>
+                </Label.GestureRecognizers>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Have an account? " TextColor="Black"  FontSize="18" />
+                        <Span Text="Sing in" TextColor="Blue" FontSize="18" FontAttributes="Bold" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
