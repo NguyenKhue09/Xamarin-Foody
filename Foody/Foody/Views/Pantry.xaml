@@ -483,9 +483,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="African"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="African">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -512,9 +512,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="American"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="American">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -541,9 +541,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="British"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="British">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -570,9 +570,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="Cajun"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="Cajun">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -599,9 +599,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="Carribbean"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="Carribbean">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -628,9 +628,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="Chinese"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="Chinese">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -657,9 +657,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="Eastern European"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="Eastern European">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -686,9 +686,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="European"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="European">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -715,9 +715,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="French"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="French">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -744,9 +744,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="German"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="German">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -773,9 +773,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="Greek"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="Greek">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -802,9 +802,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="Indian"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="Indian">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -831,9 +831,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="Irish"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="Irish">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -860,9 +860,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="Italian"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="Italian">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -889,9 +889,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="Janpanese"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="Janpanese">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -918,9 +918,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="Jewish"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="Jewish">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -947,9 +947,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="Korean"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="Korean">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -976,9 +976,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="Latin American"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="Latin American">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -1005,9 +1005,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="Mediterranean"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="Mediterranean">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -1034,9 +1034,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="Mexican"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="Mexican">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -1063,9 +1063,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="Middle Eastern"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="Middle Eastern">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -1092,9 +1092,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="Nordic"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="Nordic">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -1121,9 +1121,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="Southern"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="Southern">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -1150,9 +1150,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="Spanish"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="Spanish">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -1179,9 +1179,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="Thai"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="Thai">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -1208,9 +1208,9 @@
                                             BackgroundColor="#F5F5F5"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipCuisineSelectedCommand}"
                                             SelectCommandParameter="Vietnamese"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipCuisineUnselectedCommand}"
                                             UnselectCommandParameter="Vietnamese">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -1261,9 +1261,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipIntolerancesSelectedCommand}"
                                             SelectCommandParameter="Dairy"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipIntolerancesUnselectedCommand}"
                                             UnselectCommandParameter="Dairy">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -1290,9 +1290,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipIntolerancesSelectedCommand}"
                                             SelectCommandParameter="Egg"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipIntolerancesUnselectedCommand}"
                                             UnselectCommandParameter="Egg">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -1319,9 +1319,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipIntolerancesSelectedCommand}"
                                             SelectCommandParameter="Gluten"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipIntolerancesUnselectedCommand}"
                                             UnselectCommandParameter="Gluten">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -1348,9 +1348,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipIntolerancesSelectedCommand}"
                                             SelectCommandParameter="Grain"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipIntolerancesUnselectedCommand}"
                                             UnselectCommandParameter="Grain">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -1377,9 +1377,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipIntolerancesSelectedCommand}"
                                             SelectCommandParameter="Peanut"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipIntolerancesUnselectedCommand}"
                                             UnselectCommandParameter="Peanut">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -1406,9 +1406,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipIntolerancesSelectedCommand}"
                                             SelectCommandParameter="Seafood"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipIntolerancesUnselectedCommand}"
                                             UnselectCommandParameter="Seafood">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -1435,9 +1435,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipIntolerancesSelectedCommand}"
                                             SelectCommandParameter="Sesame"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipIntolerancesUnselectedCommand}"
                                             UnselectCommandParameter="Sesame">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -1464,9 +1464,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipIntolerancesSelectedCommand}"
                                             SelectCommandParameter="Shellfish"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipIntolerancesUnselectedCommand}"
                                             UnselectCommandParameter="Shellfish">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -1493,9 +1493,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipIntolerancesSelectedCommand}"
                                             SelectCommandParameter="Soy"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipIntolerancesUnselectedCommand}"
                                             UnselectCommandParameter="Soy">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -1522,9 +1522,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipIntolerancesSelectedCommand}"
                                             SelectCommandParameter="Sulfite"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipIntolerancesUnselectedCommand}"
                                             UnselectCommandParameter="Sulfite">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -1551,9 +1551,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipIntolerancesSelectedCommand}"
                                             SelectCommandParameter="Treenut"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipIntolerancesUnselectedCommand}"
                                             UnselectCommandParameter="Treenut">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -1580,9 +1580,9 @@
                                             AutoToggle="True"
                                             Padding="8"
                                             Margin="4"
-                                            SelectCommand="{Binding ChipSelectedCommand}"
+                                            SelectCommand="{Binding ChipIntolerancesSelectedCommand}"
                                             SelectCommandParameter="Wheat"
-                                            UnselectCommand="{Binding ChipUnselectedCommand}"
+                                            UnselectCommand="{Binding ChipIntolerancesUnselectedCommand}"
                                             UnselectCommandParameter="Wheat">
                                             <VisualStateManager.VisualStateGroups>
                                                 <VisualStateGroup x:Name="CommonStates">
@@ -1620,7 +1620,7 @@
                                         Margin="16,8,16,8">
 
                                         <yummy:PancakeView.GestureRecognizers>
-                                            <TapGestureRecognizer/>
+                                            <TapGestureRecognizer Tapped="SearchRecipes"/>
                                         </yummy:PancakeView.GestureRecognizers>
 
                                         <yummy:PancakeView.BackgroundGradientStops>

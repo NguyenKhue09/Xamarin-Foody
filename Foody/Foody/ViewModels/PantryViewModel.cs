@@ -17,12 +17,20 @@ namespace Foody.ViewModels
     {
         public int SelectedTabIndex { get; set; }
 
+       
+        private string[] cuisineList { get; set; }
+        private string[] intolerancesList { get; set; }
+
         public ObservableRangeCollection<Result> PopularRecipes { get; set; }
+        public ObservableRangeCollection<Result> SearchRecipes { get; set; }
         public Command NavToPantry { get; }
         public Command Test { get; }
 
-        public Command ChipSelectedCommand { get; }
-        public Command ChipUnselectedCommand { get; }
+        public Command ChipCuisineSelectedCommand { get; }
+        public Command ChipCuisineUnselectedCommand { get; }
+
+        public Command ChipIntolerancesSelectedCommand { get; }
+        public Command ChipIntolerancesUnselectedCommand { get; }
 
 
         INavigation Navigation;
@@ -31,10 +39,13 @@ namespace Foody.ViewModels
         {
             Navigation = MainPageNav;
             PopularRecipes = new ObservableRangeCollection<Result>();
+            SearchRecipes = new ObservableRangeCollection<Result>();
             NavToPantry = new Command(async () => await OpenOtherPage(), () => !IsBusy);
             Test = new Command(async () => await showpopup_Clicked(), () => !IsBusy);
-            ChipSelectedCommand = new Command<string>(chipSelected);
-            ChipUnselectedCommand = new Command<string>(chipUnSelected);
+            ChipCuisineSelectedCommand = new Command<string>(chipCuisineSelected);
+            ChipCuisineUnselectedCommand = new Command<string>(chipCuisineUnSelected);
+            ChipIntolerancesSelectedCommand = new Command<string>(chipIntolerancesSelected);
+            ChipIntolerancesUnselectedCommand = new Command<string>(chipIntolerancesUnSelected);
         }
 
         public async Task OpenOtherPage()
@@ -50,6 +61,14 @@ namespace Foody.ViewModels
             PopularRecipes.AddRange(results.results);
         }
 
+        async public void GetSearchRecipes(string query, string cuisine, string intolerances)
+        {
+            Recipe results = new Recipe();
+
+            results = await App.RecipeManager.SearchRecipes(query, cuisine, intolerances);
+            SearchRecipes.AddRange(results.results);
+        }
+
         async private Task showpopup_Clicked()
         {
             await Navigation.PushPopupAsync(new SearchPopUp());
@@ -61,13 +80,25 @@ namespace Foody.ViewModels
         }
 
 
-        public void chipSelected(string value)
+        public void chipCuisineSelected(string value)
         {
+
             Debug.WriteLine($"S + {value}");
+        }
+
+        public void chipCuisineUnSelected(string value)
+        {
+            Debug.WriteLine($"U + {value}");
 
         }
 
-        public void chipUnSelected(string value)
+        public void chipIntolerancesSelected(string value)
+        {
+
+            Debug.WriteLine($"S + {value}");
+        }
+
+        public void chipIntolerancesUnSelected(string value)
         {
             Debug.WriteLine($"U + {value}");
 

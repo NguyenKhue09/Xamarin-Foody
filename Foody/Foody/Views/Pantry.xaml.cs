@@ -17,6 +17,9 @@ namespace Foody.Views
     public partial class Pantry : ContentPage
     {
         private readonly PantryViewModel pantryViewModel;
+
+        private  string querySearch { get; set; }
+       
         public Pantry()
         {
             InitializeComponent();
@@ -81,6 +84,21 @@ namespace Foody.Views
             }
         }
 
+        async void SearchRecipes(object sender, EventArgs e)
+        {
+            try
+            {
+                string intolerancesList;
+                string cuisineList;
+                // call api
+                Debug.WriteLine("Call api search");
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
 
         async private void showpopup_Clicked(object sender, EventArgs e)
@@ -88,6 +106,6 @@ namespace Foody.Views
             await Navigation.PushPopupAsync(new SearchPopUp());
         }
 
-
+        
     }
 }
