@@ -4,9 +4,7 @@
              x:Class="Foody.Views.Menu">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Button Text="Alooo" x:Name="test" Clicked="test_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

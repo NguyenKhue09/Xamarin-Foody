@@ -147,11 +147,13 @@
                                     </Label>
                                 </yummy:PancakeView>
                                 </StackLayout>
-                                <ScrollView VerticalScrollBarVisibility="Never" Grid.Column="0" Grid.Row="1">
-                                <StackLayout x:Name="hotelStack" Padding="1,0,1,0" >
-                                    
-                                </StackLayout>
+                                
+                                <!--Test-->
+                            <ScrollView VerticalScrollBarVisibility="Never" Grid.Column="0" Grid.Row="1">
+                                
                             </ScrollView>
+                                
+                                
                         </Grid>
                     </ContentView>
                     <!--page 2-->

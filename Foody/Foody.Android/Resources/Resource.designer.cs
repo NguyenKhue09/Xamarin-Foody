@@ -4495,13 +4495,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Animation.EnterFromRight = global::Foody.Droid.Resource.Animation.EnterFromRight;
 			global::Xamarin.CommunityToolkit.Resource.Animation.ExitToLeft = global::Foody.Droid.Resource.Animation.ExitToLeft;
 			global::Xamarin.CommunityToolkit.Resource.Animation.ExitToRight = global::Foody.Droid.Resource.Animation.ExitToRight;
-			global::Xamarin.CommunityToolkit.Resource.Animation.fragment_close_enter = global::Foody.Droid.Resource.Animation.fragment_close_enter;
-			global::Xamarin.CommunityToolkit.Resource.Animation.fragment_close_exit = global::Foody.Droid.Resource.Animation.fragment_close_exit;
-			global::Xamarin.CommunityToolkit.Resource.Animation.fragment_fade_enter = global::Foody.Droid.Resource.Animation.fragment_fade_enter;
-			global::Xamarin.CommunityToolkit.Resource.Animation.fragment_fade_exit = global::Foody.Droid.Resource.Animation.fragment_fade_exit;
 			global::Xamarin.CommunityToolkit.Resource.Animation.fragment_fast_out_extra_slow_in = global::Foody.Droid.Resource.Animation.fragment_fast_out_extra_slow_in;
-			global::Xamarin.CommunityToolkit.Resource.Animation.fragment_open_enter = global::Foody.Droid.Resource.Animation.fragment_open_enter;
-			global::Xamarin.CommunityToolkit.Resource.Animation.fragment_open_exit = global::Foody.Droid.Resource.Animation.fragment_open_exit;
 			global::Xamarin.CommunityToolkit.Resource.Animation.mtrl_bottom_sheet_slide_in = global::Foody.Droid.Resource.Animation.mtrl_bottom_sheet_slide_in;
 			global::Xamarin.CommunityToolkit.Resource.Animation.mtrl_bottom_sheet_slide_out = global::Foody.Droid.Resource.Animation.mtrl_bottom_sheet_slide_out;
 			global::Xamarin.CommunityToolkit.Resource.Animation.mtrl_card_lowers_interpolator = global::Foody.Droid.Resource.Animation.mtrl_card_lowers_interpolator;
@@ -4589,6 +4583,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Attribute.barLength = global::Foody.Droid.Resource.Attribute.barLength;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.behavior_autoHide = global::Foody.Droid.Resource.Attribute.behavior_autoHide;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.behavior_autoShrink = global::Foody.Droid.Resource.Attribute.behavior_autoShrink;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.behavior_draggable = global::Foody.Droid.Resource.Attribute.behavior_draggable;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.behavior_expandedOffset = global::Foody.Droid.Resource.Attribute.behavior_expandedOffset;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.behavior_fitToContents = global::Foody.Droid.Resource.Attribute.behavior_fitToContents;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.behavior_halfExpandedRatio = global::Foody.Droid.Resource.Attribute.behavior_halfExpandedRatio;
@@ -4611,6 +4606,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Attribute.boxCornerRadiusTopEnd = global::Foody.Droid.Resource.Attribute.boxCornerRadiusTopEnd;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.boxCornerRadiusTopStart = global::Foody.Droid.Resource.Attribute.boxCornerRadiusTopStart;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.boxStrokeColor = global::Foody.Droid.Resource.Attribute.boxStrokeColor;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.boxStrokeErrorColor = global::Foody.Droid.Resource.Attribute.boxStrokeErrorColor;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.boxStrokeWidth = global::Foody.Droid.Resource.Attribute.boxStrokeWidth;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.boxStrokeWidthFocused = global::Foody.Droid.Resource.Attribute.boxStrokeWidthFocused;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.buttonBarButtonStyle = global::Foody.Droid.Resource.Attribute.buttonBarButtonStyle;
@@ -4772,6 +4768,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Attribute.enforceMaterialTheme = global::Foody.Droid.Resource.Attribute.enforceMaterialTheme;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.enforceTextAppearance = global::Foody.Droid.Resource.Attribute.enforceTextAppearance;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.ensureMinTouchTargetSize = global::Foody.Droid.Resource.Attribute.ensureMinTouchTargetSize;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.errorContentDescription = global::Foody.Droid.Resource.Attribute.errorContentDescription;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.errorEnabled = global::Foody.Droid.Resource.Attribute.errorEnabled;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.errorIconDrawable = global::Foody.Droid.Resource.Attribute.errorIconDrawable;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.errorIconTint = global::Foody.Droid.Resource.Attribute.errorIconTint;
@@ -4816,7 +4813,10 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Attribute.fontWeight = global::Foody.Droid.Resource.Attribute.fontWeight;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.foregroundInsidePadding = global::Foody.Droid.Resource.Attribute.foregroundInsidePadding;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.gapBetweenBars = global::Foody.Droid.Resource.Attribute.gapBetweenBars;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.gestureInsetBottomIgnored = global::Foody.Droid.Resource.Attribute.gestureInsetBottomIgnored;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.goIcon = global::Foody.Droid.Resource.Attribute.goIcon;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.haloColor = global::Foody.Droid.Resource.Attribute.haloColor;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.haloRadius = global::Foody.Droid.Resource.Attribute.haloRadius;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.headerLayout = global::Foody.Droid.Resource.Attribute.headerLayout;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.height = global::Foody.Droid.Resource.Attribute.height;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.helperText = global::Foody.Droid.Resource.Attribute.helperText;
@@ -4832,6 +4832,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Attribute.hintTextColor = global::Foody.Droid.Resource.Attribute.hintTextColor;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.homeAsUpIndicator = global::Foody.Droid.Resource.Attribute.homeAsUpIndicator;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.homeLayout = global::Foody.Droid.Resource.Attribute.homeLayout;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.horizontalOffset = global::Foody.Droid.Resource.Attribute.horizontalOffset;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.hoveredFocusedTranslationZ = global::Foody.Droid.Resource.Attribute.hoveredFocusedTranslationZ;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.icon = global::Foody.Droid.Resource.Attribute.icon;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.iconEndPadding = global::Foody.Droid.Resource.Attribute.iconEndPadding;
@@ -4873,6 +4874,8 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Attribute.itemTextAppearanceInactive = global::Foody.Droid.Resource.Attribute.itemTextAppearanceInactive;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.itemTextColor = global::Foody.Droid.Resource.Attribute.itemTextColor;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.keylines = global::Foody.Droid.Resource.Attribute.keylines;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.labelBehavior = global::Foody.Droid.Resource.Attribute.labelBehavior;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.labelStyle = global::Foody.Droid.Resource.Attribute.labelStyle;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.labelVisibilityMode = global::Foody.Droid.Resource.Attribute.labelVisibilityMode;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.lastBaselineToBottomHeight = global::Foody.Droid.Resource.Attribute.lastBaselineToBottomHeight;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.layout = global::Foody.Droid.Resource.Attribute.layout;
@@ -4932,6 +4935,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Attribute.maxButtonHeight = global::Foody.Droid.Resource.Attribute.maxButtonHeight;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.maxCharacterCount = global::Foody.Droid.Resource.Attribute.maxCharacterCount;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.maxImageSize = global::Foody.Droid.Resource.Attribute.maxImageSize;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.maxLines = global::Foody.Droid.Resource.Attribute.maxLines;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.measureWithLargestChild = global::Foody.Droid.Resource.Attribute.measureWithLargestChild;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.menu = global::Foody.Droid.Resource.Attribute.menu;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.minTouchTargetSize = global::Foody.Droid.Resource.Attribute.minTouchTargetSize;
@@ -4944,7 +4948,10 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Attribute.numericModifiers = global::Foody.Droid.Resource.Attribute.numericModifiers;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.overlapAnchor = global::Foody.Droid.Resource.Attribute.overlapAnchor;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.paddingBottomNoButtons = global::Foody.Droid.Resource.Attribute.paddingBottomNoButtons;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.paddingBottomSystemWindowInsets = global::Foody.Droid.Resource.Attribute.paddingBottomSystemWindowInsets;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.paddingEnd = global::Foody.Droid.Resource.Attribute.paddingEnd;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.paddingLeftSystemWindowInsets = global::Foody.Droid.Resource.Attribute.paddingLeftSystemWindowInsets;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.paddingRightSystemWindowInsets = global::Foody.Droid.Resource.Attribute.paddingRightSystemWindowInsets;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.paddingStart = global::Foody.Droid.Resource.Attribute.paddingStart;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.paddingTopNoTitle = global::Foody.Droid.Resource.Attribute.paddingTopNoTitle;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.panelBackground = global::Foody.Droid.Resource.Attribute.panelBackground;
@@ -4955,10 +4962,16 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Attribute.passwordToggleEnabled = global::Foody.Droid.Resource.Attribute.passwordToggleEnabled;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.passwordToggleTint = global::Foody.Droid.Resource.Attribute.passwordToggleTint;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.passwordToggleTintMode = global::Foody.Droid.Resource.Attribute.passwordToggleTintMode;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.placeholderText = global::Foody.Droid.Resource.Attribute.placeholderText;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.placeholderTextAppearance = global::Foody.Droid.Resource.Attribute.placeholderTextAppearance;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.placeholderTextColor = global::Foody.Droid.Resource.Attribute.placeholderTextColor;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.popupMenuBackground = global::Foody.Droid.Resource.Attribute.popupMenuBackground;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.popupMenuStyle = global::Foody.Droid.Resource.Attribute.popupMenuStyle;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.popupTheme = global::Foody.Droid.Resource.Attribute.popupTheme;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.popupWindowStyle = global::Foody.Droid.Resource.Attribute.popupWindowStyle;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.prefixText = global::Foody.Droid.Resource.Attribute.prefixText;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.prefixTextAppearance = global::Foody.Droid.Resource.Attribute.prefixTextAppearance;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.prefixTextColor = global::Foody.Droid.Resource.Attribute.prefixTextColor;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.preserveIconSpacing = global::Foody.Droid.Resource.Attribute.preserveIconSpacing;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.pressedTranslationZ = global::Foody.Droid.Resource.Attribute.pressedTranslationZ;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.progressBarPadding = global::Foody.Droid.Resource.Attribute.progressBarPadding;
@@ -4983,6 +4996,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Attribute.seekBarStyle = global::Foody.Droid.Resource.Attribute.seekBarStyle;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.selectableItemBackground = global::Foody.Droid.Resource.Attribute.selectableItemBackground;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.selectableItemBackgroundBorderless = global::Foody.Droid.Resource.Attribute.selectableItemBackgroundBorderless;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.selectionRequired = global::Foody.Droid.Resource.Attribute.selectionRequired;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.shapeAppearance = global::Foody.Droid.Resource.Attribute.shapeAppearance;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.shapeAppearanceLargeComponent = global::Foody.Droid.Resource.Attribute.shapeAppearanceLargeComponent;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.shapeAppearanceMediumComponent = global::Foody.Droid.Resource.Attribute.shapeAppearanceMediumComponent;
@@ -4997,8 +5011,10 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Attribute.singleChoiceItemLayout = global::Foody.Droid.Resource.Attribute.singleChoiceItemLayout;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.singleLine = global::Foody.Droid.Resource.Attribute.singleLine;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.singleSelection = global::Foody.Droid.Resource.Attribute.singleSelection;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.sliderStyle = global::Foody.Droid.Resource.Attribute.sliderStyle;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.snackbarButtonStyle = global::Foody.Droid.Resource.Attribute.snackbarButtonStyle;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.snackbarStyle = global::Foody.Droid.Resource.Attribute.snackbarStyle;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.snackbarTextViewStyle = global::Foody.Droid.Resource.Attribute.snackbarTextViewStyle;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.spanCount = global::Foody.Droid.Resource.Attribute.spanCount;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.spinBars = global::Foody.Droid.Resource.Attribute.spinBars;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.spinnerDropDownItemStyle = global::Foody.Droid.Resource.Attribute.spinnerDropDownItemStyle;
@@ -5028,6 +5044,9 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Attribute.subtitleTextAppearance = global::Foody.Droid.Resource.Attribute.subtitleTextAppearance;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.subtitleTextColor = global::Foody.Droid.Resource.Attribute.subtitleTextColor;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.subtitleTextStyle = global::Foody.Droid.Resource.Attribute.subtitleTextStyle;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.suffixText = global::Foody.Droid.Resource.Attribute.suffixText;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.suffixTextAppearance = global::Foody.Droid.Resource.Attribute.suffixTextAppearance;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.suffixTextColor = global::Foody.Droid.Resource.Attribute.suffixTextColor;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.suggestionRowLayout = global::Foody.Droid.Resource.Attribute.suggestionRowLayout;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.swipeRefreshLayoutProgressSpinnerBackgroundColor = global::Foody.Droid.Resource.Attribute.swipeRefreshLayoutProgressSpinnerBackgroundColor;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.switchMinWidth = global::Foody.Droid.Resource.Attribute.switchMinWidth;
@@ -5086,15 +5105,22 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Attribute.textColorAlertDialogListItem = global::Foody.Droid.Resource.Attribute.textColorAlertDialogListItem;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.textColorSearchUrl = global::Foody.Droid.Resource.Attribute.textColorSearchUrl;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.textEndPadding = global::Foody.Droid.Resource.Attribute.textEndPadding;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.textInputLayoutFocusedRectEnabled = global::Foody.Droid.Resource.Attribute.textInputLayoutFocusedRectEnabled;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.textInputStyle = global::Foody.Droid.Resource.Attribute.textInputStyle;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.textLocale = global::Foody.Droid.Resource.Attribute.textLocale;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.textStartPadding = global::Foody.Droid.Resource.Attribute.textStartPadding;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.theme = global::Foody.Droid.Resource.Attribute.theme;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.themeLineHeight = global::Foody.Droid.Resource.Attribute.themeLineHeight;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.thickness = global::Foody.Droid.Resource.Attribute.thickness;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.thumbColor = global::Foody.Droid.Resource.Attribute.thumbColor;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.thumbElevation = global::Foody.Droid.Resource.Attribute.thumbElevation;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.thumbRadius = global::Foody.Droid.Resource.Attribute.thumbRadius;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.thumbTextPadding = global::Foody.Droid.Resource.Attribute.thumbTextPadding;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.thumbTint = global::Foody.Droid.Resource.Attribute.thumbTint;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.thumbTintMode = global::Foody.Droid.Resource.Attribute.thumbTintMode;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.tickColor = global::Foody.Droid.Resource.Attribute.tickColor;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.tickColorActive = global::Foody.Droid.Resource.Attribute.tickColorActive;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.tickColorInactive = global::Foody.Droid.Resource.Attribute.tickColorInactive;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.tickMark = global::Foody.Droid.Resource.Attribute.tickMark;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.tickMarkTint = global::Foody.Droid.Resource.Attribute.tickMarkTint;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.tickMarkTintMode = global::Foody.Droid.Resource.Attribute.tickMarkTintMode;
@@ -5116,13 +5142,21 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Attribute.toolbarStyle = global::Foody.Droid.Resource.Attribute.toolbarStyle;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.tooltipForegroundColor = global::Foody.Droid.Resource.Attribute.tooltipForegroundColor;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.tooltipFrameBackground = global::Foody.Droid.Resource.Attribute.tooltipFrameBackground;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.tooltipStyle = global::Foody.Droid.Resource.Attribute.tooltipStyle;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.tooltipText = global::Foody.Droid.Resource.Attribute.tooltipText;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.track = global::Foody.Droid.Resource.Attribute.track;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.trackColor = global::Foody.Droid.Resource.Attribute.trackColor;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.trackColorActive = global::Foody.Droid.Resource.Attribute.trackColorActive;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.trackColorInactive = global::Foody.Droid.Resource.Attribute.trackColorInactive;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.trackHeight = global::Foody.Droid.Resource.Attribute.trackHeight;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.trackTint = global::Foody.Droid.Resource.Attribute.trackTint;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.trackTintMode = global::Foody.Droid.Resource.Attribute.trackTintMode;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.transitionShapeAppearance = global::Foody.Droid.Resource.Attribute.transitionShapeAppearance;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.ttcIndex = global::Foody.Droid.Resource.Attribute.ttcIndex;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.useCompatPadding = global::Foody.Droid.Resource.Attribute.useCompatPadding;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.useMaterialThemeColors = global::Foody.Droid.Resource.Attribute.useMaterialThemeColors;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.values = global::Foody.Droid.Resource.Attribute.values;
+			global::Xamarin.CommunityToolkit.Resource.Attribute.verticalOffset = global::Foody.Droid.Resource.Attribute.verticalOffset;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.viewInflaterClass = global::Foody.Droid.Resource.Attribute.viewInflaterClass;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.voiceIcon = global::Foody.Droid.Resource.Attribute.voiceIcon;
 			global::Xamarin.CommunityToolkit.Resource.Attribute.windowActionBar = global::Foody.Droid.Resource.Attribute.windowActionBar;
@@ -5261,6 +5295,13 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Color.material_on_surface_disabled = global::Foody.Droid.Resource.Color.material_on_surface_disabled;
 			global::Xamarin.CommunityToolkit.Resource.Color.material_on_surface_emphasis_high_type = global::Foody.Droid.Resource.Color.material_on_surface_emphasis_high_type;
 			global::Xamarin.CommunityToolkit.Resource.Color.material_on_surface_emphasis_medium = global::Foody.Droid.Resource.Color.material_on_surface_emphasis_medium;
+			global::Xamarin.CommunityToolkit.Resource.Color.material_on_surface_stroke = global::Foody.Droid.Resource.Color.material_on_surface_stroke;
+			global::Xamarin.CommunityToolkit.Resource.Color.material_slider_active_tick_marks_color = global::Foody.Droid.Resource.Color.material_slider_active_tick_marks_color;
+			global::Xamarin.CommunityToolkit.Resource.Color.material_slider_active_track_color = global::Foody.Droid.Resource.Color.material_slider_active_track_color;
+			global::Xamarin.CommunityToolkit.Resource.Color.material_slider_halo_color = global::Foody.Droid.Resource.Color.material_slider_halo_color;
+			global::Xamarin.CommunityToolkit.Resource.Color.material_slider_inactive_tick_marks_color = global::Foody.Droid.Resource.Color.material_slider_inactive_tick_marks_color;
+			global::Xamarin.CommunityToolkit.Resource.Color.material_slider_inactive_track_color = global::Foody.Droid.Resource.Color.material_slider_inactive_track_color;
+			global::Xamarin.CommunityToolkit.Resource.Color.material_slider_thumb_color = global::Foody.Droid.Resource.Color.material_slider_thumb_color;
 			global::Xamarin.CommunityToolkit.Resource.Color.mtrl_bottom_nav_colored_item_tint = global::Foody.Droid.Resource.Color.mtrl_bottom_nav_colored_item_tint;
 			global::Xamarin.CommunityToolkit.Resource.Color.mtrl_bottom_nav_colored_ripple_color = global::Foody.Droid.Resource.Color.mtrl_bottom_nav_colored_ripple_color;
 			global::Xamarin.CommunityToolkit.Resource.Color.mtrl_bottom_nav_item_tint = global::Foody.Droid.Resource.Color.mtrl_bottom_nav_item_tint;
@@ -5286,6 +5327,8 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Color.mtrl_choice_chip_ripple_color = global::Foody.Droid.Resource.Color.mtrl_choice_chip_ripple_color;
 			global::Xamarin.CommunityToolkit.Resource.Color.mtrl_choice_chip_text_color = global::Foody.Droid.Resource.Color.mtrl_choice_chip_text_color;
 			global::Xamarin.CommunityToolkit.Resource.Color.mtrl_error = global::Foody.Droid.Resource.Color.mtrl_error;
+			global::Xamarin.CommunityToolkit.Resource.Color.mtrl_fab_bg_color_selector = global::Foody.Droid.Resource.Color.mtrl_fab_bg_color_selector;
+			global::Xamarin.CommunityToolkit.Resource.Color.mtrl_fab_icon_text_color_selector = global::Foody.Droid.Resource.Color.mtrl_fab_icon_text_color_selector;
 			global::Xamarin.CommunityToolkit.Resource.Color.mtrl_fab_ripple_color = global::Foody.Droid.Resource.Color.mtrl_fab_ripple_color;
 			global::Xamarin.CommunityToolkit.Resource.Color.mtrl_filled_background_color = global::Foody.Droid.Resource.Color.mtrl_filled_background_color;
 			global::Xamarin.CommunityToolkit.Resource.Color.mtrl_filled_icon_tint = global::Foody.Droid.Resource.Color.mtrl_filled_icon_tint;
@@ -5321,6 +5364,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Color.primary_text_default_material_light = global::Foody.Droid.Resource.Color.primary_text_default_material_light;
 			global::Xamarin.CommunityToolkit.Resource.Color.primary_text_disabled_material_dark = global::Foody.Droid.Resource.Color.primary_text_disabled_material_dark;
 			global::Xamarin.CommunityToolkit.Resource.Color.primary_text_disabled_material_light = global::Foody.Droid.Resource.Color.primary_text_disabled_material_light;
+			global::Xamarin.CommunityToolkit.Resource.Color.radiobutton_themeable_attribute_color = global::Foody.Droid.Resource.Color.radiobutton_themeable_attribute_color;
 			global::Xamarin.CommunityToolkit.Resource.Color.ripple_material_dark = global::Foody.Droid.Resource.Color.ripple_material_dark;
 			global::Xamarin.CommunityToolkit.Resource.Color.ripple_material_light = global::Foody.Droid.Resource.Color.ripple_material_light;
 			global::Xamarin.CommunityToolkit.Resource.Color.secondary_text_default_material_dark = global::Foody.Droid.Resource.Color.secondary_text_default_material_dark;
@@ -5585,6 +5629,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_card_spacing = global::Foody.Droid.Resource.Dimension.mtrl_card_spacing;
 			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_chip_pressed_translation_z = global::Foody.Droid.Resource.Dimension.mtrl_chip_pressed_translation_z;
 			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_chip_text_size = global::Foody.Droid.Resource.Dimension.mtrl_chip_text_size;
+			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_edittext_rectangle_top_offset = global::Foody.Droid.Resource.Dimension.mtrl_edittext_rectangle_top_offset;
 			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_exposed_dropdown_menu_popup_elevation = global::Foody.Droid.Resource.Dimension.mtrl_exposed_dropdown_menu_popup_elevation;
 			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_exposed_dropdown_menu_popup_vertical_offset = global::Foody.Droid.Resource.Dimension.mtrl_exposed_dropdown_menu_popup_vertical_offset;
 			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_exposed_dropdown_menu_popup_vertical_padding = global::Foody.Droid.Resource.Dimension.mtrl_exposed_dropdown_menu_popup_vertical_padding;
@@ -5628,6 +5673,16 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_shape_corner_size_large_component = global::Foody.Droid.Resource.Dimension.mtrl_shape_corner_size_large_component;
 			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_shape_corner_size_medium_component = global::Foody.Droid.Resource.Dimension.mtrl_shape_corner_size_medium_component;
 			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_shape_corner_size_small_component = global::Foody.Droid.Resource.Dimension.mtrl_shape_corner_size_small_component;
+			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_slider_halo_radius = global::Foody.Droid.Resource.Dimension.mtrl_slider_halo_radius;
+			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_slider_label_padding = global::Foody.Droid.Resource.Dimension.mtrl_slider_label_padding;
+			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_slider_label_radius = global::Foody.Droid.Resource.Dimension.mtrl_slider_label_radius;
+			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_slider_label_square_side = global::Foody.Droid.Resource.Dimension.mtrl_slider_label_square_side;
+			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_slider_thumb_elevation = global::Foody.Droid.Resource.Dimension.mtrl_slider_thumb_elevation;
+			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_slider_thumb_radius = global::Foody.Droid.Resource.Dimension.mtrl_slider_thumb_radius;
+			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_slider_track_height = global::Foody.Droid.Resource.Dimension.mtrl_slider_track_height;
+			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_slider_track_side_padding = global::Foody.Droid.Resource.Dimension.mtrl_slider_track_side_padding;
+			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_slider_track_top = global::Foody.Droid.Resource.Dimension.mtrl_slider_track_top;
+			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_slider_widget_height = global::Foody.Droid.Resource.Dimension.mtrl_slider_widget_height;
 			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_snackbar_action_text_color_alpha = global::Foody.Droid.Resource.Dimension.mtrl_snackbar_action_text_color_alpha;
 			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_snackbar_background_corner_radius = global::Foody.Droid.Resource.Dimension.mtrl_snackbar_background_corner_radius;
 			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_snackbar_background_overlay_color_alpha = global::Foody.Droid.Resource.Dimension.mtrl_snackbar_background_overlay_color_alpha;
@@ -5638,10 +5693,17 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_textinput_box_label_cutout_padding = global::Foody.Droid.Resource.Dimension.mtrl_textinput_box_label_cutout_padding;
 			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_textinput_box_stroke_width_default = global::Foody.Droid.Resource.Dimension.mtrl_textinput_box_stroke_width_default;
 			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_textinput_box_stroke_width_focused = global::Foody.Droid.Resource.Dimension.mtrl_textinput_box_stroke_width_focused;
+			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_textinput_counter_margin_start = global::Foody.Droid.Resource.Dimension.mtrl_textinput_counter_margin_start;
 			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_textinput_end_icon_margin_start = global::Foody.Droid.Resource.Dimension.mtrl_textinput_end_icon_margin_start;
 			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_textinput_outline_box_expanded_padding = global::Foody.Droid.Resource.Dimension.mtrl_textinput_outline_box_expanded_padding;
 			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_textinput_start_icon_margin_end = global::Foody.Droid.Resource.Dimension.mtrl_textinput_start_icon_margin_end;
 			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_toolbar_default_height = global::Foody.Droid.Resource.Dimension.mtrl_toolbar_default_height;
+			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_tooltip_arrowSize = global::Foody.Droid.Resource.Dimension.mtrl_tooltip_arrowSize;
+			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_tooltip_cornerSize = global::Foody.Droid.Resource.Dimension.mtrl_tooltip_cornerSize;
+			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_tooltip_minHeight = global::Foody.Droid.Resource.Dimension.mtrl_tooltip_minHeight;
+			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_tooltip_minWidth = global::Foody.Droid.Resource.Dimension.mtrl_tooltip_minWidth;
+			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_tooltip_padding = global::Foody.Droid.Resource.Dimension.mtrl_tooltip_padding;
+			global::Xamarin.CommunityToolkit.Resource.Dimension.mtrl_transition_shared_axis_slide_distance = global::Foody.Droid.Resource.Dimension.mtrl_transition_shared_axis_slide_distance;
 			global::Xamarin.CommunityToolkit.Resource.Dimension.notification_action_icon_size = global::Foody.Droid.Resource.Dimension.notification_action_icon_size;
 			global::Xamarin.CommunityToolkit.Resource.Dimension.notification_action_text_size = global::Foody.Droid.Resource.Dimension.notification_action_text_size;
 			global::Xamarin.CommunityToolkit.Resource.Dimension.notification_big_circle_margin = global::Foody.Droid.Resource.Dimension.notification_big_circle_margin;
@@ -5772,6 +5834,13 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Drawable.ic_mtrl_chip_checked_black = global::Foody.Droid.Resource.Drawable.ic_mtrl_chip_checked_black;
 			global::Xamarin.CommunityToolkit.Resource.Drawable.ic_mtrl_chip_checked_circle = global::Foody.Droid.Resource.Drawable.ic_mtrl_chip_checked_circle;
 			global::Xamarin.CommunityToolkit.Resource.Drawable.ic_mtrl_chip_close_circle = global::Foody.Droid.Resource.Drawable.ic_mtrl_chip_close_circle;
+			global::Xamarin.CommunityToolkit.Resource.Drawable.material_ic_calendar_black_24dp = global::Foody.Droid.Resource.Drawable.material_ic_calendar_black_24dp;
+			global::Xamarin.CommunityToolkit.Resource.Drawable.material_ic_clear_black_24dp = global::Foody.Droid.Resource.Drawable.material_ic_clear_black_24dp;
+			global::Xamarin.CommunityToolkit.Resource.Drawable.material_ic_edit_black_24dp = global::Foody.Droid.Resource.Drawable.material_ic_edit_black_24dp;
+			global::Xamarin.CommunityToolkit.Resource.Drawable.material_ic_keyboard_arrow_left_black_24dp = global::Foody.Droid.Resource.Drawable.material_ic_keyboard_arrow_left_black_24dp;
+			global::Xamarin.CommunityToolkit.Resource.Drawable.material_ic_keyboard_arrow_right_black_24dp = global::Foody.Droid.Resource.Drawable.material_ic_keyboard_arrow_right_black_24dp;
+			global::Xamarin.CommunityToolkit.Resource.Drawable.material_ic_menu_arrow_down_black_24dp = global::Foody.Droid.Resource.Drawable.material_ic_menu_arrow_down_black_24dp;
+			global::Xamarin.CommunityToolkit.Resource.Drawable.material_ic_menu_arrow_up_black_24dp = global::Foody.Droid.Resource.Drawable.material_ic_menu_arrow_up_black_24dp;
 			global::Xamarin.CommunityToolkit.Resource.Drawable.mtrl_dialog_background = global::Foody.Droid.Resource.Drawable.mtrl_dialog_background;
 			global::Xamarin.CommunityToolkit.Resource.Drawable.mtrl_dropdown_arrow = global::Foody.Droid.Resource.Drawable.mtrl_dropdown_arrow;
 			global::Xamarin.CommunityToolkit.Resource.Drawable.mtrl_ic_arrow_drop_down = global::Foody.Droid.Resource.Drawable.mtrl_ic_arrow_drop_down;
@@ -5879,6 +5948,9 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Id.checkbox = global::Foody.Droid.Resource.Id.checkbox;
 			global::Xamarin.CommunityToolkit.Resource.Id.@checked = global::Foody.Droid.Resource.Id.@checked;
 			global::Xamarin.CommunityToolkit.Resource.Id.chip = global::Foody.Droid.Resource.Id.chip;
+			global::Xamarin.CommunityToolkit.Resource.Id.chip1 = global::Foody.Droid.Resource.Id.chip1;
+			global::Xamarin.CommunityToolkit.Resource.Id.chip2 = global::Foody.Droid.Resource.Id.chip2;
+			global::Xamarin.CommunityToolkit.Resource.Id.chip3 = global::Foody.Droid.Resource.Id.chip3;
 			global::Xamarin.CommunityToolkit.Resource.Id.chip_group = global::Foody.Droid.Resource.Id.chip_group;
 			global::Xamarin.CommunityToolkit.Resource.Id.chronometer = global::Foody.Droid.Resource.Id.chronometer;
 			global::Xamarin.CommunityToolkit.Resource.Id.clear_text = global::Foody.Droid.Resource.Id.clear_text;
@@ -5920,12 +5992,14 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Id.fill_vertical = global::Foody.Droid.Resource.Id.fill_vertical;
 			global::Xamarin.CommunityToolkit.Resource.Id.fitToContents = global::Foody.Droid.Resource.Id.fitToContents;
 			global::Xamarin.CommunityToolkit.Resource.Id.@fixed = global::Foody.Droid.Resource.Id.@fixed;
+			global::Xamarin.CommunityToolkit.Resource.Id.floating = global::Foody.Droid.Resource.Id.floating;
 			global::Xamarin.CommunityToolkit.Resource.Id.flyoutcontent_appbar = global::Foody.Droid.Resource.Id.flyoutcontent_appbar;
 			global::Xamarin.CommunityToolkit.Resource.Id.forever = global::Foody.Droid.Resource.Id.forever;
 			global::Xamarin.CommunityToolkit.Resource.Id.fragment_container_view_tag = global::Foody.Droid.Resource.Id.fragment_container_view_tag;
 			global::Xamarin.CommunityToolkit.Resource.Id.FUNCTION = global::Foody.Droid.Resource.Id.FUNCTION;
 			global::Xamarin.CommunityToolkit.Resource.Id.ghost_view = global::Foody.Droid.Resource.Id.ghost_view;
 			global::Xamarin.CommunityToolkit.Resource.Id.ghost_view_holder = global::Foody.Droid.Resource.Id.ghost_view_holder;
+			global::Xamarin.CommunityToolkit.Resource.Id.gone = global::Foody.Droid.Resource.Id.gone;
 			global::Xamarin.CommunityToolkit.Resource.Id.group_divider = global::Foody.Droid.Resource.Id.group_divider;
 			global::Xamarin.CommunityToolkit.Resource.Id.hideable = global::Foody.Droid.Resource.Id.hideable;
 			global::Xamarin.CommunityToolkit.Resource.Id.home = global::Foody.Droid.Resource.Id.home;
@@ -5972,6 +6046,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Id.mtrl_card_checked_layer_id = global::Foody.Droid.Resource.Id.mtrl_card_checked_layer_id;
 			global::Xamarin.CommunityToolkit.Resource.Id.mtrl_child_content_container = global::Foody.Droid.Resource.Id.mtrl_child_content_container;
 			global::Xamarin.CommunityToolkit.Resource.Id.mtrl_internal_children_alpha_tag = global::Foody.Droid.Resource.Id.mtrl_internal_children_alpha_tag;
+			global::Xamarin.CommunityToolkit.Resource.Id.mtrl_motion_snapshot_view = global::Foody.Droid.Resource.Id.mtrl_motion_snapshot_view;
 			global::Xamarin.CommunityToolkit.Resource.Id.mtrl_picker_fullscreen = global::Foody.Droid.Resource.Id.mtrl_picker_fullscreen;
 			global::Xamarin.CommunityToolkit.Resource.Id.mtrl_picker_header = global::Foody.Droid.Resource.Id.mtrl_picker_header;
 			global::Xamarin.CommunityToolkit.Resource.Id.mtrl_picker_header_selection_text = global::Foody.Droid.Resource.Id.mtrl_picker_header_selection_text;
@@ -6006,6 +6081,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Id.right_icon = global::Foody.Droid.Resource.Id.right_icon;
 			global::Xamarin.CommunityToolkit.Resource.Id.right_side = global::Foody.Droid.Resource.Id.right_side;
 			global::Xamarin.CommunityToolkit.Resource.Id.rounded = global::Foody.Droid.Resource.Id.rounded;
+			global::Xamarin.CommunityToolkit.Resource.Id.row_index_key = global::Foody.Droid.Resource.Id.row_index_key;
 			global::Xamarin.CommunityToolkit.Resource.Id.save_non_transition_alpha = global::Foody.Droid.Resource.Id.save_non_transition_alpha;
 			global::Xamarin.CommunityToolkit.Resource.Id.save_overlay_view = global::Foody.Droid.Resource.Id.save_overlay_view;
 			global::Xamarin.CommunityToolkit.Resource.Id.scale = global::Foody.Droid.Resource.Id.scale;
@@ -6064,12 +6140,17 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Id.tag_unhandled_key_listeners = global::Foody.Droid.Resource.Id.tag_unhandled_key_listeners;
 			global::Xamarin.CommunityToolkit.Resource.Id.test_checkbox_android_button_tint = global::Foody.Droid.Resource.Id.test_checkbox_android_button_tint;
 			global::Xamarin.CommunityToolkit.Resource.Id.test_checkbox_app_button_tint = global::Foody.Droid.Resource.Id.test_checkbox_app_button_tint;
+			global::Xamarin.CommunityToolkit.Resource.Id.test_radiobutton_android_button_tint = global::Foody.Droid.Resource.Id.test_radiobutton_android_button_tint;
+			global::Xamarin.CommunityToolkit.Resource.Id.test_radiobutton_app_button_tint = global::Foody.Droid.Resource.Id.test_radiobutton_app_button_tint;
 			global::Xamarin.CommunityToolkit.Resource.Id.text = global::Foody.Droid.Resource.Id.text;
 			global::Xamarin.CommunityToolkit.Resource.Id.text2 = global::Foody.Droid.Resource.Id.text2;
 			global::Xamarin.CommunityToolkit.Resource.Id.textEnd = global::Foody.Droid.Resource.Id.textEnd;
 			global::Xamarin.CommunityToolkit.Resource.Id.textinput_counter = global::Foody.Droid.Resource.Id.textinput_counter;
 			global::Xamarin.CommunityToolkit.Resource.Id.textinput_error = global::Foody.Droid.Resource.Id.textinput_error;
 			global::Xamarin.CommunityToolkit.Resource.Id.textinput_helper_text = global::Foody.Droid.Resource.Id.textinput_helper_text;
+			global::Xamarin.CommunityToolkit.Resource.Id.textinput_placeholder = global::Foody.Droid.Resource.Id.textinput_placeholder;
+			global::Xamarin.CommunityToolkit.Resource.Id.textinput_prefix_text = global::Foody.Droid.Resource.Id.textinput_prefix_text;
+			global::Xamarin.CommunityToolkit.Resource.Id.textinput_suffix_text = global::Foody.Droid.Resource.Id.textinput_suffix_text;
 			global::Xamarin.CommunityToolkit.Resource.Id.textSpacerNoButtons = global::Foody.Droid.Resource.Id.textSpacerNoButtons;
 			global::Xamarin.CommunityToolkit.Resource.Id.textSpacerNoTitle = global::Foody.Droid.Resource.Id.textSpacerNoTitle;
 			global::Xamarin.CommunityToolkit.Resource.Id.textStart = global::Foody.Droid.Resource.Id.textStart;
@@ -6099,8 +6180,10 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Id.view_tree_saved_state_registry_owner = global::Foody.Droid.Resource.Id.view_tree_saved_state_registry_owner;
 			global::Xamarin.CommunityToolkit.Resource.Id.visible = global::Foody.Droid.Resource.Id.visible;
 			global::Xamarin.CommunityToolkit.Resource.Id.visible_removing_fragment_view_tag = global::Foody.Droid.Resource.Id.visible_removing_fragment_view_tag;
+			global::Xamarin.CommunityToolkit.Resource.Id.withinBounds = global::Foody.Droid.Resource.Id.withinBounds;
 			global::Xamarin.CommunityToolkit.Resource.Id.withText = global::Foody.Droid.Resource.Id.withText;
 			global::Xamarin.CommunityToolkit.Resource.Id.wrap_content = global::Foody.Droid.Resource.Id.wrap_content;
+			global::Xamarin.CommunityToolkit.Resource.Id.zero_corner_chip = global::Foody.Droid.Resource.Id.zero_corner_chip;
 			global::Xamarin.CommunityToolkit.Resource.Integer.abc_config_activityDefaultDur = global::Foody.Droid.Resource.Integer.abc_config_activityDefaultDur;
 			global::Xamarin.CommunityToolkit.Resource.Integer.abc_config_activityShortDur = global::Foody.Droid.Resource.Integer.abc_config_activityShortDur;
 			global::Xamarin.CommunityToolkit.Resource.Integer.app_bar_elevation_anim_duration = global::Foody.Droid.Resource.Integer.app_bar_elevation_anim_duration;
@@ -6235,7 +6318,9 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Layout.support_simple_spinner_dropdown_item = global::Foody.Droid.Resource.Layout.support_simple_spinner_dropdown_item;
 			global::Xamarin.CommunityToolkit.Resource.Layout.Tabbar = global::Foody.Droid.Resource.Layout.Tabbar;
 			global::Xamarin.CommunityToolkit.Resource.Layout.test_action_chip = global::Foody.Droid.Resource.Layout.test_action_chip;
+			global::Xamarin.CommunityToolkit.Resource.Layout.test_chip_zero_corner_radius = global::Foody.Droid.Resource.Layout.test_chip_zero_corner_radius;
 			global::Xamarin.CommunityToolkit.Resource.Layout.test_design_checkbox = global::Foody.Droid.Resource.Layout.test_design_checkbox;
+			global::Xamarin.CommunityToolkit.Resource.Layout.test_design_radiobutton = global::Foody.Droid.Resource.Layout.test_design_radiobutton;
 			global::Xamarin.CommunityToolkit.Resource.Layout.test_reflow_chipgroup = global::Foody.Droid.Resource.Layout.test_reflow_chipgroup;
 			global::Xamarin.CommunityToolkit.Resource.Layout.test_toolbar = global::Foody.Droid.Resource.Layout.test_toolbar;
 			global::Xamarin.CommunityToolkit.Resource.Layout.test_toolbar_custom_background = global::Foody.Droid.Resource.Layout.test_toolbar_custom_background;
@@ -6292,8 +6377,12 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.String.fallback_menu_item_share_link = global::Foody.Droid.Resource.String.fallback_menu_item_share_link;
 			global::Xamarin.CommunityToolkit.Resource.String.hide_bottom_view_on_scroll_behavior = global::Foody.Droid.Resource.String.hide_bottom_view_on_scroll_behavior;
 			global::Xamarin.CommunityToolkit.Resource.String.icon_content_description = global::Foody.Droid.Resource.String.icon_content_description;
+			global::Xamarin.CommunityToolkit.Resource.String.item_view_role_description = global::Foody.Droid.Resource.String.item_view_role_description;
+			global::Xamarin.CommunityToolkit.Resource.String.material_slider_range_end = global::Foody.Droid.Resource.String.material_slider_range_end;
+			global::Xamarin.CommunityToolkit.Resource.String.material_slider_range_start = global::Foody.Droid.Resource.String.material_slider_range_start;
 			global::Xamarin.CommunityToolkit.Resource.String.mtrl_badge_numberless_content_description = global::Foody.Droid.Resource.String.mtrl_badge_numberless_content_description;
 			global::Xamarin.CommunityToolkit.Resource.String.mtrl_chip_close_icon_content_description = global::Foody.Droid.Resource.String.mtrl_chip_close_icon_content_description;
+			global::Xamarin.CommunityToolkit.Resource.String.mtrl_exceed_max_badge_number_content_description = global::Foody.Droid.Resource.String.mtrl_exceed_max_badge_number_content_description;
 			global::Xamarin.CommunityToolkit.Resource.String.mtrl_exceed_max_badge_number_suffix = global::Foody.Droid.Resource.String.mtrl_exceed_max_badge_number_suffix;
 			global::Xamarin.CommunityToolkit.Resource.String.mtrl_picker_a11y_next_month = global::Foody.Droid.Resource.String.mtrl_picker_a11y_next_month;
 			global::Xamarin.CommunityToolkit.Resource.String.mtrl_picker_a11y_prev_month = global::Foody.Droid.Resource.String.mtrl_picker_a11y_prev_month;
@@ -6336,6 +6425,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.String.status_bar_notification_info_overflow = global::Foody.Droid.Resource.String.status_bar_notification_info_overflow;
 			global::Xamarin.CommunityToolkit.Resource.Style.AlertDialog_AppCompat = global::Foody.Droid.Resource.Style.AlertDialog_AppCompat;
 			global::Xamarin.CommunityToolkit.Resource.Style.AlertDialog_AppCompat_Light = global::Foody.Droid.Resource.Style.AlertDialog_AppCompat_Light;
+			global::Xamarin.CommunityToolkit.Resource.Style.AndroidThemeColorAccentYellow = global::Foody.Droid.Resource.Style.AndroidThemeColorAccentYellow;
 			global::Xamarin.CommunityToolkit.Resource.Style.Animation_AppCompat_Dialog = global::Foody.Droid.Resource.Style.Animation_AppCompat_Dialog;
 			global::Xamarin.CommunityToolkit.Resource.Style.Animation_AppCompat_DropDownUp = global::Foody.Droid.Resource.Style.Animation_AppCompat_DropDownUp;
 			global::Xamarin.CommunityToolkit.Resource.Style.Animation_AppCompat_Tooltip = global::Foody.Droid.Resource.Style.Animation_AppCompat_Tooltip;
@@ -6414,6 +6504,8 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Style.Base_ThemeOverlay_AppCompat_Light = global::Foody.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Light;
 			global::Xamarin.CommunityToolkit.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog = global::Foody.Droid.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog;
 			global::Xamarin.CommunityToolkit.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog_Alert = global::Foody.Droid.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog_Alert;
+			global::Xamarin.CommunityToolkit.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog_Alert_Framework = global::Foody.Droid.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog_Alert_Framework;
+			global::Xamarin.CommunityToolkit.Resource.Style.Base_ThemeOverlay_MaterialComponents_Light_Dialog_Alert_Framework = global::Foody.Droid.Resource.Style.Base_ThemeOverlay_MaterialComponents_Light_Dialog_Alert_Framework;
 			global::Xamarin.CommunityToolkit.Resource.Style.Base_ThemeOverlay_MaterialComponents_MaterialAlertDialog = global::Foody.Droid.Resource.Style.Base_ThemeOverlay_MaterialComponents_MaterialAlertDialog;
 			global::Xamarin.CommunityToolkit.Resource.Style.Base_Theme_AppCompat = global::Foody.Droid.Resource.Style.Base_Theme_AppCompat;
 			global::Xamarin.CommunityToolkit.Resource.Style.Base_Theme_AppCompat_CompactMenu = global::Foody.Droid.Resource.Style.Base_Theme_AppCompat_CompactMenu;
@@ -6465,6 +6557,10 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Style.Base_V21_Theme_AppCompat_Dialog = global::Foody.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog;
 			global::Xamarin.CommunityToolkit.Resource.Style.Base_V21_Theme_AppCompat_Light = global::Foody.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light;
 			global::Xamarin.CommunityToolkit.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog = global::Foody.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog;
+			global::Xamarin.CommunityToolkit.Resource.Style.Base_V21_Theme_MaterialComponents = global::Foody.Droid.Resource.Style.Base_V21_Theme_MaterialComponents;
+			global::Xamarin.CommunityToolkit.Resource.Style.Base_V21_Theme_MaterialComponents_Dialog = global::Foody.Droid.Resource.Style.Base_V21_Theme_MaterialComponents_Dialog;
+			global::Xamarin.CommunityToolkit.Resource.Style.Base_V21_Theme_MaterialComponents_Light = global::Foody.Droid.Resource.Style.Base_V21_Theme_MaterialComponents_Light;
+			global::Xamarin.CommunityToolkit.Resource.Style.Base_V21_Theme_MaterialComponents_Light_Dialog = global::Foody.Droid.Resource.Style.Base_V21_Theme_MaterialComponents_Light_Dialog;
 			global::Xamarin.CommunityToolkit.Resource.Style.Base_V22_Theme_AppCompat = global::Foody.Droid.Resource.Style.Base_V22_Theme_AppCompat;
 			global::Xamarin.CommunityToolkit.Resource.Style.Base_V22_Theme_AppCompat_Light = global::Foody.Droid.Resource.Style.Base_V22_Theme_AppCompat_Light;
 			global::Xamarin.CommunityToolkit.Resource.Style.Base_V23_Theme_AppCompat = global::Foody.Droid.Resource.Style.Base_V23_Theme_AppCompat;
@@ -6548,6 +6644,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Style.Base_Widget_MaterialComponents_PopupMenu_ContextMenu = global::Foody.Droid.Resource.Style.Base_Widget_MaterialComponents_PopupMenu_ContextMenu;
 			global::Xamarin.CommunityToolkit.Resource.Style.Base_Widget_MaterialComponents_PopupMenu_ListPopupWindow = global::Foody.Droid.Resource.Style.Base_Widget_MaterialComponents_PopupMenu_ListPopupWindow;
 			global::Xamarin.CommunityToolkit.Resource.Style.Base_Widget_MaterialComponents_PopupMenu_Overflow = global::Foody.Droid.Resource.Style.Base_Widget_MaterialComponents_PopupMenu_Overflow;
+			global::Xamarin.CommunityToolkit.Resource.Style.Base_Widget_MaterialComponents_Slider = global::Foody.Droid.Resource.Style.Base_Widget_MaterialComponents_Slider;
 			global::Xamarin.CommunityToolkit.Resource.Style.Base_Widget_MaterialComponents_TextInputEditText = global::Foody.Droid.Resource.Style.Base_Widget_MaterialComponents_TextInputEditText;
 			global::Xamarin.CommunityToolkit.Resource.Style.Base_Widget_MaterialComponents_TextInputLayout = global::Foody.Droid.Resource.Style.Base_Widget_MaterialComponents_TextInputLayout;
 			global::Xamarin.CommunityToolkit.Resource.Style.Base_Widget_MaterialComponents_TextView = global::Foody.Droid.Resource.Style.Base_Widget_MaterialComponents_TextView;
@@ -6621,6 +6718,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Style.ShapeAppearance_MaterialComponents_MediumComponent = global::Foody.Droid.Resource.Style.ShapeAppearance_MaterialComponents_MediumComponent;
 			global::Xamarin.CommunityToolkit.Resource.Style.ShapeAppearance_MaterialComponents_SmallComponent = global::Foody.Droid.Resource.Style.ShapeAppearance_MaterialComponents_SmallComponent;
 			global::Xamarin.CommunityToolkit.Resource.Style.ShapeAppearance_MaterialComponents_Test = global::Foody.Droid.Resource.Style.ShapeAppearance_MaterialComponents_Test;
+			global::Xamarin.CommunityToolkit.Resource.Style.ShapeAppearance_MaterialComponents_Tooltip = global::Foody.Droid.Resource.Style.ShapeAppearance_MaterialComponents_Tooltip;
 			global::Xamarin.CommunityToolkit.Resource.Style.TestStyleWithLineHeight = global::Foody.Droid.Resource.Style.TestStyleWithLineHeight;
 			global::Xamarin.CommunityToolkit.Resource.Style.TestStyleWithLineHeightAppearance = global::Foody.Droid.Resource.Style.TestStyleWithLineHeightAppearance;
 			global::Xamarin.CommunityToolkit.Resource.Style.TestStyleWithoutLineHeight = global::Foody.Droid.Resource.Style.TestStyleWithoutLineHeight;
@@ -6696,7 +6794,10 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Style.TextAppearance_Design_Error = global::Foody.Droid.Resource.Style.TextAppearance_Design_Error;
 			global::Xamarin.CommunityToolkit.Resource.Style.TextAppearance_Design_HelperText = global::Foody.Droid.Resource.Style.TextAppearance_Design_HelperText;
 			global::Xamarin.CommunityToolkit.Resource.Style.TextAppearance_Design_Hint = global::Foody.Droid.Resource.Style.TextAppearance_Design_Hint;
+			global::Xamarin.CommunityToolkit.Resource.Style.TextAppearance_Design_Placeholder = global::Foody.Droid.Resource.Style.TextAppearance_Design_Placeholder;
+			global::Xamarin.CommunityToolkit.Resource.Style.TextAppearance_Design_Prefix = global::Foody.Droid.Resource.Style.TextAppearance_Design_Prefix;
 			global::Xamarin.CommunityToolkit.Resource.Style.TextAppearance_Design_Snackbar_Message = global::Foody.Droid.Resource.Style.TextAppearance_Design_Snackbar_Message;
+			global::Xamarin.CommunityToolkit.Resource.Style.TextAppearance_Design_Suffix = global::Foody.Droid.Resource.Style.TextAppearance_Design_Suffix;
 			global::Xamarin.CommunityToolkit.Resource.Style.TextAppearance_Design_Tab = global::Foody.Droid.Resource.Style.TextAppearance_Design_Tab;
 			global::Xamarin.CommunityToolkit.Resource.Style.TextAppearance_MaterialComponents_Badge = global::Foody.Droid.Resource.Style.TextAppearance_MaterialComponents_Badge;
 			global::Xamarin.CommunityToolkit.Resource.Style.TextAppearance_MaterialComponents_Body1 = global::Foody.Droid.Resource.Style.TextAppearance_MaterialComponents_Body1;
@@ -6713,9 +6814,11 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Style.TextAppearance_MaterialComponents_Overline = global::Foody.Droid.Resource.Style.TextAppearance_MaterialComponents_Overline;
 			global::Xamarin.CommunityToolkit.Resource.Style.TextAppearance_MaterialComponents_Subtitle1 = global::Foody.Droid.Resource.Style.TextAppearance_MaterialComponents_Subtitle1;
 			global::Xamarin.CommunityToolkit.Resource.Style.TextAppearance_MaterialComponents_Subtitle2 = global::Foody.Droid.Resource.Style.TextAppearance_MaterialComponents_Subtitle2;
+			global::Xamarin.CommunityToolkit.Resource.Style.TextAppearance_MaterialComponents_Tooltip = global::Foody.Droid.Resource.Style.TextAppearance_MaterialComponents_Tooltip;
 			global::Xamarin.CommunityToolkit.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::Foody.Droid.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
 			global::Xamarin.CommunityToolkit.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::Foody.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
 			global::Xamarin.CommunityToolkit.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title = global::Foody.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title;
+			global::Xamarin.CommunityToolkit.Resource.Style.ThemeOverlayColorAccentRed = global::Foody.Droid.Resource.Style.ThemeOverlayColorAccentRed;
 			global::Xamarin.CommunityToolkit.Resource.Style.ThemeOverlay_AppCompat = global::Foody.Droid.Resource.Style.ThemeOverlay_AppCompat;
 			global::Xamarin.CommunityToolkit.Resource.Style.ThemeOverlay_AppCompat_ActionBar = global::Foody.Droid.Resource.Style.ThemeOverlay_AppCompat_ActionBar;
 			global::Xamarin.CommunityToolkit.Resource.Style.ThemeOverlay_AppCompat_Dark = global::Foody.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark;
@@ -6743,8 +6846,10 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Style.ThemeOverlay_MaterialComponents_DayNight_BottomSheetDialog = global::Foody.Droid.Resource.Style.ThemeOverlay_MaterialComponents_DayNight_BottomSheetDialog;
 			global::Xamarin.CommunityToolkit.Resource.Style.ThemeOverlay_MaterialComponents_Dialog = global::Foody.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dialog;
 			global::Xamarin.CommunityToolkit.Resource.Style.ThemeOverlay_MaterialComponents_Dialog_Alert = global::Foody.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dialog_Alert;
+			global::Xamarin.CommunityToolkit.Resource.Style.ThemeOverlay_MaterialComponents_Dialog_Alert_Framework = global::Foody.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dialog_Alert_Framework;
 			global::Xamarin.CommunityToolkit.Resource.Style.ThemeOverlay_MaterialComponents_Light = global::Foody.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Light;
 			global::Xamarin.CommunityToolkit.Resource.Style.ThemeOverlay_MaterialComponents_Light_BottomSheetDialog = global::Foody.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Light_BottomSheetDialog;
+			global::Xamarin.CommunityToolkit.Resource.Style.ThemeOverlay_MaterialComponents_Light_Dialog_Alert_Framework = global::Foody.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Light_Dialog_Alert_Framework;
 			global::Xamarin.CommunityToolkit.Resource.Style.ThemeOverlay_MaterialComponents_MaterialAlertDialog = global::Foody.Droid.Resource.Style.ThemeOverlay_MaterialComponents_MaterialAlertDialog;
 			global::Xamarin.CommunityToolkit.Resource.Style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Centered = global::Foody.Droid.Resource.Style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Centered;
 			global::Xamarin.CommunityToolkit.Resource.Style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Picker_Date = global::Foody.Droid.Resource.Style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Picker_Date;
@@ -6922,6 +7027,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Style.Widget_Design_ScrimInsetsFrameLayout = global::Foody.Droid.Resource.Style.Widget_Design_ScrimInsetsFrameLayout;
 			global::Xamarin.CommunityToolkit.Resource.Style.Widget_Design_Snackbar = global::Foody.Droid.Resource.Style.Widget_Design_Snackbar;
 			global::Xamarin.CommunityToolkit.Resource.Style.Widget_Design_TabLayout = global::Foody.Droid.Resource.Style.Widget_Design_TabLayout;
+			global::Xamarin.CommunityToolkit.Resource.Style.Widget_Design_TextInputEditText = global::Foody.Droid.Resource.Style.Widget_Design_TextInputEditText;
 			global::Xamarin.CommunityToolkit.Resource.Style.Widget_Design_TextInputLayout = global::Foody.Droid.Resource.Style.Widget_Design_TextInputLayout;
 			global::Xamarin.CommunityToolkit.Resource.Style.Widget_MaterialComponents_ActionBar_Primary = global::Foody.Droid.Resource.Style.Widget_MaterialComponents_ActionBar_Primary;
 			global::Xamarin.CommunityToolkit.Resource.Style.Widget_MaterialComponents_ActionBar_PrimarySurface = global::Foody.Droid.Resource.Style.Widget_MaterialComponents_ActionBar_PrimarySurface;
@@ -6993,8 +7099,11 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Style.Widget_MaterialComponents_PopupMenu_ContextMenu = global::Foody.Droid.Resource.Style.Widget_MaterialComponents_PopupMenu_ContextMenu;
 			global::Xamarin.CommunityToolkit.Resource.Style.Widget_MaterialComponents_PopupMenu_ListPopupWindow = global::Foody.Droid.Resource.Style.Widget_MaterialComponents_PopupMenu_ListPopupWindow;
 			global::Xamarin.CommunityToolkit.Resource.Style.Widget_MaterialComponents_PopupMenu_Overflow = global::Foody.Droid.Resource.Style.Widget_MaterialComponents_PopupMenu_Overflow;
+			global::Xamarin.CommunityToolkit.Resource.Style.Widget_MaterialComponents_ShapeableImageView = global::Foody.Droid.Resource.Style.Widget_MaterialComponents_ShapeableImageView;
+			global::Xamarin.CommunityToolkit.Resource.Style.Widget_MaterialComponents_Slider = global::Foody.Droid.Resource.Style.Widget_MaterialComponents_Slider;
 			global::Xamarin.CommunityToolkit.Resource.Style.Widget_MaterialComponents_Snackbar = global::Foody.Droid.Resource.Style.Widget_MaterialComponents_Snackbar;
 			global::Xamarin.CommunityToolkit.Resource.Style.Widget_MaterialComponents_Snackbar_FullWidth = global::Foody.Droid.Resource.Style.Widget_MaterialComponents_Snackbar_FullWidth;
+			global::Xamarin.CommunityToolkit.Resource.Style.Widget_MaterialComponents_Snackbar_TextView = global::Foody.Droid.Resource.Style.Widget_MaterialComponents_Snackbar_TextView;
 			global::Xamarin.CommunityToolkit.Resource.Style.Widget_MaterialComponents_TabLayout = global::Foody.Droid.Resource.Style.Widget_MaterialComponents_TabLayout;
 			global::Xamarin.CommunityToolkit.Resource.Style.Widget_MaterialComponents_TabLayout_Colored = global::Foody.Droid.Resource.Style.Widget_MaterialComponents_TabLayout_Colored;
 			global::Xamarin.CommunityToolkit.Resource.Style.Widget_MaterialComponents_TabLayout_PrimarySurface = global::Foody.Droid.Resource.Style.Widget_MaterialComponents_TabLayout_PrimarySurface;
@@ -7015,6 +7124,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Style.Widget_MaterialComponents_Toolbar_Primary = global::Foody.Droid.Resource.Style.Widget_MaterialComponents_Toolbar_Primary;
 			global::Xamarin.CommunityToolkit.Resource.Style.Widget_MaterialComponents_Toolbar_PrimarySurface = global::Foody.Droid.Resource.Style.Widget_MaterialComponents_Toolbar_PrimarySurface;
 			global::Xamarin.CommunityToolkit.Resource.Style.Widget_MaterialComponents_Toolbar_Surface = global::Foody.Droid.Resource.Style.Widget_MaterialComponents_Toolbar_Surface;
+			global::Xamarin.CommunityToolkit.Resource.Style.Widget_MaterialComponents_Tooltip = global::Foody.Droid.Resource.Style.Widget_MaterialComponents_Tooltip;
 			global::Xamarin.CommunityToolkit.Resource.Style.Widget_Support_CoordinatorLayout = global::Foody.Droid.Resource.Style.Widget_Support_CoordinatorLayout;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.ActionBar = global::Foody.Droid.Resource.Styleable.ActionBar;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.ActionBarLayout = global::Foody.Droid.Resource.Styleable.ActionBarLayout;
@@ -7272,8 +7382,10 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Styleable.Badge_backgroundColor = global::Foody.Droid.Resource.Styleable.Badge_backgroundColor;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.Badge_badgeGravity = global::Foody.Droid.Resource.Styleable.Badge_badgeGravity;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.Badge_badgeTextColor = global::Foody.Droid.Resource.Styleable.Badge_badgeTextColor;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Badge_horizontalOffset = global::Foody.Droid.Resource.Styleable.Badge_horizontalOffset;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.Badge_maxCharacterCount = global::Foody.Droid.Resource.Styleable.Badge_maxCharacterCount;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.Badge_number = global::Foody.Droid.Resource.Styleable.Badge_number;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Badge_verticalOffset = global::Foody.Droid.Resource.Styleable.Badge_verticalOffset;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.BottomAppBar = global::Foody.Droid.Resource.Styleable.BottomAppBar;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.BottomAppBar_backgroundTint = global::Foody.Droid.Resource.Styleable.BottomAppBar_backgroundTint;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.BottomAppBar_elevation = global::Foody.Droid.Resource.Styleable.BottomAppBar_elevation;
@@ -7283,6 +7395,9 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Styleable.BottomAppBar_fabCradleRoundedCornerRadius = global::Foody.Droid.Resource.Styleable.BottomAppBar_fabCradleRoundedCornerRadius;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.BottomAppBar_fabCradleVerticalOffset = global::Foody.Droid.Resource.Styleable.BottomAppBar_fabCradleVerticalOffset;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.BottomAppBar_hideOnScroll = global::Foody.Droid.Resource.Styleable.BottomAppBar_hideOnScroll;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.BottomAppBar_paddingBottomSystemWindowInsets = global::Foody.Droid.Resource.Styleable.BottomAppBar_paddingBottomSystemWindowInsets;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.BottomAppBar_paddingLeftSystemWindowInsets = global::Foody.Droid.Resource.Styleable.BottomAppBar_paddingLeftSystemWindowInsets;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.BottomAppBar_paddingRightSystemWindowInsets = global::Foody.Droid.Resource.Styleable.BottomAppBar_paddingRightSystemWindowInsets;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.BottomNavigationView = global::Foody.Droid.Resource.Styleable.BottomNavigationView;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.BottomNavigationView_backgroundTint = global::Foody.Droid.Resource.Styleable.BottomNavigationView_backgroundTint;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.BottomNavigationView_elevation = global::Foody.Droid.Resource.Styleable.BottomNavigationView_elevation;
@@ -7299,6 +7414,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Styleable.BottomSheetBehavior_Layout = global::Foody.Droid.Resource.Styleable.BottomSheetBehavior_Layout;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.BottomSheetBehavior_Layout_android_elevation = global::Foody.Droid.Resource.Styleable.BottomSheetBehavior_Layout_android_elevation;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.BottomSheetBehavior_Layout_backgroundTint = global::Foody.Droid.Resource.Styleable.BottomSheetBehavior_Layout_backgroundTint;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.BottomSheetBehavior_Layout_behavior_draggable = global::Foody.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_draggable;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.BottomSheetBehavior_Layout_behavior_expandedOffset = global::Foody.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_expandedOffset;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.BottomSheetBehavior_Layout_behavior_fitToContents = global::Foody.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_fitToContents;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.BottomSheetBehavior_Layout_behavior_halfExpandedRatio = global::Foody.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_halfExpandedRatio;
@@ -7306,6 +7422,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Styleable.BottomSheetBehavior_Layout_behavior_peekHeight = global::Foody.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_peekHeight;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.BottomSheetBehavior_Layout_behavior_saveFlags = global::Foody.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_saveFlags;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed = global::Foody.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.BottomSheetBehavior_Layout_gestureInsetBottomIgnored = global::Foody.Droid.Resource.Styleable.BottomSheetBehavior_Layout_gestureInsetBottomIgnored;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.BottomSheetBehavior_Layout_shapeAppearance = global::Foody.Droid.Resource.Styleable.BottomSheetBehavior_Layout_shapeAppearance;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.BottomSheetBehavior_Layout_shapeAppearanceOverlay = global::Foody.Droid.Resource.Styleable.BottomSheetBehavior_Layout_shapeAppearanceOverlay;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.ButtonBarLayout = global::Foody.Droid.Resource.Styleable.ButtonBarLayout;
@@ -7330,6 +7447,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Styleable.ChipGroup_chipSpacing = global::Foody.Droid.Resource.Styleable.ChipGroup_chipSpacing;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.ChipGroup_chipSpacingHorizontal = global::Foody.Droid.Resource.Styleable.ChipGroup_chipSpacingHorizontal;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.ChipGroup_chipSpacingVertical = global::Foody.Droid.Resource.Styleable.ChipGroup_chipSpacingVertical;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.ChipGroup_selectionRequired = global::Foody.Droid.Resource.Styleable.ChipGroup_selectionRequired;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.ChipGroup_singleLine = global::Foody.Droid.Resource.Styleable.ChipGroup_singleLine;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.ChipGroup_singleSelection = global::Foody.Droid.Resource.Styleable.ChipGroup_singleSelection;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.Chip_android_checkable = global::Foody.Droid.Resource.Styleable.Chip_android_checkable;
@@ -7340,6 +7458,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Styleable.Chip_android_textColor = global::Foody.Droid.Resource.Styleable.Chip_android_textColor;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.Chip_checkedIcon = global::Foody.Droid.Resource.Styleable.Chip_checkedIcon;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.Chip_checkedIconEnabled = global::Foody.Droid.Resource.Styleable.Chip_checkedIconEnabled;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Chip_checkedIconTint = global::Foody.Droid.Resource.Styleable.Chip_checkedIconTint;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.Chip_checkedIconVisible = global::Foody.Droid.Resource.Styleable.Chip_checkedIconVisible;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.Chip_chipBackgroundColor = global::Foody.Droid.Resource.Styleable.Chip_chipBackgroundColor;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.Chip_chipCornerRadius = global::Foody.Droid.Resource.Styleable.Chip_chipCornerRadius;
@@ -7386,6 +7505,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Styleable.CollapsingToolbarLayout_Layout = global::Foody.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode = global::Foody.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier = global::Foody.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.CollapsingToolbarLayout_maxLines = global::Foody.Droid.Resource.Styleable.CollapsingToolbarLayout_maxLines;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.CollapsingToolbarLayout_scrimAnimationDuration = global::Foody.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimAnimationDuration;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.CollapsingToolbarLayout_scrimVisibleHeightTrigger = global::Foody.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimVisibleHeightTrigger;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim = global::Foody.Droid.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim;
@@ -7433,6 +7553,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Styleable.ExtendedFloatingActionButton_showMotionSpec = global::Foody.Droid.Resource.Styleable.ExtendedFloatingActionButton_showMotionSpec;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.ExtendedFloatingActionButton_shrinkMotionSpec = global::Foody.Droid.Resource.Styleable.ExtendedFloatingActionButton_shrinkMotionSpec;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.FloatingActionButton = global::Foody.Droid.Resource.Styleable.FloatingActionButton;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.FloatingActionButton_android_enabled = global::Foody.Droid.Resource.Styleable.FloatingActionButton_android_enabled;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.FloatingActionButton_backgroundTint = global::Foody.Droid.Resource.Styleable.FloatingActionButton_backgroundTint;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.FloatingActionButton_backgroundTintMode = global::Foody.Droid.Resource.Styleable.FloatingActionButton_backgroundTintMode;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.FloatingActionButton_Behavior_Layout = global::Foody.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout;
@@ -7499,6 +7620,10 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Styleable.GradientColor_android_startY = global::Foody.Droid.Resource.Styleable.GradientColor_android_startY;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.GradientColor_android_tileMode = global::Foody.Droid.Resource.Styleable.GradientColor_android_tileMode;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.GradientColor_android_type = global::Foody.Droid.Resource.Styleable.GradientColor_android_type;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Insets = global::Foody.Droid.Resource.Styleable.Insets;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Insets_paddingBottomSystemWindowInsets = global::Foody.Droid.Resource.Styleable.Insets_paddingBottomSystemWindowInsets;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Insets_paddingLeftSystemWindowInsets = global::Foody.Droid.Resource.Styleable.Insets_paddingLeftSystemWindowInsets;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Insets_paddingRightSystemWindowInsets = global::Foody.Droid.Resource.Styleable.Insets_paddingRightSystemWindowInsets;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.ItemsViewRendererTheme = global::Foody.Droid.Resource.Styleable.ItemsViewRendererTheme;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.ItemsViewRendererTheme_collectionViewStyle = global::Foody.Droid.Resource.Styleable.ItemsViewRendererTheme_collectionViewStyle;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.LinearLayoutCompat = global::Foody.Droid.Resource.Styleable.LinearLayoutCompat;
@@ -7530,10 +7655,14 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Styleable.MaterialAlertDialog_backgroundInsetEnd = global::Foody.Droid.Resource.Styleable.MaterialAlertDialog_backgroundInsetEnd;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.MaterialAlertDialog_backgroundInsetStart = global::Foody.Droid.Resource.Styleable.MaterialAlertDialog_backgroundInsetStart;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.MaterialAlertDialog_backgroundInsetTop = global::Foody.Droid.Resource.Styleable.MaterialAlertDialog_backgroundInsetTop;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.MaterialAutoCompleteTextView = global::Foody.Droid.Resource.Styleable.MaterialAutoCompleteTextView;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.MaterialAutoCompleteTextView_android_inputType = global::Foody.Droid.Resource.Styleable.MaterialAutoCompleteTextView_android_inputType;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.MaterialButton = global::Foody.Droid.Resource.Styleable.MaterialButton;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.MaterialButtonToggleGroup = global::Foody.Droid.Resource.Styleable.MaterialButtonToggleGroup;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.MaterialButtonToggleGroup_checkedButton = global::Foody.Droid.Resource.Styleable.MaterialButtonToggleGroup_checkedButton;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.MaterialButtonToggleGroup_selectionRequired = global::Foody.Droid.Resource.Styleable.MaterialButtonToggleGroup_selectionRequired;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.MaterialButtonToggleGroup_singleSelection = global::Foody.Droid.Resource.Styleable.MaterialButtonToggleGroup_singleSelection;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.MaterialButton_android_background = global::Foody.Droid.Resource.Styleable.MaterialButton_android_background;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.MaterialButton_android_checkable = global::Foody.Droid.Resource.Styleable.MaterialButton_android_checkable;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.MaterialButton_android_insetBottom = global::Foody.Droid.Resource.Styleable.MaterialButton_android_insetBottom;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.MaterialButton_android_insetLeft = global::Foody.Droid.Resource.Styleable.MaterialButton_android_insetLeft;
@@ -7590,6 +7719,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Styleable.MaterialCheckBox_buttonTint = global::Foody.Droid.Resource.Styleable.MaterialCheckBox_buttonTint;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.MaterialCheckBox_useMaterialThemeColors = global::Foody.Droid.Resource.Styleable.MaterialCheckBox_useMaterialThemeColors;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.MaterialRadioButton = global::Foody.Droid.Resource.Styleable.MaterialRadioButton;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.MaterialRadioButton_buttonTint = global::Foody.Droid.Resource.Styleable.MaterialRadioButton_buttonTint;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.MaterialRadioButton_useMaterialThemeColors = global::Foody.Droid.Resource.Styleable.MaterialRadioButton_useMaterialThemeColors;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.MaterialShape = global::Foody.Droid.Resource.Styleable.MaterialShape;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.MaterialShape_shapeAppearance = global::Foody.Droid.Resource.Styleable.MaterialShape_shapeAppearance;
@@ -7670,6 +7800,8 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Styleable.PopupWindow_android_popupAnimationStyle = global::Foody.Droid.Resource.Styleable.PopupWindow_android_popupAnimationStyle;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.PopupWindow_android_popupBackground = global::Foody.Droid.Resource.Styleable.PopupWindow_android_popupBackground;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.PopupWindow_overlapAnchor = global::Foody.Droid.Resource.Styleable.PopupWindow_overlapAnchor;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.RangeSlider = global::Foody.Droid.Resource.Styleable.RangeSlider;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.RangeSlider_values = global::Foody.Droid.Resource.Styleable.RangeSlider_values;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.RecycleListView = global::Foody.Droid.Resource.Styleable.RecycleListView;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.RecycleListView_paddingBottomNoButtons = global::Foody.Droid.Resource.Styleable.RecycleListView_paddingBottomNoButtons;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.RecycleListView_paddingTopNoTitle = global::Foody.Droid.Resource.Styleable.RecycleListView_paddingTopNoTitle;
@@ -7710,6 +7842,11 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Styleable.SearchView_submitBackground = global::Foody.Droid.Resource.Styleable.SearchView_submitBackground;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.SearchView_suggestionRowLayout = global::Foody.Droid.Resource.Styleable.SearchView_suggestionRowLayout;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.SearchView_voiceIcon = global::Foody.Droid.Resource.Styleable.SearchView_voiceIcon;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.ShapeableImageView = global::Foody.Droid.Resource.Styleable.ShapeableImageView;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.ShapeableImageView_shapeAppearance = global::Foody.Droid.Resource.Styleable.ShapeableImageView_shapeAppearance;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.ShapeableImageView_shapeAppearanceOverlay = global::Foody.Droid.Resource.Styleable.ShapeableImageView_shapeAppearanceOverlay;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.ShapeableImageView_strokeColor = global::Foody.Droid.Resource.Styleable.ShapeableImageView_strokeColor;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.ShapeableImageView_strokeWidth = global::Foody.Droid.Resource.Styleable.ShapeableImageView_strokeWidth;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.ShapeAppearance = global::Foody.Droid.Resource.Styleable.ShapeAppearance;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.ShapeAppearance_cornerFamily = global::Foody.Droid.Resource.Styleable.ShapeAppearance_cornerFamily;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.ShapeAppearance_cornerFamilyBottomLeft = global::Foody.Droid.Resource.Styleable.ShapeAppearance_cornerFamilyBottomLeft;
@@ -7721,16 +7858,39 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Styleable.ShapeAppearance_cornerSizeBottomRight = global::Foody.Droid.Resource.Styleable.ShapeAppearance_cornerSizeBottomRight;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.ShapeAppearance_cornerSizeTopLeft = global::Foody.Droid.Resource.Styleable.ShapeAppearance_cornerSizeTopLeft;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.ShapeAppearance_cornerSizeTopRight = global::Foody.Droid.Resource.Styleable.ShapeAppearance_cornerSizeTopRight;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Slider = global::Foody.Droid.Resource.Styleable.Slider;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Slider_android_enabled = global::Foody.Droid.Resource.Styleable.Slider_android_enabled;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Slider_android_stepSize = global::Foody.Droid.Resource.Styleable.Slider_android_stepSize;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Slider_android_value = global::Foody.Droid.Resource.Styleable.Slider_android_value;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Slider_android_valueFrom = global::Foody.Droid.Resource.Styleable.Slider_android_valueFrom;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Slider_android_valueTo = global::Foody.Droid.Resource.Styleable.Slider_android_valueTo;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Slider_haloColor = global::Foody.Droid.Resource.Styleable.Slider_haloColor;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Slider_haloRadius = global::Foody.Droid.Resource.Styleable.Slider_haloRadius;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Slider_labelBehavior = global::Foody.Droid.Resource.Styleable.Slider_labelBehavior;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Slider_labelStyle = global::Foody.Droid.Resource.Styleable.Slider_labelStyle;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Slider_thumbColor = global::Foody.Droid.Resource.Styleable.Slider_thumbColor;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Slider_thumbElevation = global::Foody.Droid.Resource.Styleable.Slider_thumbElevation;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Slider_thumbRadius = global::Foody.Droid.Resource.Styleable.Slider_thumbRadius;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Slider_tickColor = global::Foody.Droid.Resource.Styleable.Slider_tickColor;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Slider_tickColorActive = global::Foody.Droid.Resource.Styleable.Slider_tickColorActive;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Slider_tickColorInactive = global::Foody.Droid.Resource.Styleable.Slider_tickColorInactive;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Slider_trackColor = global::Foody.Droid.Resource.Styleable.Slider_trackColor;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Slider_trackColorActive = global::Foody.Droid.Resource.Styleable.Slider_trackColorActive;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Slider_trackColorInactive = global::Foody.Droid.Resource.Styleable.Slider_trackColorInactive;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Slider_trackHeight = global::Foody.Droid.Resource.Styleable.Slider_trackHeight;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.Snackbar = global::Foody.Droid.Resource.Styleable.Snackbar;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.SnackbarLayout = global::Foody.Droid.Resource.Styleable.SnackbarLayout;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.SnackbarLayout_actionTextColorAlpha = global::Foody.Droid.Resource.Styleable.SnackbarLayout_actionTextColorAlpha;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.SnackbarLayout_android_maxWidth = global::Foody.Droid.Resource.Styleable.SnackbarLayout_android_maxWidth;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.SnackbarLayout_animationMode = global::Foody.Droid.Resource.Styleable.SnackbarLayout_animationMode;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.SnackbarLayout_backgroundOverlayColorAlpha = global::Foody.Droid.Resource.Styleable.SnackbarLayout_backgroundOverlayColorAlpha;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.SnackbarLayout_backgroundTint = global::Foody.Droid.Resource.Styleable.SnackbarLayout_backgroundTint;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.SnackbarLayout_backgroundTintMode = global::Foody.Droid.Resource.Styleable.SnackbarLayout_backgroundTintMode;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.SnackbarLayout_elevation = global::Foody.Droid.Resource.Styleable.SnackbarLayout_elevation;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.SnackbarLayout_maxActionInlineWidth = global::Foody.Droid.Resource.Styleable.SnackbarLayout_maxActionInlineWidth;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.Snackbar_snackbarButtonStyle = global::Foody.Droid.Resource.Styleable.Snackbar_snackbarButtonStyle;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.Snackbar_snackbarStyle = global::Foody.Droid.Resource.Styleable.Snackbar_snackbarStyle;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Snackbar_snackbarTextViewStyle = global::Foody.Droid.Resource.Styleable.Snackbar_snackbarTextViewStyle;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.Spinner = global::Foody.Droid.Resource.Styleable.Spinner;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.Spinner_android_dropDownWidth = global::Foody.Droid.Resource.Styleable.Spinner_android_dropDownWidth;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.Spinner_android_entries = global::Foody.Droid.Resource.Styleable.Spinner_android_entries;
@@ -7812,7 +7972,10 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextAppearance_fontVariationSettings = global::Foody.Droid.Resource.Styleable.TextAppearance_fontVariationSettings;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextAppearance_textAllCaps = global::Foody.Droid.Resource.Styleable.TextAppearance_textAllCaps;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextAppearance_textLocale = global::Foody.Droid.Resource.Styleable.TextAppearance_textLocale;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputEditText = global::Foody.Droid.Resource.Styleable.TextInputEditText;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputEditText_textInputLayoutFocusedRectEnabled = global::Foody.Droid.Resource.Styleable.TextInputEditText_textInputLayoutFocusedRectEnabled;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout = global::Foody.Droid.Resource.Styleable.TextInputLayout;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_android_enabled = global::Foody.Droid.Resource.Styleable.TextInputLayout_android_enabled;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_android_hint = global::Foody.Droid.Resource.Styleable.TextInputLayout_android_hint;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_android_textColorHint = global::Foody.Droid.Resource.Styleable.TextInputLayout_android_textColorHint;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_boxBackgroundColor = global::Foody.Droid.Resource.Styleable.TextInputLayout_boxBackgroundColor;
@@ -7823,6 +7986,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_boxCornerRadiusTopEnd = global::Foody.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusTopEnd;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_boxCornerRadiusTopStart = global::Foody.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusTopStart;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_boxStrokeColor = global::Foody.Droid.Resource.Styleable.TextInputLayout_boxStrokeColor;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_boxStrokeErrorColor = global::Foody.Droid.Resource.Styleable.TextInputLayout_boxStrokeErrorColor;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_boxStrokeWidth = global::Foody.Droid.Resource.Styleable.TextInputLayout_boxStrokeWidth;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_boxStrokeWidthFocused = global::Foody.Droid.Resource.Styleable.TextInputLayout_boxStrokeWidthFocused;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_counterEnabled = global::Foody.Droid.Resource.Styleable.TextInputLayout_counterEnabled;
@@ -7837,6 +8001,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_endIconMode = global::Foody.Droid.Resource.Styleable.TextInputLayout_endIconMode;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_endIconTint = global::Foody.Droid.Resource.Styleable.TextInputLayout_endIconTint;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_endIconTintMode = global::Foody.Droid.Resource.Styleable.TextInputLayout_endIconTintMode;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_errorContentDescription = global::Foody.Droid.Resource.Styleable.TextInputLayout_errorContentDescription;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_errorEnabled = global::Foody.Droid.Resource.Styleable.TextInputLayout_errorEnabled;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_errorIconDrawable = global::Foody.Droid.Resource.Styleable.TextInputLayout_errorIconDrawable;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_errorIconTint = global::Foody.Droid.Resource.Styleable.TextInputLayout_errorIconTint;
@@ -7856,6 +8021,12 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_passwordToggleEnabled = global::Foody.Droid.Resource.Styleable.TextInputLayout_passwordToggleEnabled;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_passwordToggleTint = global::Foody.Droid.Resource.Styleable.TextInputLayout_passwordToggleTint;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_passwordToggleTintMode = global::Foody.Droid.Resource.Styleable.TextInputLayout_passwordToggleTintMode;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_placeholderText = global::Foody.Droid.Resource.Styleable.TextInputLayout_placeholderText;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_placeholderTextAppearance = global::Foody.Droid.Resource.Styleable.TextInputLayout_placeholderTextAppearance;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_placeholderTextColor = global::Foody.Droid.Resource.Styleable.TextInputLayout_placeholderTextColor;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_prefixText = global::Foody.Droid.Resource.Styleable.TextInputLayout_prefixText;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_prefixTextAppearance = global::Foody.Droid.Resource.Styleable.TextInputLayout_prefixTextAppearance;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_prefixTextColor = global::Foody.Droid.Resource.Styleable.TextInputLayout_prefixTextColor;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_shapeAppearance = global::Foody.Droid.Resource.Styleable.TextInputLayout_shapeAppearance;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_shapeAppearanceOverlay = global::Foody.Droid.Resource.Styleable.TextInputLayout_shapeAppearanceOverlay;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_startIconCheckable = global::Foody.Droid.Resource.Styleable.TextInputLayout_startIconCheckable;
@@ -7863,6 +8034,9 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_startIconDrawable = global::Foody.Droid.Resource.Styleable.TextInputLayout_startIconDrawable;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_startIconTint = global::Foody.Droid.Resource.Styleable.TextInputLayout_startIconTint;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_startIconTintMode = global::Foody.Droid.Resource.Styleable.TextInputLayout_startIconTintMode;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_suffixText = global::Foody.Droid.Resource.Styleable.TextInputLayout_suffixText;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_suffixTextAppearance = global::Foody.Droid.Resource.Styleable.TextInputLayout_suffixTextAppearance;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.TextInputLayout_suffixTextColor = global::Foody.Droid.Resource.Styleable.TextInputLayout_suffixTextColor;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.ThemeEnforcement = global::Foody.Droid.Resource.Styleable.ThemeEnforcement;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.ThemeEnforcement_android_textAppearance = global::Foody.Droid.Resource.Styleable.ThemeEnforcement_android_textAppearance;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.ThemeEnforcement_enforceMaterialTheme = global::Foody.Droid.Resource.Styleable.ThemeEnforcement_enforceMaterialTheme;
@@ -7898,6 +8072,14 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Styleable.Toolbar_titleMarginTop = global::Foody.Droid.Resource.Styleable.Toolbar_titleMarginTop;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.Toolbar_titleTextAppearance = global::Foody.Droid.Resource.Styleable.Toolbar_titleTextAppearance;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.Toolbar_titleTextColor = global::Foody.Droid.Resource.Styleable.Toolbar_titleTextColor;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Tooltip = global::Foody.Droid.Resource.Styleable.Tooltip;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Tooltip_android_layout_margin = global::Foody.Droid.Resource.Styleable.Tooltip_android_layout_margin;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Tooltip_android_minHeight = global::Foody.Droid.Resource.Styleable.Tooltip_android_minHeight;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Tooltip_android_minWidth = global::Foody.Droid.Resource.Styleable.Tooltip_android_minWidth;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Tooltip_android_padding = global::Foody.Droid.Resource.Styleable.Tooltip_android_padding;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Tooltip_android_text = global::Foody.Droid.Resource.Styleable.Tooltip_android_text;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Tooltip_android_textAppearance = global::Foody.Droid.Resource.Styleable.Tooltip_android_textAppearance;
+			global::Xamarin.CommunityToolkit.Resource.Styleable.Tooltip_backgroundTint = global::Foody.Droid.Resource.Styleable.Tooltip_backgroundTint;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.View = global::Foody.Droid.Resource.Styleable.View;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.ViewBackgroundHelper = global::Foody.Droid.Resource.Styleable.ViewBackgroundHelper;
 			global::Xamarin.CommunityToolkit.Resource.Styleable.ViewBackgroundHelper_android_background = global::Foody.Droid.Resource.Styleable.ViewBackgroundHelper_android_background;
@@ -7919,6 +8101,7 @@ namespace Foody.Droid
 			global::Xamarin.CommunityToolkit.Resource.Xml.standalone_badge_gravity_bottom_end = global::Foody.Droid.Resource.Xml.standalone_badge_gravity_bottom_end;
 			global::Xamarin.CommunityToolkit.Resource.Xml.standalone_badge_gravity_bottom_start = global::Foody.Droid.Resource.Xml.standalone_badge_gravity_bottom_start;
 			global::Xamarin.CommunityToolkit.Resource.Xml.standalone_badge_gravity_top_start = global::Foody.Droid.Resource.Xml.standalone_badge_gravity_top_start;
+			global::Xamarin.CommunityToolkit.Resource.Xml.standalone_badge_offset = global::Foody.Droid.Resource.Xml.standalone_badge_offset;
 			global::Xamarin.Essentials.Resource.Attribute.alpha = global::Foody.Droid.Resource.Attribute.alpha;
 			global::Xamarin.Essentials.Resource.Attribute.font = global::Foody.Droid.Resource.Attribute.font;
 			global::Xamarin.Essentials.Resource.Attribute.fontProviderAuthority = global::Foody.Droid.Resource.Attribute.fontProviderAuthority;
@@ -22275,190 +22458,199 @@ namespace Foody.Droid
 			public const int fork = 2131165299;
 			
 			// aapt resource value: 0x7F070074
-			public const int heart = 2131165300;
+			public const int G = 2131165300;
 			
 			// aapt resource value: 0x7F070075
-			public const int heart_outline = 2131165301;
+			public const int heart = 2131165301;
 			
 			// aapt resource value: 0x7F070076
-			public const int home = 2131165302;
-			
-			// aapt resource value: 0x7F07007B
-			public const int icon_about = 2131165307;
-			
-			// aapt resource value: 0x7F07007C
-			public const int icon_feed = 2131165308;
+			public const int heart_outline = 2131165302;
 			
 			// aapt resource value: 0x7F070077
-			public const int ic_mtrl_checked_circle = 2131165303;
+			public const int home = 2131165303;
 			
-			// aapt resource value: 0x7F070078
-			public const int ic_mtrl_chip_checked_black = 2131165304;
-			
-			// aapt resource value: 0x7F070079
-			public const int ic_mtrl_chip_checked_circle = 2131165305;
-			
-			// aapt resource value: 0x7F07007A
-			public const int ic_mtrl_chip_close_circle = 2131165306;
+			// aapt resource value: 0x7F07007C
+			public const int icon_about = 2131165308;
 			
 			// aapt resource value: 0x7F07007D
-			public const int left_arrow = 2131165309;
+			public const int icon_feed = 2131165309;
+			
+			// aapt resource value: 0x7F070078
+			public const int ic_mtrl_checked_circle = 2131165304;
+			
+			// aapt resource value: 0x7F070079
+			public const int ic_mtrl_chip_checked_black = 2131165305;
+			
+			// aapt resource value: 0x7F07007A
+			public const int ic_mtrl_chip_checked_circle = 2131165306;
+			
+			// aapt resource value: 0x7F07007B
+			public const int ic_mtrl_chip_close_circle = 2131165307;
 			
 			// aapt resource value: 0x7F07007E
-			public const int list_interface_symbol = 2131165310;
+			public const int left_arrow = 2131165310;
 			
 			// aapt resource value: 0x7F07007F
-			public const int logout = 2131165311;
+			public const int Lg = 2131165311;
 			
 			// aapt resource value: 0x7F070080
-			public const int material_ic_calendar_black_24dp = 2131165312;
+			public const int list_interface_symbol = 2131165312;
 			
 			// aapt resource value: 0x7F070081
-			public const int material_ic_clear_black_24dp = 2131165313;
+			public const int Logo = 2131165313;
 			
 			// aapt resource value: 0x7F070082
-			public const int material_ic_edit_black_24dp = 2131165314;
+			public const int logout = 2131165314;
 			
 			// aapt resource value: 0x7F070083
-			public const int material_ic_keyboard_arrow_left_black_24dp = 2131165315;
+			public const int material_ic_calendar_black_24dp = 2131165315;
 			
 			// aapt resource value: 0x7F070084
-			public const int material_ic_keyboard_arrow_right_black_24dp = 2131165316;
+			public const int material_ic_clear_black_24dp = 2131165316;
 			
 			// aapt resource value: 0x7F070085
-			public const int material_ic_menu_arrow_down_black_24dp = 2131165317;
+			public const int material_ic_edit_black_24dp = 2131165317;
 			
 			// aapt resource value: 0x7F070086
-			public const int material_ic_menu_arrow_up_black_24dp = 2131165318;
+			public const int material_ic_keyboard_arrow_left_black_24dp = 2131165318;
 			
 			// aapt resource value: 0x7F070087
-			public const int menu = 2131165319;
+			public const int material_ic_keyboard_arrow_right_black_24dp = 2131165319;
 			
 			// aapt resource value: 0x7F070088
-			public const int menu1 = 2131165320;
+			public const int material_ic_menu_arrow_down_black_24dp = 2131165320;
 			
 			// aapt resource value: 0x7F070089
-			public const int menulist = 2131165321;
+			public const int material_ic_menu_arrow_up_black_24dp = 2131165321;
 			
 			// aapt resource value: 0x7F07008A
-			public const int mtrl_dialog_background = 2131165322;
+			public const int menu = 2131165322;
 			
 			// aapt resource value: 0x7F07008B
-			public const int mtrl_dropdown_arrow = 2131165323;
+			public const int menu1 = 2131165323;
 			
 			// aapt resource value: 0x7F07008C
-			public const int mtrl_ic_arrow_drop_down = 2131165324;
+			public const int menulist = 2131165324;
 			
 			// aapt resource value: 0x7F07008D
-			public const int mtrl_ic_arrow_drop_up = 2131165325;
+			public const int mtrl_dialog_background = 2131165325;
 			
 			// aapt resource value: 0x7F07008E
-			public const int mtrl_ic_cancel = 2131165326;
+			public const int mtrl_dropdown_arrow = 2131165326;
 			
 			// aapt resource value: 0x7F07008F
-			public const int mtrl_ic_error = 2131165327;
+			public const int mtrl_ic_arrow_drop_down = 2131165327;
 			
 			// aapt resource value: 0x7F070090
-			public const int mtrl_popupmenu_background = 2131165328;
+			public const int mtrl_ic_arrow_drop_up = 2131165328;
 			
 			// aapt resource value: 0x7F070091
-			public const int mtrl_popupmenu_background_dark = 2131165329;
+			public const int mtrl_ic_cancel = 2131165329;
 			
 			// aapt resource value: 0x7F070092
-			public const int mtrl_tabs_default_indicator = 2131165330;
+			public const int mtrl_ic_error = 2131165330;
 			
 			// aapt resource value: 0x7F070093
-			public const int navigation_empty_icon = 2131165331;
+			public const int mtrl_popupmenu_background = 2131165331;
 			
 			// aapt resource value: 0x7F070094
-			public const int notification_action_background = 2131165332;
+			public const int mtrl_popupmenu_background_dark = 2131165332;
 			
 			// aapt resource value: 0x7F070095
-			public const int notification_bg = 2131165333;
+			public const int mtrl_tabs_default_indicator = 2131165333;
 			
 			// aapt resource value: 0x7F070096
-			public const int notification_bg_low = 2131165334;
+			public const int navigation_empty_icon = 2131165334;
 			
 			// aapt resource value: 0x7F070097
-			public const int notification_bg_low_normal = 2131165335;
+			public const int notification_action_background = 2131165335;
 			
 			// aapt resource value: 0x7F070098
-			public const int notification_bg_low_pressed = 2131165336;
+			public const int notification_bg = 2131165336;
 			
 			// aapt resource value: 0x7F070099
-			public const int notification_bg_normal = 2131165337;
+			public const int notification_bg_low = 2131165337;
 			
 			// aapt resource value: 0x7F07009A
-			public const int notification_bg_normal_pressed = 2131165338;
+			public const int notification_bg_low_normal = 2131165338;
 			
 			// aapt resource value: 0x7F07009B
-			public const int notification_icon_background = 2131165339;
+			public const int notification_bg_low_pressed = 2131165339;
 			
 			// aapt resource value: 0x7F07009C
-			public const int notification_template_icon_bg = 2131165340;
+			public const int notification_bg_normal = 2131165340;
 			
 			// aapt resource value: 0x7F07009D
-			public const int notification_template_icon_low_bg = 2131165341;
+			public const int notification_bg_normal_pressed = 2131165341;
 			
 			// aapt resource value: 0x7F07009E
-			public const int notification_tile_bg = 2131165342;
+			public const int notification_icon_background = 2131165342;
 			
 			// aapt resource value: 0x7F07009F
-			public const int notify_panel_notification_icon_bg = 2131165343;
+			public const int notification_template_icon_bg = 2131165343;
 			
 			// aapt resource value: 0x7F0700A0
-			public const int pantry = 2131165344;
+			public const int notification_template_icon_low_bg = 2131165344;
 			
 			// aapt resource value: 0x7F0700A1
-			public const int plus = 2131165345;
+			public const int notification_tile_bg = 2131165345;
 			
 			// aapt resource value: 0x7F0700A2
-			public const int plus1 = 2131165346;
+			public const int notify_panel_notification_icon_bg = 2131165346;
 			
 			// aapt resource value: 0x7F0700A3
-			public const int ramen = 2131165347;
+			public const int pantry = 2131165347;
 			
 			// aapt resource value: 0x7F0700A4
-			public const int reload = 2131165348;
+			public const int plus = 2131165348;
 			
 			// aapt resource value: 0x7F0700A5
-			public const int segmented_control_background = 2131165349;
+			public const int plus1 = 2131165349;
 			
 			// aapt resource value: 0x7F0700A6
-			public const int segmented_control_first_background = 2131165350;
+			public const int ramen = 2131165350;
 			
 			// aapt resource value: 0x7F0700A7
-			public const int segmented_control_last_background = 2131165351;
+			public const int reload = 2131165351;
 			
 			// aapt resource value: 0x7F0700A8
-			public const int setting = 2131165352;
+			public const int segmented_control_background = 2131165352;
 			
 			// aapt resource value: 0x7F0700A9
-			public const int shopping_cart = 2131165353;
+			public const int segmented_control_first_background = 2131165353;
 			
 			// aapt resource value: 0x7F0700AA
-			public const int store = 2131165354;
+			public const int segmented_control_last_background = 2131165354;
 			
 			// aapt resource value: 0x7F0700AB
-			public const int subtraction = 2131165355;
+			public const int setting = 2131165355;
 			
 			// aapt resource value: 0x7F0700AC
-			public const int test_custom_background = 2131165356;
+			public const int shopping_cart = 2131165356;
 			
 			// aapt resource value: 0x7F0700AD
-			public const int tooltip_frame_dark = 2131165357;
+			public const int store = 2131165357;
 			
 			// aapt resource value: 0x7F0700AE
-			public const int tooltip_frame_light = 2131165358;
+			public const int subtraction = 2131165358;
 			
 			// aapt resource value: 0x7F0700AF
-			public const int user = 2131165359;
+			public const int test_custom_background = 2131165359;
 			
 			// aapt resource value: 0x7F0700B0
-			public const int wrench = 2131165360;
+			public const int tooltip_frame_dark = 2131165360;
 			
 			// aapt resource value: 0x7F0700B1
-			public const int xamarin_logo = 2131165361;
+			public const int tooltip_frame_light = 2131165361;
+			
+			// aapt resource value: 0x7F0700B2
+			public const int user = 2131165362;
+			
+			// aapt resource value: 0x7F0700B3
+			public const int wrench = 2131165363;
+			
+			// aapt resource value: 0x7F0700B4
+			public const int xamarin_logo = 2131165364;
 			
 			static Drawable()
 			{
