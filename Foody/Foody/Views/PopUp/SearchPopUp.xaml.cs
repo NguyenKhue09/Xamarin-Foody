@@ -15,9 +15,10 @@ namespace Foody.Views.PopUp
         public SearchPopUp()
         {
             InitializeComponent();
+            this.CloseWhenBackgroundIsClicked = false;
         }
 
-        private async void Button_Clicked(object sender, EventArgs e)
+        public async Task closePopup()
         {
             await Navigation.PopPopupAsync();
         }

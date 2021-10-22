@@ -1,4 +1,6 @@
 ﻿using Foody.Models;
+using Foody.ViewModels;
+using Foody.Views.PopUp;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,6 +16,8 @@ namespace Foody.Services.RecipeApiCall
     {
         HttpClient client;
         JsonSerializerOptions serializerOptions;
+        private PantryViewModel pantryViewModel = new PantryViewModel();
+        private SearchPopUp searchPopUp = new SearchPopUp();
 
         public Recipe Recipes { get; private set; }
         public Recipe RandomRecipes { get; private set; }
@@ -119,18 +123,22 @@ namespace Foody.Services.RecipeApiCall
 
                 HttpResponseMessage response = await client.GetAsync(uri);
                 Debug.WriteLine("CallAPI");
+                await pantryViewModel.showpopup_Clicked();
                 if (response.IsSuccessStatusCode)
                 {
 
-
+                    
                     string content = await response.Content.ReadAsStringAsync();
                     SearchRecipesList = JsonSerializer.Deserialize<Recipe>(content, serializerOptions);
-
+                    Debug.WriteLine("ThanhCong");
+                    await searchPopUp.closePopup();
                 }
                 else
                 {
                     Debug.WriteLine("Thatbai");
                     SearchRecipesList.results = new List<Result>();
+                    await searchPopUp.closePopup();
+
                 }
             }
             catch (Exception ex)

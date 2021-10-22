@@ -3,13 +3,11 @@ using Foody.Views;
 using Foody.Views.PopUp;
 using MvvmHelpers;
 using Rg.Plugins.Popup.Extensions;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
+using System.Linq;
 using Xamarin.Forms;
+using System.Collections.Generic;
 
 namespace Foody.ViewModels
 {
@@ -18,8 +16,8 @@ namespace Foody.ViewModels
         public int SelectedTabIndex { get; set; }
 
        
-        private string[] cuisineList { get; set; }
-        private string[] intolerancesList { get; set; }
+        public List<string> cuisineList { get; set; }
+        public List<string> intolerancesList { get; set; }
 
         public ObservableRangeCollection<Result> PopularRecipes { get; set; }
         public ObservableRangeCollection<Result> SearchRecipes { get; set; }
@@ -46,6 +44,8 @@ namespace Foody.ViewModels
             ChipCuisineUnselectedCommand = new Command<string>(chipCuisineUnSelected);
             ChipIntolerancesSelectedCommand = new Command<string>(chipIntolerancesSelected);
             ChipIntolerancesUnselectedCommand = new Command<string>(chipIntolerancesUnSelected);
+            intolerancesList = new List<string>();
+            cuisineList = new List<string>();
         }
 
         public async Task OpenOtherPage()
@@ -69,10 +69,11 @@ namespace Foody.ViewModels
             SearchRecipes.AddRange(results.results);
         }
 
-        async private Task showpopup_Clicked()
+        async public Task showpopup_Clicked()
         {
             await Navigation.PushPopupAsync(new SearchPopUp());
         }
+
 
         public PantryViewModel()
         {
@@ -82,24 +83,36 @@ namespace Foody.ViewModels
 
         public void chipCuisineSelected(string value)
         {
-
+            if(!cuisineList.Contains(value))
+            {
+                cuisineList.Add(value);
+            }
             Debug.WriteLine($"S + {value}");
         }
 
         public void chipCuisineUnSelected(string value)
         {
-            Debug.WriteLine($"U + {value}");
-
+            if(value != "" || value != null)
+            {
+                cuisineList.Remove(value);
+            }
         }
 
         public void chipIntolerancesSelected(string value)
         {
-
+            if (!intolerancesList.Contains(value))
+            {
+                intolerancesList.Add(value);
+            }
             Debug.WriteLine($"S + {value}");
         }
 
         public void chipIntolerancesUnSelected(string value)
         {
+            if (value != "" || value != null)
+            {
+                intolerancesList.Remove(value);
+            }
             Debug.WriteLine($"U + {value}");
 
         }
