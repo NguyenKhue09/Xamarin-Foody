@@ -84,12 +84,21 @@ namespace Foody.Views
             }
         }
 
-        async void SearchRecipes(object sender, EventArgs e)
+        private void SearchRecipes(object sender, EventArgs e)
         {
             try
             {
                 string intolerancesList;
                 string cuisineList;
+                cuisineList = String.Join(",", pantryViewModel.cuisineList.ToArray());
+                intolerancesList = String.Join(",", pantryViewModel.intolerancesList.ToArray());
+                querySearch = searchRecipes.Text;
+
+                pantryViewModel.GetSearchRecipes(querySearch, cuisineList, intolerancesList);
+
+                Debug.WriteLine($"{querySearch}");
+                Debug.WriteLine($"{cuisineList}");
+                Debug.WriteLine($"{intolerancesList}");
                 // call api
                 Debug.WriteLine("Call api search");
 
@@ -98,12 +107,6 @@ namespace Foody.Views
             {
                 throw ex;
             }
-        }
-
-
-        async private void showpopup_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushPopupAsync(new SearchPopUp());
         }
 
     }

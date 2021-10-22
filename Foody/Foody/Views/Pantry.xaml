@@ -103,13 +103,7 @@
                         <tabs1:TabHostView.Tabs>
                             <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Manage" IsSelected="True" TabIndex="0"/>
                             <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Explore" TabIndex="1" Padding="30,0"/>
-                            <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Search" TabIndex="2">
-                                <tabs1:SegmentedTabItem.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="showpopup_Clicked">
-                                        
-                                    </TapGestureRecognizer>
-                                </tabs1:SegmentedTabItem.GestureRecognizers>
-                            </tabs1:SegmentedTabItem>
+                            <tabs1:SegmentedTabItem Style="{StaticResource SegmentedTabStyle}" Label="Search" TabIndex="2"></tabs1:SegmentedTabItem>
                         </tabs1:TabHostView.Tabs>
                     </tabs1:TabHostView>
                 </Frame>
