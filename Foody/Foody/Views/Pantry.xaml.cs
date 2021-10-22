@@ -18,13 +18,13 @@ namespace Foody.Views
     {
         private readonly PantryViewModel pantryViewModel;
 
-        private  string querySearch { get; set; }
-       
+        private string querySearch { get; set; }
+
         public Pantry()
         {
             InitializeComponent();
             CheckFavorite(true);
-            BindingContext = pantryViewModel = new PantryViewModel( Navigation );
+            BindingContext = pantryViewModel = new PantryViewModel(Navigation);
         }
 
         protected override void OnAppearing()
@@ -68,7 +68,7 @@ namespace Foody.Views
                 ptManage.IsVisible = false;
                 tabPantry.Height = new GridLength(0.33, GridUnitType.Star);
             }
-           
+
         }
         async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
@@ -84,7 +84,7 @@ namespace Foody.Views
             }
         }
 
-        async void SearchRecipes(object sender, EventArgs e)
+        private void SearchRecipes(object sender, EventArgs e)
         {
             try
             {
@@ -92,9 +92,11 @@ namespace Foody.Views
                 string cuisineList;
                 cuisineList = String.Join(",", pantryViewModel.cuisineList.ToArray());
                 intolerancesList = String.Join(",", pantryViewModel.intolerancesList.ToArray());
+                querySearch = searchRecipes.Text;
 
-                pantryViewModel.GetSearchRecipes("Pum", cuisineList, intolerancesList);
+                pantryViewModel.GetSearchRecipes(querySearch, cuisineList, intolerancesList);
 
+                Debug.WriteLine($"{querySearch}");
                 Debug.WriteLine($"{cuisineList}");
                 Debug.WriteLine($"{intolerancesList}");
                 // call api
@@ -107,6 +109,5 @@ namespace Foody.Views
             }
         }
 
-        
     }
 }

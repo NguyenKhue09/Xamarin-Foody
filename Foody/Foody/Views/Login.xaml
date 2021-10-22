@@ -46,9 +46,9 @@
                     BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,0"
                     HeightRequest="70" WidthRequest="450"
                     BackgroundColor="#07BDF6" CornerRadius="15" HorizontalOptions="Center">
-                    <!--<yummy:PancakeView.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding NavToPantry}"/>
-                    </yummy:PancakeView.GestureRecognizers>-->
+                    <yummy:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding login}"/>
+                    </yummy:PancakeView.GestureRecognizers>
                     <yummy:PancakeView.BackgroundGradientStops>
                         <yummy:GradientStopCollection>
                             <yummy:GradientStop Color="#5AE099" Offset="1" />
