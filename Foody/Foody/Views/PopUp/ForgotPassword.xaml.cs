@@ -4,21 +4,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Foody.Views.PopUp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SearchPopUp : Rg.Plugins.Popup.Pages.PopupPage
+    public partial class ForgotPassword : Rg.Plugins.Popup.Pages.PopupPage
     {
-        public SearchPopUp()
+        public ICommand ResetPassword => new Command(resetpassword);
+        public ForgotPassword()
         {
             InitializeComponent();
-            this.CloseWhenBackgroundIsClicked = false;
+            BindingContext = this;
         }
 
-        public async Task closePopup()
+        async public void resetpassword()
         {
             await Navigation.PopPopupAsync();
         }

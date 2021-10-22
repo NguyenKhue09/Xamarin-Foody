@@ -3,13 +3,11 @@ using Foody.Views;
 using Foody.Views.PopUp;
 using MvvmHelpers;
 using Rg.Plugins.Popup.Extensions;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
+using System.Linq;
 using Xamarin.Forms;
+using System.Collections.Generic;
 
 namespace Foody.ViewModels
 {
@@ -17,12 +15,20 @@ namespace Foody.ViewModels
     {
         public int SelectedTabIndex { get; set; }
 
+       
+        public List<string> cuisineList { get; set; }
+        public List<string> intolerancesList { get; set; }
+
         public ObservableRangeCollection<Result> PopularRecipes { get; set; }
+        public ObservableRangeCollection<Result> SearchRecipes { get; set; }
         public Command NavToPantry { get; }
         public Command Test { get; }
 
-        public Command ChipSelectedCommand { get; }
-        public Command ChipUnselectedCommand { get; }
+        public Command ChipCuisineSelectedCommand { get; }
+        public Command ChipCuisineUnselectedCommand { get; }
+
+        public Command ChipIntolerancesSelectedCommand { get; }
+        public Command ChipIntolerancesUnselectedCommand { get; }
 
 
         INavigation Navigation;
@@ -31,10 +37,15 @@ namespace Foody.ViewModels
         {
             Navigation = MainPageNav;
             PopularRecipes = new ObservableRangeCollection<Result>();
+            SearchRecipes = new ObservableRangeCollection<Result>();
             NavToPantry = new Command(async () => await OpenOtherPage(), () => !IsBusy);
             Test = new Command(async () => await showpopup_Clicked(), () => !IsBusy);
-            ChipSelectedCommand = new Command<string>(chipSelected);
-            ChipUnselectedCommand = new Command<string>(chipUnSelected);
+            ChipCuisineSelectedCommand = new Command<string>(chipCuisineSelected);
+            ChipCuisineUnselectedCommand = new Command<string>(chipCuisineUnSelected);
+            ChipIntolerancesSelectedCommand = new Command<string>(chipIntolerancesSelected);
+            ChipIntolerancesUnselectedCommand = new Command<string>(chipIntolerancesUnSelected);
+            intolerancesList = new List<string>();
+            cuisineList = new List<string>();
         }
 
         public async Task OpenOtherPage()
@@ -50,10 +61,19 @@ namespace Foody.ViewModels
             PopularRecipes.AddRange(results.results);
         }
 
-        async private Task showpopup_Clicked()
+        async public void GetSearchRecipes(string query, string cuisine, string intolerances)
+        {
+            Recipe results = new Recipe();
+
+            results = await App.RecipeManager.SearchRecipes(query, cuisine, intolerances);
+            SearchRecipes.AddRange(results.results);
+        }
+
+        async public Task showpopup_Clicked()
         {
             await Navigation.PushPopupAsync(new SearchPopUp());
         }
+
 
         public PantryViewModel()
         {
@@ -61,14 +81,38 @@ namespace Foody.ViewModels
         }
 
 
-        public void chipSelected(string value)
+        public void chipCuisineSelected(string value)
         {
+            if(!cuisineList.Contains(value))
+            {
+                cuisineList.Add(value);
+            }
             Debug.WriteLine($"S + {value}");
-
         }
 
-        public void chipUnSelected(string value)
+        public void chipCuisineUnSelected(string value)
         {
+            if(value != "" || value != null)
+            {
+                cuisineList.Remove(value);
+            }
+        }
+
+        public void chipIntolerancesSelected(string value)
+        {
+            if (!intolerancesList.Contains(value))
+            {
+                intolerancesList.Add(value);
+            }
+            Debug.WriteLine($"S + {value}");
+        }
+
+        public void chipIntolerancesUnSelected(string value)
+        {
+            if (value != "" || value != null)
+            {
+                intolerancesList.Remove(value);
+            }
             Debug.WriteLine($"U + {value}");
 
         }

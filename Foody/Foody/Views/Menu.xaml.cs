@@ -16,5 +16,10 @@ namespace Foody.Views
         {
             InitializeComponent();
         }
+
+        private void test_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Login());
+        }
     }
 }

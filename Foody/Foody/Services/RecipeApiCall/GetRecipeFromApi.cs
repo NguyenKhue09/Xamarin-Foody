@@ -1,4 +1,6 @@
 ﻿using Foody.Models;
+using Foody.ViewModels;
+using Foody.Views.PopUp;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,10 +16,13 @@ namespace Foody.Services.RecipeApiCall
     {
         HttpClient client;
         JsonSerializerOptions serializerOptions;
+        private PantryViewModel pantryViewModel = new PantryViewModel();
+        private SearchPopUp searchPopUp = new SearchPopUp();
 
         public Recipe Recipes { get; private set; }
         public Recipe RandomRecipes { get; private set; }
         public Recipe PopularRecipes { get; private set; }
+        public Recipe SearchRecipesList { get; private set; }
 
 
         public RestService()
@@ -101,6 +106,48 @@ namespace Foody.Services.RecipeApiCall
             }
 
             return PopularRecipes;
+        }
+
+        public async Task<Recipe> SearchRecipes(string query, string cuisine, string intolerances)
+        {
+
+            SearchRecipesList = new Recipe();
+
+            Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/recipes/complexSearch?number=" +
+                $"{Constants.Constants.NUMBER}&apiKey={Constants.Constants.APIKEY}&type={Constants.Constants.POPULAR_RECIPE_TYPE}" +
+                $"&diet={Constants.Constants.POPULAR_DIET}&addRecipesInformation={Constants.Constants.ADDRECIPEINFORMATION}" +
+                $"&fillIngredients={Constants.Constants.FILLINGREDIENTS}&addRecipeNutrition={Constants.Constants.RECIPENUTRITION}" +
+                $"&query={query}&cuisine={cuisine}&intolerances={intolerances}", string.Empty));
+            try
+            {
+
+                HttpResponseMessage response = await client.GetAsync(uri);
+                Debug.WriteLine("CallAPI");
+                await pantryViewModel.showpopup_Clicked();
+                if (response.IsSuccessStatusCode)
+                {
+
+                    
+                    string content = await response.Content.ReadAsStringAsync();
+                    SearchRecipesList = JsonSerializer.Deserialize<Recipe>(content, serializerOptions);
+                    Debug.WriteLine("ThanhCong");
+                    await searchPopUp.closePopup();
+                }
+                else
+                {
+                    Debug.WriteLine("Thatbai");
+                    SearchRecipesList.results = new List<Result>();
+                    await searchPopUp.closePopup();
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
+
+            return SearchRecipesList;
         }
 
         public async Task<Recipe> GetRandomRecipes()
