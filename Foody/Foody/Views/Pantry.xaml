@@ -467,6 +467,18 @@
                     <ContentView TabIndex="2">
                         <ScrollView>
                             <StackLayout>
+
+                                <Grid BackgroundColor="White" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Label Text="Keyword(s)" VerticalOptions="Start" HorizontalOptions="Start" Grid.Column="0" Grid.Row="0" Padding="8" FontAttributes="Bold" TextColor="Black" FontSize="18"/>
+                                    <Frame CornerRadius="10" Padding="8,0,0,0" Margin="20,0,20,20"  BorderColor="Gray" Grid.Column="0" Grid.Row="1">
+                                        <controls:CustomEntry x:Name="searchRecipes" Keyboard="Text" FontSize="18" HeightRequest="55" Placeholder="example: Pumpkin Pie" ></controls:CustomEntry>
+                                    </Frame>
+                                </Grid>
+                                
                                 <Grid BackgroundColor="White">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"></RowDefinition>

@@ -19,7 +19,7 @@ namespace Foody.Views
 
         private void test_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new CreateAccount());
+            Navigation.PushAsync(new Login());
         }
     }
 }

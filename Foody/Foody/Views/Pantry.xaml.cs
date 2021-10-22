@@ -18,13 +18,13 @@ namespace Foody.Views
     {
         private readonly PantryViewModel pantryViewModel;
 
-        private  string querySearch { get; set; }
-       
+        private string querySearch { get; set; }
+
         public Pantry()
         {
             InitializeComponent();
             CheckFavorite(true);
-            BindingContext = pantryViewModel = new PantryViewModel( Navigation );
+            BindingContext = pantryViewModel = new PantryViewModel(Navigation);
         }
 
         protected override void OnAppearing()
@@ -68,7 +68,7 @@ namespace Foody.Views
                 ptManage.IsVisible = false;
                 tabPantry.Height = new GridLength(0.33, GridUnitType.Star);
             }
-           
+
         }
         async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
@@ -106,6 +106,5 @@ namespace Foody.Views
             await Navigation.PushPopupAsync(new SearchPopUp());
         }
 
-        
     }
 }
