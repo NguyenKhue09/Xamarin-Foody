@@ -67,6 +67,7 @@ namespace Foody.ViewModels
 
             results = await App.RecipeManager.SearchRecipes(query, cuisine, intolerances);
             SearchRecipes.AddRange(results.results);
+
         }
 
         async public Task showpopup_Clicked()
