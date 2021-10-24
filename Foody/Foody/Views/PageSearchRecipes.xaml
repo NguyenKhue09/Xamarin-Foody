@@ -32,22 +32,21 @@
             </FlexLayout>
 
             <CollectionView
-                        
-                        x:Name="favorite_Recipes_Foody"
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        HeightRequest="100"
-                        SelectionMode="Single"
-                        ItemsSource="{Binding results}"
-                        ItemsLayout="VerticalGrid, 2">
+                VerticalScrollBarVisibility="Never"
+                x:Name="favorite_Recipes_Foody"
+                Grid.Row="1"
+                Grid.Column="0"
+                HeightRequest="100"
+                SelectionMode="Single"
+                ItemsSource="{Binding results}"
+                ItemsLayout="VerticalGrid, 2">
 
 
                 <d:CollectionView.ItemsLayout>
                     <GridItemsLayout
                                 Orientation="Vertical"
                                 HorizontalItemSpacing="8"
-                                SnapPointsType="MandatorySingle"
-                                SnapPointsAlignment="Center"
+                                
                                 Span="2"/>
                 </d:CollectionView.ItemsLayout>
 
