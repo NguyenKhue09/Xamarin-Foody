@@ -70,7 +70,7 @@ namespace Foody.ViewModels
             if(results != null && results.results.Count > 0)
             {
                 Debug.WriteLine(results.results.Count.ToString());
-                Navigation.PushAsync(new PageSearchRecipes());
+                Navigation.PushAsync(new PageSearchRecipes(results));
             }    
         }
 
