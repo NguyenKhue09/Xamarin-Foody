@@ -46,11 +46,8 @@
                     <GridItemsLayout
                                 Orientation="Vertical"
                                 HorizontalItemSpacing="8"
-                                
                                 Span="2"/>
                 </d:CollectionView.ItemsLayout>
-
-
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>

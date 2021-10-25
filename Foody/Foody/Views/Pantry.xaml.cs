@@ -1,8 +1,10 @@
-﻿using Foody.ViewModels;
+﻿using Foody.Models;
+using Foody.ViewModels;
 using Foody.Views.PopUp;
 using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -108,6 +110,5 @@ namespace Foody.Views
                 throw ex;
             }
         }
-
     }
 }

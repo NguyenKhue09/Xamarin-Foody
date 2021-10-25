@@ -15,7 +15,6 @@ namespace Foody.ViewModels
     {
         public int SelectedTabIndex { get; set; }
 
-       
         public List<string> cuisineList { get; set; }
         public List<string> intolerancesList { get; set; }
 
@@ -121,5 +120,7 @@ namespace Foody.ViewModels
             Debug.WriteLine($"U + {value}");
 
         }
+
+        
     }
 }
