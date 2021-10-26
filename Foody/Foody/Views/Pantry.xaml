@@ -111,42 +111,7 @@
                 <tabs1:ViewSwitcher x:Name="Switcher" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}" Grid.Row="1" Grid.Column="0">
                     <!--page 1-->
                     <ContentView TabIndex="0">
-                        <!--<StackLayout>
-                            <yummy:PancakeView BackgroundColor="White" VerticalOptions="StartAndExpand" 
-                                    HorizontalOptions="FillAndExpand" Shadow="{yummy:ShadowMarkup BlurRadius=3}" CornerRadius="10" Margin="16">
-                                <behaviors:Expander>
-                                <behaviors:Expander.Header>
-                                    <Grid HorizontalOptions="FillAndExpand">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Label Text="abc" TextColor="Black" FontSize="15" Grid.Column="0" Padding="8"/>
-                                        <Label Text="xyz" TextColor="#2F3246" FontSize="12" Grid.Column="1" Padding="8"/>
-
-                                    </Grid>
-                                </behaviors:Expander.Header>
-                                    <Grid HorizontalOptions="FillAndExpand">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="3.5*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <StackLayout Grid.Column="2" Spacing="10">
-                                            <Label Text="SPEAKERS" TextColor="Black" Opacity="0.5" FontSize="10" Margin="20,0"/>
-                                            <Label Text="SPEAKERS" TextColor="Black" Opacity="0.5" FontSize="10" Margin="20,0"/>
-                                            <Label Text="SPEAKERS" TextColor="Black" Opacity="0.5" FontSize="10" Margin="20,0"/>
-                                            <Label Text="SPEAKERS" TextColor="Black" Opacity="0.5" FontSize="10" Margin="20,0"/>
-                                            <Label Text="SPEAKERS" TextColor="Black" Opacity="0.5" FontSize="10" Margin="20,0"/>
-                                            <Label Text="SPEAKERS" TextColor="Black" Opacity="0.5" FontSize="10" Margin="20,0"/>
-
-                                        </StackLayout>
-                                    </Grid>
-                                </behaviors:Expander>
-                            </yummy:PancakeView>
-                            
-                        </StackLayout>-->
+                        
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition x:Name="PTnormal"/>
@@ -177,9 +142,15 @@
                                     </Label>
                                 </yummy:PancakeView>
                             </StackLayout>
-                            <ScrollView VerticalScrollBarVisibility="Never" Grid.Column="0" Grid.Row="1">
-                               
-                            <yummy:PancakeView BackgroundColor="White" VerticalOptions="StartAndExpand" 
+                                <!--tesst-->
+                            <!--<CollectionView VerticalScrollBarVisibility="Never" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding MyAgenda}">
+                                <CollectionView.ItemsLayout>
+                                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="20"/>
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+
+                                        <yummy:PancakeView BackgroundColor="White" VerticalOptions="StartAndExpand" 
                                     HorizontalOptions="FillAndExpand" Shadow="{yummy:ShadowMarkup BlurRadius=3}" CornerRadius="10" Margin="16">
                                 <behaviors:Expander Tapped="TapGestureRecognizer_Tapped_1">
                                 <behaviors:Expander.Header>
@@ -189,32 +160,74 @@
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Label Text="abc" TextColor="Black" FontSize="15" Grid.Column="0" Padding="8"/>
-                                        <Image Source="{Binding IconExpand}" Grid.Column="1" Margin="8"></Image>
+                                              <Label Text="{Binding Topic}" TextColor="Black" FontSize="18" Grid.Column="0" Padding="10"/>
+                                            <Image Source="{Binding IconExpand}" Grid.Column="1" Margin="8"></Image>
                                         
 
                                     </Grid>
                                 </behaviors:Expander.Header>
-                                    <Grid HorizontalOptions="FillAndExpand">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="3.5*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <StackLayout Grid.Column="2" Spacing="10">
-                                            <Label Text="SPEAKERS" TextColor="Black" Opacity="0.5" FontSize="10" Margin="20,0"/>
-                                            <Label Text="SPEAKERS" TextColor="Black" Opacity="0.5" FontSize="10" Margin="20,0"/>
-                                            <Label Text="SPEAKERS" TextColor="Black" Opacity="0.5" FontSize="10" Margin="20,0"/>
-                                            <Label Text="SPEAKERS" TextColor="Black" Opacity="0.5" FontSize="10" Margin="20,0"/>
-                                            <Label Text="SPEAKERS" TextColor="Black" Opacity="0.5" FontSize="10" Margin="20,0"/>
-                                            <Label Text="SPEAKERS" TextColor="Black" Opacity="0.5" FontSize="10" Margin="20,0"/>
-
-                                        </StackLayout>
-                                    </Grid>
-                                </behaviors:Expander>
+                                                <StackLayout BindableLayout.ItemsSource="{Binding Speakers}" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,0,0,20">
+                                                    <BindableLayout.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Label TextColor="#2F3246" FontSize="12">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <FormattedString.Spans>
+                                                                            <Span Text="{Binding image}"/>
+                                                                            <Span Text=" - "/>
+                                                                            <Span Text="{Binding Name}" FontAttributes="Bold"/>
+                                                                        </FormattedString.Spans>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+                                                        </DataTemplate>
+                                                    </BindableLayout.ItemTemplate>
+                                                </StackLayout>
+                                            </behaviors:Expander>
                             </yummy:PancakeView>
-                            
-                            </ScrollView>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>-->
+                                
+                            <!--<ScrollView VerticalScrollBarVisibility="Never" Grid.Column="0" Grid.Row="1">
+                                <ListView  x:Name="GroupedViewManage"
+                                    GroupDisplayBinding="{Binding Title}"
+                                    RowHeight="75"
+                                    IsGroupingEnabled="true">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Grid >
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="1.5*"/>
+                                                        <ColumnDefinition Width="0.75*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Text="{Binding Name}" Grid.Column="0" Grid.Row="0"/>
+                                                    <Label Text="{Binding image}" Grid.Column="1" Grid.Row="0"/>
+                                                </Grid>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                    <ListView.GroupHeaderTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <StackLayout Orientation="Horizontal" Padding="5,5,5,5" BackgroundColor="#E2F5F9">
+                                                    <Label Text="{Binding Title}"
+                                                           TextColor="#005569"
+                                                             FontSize="15"
+                                                             VerticalOptions="Center"/>     
+                                                    <Button Image="{Binding StateIcon}"
+                                                          BackgroundColor="Transparent"
+                                                          BorderColor="Transparent"
+                                                          BorderWidth="0"
+                                                          Clicked="Button_Clicked" 
+                                                      CommandParameter="{Binding .}"/>
+                                                </StackLayout>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.GroupHeaderTemplate>
+                                </ListView>
+                            </ScrollView>-->
                             </Grid>
                     </ContentView>
                     <!--page 2-->

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using Xamarin.Forms;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Foody.ViewModels
 {
@@ -29,23 +30,6 @@ namespace Foody.ViewModels
         public Command ChipIntolerancesSelectedCommand { get; }
         public Command ChipIntolerancesUnselectedCommand { get; }
 
-        //
-        public bool isExpanded;
-        public string iconExpand;
-
-        public bool IsExpanded
-        {
-            get { return isExpanded; }
-            set { SetProperty(ref isExpanded, value); }
-        }
-
-        public string IconExpand
-        {
-            get { return iconExpand; }
-            set { SetProperty(ref iconExpand, value); }
-        }
-
-
         INavigation Navigation;
 
         public PantryViewModel(INavigation MainPageNav)
@@ -61,12 +45,9 @@ namespace Foody.ViewModels
             ChipIntolerancesUnselectedCommand = new Command<string>(chipIntolerancesUnSelected);
             intolerancesList = new List<string>();
             cuisineList = new List<string>();
-            IconExpand = "down.png";
-            IsExpanded = false;
-
         }
 
-    public async Task OpenOtherPage()
+        public async Task OpenOtherPage()
         {
             await Navigation.PushAsync(new PagePantrySetting());
         }
@@ -85,11 +66,11 @@ namespace Foody.ViewModels
 
             results = await App.RecipeManager.SearchRecipes(query, cuisine, intolerances);
             SearchRecipes.AddRange(results.results);
-            if(results != null && results.results.Count > 0)
+            if (results != null && results.results.Count > 0)
             {
                 Debug.WriteLine(results.results.Count.ToString());
                 await Navigation.PushAsync(new PageSearchRecipes(results));
-            }    
+            }
         }
 
         async public Task showpopup_Clicked()
@@ -106,7 +87,7 @@ namespace Foody.ViewModels
 
         public void chipCuisineSelected(string value)
         {
-            if(!cuisineList.Contains(value))
+            if (!cuisineList.Contains(value))
             {
                 cuisineList.Add(value);
             }
@@ -115,7 +96,7 @@ namespace Foody.ViewModels
 
         public void chipCuisineUnSelected(string value)
         {
-            if(value != "" || value != null)
+            if (value != "" || value != null)
             {
                 cuisineList.Remove(value);
             }
@@ -140,11 +121,6 @@ namespace Foody.ViewModels
 
         }
 
-        public void changeExpand()
-        {
-            IsExpanded = !IsExpanded;
-            IconExpand = IsExpanded ? "up.png" : "down.png";
-        }
-        
-    }
+    } 
+    
 }
