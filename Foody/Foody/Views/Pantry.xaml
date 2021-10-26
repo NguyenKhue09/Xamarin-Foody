@@ -189,45 +189,7 @@
                                 </CollectionView.ItemTemplate>
                             </CollectionView>-->
                                 
-                            <!--<ScrollView VerticalScrollBarVisibility="Never" Grid.Column="0" Grid.Row="1">
-                                <ListView  x:Name="GroupedViewManage"
-                                    GroupDisplayBinding="{Binding Title}"
-                                    RowHeight="75"
-                                    IsGroupingEnabled="true">
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <ViewCell>
-                                                <Grid >
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="1.5*"/>
-                                                        <ColumnDefinition Width="0.75*"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Label Text="{Binding Name}" Grid.Column="0" Grid.Row="0"/>
-                                                    <Label Text="{Binding image}" Grid.Column="1" Grid.Row="0"/>
-                                                </Grid>
-                                            </ViewCell>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                    <ListView.GroupHeaderTemplate>
-                                        <DataTemplate>
-                                            <ViewCell>
-                                                <StackLayout Orientation="Horizontal" Padding="5,5,5,5" BackgroundColor="#E2F5F9">
-                                                    <Label Text="{Binding Title}"
-                                                           TextColor="#005569"
-                                                             FontSize="15"
-                                                             VerticalOptions="Center"/>     
-                                                    <Button Image="{Binding StateIcon}"
-                                                          BackgroundColor="Transparent"
-                                                          BorderColor="Transparent"
-                                                          BorderWidth="0"
-                                                          Clicked="Button_Clicked" 
-                                                      CommandParameter="{Binding .}"/>
-                                                </StackLayout>
-                                            </ViewCell>
-                                        </DataTemplate>
-                                    </ListView.GroupHeaderTemplate>
-                                </ListView>
-                            </ScrollView>-->
+                            
                             </Grid>
                     </ContentView>
                     <!--page 2-->

@@ -18,9 +18,6 @@ namespace Foody.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Pantry : ContentPage
     {
-        //thu 
-        //private ObservableCollection<GroupManage> _allGroups;
-        //private ObservableCollection<GroupManage> _expandedGroups;
 
         private readonly PantryViewModel pantryViewModel;
 
@@ -31,8 +28,7 @@ namespace Foody.Views
             InitializeComponent();
             CheckFavorite(true);
             BindingContext = pantryViewModel = new PantryViewModel(Navigation);
-            //_allGroups = GroupManage.All;
-            //UpdateListContent();
+            
         }
 
         protected override void OnAppearing()
@@ -117,32 +113,6 @@ namespace Foody.Views
             }
         }
 
-        //private void Button_Clicked(object sender, EventArgs e)
-        //{
-        //    int selectedIndex = _expandedGroups.IndexOf(
-        //        ((GroupManage)((Button)sender).CommandParameter));
-        //    _allGroups[selectedIndex].Expanded = !_allGroups[selectedIndex].Expanded;
-        //    UpdateListContent();
-        //}
-        //private void UpdateListContent()
-        //{
-        //    _expandedGroups = new ObservableCollection<GroupManage>();
-        //    foreach (GroupManage group in _allGroups)
-        //    {
-        //        //Create new FoodGroups so we do not alter original list
-        //        GroupManage newGroup = new GroupManage(group.Title, group.Expanded);
-        //        //Add the count of food items for Lits Header Titles to use
-        //        newGroup.FoodCount = group.Count;
-        //        if (group.Expanded)
-        //        {
-        //            foreach (Speaker speaker in group)
-        //            {
-        //                newGroup.Add(speaker);
-        //            }
-        //        }
-        //        _expandedGroups.Add(newGroup);
-        //    }
-        //    GroupedViewManage.ItemsSource = _expandedGroups;
-        //}
+       
     }
 }
