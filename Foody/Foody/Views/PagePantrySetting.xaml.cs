@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Foody.Data.Local;
+using Foody.Models.Local;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +18,26 @@ namespace Foody.Views
         public PagePantrySetting()
         {
             InitializeComponent();
+        }
+
+        async private void Button_Clicked(object sender, EventArgs e)
+        {
+            var item = new ingredient
+            {
+                aisleBelong = "bakery",
+                ingredientName = "cake",
+                ingredientImg = ""
+            };
+
+            IngredientsDatabase database = await IngredientsDatabase.Instance;
+            await database.SaveIngredientAsync(item);
+        }
+
+        async private void Button_Clicked_1(object sender, EventArgs e)
+        {
+            IngredientsDatabase database = await IngredientsDatabase.Instance;
+            List<ingredient> results =  await database.GetIngredientAsync();
+            Debug.WriteLine(results[0].aisleBelong);
         }
     }
 }

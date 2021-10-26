@@ -5,9 +5,12 @@
              Shell.TabBarIsVisible="False">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Button  Text="Save" Clicked="Button_Clicked">
+                
+            </Button>
+            <Button  Text="Get" Clicked="Button_Clicked_1">
+
+            </Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
