@@ -111,52 +111,16 @@
                 <tabs1:ViewSwitcher x:Name="Switcher" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}" Grid.Row="1" Grid.Column="0">
                     <!--page 1-->
                     <ContentView TabIndex="0">
-                        <StackLayout>
-                            <yummy:PancakeView BackgroundColor="White" VerticalOptions="StartAndExpand" 
-                                    HorizontalOptions="FillAndExpand" Shadow="{yummy:ShadowMarkup BlurRadius=3}" CornerRadius="10" Margin="16">
-                                <behaviors:Expander>
-                                <behaviors:Expander.Header>
-                                    <Grid HorizontalOptions="FillAndExpand">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Label Text="abc" TextColor="Black" FontSize="15" Grid.Column="0" Padding="8"/>
-                                        <Label Text="xyz" TextColor="#2F3246" FontSize="12" Grid.Column="1" Padding="8"/>
-
-                                    </Grid>
-                                </behaviors:Expander.Header>
-                                    <Grid HorizontalOptions="FillAndExpand">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="3.5*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <StackLayout Grid.Column="2" Spacing="10">
-                                            <Label Text="SPEAKERS" TextColor="Black" Opacity="0.5" FontSize="10" Margin="20,0"/>
-                                            <Label Text="SPEAKERS" TextColor="Black" Opacity="0.5" FontSize="10" Margin="20,0"/>
-                                            <Label Text="SPEAKERS" TextColor="Black" Opacity="0.5" FontSize="10" Margin="20,0"/>
-                                            <Label Text="SPEAKERS" TextColor="Black" Opacity="0.5" FontSize="10" Margin="20,0"/>
-                                            <Label Text="SPEAKERS" TextColor="Black" Opacity="0.5" FontSize="10" Margin="20,0"/>
-                                            <Label Text="SPEAKERS" TextColor="Black" Opacity="0.5" FontSize="10" Margin="20,0"/>
-
-                                        </StackLayout>
-                                    </Grid>
-                                </behaviors:Expander>
-                            </yummy:PancakeView>
-                            
-                        </StackLayout>
-                            <!--<Grid>
+                        <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition x:Name="PTnormal"/>
                                     <RowDefinition x:Name="PTlist"/>
                                 </Grid.RowDefinitions>
-                                <StackLayout Grid.Column="0" Grid.Row="0">
-                                    <Image Source="note.png" HorizontalOptions="CenterAndExpand" Margin="0,20" HeightRequest="200" WidthRequest="200"/>
-                                    <Label Text="It looks like your pantry is empty. Would you like to go through the pantry builder where you can quickly add many common items?"
+                            <StackLayout Grid.Column="0" Grid.Row="0">
+                                <Image Source="note.png" HorizontalOptions="CenterAndExpand" Margin="0,20" HeightRequest="200" WidthRequest="200"/>
+                                <Label Text="It looks like your pantry is empty. Would you like to go through the pantry builder where you can quickly add many common items?"
                                                FontSize="18" TextColor="Gray" HorizontalTextAlignment="Center" Margin="20,0"/>
-                                        <yummy:PancakeView  
+                                <yummy:PancakeView  
                                             BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,0"
                                             Margin="10,15"
                                             HeightRequest="60" WidthRequest="350"
@@ -176,19 +140,46 @@
                                                    HorizontalOptions="Center" VerticalOptions="Center">
                                     </Label>
                                 </yummy:PancakeView>
-                                </StackLayout>
+                            </StackLayout>
+                            <!--<ScrollView VerticalScrollBarVisibility="Never" Grid.Column="0" Grid.Row="1">
 
-                            
+                                <yummy:PancakeView BackgroundColor="White" VerticalOptions="StartAndExpand" 
+                                        HorizontalOptions="FillAndExpand" Shadow="{yummy:ShadowMarkup BlurRadius=3}" CornerRadius="10" Margin="16">
+                                    <behaviors:Expander Tapped="TapGestureRecognizer_Tapped_1">
+                                        <behaviors:Expander.Header>
+                                            <Grid HorizontalOptions="FillAndExpand">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Text="abc" TextColor="Black" FontSize="15" Grid.Column="0" Padding="8"/>
+                                                <Image Source="{Binding IconExpand}" Grid.Column="1" Margin="8"></Image>
 
 
+                                            </Grid>
+                                        </behaviors:Expander.Header>
+                                        <Grid HorizontalOptions="FillAndExpand">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="3.5*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackLayout Grid.Column="2" Spacing="10">
+                                                <Label Text="SPEAKERS" TextColor="Black" Opacity="0.5" FontSize="10" Margin="20,0"/>
+                                                <Label Text="SPEAKERS" TextColor="Black" Opacity="0.5" FontSize="10" Margin="20,0"/>
+                                                <Label Text="SPEAKERS" TextColor="Black" Opacity="0.5" FontSize="10" Margin="20,0"/>
+                                                <Label Text="SPEAKERS" TextColor="Black" Opacity="0.5" FontSize="10" Margin="20,0"/>
+                                                <Label Text="SPEAKERS" TextColor="Black" Opacity="0.5" FontSize="10" Margin="20,0"/>
+                                                <Label Text="SPEAKERS" TextColor="Black" Opacity="0.5" FontSize="10" Margin="20,0"/>
 
-                            --><!--Test--><!--
-                                <CollectionView VerticalScrollBarVisibility="Never" Grid.Column="0" Grid.Row="1">
-                                      
-                                </CollectionView>
+                                            </StackLayout>
+                                        </Grid>
+                                    </behaviors:Expander>
+                                </yummy:PancakeView>
 
-
-                            </Grid>-->
+                            </ScrollView>-->
+                            </Grid>
                     </ContentView>
                     <!--page 2-->
                     <ContentView TabIndex="1" Padding="8,0,0,8" >

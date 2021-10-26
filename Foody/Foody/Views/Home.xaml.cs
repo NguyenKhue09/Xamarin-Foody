@@ -84,7 +84,7 @@ namespace Foody.Views
             favorite_Recipes_Foody.SelectedItem = null;
         }
 
-        async private void collectionView_Popular_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void collectionView_Popular_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
         }
 

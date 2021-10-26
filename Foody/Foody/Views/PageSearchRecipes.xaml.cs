@@ -14,19 +14,13 @@ namespace Foody.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageSearchRecipes : ContentPage
     {
-        public ObservableRangeCollection<Result> Recipes { get; set; }
-        public PageSearchRecipes()
+        
+        public PageSearchRecipes(Recipe results)
         {
             InitializeComponent();
-            BindingContext = Recipes = new ObservableRangeCollection<Result>();
+            BindingContext = results;
         }
-        async public void GetRecipes()
-        {
-            Recipe results = new Recipe();
-
-            results = await App.RecipeManager.GetRecipes();
-            Recipes.AddRange(results.results);
-        }
+        
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {

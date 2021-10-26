@@ -7,8 +7,11 @@ namespace Foody.Models.Local
 {
     public class aisle
     {
+
         public string aisleName { get; set; }
 
         public ObservableCollection<ingredient> Ingredients { get; set; }
+
+
     }
 }

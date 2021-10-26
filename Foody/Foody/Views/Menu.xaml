@@ -1,10 +1,113 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Foody.Views.Menu">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="Foody.Views.Menu"
+            Shell.TabBarIsVisible="False"
+             BackgroundColor="#f5f5f5">
     <ContentPage.Content>
         <StackLayout>
-            <Button Text="Alooo" x:Name="test" Clicked="test_Clicked"/>
+            <yummy:PancakeView   BackgroundColor="#07BDF6" CornerRadius="0,0,10,10"  WidthRequest="500" HeightRequest="80" Margin="0,0,0,15">
+                <Label Text="Menu" FontSize="28" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" TextColor="White" />
+            </yummy:PancakeView>
+            
+            <Frame  Margin="20,0,20,8" HasShadow="True" Padding="30,0" CornerRadius="12" >
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Frame.GestureRecognizers>
+                <Grid ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.8*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="menu0.png" VerticalOptions="Start" HorizontalOptions="Start" Grid.Column="0" Grid.Row="0" HeightRequest="60" />
+                    <Label Text="Home" TextColor="Black" FontSize="22" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Grid.Column="1" Grid.Row="0" />
+                </Grid>
+            </Frame>
+            
+            <Frame  Margin="20,0,20,8" HasShadow="True" Padding="30,0" CornerRadius="12">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                </Frame.GestureRecognizers>
+                <Grid ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.8*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="menu2.png" VerticalOptions="Start" HorizontalOptions="Start" Grid.Column="0" Grid.Row="0" HeightRequest="60" />
+                    <Label Text="Pantry" TextColor="Black" FontSize="22" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Grid.Column="1" Grid.Row="0" />
+                </Grid>
+            </Frame>
+            
+            <Frame  Margin="20,0,20,8" HasShadow="True" Padding="30,0" CornerRadius="12">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2"/>
+                </Frame.GestureRecognizers>
+                <Grid ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.8*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="menu3.png" VerticalOptions="Start" HorizontalOptions="Start" Grid.Column="0" Grid.Row="0" HeightRequest="60" />
+                    <Label Text="Shopping List" TextColor="Black" FontSize="22" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Grid.Column="1" Grid.Row="0" />
+                </Grid>
+            </Frame>
+            
+            <Frame  Margin="20,0,20,8" HasShadow="True" Padding="30,0" CornerRadius="12">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3"/>
+                </Frame.GestureRecognizers>
+                <Grid ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.8*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="menu4.png" VerticalOptions="Start" HorizontalOptions="Start" Grid.Column="0" Grid.Row="0" HeightRequest="60" />
+                    <Label Text="Facorite Recipes" TextColor="Black" FontSize="22" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Grid.Column="1" Grid.Row="0" />
+                </Grid>
+            </Frame>
+            
+            <Frame  Margin="20,0,20,8" HasShadow="True" Padding="30,0" CornerRadius="12">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_4"/>
+                </Frame.GestureRecognizers>
+                <Grid ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.8*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="menu5.png" VerticalOptions="Start" HorizontalOptions="Start" Grid.Column="0" Grid.Row="0" HeightRequest="60" />
+                    <Label Text="Meal Planner" TextColor="Black" FontSize="22" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Grid.Column="1" Grid.Row="0" />
+                </Grid>
+            </Frame>
+            
+            <Frame  Margin="20,0,20,8" HasShadow="True" Padding="30,0" CornerRadius="12">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_5"/>
+                </Frame.GestureRecognizers>
+                <Grid ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.8*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="menu6.png" VerticalOptions="Start" HorizontalOptions="Start" Grid.Column="0" Grid.Row="0" HeightRequest="60" />
+                    <Label Text="Account" TextColor="Black" FontSize="25" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Grid.Column="1" Grid.Row="0" />
+                </Grid>
+            </Frame>
+            
+            <Frame  Margin="20,0,20,8" HasShadow="True" Padding="30,0" CornerRadius="12">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_6"/>
+                </Frame.GestureRecognizers>
+                <Grid ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.8*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="menu7.png" VerticalOptions="Start" HorizontalOptions="Start" Grid.Column="0" Grid.Row="0" HeightRequest="60" />
+                    <Label Text="Logout" TextColor="Black" FontSize="22" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Grid.Column="1" Grid.Row="0" />
+                </Grid>
+            </Frame>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

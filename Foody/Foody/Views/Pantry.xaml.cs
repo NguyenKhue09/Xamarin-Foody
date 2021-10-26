@@ -1,8 +1,10 @@
-﻿using Foody.ViewModels;
+﻿using Foody.Models;
+using Foody.ViewModels;
 using Foody.Views.PopUp;
 using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -35,21 +37,21 @@ namespace Foody.Views
         }
         void CheckFavorite(bool x)
         {
-            //if (x)
-            //{
+            if (x)
+            {
 
-            //    lb.Height = new GridLength(0.4, GridUnitType.Star);
-            //    col.Height = new GridLength(0.98, GridUnitType.Star);
-            //    PTnormal.Height = 0;
-            //    PTlist.Height = new GridLength(1, GridUnitType.Star);
-            //}
-            //else
-            //{
-            //    lb.Height = 0;
-            //    col.Height = 0;
-            //    PTnormal.Height = new GridLength(1, GridUnitType.Star);
-            //    PTlist.Height = 0;
-            //}
+                lb.Height = new GridLength(0.4, GridUnitType.Star);
+                col.Height = new GridLength(0.98, GridUnitType.Star);
+                PTnormal.Height = 0;
+                PTlist.Height = new GridLength(1, GridUnitType.Star);
+            }
+            else
+            {
+                lb.Height = 0;
+                col.Height = 0;
+                PTnormal.Height = new GridLength(1, GridUnitType.Star);
+                PTlist.Height = 0;
+            }
 
         }
         private void TabPantry_SelectedTabIndexChanged(object sender, SelectedPositionChangedEventArgs e)
@@ -109,5 +111,9 @@ namespace Foody.Views
             }
         }
 
+        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+            pantryViewModel.changeExpand();
+        }
     }
 }

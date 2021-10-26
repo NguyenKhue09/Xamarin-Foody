@@ -30,7 +30,7 @@ namespace Foody.Views
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Login());
+            Navigation.PopAsync();
         }
 
         async private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
