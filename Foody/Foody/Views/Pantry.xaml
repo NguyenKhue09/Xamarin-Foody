@@ -143,7 +143,7 @@
                                 </yummy:PancakeView>
                             </StackLayout>
                                 <!--tesst-->
-                            <!--<CollectionView VerticalScrollBarVisibility="Never" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding MyAgenda}">
+                                <!--CollectionView VerticalScrollBarVisibility="Never" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding MyAgenda}">
                                 <CollectionView.ItemsLayout>
                                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="20"/>
                                 </CollectionView.ItemsLayout>
@@ -152,7 +152,7 @@
 
                                         <yummy:PancakeView BackgroundColor="White" VerticalOptions="StartAndExpand" 
                                     HorizontalOptions="FillAndExpand" Shadow="{yummy:ShadowMarkup BlurRadius=3}" CornerRadius="10" Margin="16">
-                                <behaviors:Expander Tapped="TapGestureRecognizer_Tapped_1">
+                                <behaviors:Expander Tapped="Expander_Tapped">
                                 <behaviors:Expander.Header>
                                     <Grid HorizontalOptions="FillAndExpand">
                                         <Grid.ColumnDefinitions>

@@ -113,6 +113,5 @@ namespace Foody.Views
             }
         }
 
-       
     }
 }
