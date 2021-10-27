@@ -113,5 +113,10 @@ namespace Foody.Views
             }
         }
 
+
+        private void Expander_Tapped_1(object sender, EventArgs e)
+        {
+            pantryViewModel.changeExpand();
+        }
     }
 }

@@ -30,6 +30,24 @@ namespace Foody.ViewModels
         public Command ChipIntolerancesSelectedCommand { get; }
         public Command ChipIntolerancesUnselectedCommand { get; }
 
+        //
+        public bool isExpanded;
+        public string iconExpand;
+
+        public bool IsExpanded
+        {
+            get { return isExpanded; }
+            set { SetProperty(ref isExpanded, value); }
+        }
+
+        public string IconExpand
+        {
+            get { return iconExpand; }
+            set { SetProperty(ref iconExpand, value); }
+        }
+
+        //
+
         INavigation Navigation;
 
         public PantryViewModel(INavigation MainPageNav)
@@ -45,6 +63,9 @@ namespace Foody.ViewModels
             ChipIntolerancesUnselectedCommand = new Command<string>(chipIntolerancesUnSelected);
             intolerancesList = new List<string>();
             cuisineList = new List<string>();
+            IconExpand = "down.png";
+            IsExpanded = true;
+            changeExpand();
         }
 
         public async Task OpenOtherPage()
@@ -120,7 +141,11 @@ namespace Foody.ViewModels
             Debug.WriteLine($"U + {value}");
 
         }
-
+        public void changeExpand()
+        {
+            IsExpanded = !IsExpanded;
+            IconExpand = IsExpanded ? "up.png" : "down.png";
+        }
     } 
     
 }
