@@ -141,7 +141,17 @@
                                     </Label>
                                 </yummy:PancakeView>
                             </StackLayout>
+<<<<<<< HEAD
                             <!--<ScrollView VerticalScrollBarVisibility="Never" Grid.Column="0" Grid.Row="1">
+=======
+                                <!--tesst-->
+                               <!--<CollectionView VerticalScrollBarVisibility="Never" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding MyAgenda}">
+                                <CollectionView.ItemsLayout>
+                                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="20"/>
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+>>>>>>> d6f8144871d5aa4b9d1a67ad39d8e8c2bdb60e53
 
                                 <yummy:PancakeView BackgroundColor="White" VerticalOptions="StartAndExpand" 
                                         HorizontalOptions="FillAndExpand" Shadow="{yummy:ShadowMarkup BlurRadius=3}" CornerRadius="10" Margin="16">
@@ -156,6 +166,50 @@
                                                 <Label Text="abc" TextColor="Black" FontSize="15" Grid.Column="0" Padding="8"/>
                                                 <Image Source="{Binding IconExpand}" Grid.Column="1" Margin="8"></Image>
 
+<<<<<<< HEAD
+=======
+                                    </Grid>
+                                </behaviors:Expander.Header>
+                                                <StackLayout BindableLayout.ItemsSource="{Binding Speakers}" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,0,0,20">
+                                                    <BindableLayout.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Label TextColor="#2F3246" FontSize="12">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <FormattedString.Spans>
+                                                                            <Span Text="{Binding image}"/>
+                                                                            <Span Text=" - "/>
+                                                                            <Span Text="{Binding Name}" FontAttributes="Bold"/>
+                                                                        </FormattedString.Spans>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+                                                        </DataTemplate>
+                                                    </BindableLayout.ItemTemplate>
+                                                </StackLayout>
+                                            </behaviors:Expander>
+                            </yummy:PancakeView>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>-->
+
+                            <StackLayout Grid.Column="0" Grid.Row="1">
+                                <!--VerticalScrollBarVisibility="Never"-->
+
+                                <yummy:PancakeView BackgroundColor="White" VerticalOptions="StartAndExpand" 
+                                    HorizontalOptions="FillAndExpand" Shadow="{yummy:ShadowMarkup BlurRadius=3}" CornerRadius="10" Margin="16">
+                                    <behaviors:Expander Tapped="Expander_Tapped_1">
+                                        <behaviors:Expander.Header>
+                                            <Grid HorizontalOptions="FillAndExpand">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Text="abc" TextColor="Black" FontSize="15" Grid.Column="0" Padding="8"/>
+                                                <Image Source="{Binding IconExpand}" Grid.Column="1" Margin="8"></Image>
+
+>>>>>>> d6f8144871d5aa4b9d1a67ad39d8e8c2bdb60e53
 
                                             </Grid>
                                         </behaviors:Expander.Header>
@@ -178,8 +232,14 @@
                                     </behaviors:Expander>
                                 </yummy:PancakeView>
 
+<<<<<<< HEAD
                             </ScrollView>-->
                             </Grid>
+=======
+                            </StackLayout>
+
+                        </Grid>
+>>>>>>> d6f8144871d5aa4b9d1a67ad39d8e8c2bdb60e53
                     </ContentView>
                     <!--page 2-->
                     <ContentView TabIndex="1" Padding="8,0,0,8" >
