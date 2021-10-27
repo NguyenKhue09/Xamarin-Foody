@@ -111,12 +111,7 @@ namespace Foody.Views
             }
         }
 
-<<<<<<< HEAD
-        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
-=======
-
         private void Expander_Tapped_1(object sender, EventArgs e)
->>>>>>> d6f8144871d5aa4b9d1a67ad39d8e8c2bdb60e53
         {
             pantryViewModel.changeExpand();
         }

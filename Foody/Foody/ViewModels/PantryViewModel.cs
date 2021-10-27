@@ -45,10 +45,7 @@ namespace Foody.ViewModels
             set { SetProperty(ref iconExpand, value); }
         }
 
-<<<<<<< HEAD
-=======
-        //
->>>>>>> d6f8144871d5aa4b9d1a67ad39d8e8c2bdb60e53
+
 
         INavigation Navigation;
 
@@ -66,13 +63,9 @@ namespace Foody.ViewModels
             intolerancesList = new List<string>();
             cuisineList = new List<string>();
             IconExpand = "down.png";
-<<<<<<< HEAD
-            IsExpanded = false;
-
-=======
             IsExpanded = true;
             changeExpand();
->>>>>>> d6f8144871d5aa4b9d1a67ad39d8e8c2bdb60e53
+
         }
 
     public async Task OpenOtherPage()
@@ -148,20 +141,15 @@ namespace Foody.ViewModels
             Debug.WriteLine($"U + {value}");
 
         }
-<<<<<<< HEAD
 
-=======
->>>>>>> d6f8144871d5aa4b9d1a67ad39d8e8c2bdb60e53
         public void changeExpand()
         {
             IsExpanded = !IsExpanded;
             IconExpand = IsExpanded ? "up.png" : "down.png";
         }
-<<<<<<< HEAD
+
         
     }
-=======
-    } 
-    
->>>>>>> d6f8144871d5aa4b9d1a67ad39d8e8c2bdb60e53
-}
+
+} 
+
