@@ -31,21 +31,32 @@ namespace Foody.ViewModels
         public Command ChipIntolerancesUnselectedCommand { get; }
 
         //
-        public bool isExpanded;
-        public string iconExpand;
+        public ObservableCollection<GroupManager> Groups = new ObservableCollection<GroupManager>{
+                new GroupManager("Carbohydrates",
+                  new ObservableCollection<Speaker>{ new Speaker { Name = "pasta", Time = "Carb Snakes" },
+                    new Speaker { Name = "potato", Time = "The King of all Carbs" },
+                    new Speaker { Name = "bread", Time = "Soft & Gentle"},
+                    new Speaker { Name = "rice", Time = "Tiny grains of goodness" },
+                 }),
+                new GroupManager("Fruits",
+                   new ObservableCollection<Speaker>{ new Speaker { Name = "apple", Time = "Keep the Doctor away"},
+                    new Speaker { Name = "banana", Time = "This fruit is appeeling"},
+                    new Speaker { Name = "pear", Time = "Pear with me"},
+                }),
+                new GroupManager("Vegetables",
+                   new ObservableCollection<Speaker>{ new Speaker { Name = "carrot", Time = "Sounds like parrot"},
+                    new Speaker { Name = "green bean", Time = "The less popular cousin of the baked bean"},
+                    new Speaker { Name = "broccoli", Time = "Tiny food trees"},
+                    new Speaker { Name = "peas", Time = "Peas sir, can I have some more?"},
+                }),
+                new GroupManager("Dairy",
+                  new ObservableCollection<Speaker>{  new Speaker { Name = "Milk", Time = "Molk"},
+                    new Speaker { Name = "Cheese", Time = "Cheese + Potato = <3"},
+                    new Speaker { Name = "Ice Cream", Time = "Because I couldn't find an icon for yoghurt"},
 
-        public bool IsExpanded
-        {
-            get { return isExpanded; }
-            set { SetProperty(ref isExpanded, value); }
-        }
-
-        public string IconExpand
-        {
-            get { return iconExpand; }
-            set { SetProperty(ref iconExpand, value); }
-        }
-
+                })
+        };
+        public ObservableCollection<GroupManager> manager { get; set; }
         //
 
         INavigation Navigation;
@@ -63,8 +74,7 @@ namespace Foody.ViewModels
             ChipIntolerancesUnselectedCommand = new Command<string>(chipIntolerancesUnSelected);
             intolerancesList = new List<string>();
             cuisineList = new List<string>();
-            IconExpand = "down.png";
-            IsExpanded = true;
+            manager = new ObservableCollection<GroupManager>(Groups);
             changeExpand();
         }
 
@@ -143,9 +153,14 @@ namespace Foody.ViewModels
         }
         public void changeExpand()
         {
-            IsExpanded = !IsExpanded;
-            IconExpand = IsExpanded ? "up.png" : "down.png";
+            foreach (GroupManager group in manager)
+            {
+                group.IsExpanded = !group.IsExpanded;
+                group.IconExpand = group.IsExpanded ? "up.png" : "down.png";
+            }
         }
+
+        
     } 
     
 }
