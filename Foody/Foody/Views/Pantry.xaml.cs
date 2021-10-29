@@ -22,6 +22,7 @@ namespace Foody.Views
         private readonly PantryViewModel pantryViewModel;
 
         private string querySearch { get; set; }
+        
 
         public Pantry()
         {
@@ -29,6 +30,8 @@ namespace Foody.Views
             CheckFavorite(true);
             BindingContext = pantryViewModel = new PantryViewModel(Navigation);
             
+
+
         }
 
         protected override void OnAppearing()
@@ -114,9 +117,6 @@ namespace Foody.Views
         }
 
 
-        private void Expander_Tapped_1(object sender, EventArgs e)
-        {
-            pantryViewModel.changeExpand();
-        }
+        
     }
 }

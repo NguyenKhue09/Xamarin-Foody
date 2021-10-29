@@ -11,7 +11,7 @@ namespace Foody.Models
         public string Name { get; set; }
         public string Time { get; set; }
     }
-    public class GroupManager : INotifyPropertyChanged
+    public class GroupManager :INotifyPropertyChanged
     {
         public string Topic { get; set; }
 
@@ -47,15 +47,14 @@ namespace Foody.Models
             }
         }
 
-        public GroupManager(string topic, ObservableCollection<Speaker> speaker , string iconExpand = "down.png", bool isExpanded = true)
+        public GroupManager(string topic, ObservableCollection<Speaker> speaker, string iconExpand = "down.png", bool isExpanded = false)
         {
             Topic = topic;
             speakers = new ObservableCollection<Speaker>( speaker);
             IconExpand = iconExpand;
-            IsExpanded = new bool();
             IsExpanded = isExpanded;
         }
-        
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {

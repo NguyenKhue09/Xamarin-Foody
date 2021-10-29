@@ -31,6 +31,8 @@ namespace Foody.ViewModels
         public Command ChipIntolerancesUnselectedCommand { get; }
 
         //
+        public Command Checkmanager { get; }
+
         public ObservableCollection<GroupManager> Groups = new ObservableCollection<GroupManager>{
                 new GroupManager("Carbohydrates",
                   new ObservableCollection<Speaker>{ new Speaker { Name = "pasta", Time = "Carb Snakes" },
@@ -57,6 +59,7 @@ namespace Foody.ViewModels
                 })
         };
         public ObservableCollection<GroupManager> manager { get; set; }
+
         //
 
         INavigation Navigation;
@@ -74,8 +77,9 @@ namespace Foody.ViewModels
             ChipIntolerancesUnselectedCommand = new Command<string>(chipIntolerancesUnSelected);
             intolerancesList = new List<string>();
             cuisineList = new List<string>();
+            //
+            Checkmanager = new Command<string>(manager_SelectionChanged);
             manager = new ObservableCollection<GroupManager>(Groups);
-            changeExpand();
         }
 
         public async Task OpenOtherPage()
@@ -151,12 +155,25 @@ namespace Foody.ViewModels
             Debug.WriteLine($"U + {value}");
 
         }
-        public void changeExpand()
+        //
+        public void manager_SelectionChanged(string topic)
+        {
+            changeExpand(topic);
+        }
+        public void changeExpand(string item)
         {
             foreach (GroupManager group in manager)
             {
-                group.IsExpanded = !group.IsExpanded;
-                group.IconExpand = group.IsExpanded ? "up.png" : "down.png";
+                
+
+                if (item == group.Topic)
+                {
+                    group.IsExpanded = !group.IsExpanded;
+                    group.IconExpand = group.IsExpanded ? "up.png" : "down.png";
+                    Debug.WriteLine(group.IconExpand);
+                    Debug.WriteLine(item);
+                    Debug.WriteLine(group.Topic);
+                }
             }
         }
 
