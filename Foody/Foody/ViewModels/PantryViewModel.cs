@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using Xamarin.Forms;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Foody.ViewModels
 {
