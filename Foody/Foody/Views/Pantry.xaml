@@ -156,14 +156,14 @@
                                     HorizontalOptions="FillAndExpand" Shadow="{yummy:ShadowMarkup BlurRadius=3}" CornerRadius="10" Margin="16">
                                             <behaviors:Expander Command="{Binding Source={RelativeSource AncestorType={x:Type local:PantryViewModel}}, Path=Checkmanager}"
                                                                 CommandParameter="{Binding Topic}">
-                                <behaviors:Expander.Header >
+                                <behaviors:Expander.Header>
                                     <Grid HorizontalOptions="FillAndExpand">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
 
-                                              <Label Text="{Binding Topic}" TextColor="Black" FontSize="18" Grid.Column="0" Padding="10"/>
+                                            <Label Text="{Binding Topic}" TextColor="Black" FontSize="18" Grid.Column="0" Padding="10"/>
                                             <Image Source="{Binding IconExpand}" Grid.Column="1" Margin="8"></Image>
                                         
 
