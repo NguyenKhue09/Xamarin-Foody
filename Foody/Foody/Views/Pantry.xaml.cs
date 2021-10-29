@@ -21,6 +21,7 @@ namespace Foody.Views
         private readonly PantryViewModel pantryViewModel;
 
         private string querySearch { get; set; }
+        
 
         public Pantry()
         {
@@ -111,9 +112,7 @@ namespace Foody.Views
             }
         }
 
-        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
-        {
-            pantryViewModel.changeExpand();
-        }
+
+        
     }
 }
