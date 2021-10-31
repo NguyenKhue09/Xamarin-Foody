@@ -1,4 +1,5 @@
 ﻿using System;
+using Foody.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,11 @@ namespace Foody.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ShoppingList : ContentPage
     {
+        private readonly ShoppingListViewModel shoppingListViewModel;
         public ShoppingList()
         {
             InitializeComponent();
+            BindingContext = shoppingListViewModel = new ShoppingListViewModel();
         }
     }
 }
