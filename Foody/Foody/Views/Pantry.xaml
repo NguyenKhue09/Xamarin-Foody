@@ -143,21 +143,25 @@
                                 </yummy:PancakeView>
                             </StackLayout>
                                 <!--tesst-->
-                            <CollectionView x:Name="manager" VerticalScrollBarVisibility="Never" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding manager}">
-                                            <!--SelectionMode="Single"-->
-                                            
+                            <CollectionView x:Name="manager" VerticalScrollBarVisibility="Never" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding manager}" Margin="16,0">
+                                          
                                 <CollectionView.ItemsLayout>
                                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="20"/>
                                 </CollectionView.ItemsLayout>
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
-
-                                        <yummy:PancakeView BackgroundColor="White" VerticalOptions="StartAndExpand" 
-                                    HorizontalOptions="FillAndExpand" Shadow="{yummy:ShadowMarkup BlurRadius=3}" CornerRadius="10" Margin="16">
+                                        <yummy:PancakeView 
+                                            BackgroundColor="White" 
+                                            VerticalOptions="StartAndExpand" 
+                                            HorizontalOptions="FillAndExpand" 
+                                            Shadow="{yummy:ShadowMarkup BlurRadius=3}" 
+                                            CornerRadius="10" 
+                                            Margin="16"
+                                            >
                                             <behaviors:Expander Command="{Binding Source={RelativeSource AncestorType={x:Type local:PantryViewModel}}, Path=Checkmanager}"
                                                                 CommandParameter="{Binding Topic}">
-                                <behaviors:Expander.Header>
-                                    <Grid HorizontalOptions="FillAndExpand">
+                                            <behaviors:Expander.Header>
+                                    <Grid HorizontalOptions="FillAndExpand" BackgroundColor="White">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="Auto"/>
@@ -165,8 +169,6 @@
 
                                             <Label Text="{Binding Topic}" TextColor="Black" FontSize="18" Grid.Column="0" Padding="10"/>
                                             <Image Source="{Binding IconExpand}" Grid.Column="1" Margin="8"></Image>
-                                        
-
                                     </Grid>
                                 </behaviors:Expander.Header>
                                                 <StackLayout BindableLayout.ItemsSource="{Binding speakers}" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,0,0,20">
@@ -187,7 +189,7 @@
                                                     </BindableLayout.ItemTemplate>
                                                 </StackLayout>
                                             </behaviors:Expander>
-                            </yummy:PancakeView>
+                                        </yummy:PancakeView>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
