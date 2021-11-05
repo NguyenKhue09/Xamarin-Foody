@@ -70,74 +70,114 @@
             </yummy:PancakeView>
 
             <!--Body-->
-            <ScrollView Grid.Row="1" >
-                <Grid RowSpacing="10" Margin="20,10">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="180"/>
-                        <RowDefinition Height="3*"/>
-                        <RowDefinition Height="65"/>
-                    </Grid.RowDefinitions>
-                    <Frame Padding="0" CornerRadius="8" HasShadow="True" 
-                           Grid.Row="0" Margin="0,0,0,125">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="0.5*"/>
-                            </Grid.ColumnDefinitions>
-                            <Label Text="Select All" FontSize="23" TextColor="Black" 
+            
+                    <CollectionView x:Name="shoplist" 
+                                            BackgroundColor="#f5f5f5"
+                                            VerticalScrollBarVisibility="Never" 
+                                            Grid.Column="0" Grid.Row="1" 
+                                            ItemsSource="{Binding manager}" Margin="15,0">
+                        <CollectionView.Header>
+                    <StackLayout Padding="10,20" HeightRequest="120">
+                        <Frame Padding="10" CornerRadius="8" HasShadow="True" Margin="0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="0.5*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Select All" FontSize="23" TextColor="Black" 
                                    VerticalOptions="CenterAndExpand" HorizontalOptions="Start"
                                    Grid.Column="0" Margin="15,0"></Label>
-                            <CheckBox HeightRequest="36" WidthRequest="36" Color="Black"
+                                <CheckBox HeightRequest="36" WidthRequest="36" Color="Black"
                                       VerticalOptions="CenterAndExpand" HorizontalOptions="End"
                                       Grid.Column="1" Margin="15,0"></CheckBox>
-                        </Grid>
-                    </Frame>
-
-                    <ListView  Grid.Row="1" ItemsSource="{Binding manager}">
-                        <ListView.ItemTemplate>
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                            
+                        </CollectionView.Header>
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="15"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <ViewCell>
-                                    <yummy:PancakeView BackgroundColor="White" VerticalOptions="StartAndExpand" HeightRequest="55"
-                                    HorizontalOptions="FillAndExpand" Shadow="{yummy:ShadowMarkup BlurRadius=3}" CornerRadius="10" Margin="16">
-                                        <behaviors:Expander Command="{Binding Source={RelativeSource AncestorType={x:Type local:ShoppingListViewModel}}, Path=Checkmanager}"
+                                <StackLayout Padding="10,8" Grid.Row="1" Grid.Column="0" Margin="0">
+                                    <yummy:PancakeView BackgroundColor="White" VerticalOptions="StartAndExpand" 
+                                    HorizontalOptions="FillAndExpand" Shadow="{yummy:ShadowMarkup BlurRadius=3}"  CornerRadius="10">
+                                        <behaviors:Expander  Command="{Binding Source={RelativeSource AncestorType={x:Type local:ShoppingListViewModel}}, Path=Checkmanager}"
                                                                 CommandParameter="{Binding Topic}">
                                             <behaviors:Expander.Header >
-                                                <Grid HorizontalOptions="FillAndExpand">
+                                                <Grid HorizontalOptions="FillAndExpand" HeightRequest="66" VerticalOptions="EndAndExpand">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="*"/>
                                                         <ColumnDefinition Width="Auto"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <Label Text="{Binding Topic}" TextColor="Black" FontSize="18" Grid.Column="0" Padding="10"/>
-                                                    <Image Source="{Binding IconExpand}" Grid.Column="1" Margin="8"></Image>
+
+                                                    <Label Text="{Binding Topic}" TextColor="Black" FontSize="19" Grid.Column="0" Margin="15" VerticalOptions="EndAndExpand"/>
+                                                    <Image Source="{Binding IconExpand}" Grid.Column="1" Margin="15" VerticalOptions="EndAndExpand"></Image>
+
+
                                                 </Grid>
                                             </behaviors:Expander.Header>
-                                            <StackLayout BindableLayout.ItemsSource="{Binding speakers}" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,0,0,20">
+                                            <StackLayout BindableLayout.ItemsSource="{Binding speakers}" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,0">
                                                 <BindableLayout.ItemTemplate>
                                                     <DataTemplate>
-                                                        <Label TextColor="#2F3246" FontSize="12">
-                                                            <Label.FormattedText>
-                                                                <FormattedString>
-                                                                    <FormattedString.Spans>
-                                                                        <Span Text="{Binding Time}"/>
-                                                                        <Span Text=" - "/>
-                                                                        <Span Text="{Binding Name}" FontAttributes="Bold"/>
-                                                                    </FormattedString.Spans>
-                                                                </FormattedString>
-                                                            </Label.FormattedText>
-                                                        </Label>
+                                                        
+                                                        <Grid RowSpacing="0" HeightRequest="60">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="0.5*"/>
+                                                                <ColumnDefinition Width="2*"/>
+                                                                <ColumnDefinition Width="0.75*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Image Source="note1.png" Grid.Column="0" Grid.Row="0" VerticalOptions="CenterAndExpand"/>
+                                                            <Label TextColor="#2F3246" FontSize="16" Grid.Column="1" Grid.Row="0" VerticalOptions="CenterAndExpand">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <FormattedString.Spans>
+                                                                            <Span Text="{Binding Time}"/>
+                                                                            <Span Text=" - "/>
+                                                                            <Span Text="{Binding Name}" FontAttributes="Bold"/>
+                                                                        </FormattedString.Spans>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+                                                            <CheckBox Grid.Column="2" Grid.Row="0" Color="Black" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+                                                            <Image Source="delete.png" Grid.Column="2" Grid.Row="0" HorizontalOptions="End" VerticalOptions="CenterAndExpand"/>
+                                                        </Grid>
                                                     </DataTemplate>
                                                 </BindableLayout.ItemTemplate>
                                             </StackLayout>
                                         </behaviors:Expander>
                                     </yummy:PancakeView>
-                                </ViewCell>
+                                </StackLayout>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    
-                    
-                </Grid>
-            </ScrollView>
+                        </CollectionView.ItemTemplate>
+                <CollectionView.Footer>
+                    <StackLayout Padding="10,20">
+                        <yummy:PancakeView  
+                                                BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,0"
+                                                HeightRequest="60" WidthRequest="360"
+                                                BackgroundColor="#07BDF6" CornerRadius="15" 
+                                                VerticalOptions="Start" HorizontalOptions="Center">
+                            <yummy:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NavToPantry}"/>
+                            </yummy:PancakeView.GestureRecognizers>
+                            <yummy:PancakeView.BackgroundGradientStops>
+                                <yummy:GradientStopCollection>
+                                    <yummy:GradientStop Color="#5AE099" Offset="1" />
+                                    <yummy:GradientStop Color="#65DCC6" Offset="0.5" />
+                                    <yummy:GradientStop Color="#6CD4EC" Offset="0" />
+                                </yummy:GradientStopCollection>
+                            </yummy:PancakeView.BackgroundGradientStops>
+                            <Label Text="Add Selected to Cart" TextColor="White" FontSize="25" 
+                                                       HorizontalOptions="Center" VerticalOptions="Center">
+                            </Label>
+                        </yummy:PancakeView>
+                    </StackLayout>
+                </CollectionView.Footer>
+                    </CollectionView>
+
+                <!--</Grid>
+            </ScrollView>-->
         </Grid>
     </ContentPage.Content>
 </ContentPage>
