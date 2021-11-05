@@ -21,6 +21,11 @@ namespace Foody.Constants
         public static string POPULAR_RECIPE_TYPE = "marinade,fingerfood,snack,drink";
         public static string POPULAR_DIET = "Gluten Free,Vegetarian,vegan";
 
+        // shopping list
+        public static string USER_NAME = "vi-tv-n";
+        public static string HASH_USERNAME = "22535350fb09c8cf0206880c0207018f670cabe0";
+
+
         public const string DatabaseFilename = "PantrySQLite.db3";
 
         public const SQLite.SQLiteOpenFlags Flags =

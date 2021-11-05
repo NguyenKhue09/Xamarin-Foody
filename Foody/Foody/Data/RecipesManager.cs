@@ -30,5 +30,28 @@ namespace Foody.Data
         {
             return restService.SearchRecipes(query, cuisine, intolerances);
         }
+
+
+        // Shopping list api
+        public Task AddIngredientsToShoppingList(ItemShoppingList iemShoppingList)
+        {
+            return restService.AddIngredientsToShoppingList(iemShoppingList);
+        }
+         
+        public Task<ShoppingListResult> GetShoppingList()
+        {
+            return restService.GetShoppingList();
+        }
+
+        public Task DeleteShoppingListItem(string itemId)
+        {
+            return restService.DeleteShoppingListItem(itemId);
+        }
+
+        public Task<IngredientInform> GetIngredientImg(string id)
+        {
+            return restService.GetIngredientImg(id);
+        }
+
     }
 }

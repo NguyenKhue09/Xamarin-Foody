@@ -2,6 +2,7 @@
 using Foody.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,32 @@ namespace Foody.Views.DetailsRecipe
            
         }
 
+        async protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            //var newItemShoppingList = new ItemShoppingList
+            //{
+            //    aisle = "Baking",
+            //    item = "3 package baking powder",
+            //};
+
+            //detailRecipeViewModel.AddIngredientsToShoppingList(newItemShoppingList);
+
+            //ShoppingListResult shoppingList = new ShoppingListResult();
+
+            //shoppingList = await App.RecipeManager.GetShoppingList();
+
+            //Debug.WriteLine(shoppingList.cost.ToString());
+
+            //await App.RecipeManager.DeleteShoppingListItem("877471");
+
+            //IngredientInform ingredientInform = new IngredientInform();
+
+            //ingredientInform = await App.RecipeManager.GetIngredientImg("18369");
+
+            //Debug.WriteLine(ingredientInform.image.ToString());
+
+        }
 
         async private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
