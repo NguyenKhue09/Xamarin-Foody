@@ -121,6 +121,12 @@ namespace Foody.ViewModels
             
         }
 
+        async public void AddIngredientsToShoppingList(ItemShoppingList itemShoppingList)
+        {
+            await App.RecipeManager.AddIngredientsToShoppingList(itemShoppingList);
+
+        }
+
         public static T jsonCloneObject<T>(T source)
         {
             string json = JsonConvert.SerializeObject(source);
