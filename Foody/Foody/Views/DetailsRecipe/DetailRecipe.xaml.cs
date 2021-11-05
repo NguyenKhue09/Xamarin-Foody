@@ -43,11 +43,11 @@ namespace Foody.Views.DetailsRecipe
 
             //await App.RecipeManager.DeleteShoppingListItem("877471");
 
-            IngredientInform ingredientInform = new IngredientInform();
+            //IngredientInform ingredientInform = new IngredientInform();
 
-            ingredientInform = await App.RecipeManager.GetIngredientImg("18369");
+            //ingredientInform = await App.RecipeManager.GetIngredientImg("18369");
 
-            Debug.WriteLine(ingredientInform.image.ToString());
+            //Debug.WriteLine(ingredientInform.image.ToString());
 
         }
 
