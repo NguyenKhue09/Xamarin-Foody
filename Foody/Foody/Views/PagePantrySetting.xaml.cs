@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Foody.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,16 @@ namespace Foody.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PagePantrySetting : ContentPage
     {
+        private readonly PantrySettingViewModel pantrySettingViewModel;
         public PagePantrySetting()
         {
             InitializeComponent();
+            BindingContext = pantrySettingViewModel = new PantrySettingViewModel();
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Pantry());
         }
     }
 }

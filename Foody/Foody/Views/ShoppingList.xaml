@@ -55,7 +55,7 @@
                         <!--dòng 2-->
                         <Frame CornerRadius="10" Padding="0" HasShadow="False" BorderColor="#D8D8D8" 
                                Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
-                               HeightRequest="60" WidthRequest="300" Margin="25,0,10,10"
+                               HeightRequest="60" WidthRequest="280" Margin="25,0,10,10"
                                HorizontalOptions="Start" VerticalOptions="Start">
                             <controls:CustomEntry  Keyboard="Text" FontSize="18" Placeholder="Add New Item to Shopping List"  HeightRequest="55"  Margin="10,0,0,0"></controls:CustomEntry>
                         </Frame>
