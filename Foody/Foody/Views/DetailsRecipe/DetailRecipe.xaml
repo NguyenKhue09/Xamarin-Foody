@@ -273,7 +273,7 @@
                             VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,8,0" HeightRequest="50">
 
                         <yummy:PancakeView.GestureRecognizers>
-                            <TapGestureRecognizer/>
+                            <TapGestureRecognizer Tapped = "AddItemToShoppingListAsync"/>
                         </yummy:PancakeView.GestureRecognizers>
 
                         <yummy:PancakeView.BackgroundGradientStops>

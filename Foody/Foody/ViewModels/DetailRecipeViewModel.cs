@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Foody.ViewModels
@@ -62,6 +63,7 @@ namespace Foody.ViewModels
             changeAmountIngredients(numberOfIngredient);
             sub = new Command(() => SubCount());
             plus = new Command(() => PlusCount());
+
         }
 
 
@@ -121,10 +123,24 @@ namespace Foody.ViewModels
             
         }
 
-        async public void AddIngredientsToShoppingList(ItemShoppingList itemShoppingList)
-        {
-            await App.RecipeManager.AddIngredientsToShoppingList(itemShoppingList);
 
+        public async Task<bool> AddIngredientsToShoppingList()
+        {
+            Debug.WriteLine("Call function add to list");
+            foreach (ExtendedIngredient item in ExtendedIngredients)
+            {
+                string result = item.amount.ToString() + " " + item.unit + " " + item.name;
+                ItemShoppingList itemShoppingList = new ItemShoppingList
+                {
+                    aisle = item.aisle,
+                    item = result
+                };
+
+                bool response = await App.RecipeManager.AddIngredientsToShoppingList(itemShoppingList);
+                if (!response) return false;
+
+            }
+            return true;
         }
 
         public static T jsonCloneObject<T>(T source)

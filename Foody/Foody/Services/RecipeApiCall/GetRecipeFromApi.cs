@@ -185,7 +185,7 @@ namespace Foody.Services.RecipeApiCall
         }
 
         // Shopping list api
-        public async Task AddIngredientsToShoppingList(ItemShoppingList itemShoppingList)
+        public async Task<bool> AddIngredientsToShoppingList(ItemShoppingList itemShoppingList)
         {
             Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/mealplanner/{Constants.Constants.USER_NAME}/shopping-list/items?" +
                 $"apiKey={Constants.Constants.APIKEY}&hash={Constants.Constants.HASH_USERNAME}"));
@@ -200,12 +200,13 @@ namespace Foody.Services.RecipeApiCall
                
                 if (response.IsSuccessStatusCode)
                 {                   
-                    Debug.WriteLine("ThanhCong");   
+                    Debug.WriteLine("ThanhCong");
+                    return true;
                 }
                 else
                 {
                     Debug.WriteLine("Thatbai");
-                    SearchRecipesList.results = new List<Result>();
+                    return false;
                     
                 }
             }
@@ -213,6 +214,7 @@ namespace Foody.Services.RecipeApiCall
             {
 
                 Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                return false;
             }
         }
 
