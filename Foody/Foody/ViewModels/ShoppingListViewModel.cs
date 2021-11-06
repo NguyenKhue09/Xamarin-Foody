@@ -80,7 +80,7 @@ namespace Foody.ViewModels
                     shoppingListItem.IngredientName = item.name;
                     shoppingListItem.IngredientAisle = item.aisle;
                     shoppingListItem.IngredientIdList = item.id;
-                    shoppingListItem.IngredientIdUnits = item.measures.original.unit;
+                    shoppingListItem.IngredientUnits = item.measures.original.unit;
 
                 }
                 Console.WriteLine($"\t amount: {amount}");
