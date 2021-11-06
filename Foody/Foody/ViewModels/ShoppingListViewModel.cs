@@ -52,8 +52,6 @@ namespace Foody.ViewModels
 
             foreach (Aisle aisle in results.aisles)
             {
-                
-
                 var queryIngredientId = from item in aisle.items
                                         group item by item.ingredientId into newResults
                                         orderby newResults.Key
@@ -82,7 +80,7 @@ namespace Foody.ViewModels
                     shoppingListItem.IngredientName = item.name;
                     shoppingListItem.IngredientAisle = item.aisle;
                     shoppingListItem.IngredientIdList = item.id;
-                    shoppingListItem.IngredientIdUnits = item.measures.original.unit;
+                    shoppingListItem.IngredientUnits = item.measures.original.unit;
 
                 }
                 Console.WriteLine($"\t amount: {amount}");

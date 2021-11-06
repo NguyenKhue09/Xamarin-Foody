@@ -112,7 +112,11 @@
                                                         <ColumnDefinition Width="Auto"/>
                                                     </Grid.ColumnDefinitions>
 
-                                                    <Label Text="{Binding Aisle}" TextColor="Black" FontSize="19" Grid.Column="0" Margin="15" VerticalOptions="EndAndExpand"/>
+                                                    <Label Text="{Binding Aisle}" 
+                                                           MaxLines="1" LineBreakMode="TailTruncation"
+                                                           TextColor="Black" FontSize="18" 
+                                                           Grid.Column="0" Margin="15" 
+                                                           VerticalOptions="EndAndExpand"/>
                                                     <Image Source="{Binding IconExpand}" Grid.Column="1" Margin="15" VerticalOptions="EndAndExpand"></Image>
 
 
@@ -129,14 +133,16 @@
                                                                 <ColumnDefinition Width="0.75*"/>
                                                             </Grid.ColumnDefinitions>
                                                             <Image Source="note1.png" Grid.Column="0" Grid.Row="0" VerticalOptions="CenterAndExpand"/>
-                                                            <Label TextColor="#2F3246" FontSize="16" Grid.Column="1" Grid.Row="0" VerticalOptions="CenterAndExpand">
+                                                            <Label TextColor="#2F3246" FontSize="14" Grid.Column="1" Grid.Row="0"  VerticalOptions="CenterAndExpand" Margin="0,4,0,0">
                                                                 <Label.FormattedText>
                                                                     <FormattedString>
                                                                         <FormattedString.Spans>
-                                                                            <Span Text="{Binding IngredientAisle}"/>
-                                                                            <Span Text=" - "/>
-                                                                            <Span Text="{Binding IngredientName}" FontAttributes="Bold"/>
-                                                                        </FormattedString.Spans>
+                                                                            <Span Text="{Binding IngredientName}"/>
+                                                                            <Span Text="&#x0a;"/>
+                                                                            <Span Text="{Binding IngredientAmount}" FontAttributes="Bold"/>
+                                                                            <Span Text=" "/>
+                                                                            <Span Text="{Binding IngredientUnits}" FontAttributes="Bold"/>
+                                                                </FormattedString.Spans>
                                                                     </FormattedString>
                                                                 </Label.FormattedText>
                                                             </Label>
