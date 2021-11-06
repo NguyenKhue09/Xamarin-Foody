@@ -55,7 +55,7 @@
                         <!--dòng 2-->
                         <Frame CornerRadius="10" Padding="0" HasShadow="False" BorderColor="#D8D8D8" 
                                Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
-                               HeightRequest="60" WidthRequest="300" Margin="25,0,10,10"
+                               HeightRequest="60" WidthRequest="280" Margin="25,0,10,10"
                                HorizontalOptions="Start" VerticalOptions="Start">
                             <controls:CustomEntry  Keyboard="Text" FontSize="18" Placeholder="Add New Item to Shopping List"  HeightRequest="55"  Margin="10,0,0,0"></controls:CustomEntry>
                         </Frame>
@@ -75,7 +75,7 @@
                                             BackgroundColor="#f5f5f5"
                                             VerticalScrollBarVisibility="Never" 
                                             Grid.Column="0" Grid.Row="1" 
-                                            ItemsSource="{Binding manager}" Margin="15,0">
+                                            ItemsSource="{Binding shoppingListGroupManagers}" Margin="15,0">
                         <CollectionView.Header>
                     <StackLayout Padding="10,20" HeightRequest="120">
                         <Frame Padding="10" CornerRadius="8" HasShadow="True" Margin="0">
@@ -104,7 +104,7 @@
                                     <yummy:PancakeView BackgroundColor="White" VerticalOptions="StartAndExpand" 
                                     HorizontalOptions="FillAndExpand" Shadow="{yummy:ShadowMarkup BlurRadius=3}"  CornerRadius="10">
                                         <behaviors:Expander  Command="{Binding Source={RelativeSource AncestorType={x:Type local:ShoppingListViewModel}}, Path=Checkmanager}"
-                                                                CommandParameter="{Binding Topic}">
+                                                                CommandParameter="{Binding Aisle}">
                                             <behaviors:Expander.Header >
                                                 <Grid HorizontalOptions="FillAndExpand" HeightRequest="66" VerticalOptions="EndAndExpand">
                                                     <Grid.ColumnDefinitions>
@@ -112,13 +112,13 @@
                                                         <ColumnDefinition Width="Auto"/>
                                                     </Grid.ColumnDefinitions>
 
-                                                    <Label Text="{Binding Topic}" TextColor="Black" FontSize="19" Grid.Column="0" Margin="15" VerticalOptions="EndAndExpand"/>
+                                                    <Label Text="{Binding Aisle}" TextColor="Black" FontSize="19" Grid.Column="0" Margin="15" VerticalOptions="EndAndExpand"/>
                                                     <Image Source="{Binding IconExpand}" Grid.Column="1" Margin="15" VerticalOptions="EndAndExpand"></Image>
 
 
                                                 </Grid>
                                             </behaviors:Expander.Header>
-                                            <StackLayout BindableLayout.ItemsSource="{Binding speakers}" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,0">
+                                            <StackLayout BindableLayout.ItemsSource="{Binding shoppingListItems}" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,0">
                                                 <BindableLayout.ItemTemplate>
                                                     <DataTemplate>
                                                         
@@ -133,9 +133,9 @@
                                                                 <Label.FormattedText>
                                                                     <FormattedString>
                                                                         <FormattedString.Spans>
-                                                                            <Span Text="{Binding Time}"/>
+                                                                            <Span Text="{Binding IngredientAisle}"/>
                                                                             <Span Text=" - "/>
-                                                                            <Span Text="{Binding Name}" FontAttributes="Bold"/>
+                                                                            <Span Text="{Binding IngredientName}" FontAttributes="Bold"/>
                                                                         </FormattedString.Spans>
                                                                     </FormattedString>
                                                                 </Label.FormattedText>

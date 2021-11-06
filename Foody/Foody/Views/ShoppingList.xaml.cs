@@ -19,5 +19,13 @@ namespace Foody.Views
             InitializeComponent();
             BindingContext = shoppingListViewModel = new ShoppingListViewModel();
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            shoppingListViewModel.GetShoppingList();
+        }
     }
+
+    
 }

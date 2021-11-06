@@ -6,20 +6,25 @@ using System.Text;
 
 namespace Foody.Models
 {
-    public class Speaker
+    public class ShoppingListItem
     {
-        public string Name { get; set; }
-        public string Time { get; set; }
+        public string IngredientName { get; set; }
+        public string IngredientAisle { get; set; }
+        public string IngredientImg { get; set; }
+        public int IngredientId { get; set; }
+        public int IngredientIdList { get; set; }
+        public double IngredientAmount { get; set; }
+        public string IngredientIdUnits { get; set; }
     }
-    public class GroupManager :INotifyPropertyChanged
+    public class ShoppingListGroupManager :INotifyPropertyChanged
     {
-        public string Topic { get; set; }
+        public string Aisle { get; set; }
 
         public bool isExpanded;
 
         public string iconExpand;
 
-        public ObservableCollection<Speaker> speakers { get; set; }
+        public ObservableCollection<ShoppingListItem> shoppingListItems { get; set; }
 
         public bool IsExpanded
         {
@@ -47,10 +52,10 @@ namespace Foody.Models
             }
         }
 
-        public GroupManager(string topic, ObservableCollection<Speaker> speaker, string iconExpand = "down.png", bool isExpanded = false)
+        public ShoppingListGroupManager(string aisle, ObservableCollection<ShoppingListItem> listItems, string iconExpand = "down.png", bool isExpanded = false)
         {
-            Topic = topic;
-            speakers = new ObservableCollection<Speaker>( speaker);
+            Aisle = aisle;
+            shoppingListItems = new ObservableCollection<ShoppingListItem>(listItems);
             IconExpand = iconExpand;
             IsExpanded = isExpanded;
         }

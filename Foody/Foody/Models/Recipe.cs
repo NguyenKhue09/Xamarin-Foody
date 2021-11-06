@@ -25,6 +25,8 @@ namespace Foody.Models
     {
         public Us us { get; set; }
         public Metric metric { get; set; }
+        public Original original { get; set; }
+
     }
 
     public class ExtendedIngredient
