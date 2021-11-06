@@ -4,45 +4,24 @@ using MvvmHelpers.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Foody.ViewModels
 {
     public class ShoppingListViewModel : BaseViewModel
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         public Command Checkmanager { get; }
 
-        public ObservableCollection<GroupManager> Groups = new ObservableCollection<GroupManager>{
-                new GroupManager("Carbohydrates",
-                  new ObservableCollection<Speaker>{ new Speaker { Name = "pasta", Time = "Carb Snakes" },
-                    new Speaker { Name = "potato", Time = "The King of all Carbs" },
-                    new Speaker { Name = "bread", Time = "Soft & Gentle"},
-                    new Speaker { Name = "rice", Time = "Tiny grains of goodness" },
-                 }),
-                new GroupManager("Fruits",
-                   new ObservableCollection<Speaker>{ new Speaker { Name = "apple", Time = "Keep the Doctor away"},
-                    new Speaker { Name = "banana", Time = "This fruit is appeeling"},
-                    new Speaker { Name = "pear", Time = "Pear with me"},
-                }),
-                new GroupManager("Vegetables",
-                   new ObservableCollection<Speaker>{ new Speaker { Name = "carrot", Time = "Sounds like parrot"},
-                    new Speaker { Name = "green bean", Time = "The less popular cousin of the baked bean"},
-                    new Speaker { Name = "broccoli", Time = "Tiny food trees"},
-                    new Speaker { Name = "peas", Time = "Peas sir, can I have some more?"},
-                }),
-                new GroupManager("Dairy",
-                  new ObservableCollection<Speaker>{  new Speaker { Name = "Milk", Time = "Molk"},
-                    new Speaker { Name = "Cheese", Time = "Cheese + Potato = <3"},
-                    new Speaker { Name = "Ice Cream", Time = "Because I couldn't find an icon for yoghurt"},
-
-                })
-        };
-        public ObservableCollection<GroupManager> manager { get; set; }
+        public ObservableCollection<ShoppingListGroupManager> shoppingListGroupManagers { get; set; }
 
         public ShoppingListViewModel()
         {
             Checkmanager = new Command<string>(manager_SelectionChanged);
-            manager = new ObservableCollection<GroupManager>(Groups);
+            shoppingListGroupManagers = new ObservableCollection<ShoppingListGroupManager>();
         }
 
         public void manager_SelectionChanged(string topic)
@@ -51,11 +30,11 @@ namespace Foody.ViewModels
         }
         public void changeExpand(string item)
         {
-            foreach (GroupManager group in manager)
+            foreach (ShoppingListGroupManager group in shoppingListGroupManagers)
             {
 
 
-                if (item == group.Topic)
+                if (item == group.Aisle)
                 {
                     group.IsExpanded = !group.IsExpanded;
                     group.IconExpand = group.IsExpanded ? "up.png" : "down.png";
@@ -63,5 +42,63 @@ namespace Foody.ViewModels
             }
         }
 
+
+        // Shopping list data
+        async public void GetShoppingList()
+        {
+            ShoppingListResult results = new ShoppingListResult();
+
+            results = await App.RecipeManager.GetShoppingList();
+
+            foreach (Aisle aisle in results.aisles)
+            {
+                
+
+                var queryIngredientId = from item in aisle.items
+                                        group item by item.ingredientId into newResults
+                                        orderby newResults.Key
+                                        select newResults;
+                ShoppingListGroupManager shoppingListGroupManager = new ShoppingListGroupManager(aisle.aisle, SumOfShoppingListItemFromApi(queryIngredientId));
+                Console.WriteLine($"Aisle: {shoppingListGroupManager.Aisle}");
+                Console.WriteLine($"Amount1: {shoppingListGroupManager.shoppingListItems[0].IngredientAmount}");
+                shoppingListGroupManagers.Add(shoppingListGroupManager);
+            }
+           
+        }
+
+        ObservableCollection<ShoppingListItem> SumOfShoppingListItemFromApi(IOrderedEnumerable<IGrouping<int, Item>> queryIngredientId)
+        {
+            double amount = 0;
+            ObservableCollection<ShoppingListItem> shoppingListItems = new ObservableCollection<ShoppingListItem>();
+
+            foreach (var nameGroup in queryIngredientId)
+            {
+                ShoppingListItem shoppingListItem = new ShoppingListItem();
+                Console.WriteLine($"Key: {nameGroup.Key}");
+                foreach (var item in nameGroup)
+                {
+                    Console.WriteLine($"\t{item.name}, {item.id}");
+                    amount += item.measures.original.amount;
+                    shoppingListItem.IngredientName = item.name;
+                    shoppingListItem.IngredientAisle = item.aisle;
+                    shoppingListItem.IngredientIdList = item.id;
+                    shoppingListItem.IngredientIdUnits = item.measures.original.unit;
+
+                }
+                Console.WriteLine($"\t amount: {amount}");
+                shoppingListItem.IngredientAmount = amount;
+                shoppingListItem.IngredientId = nameGroup.Key;
+                shoppingListItems.Add(shoppingListItem);
+                amount = 0;
+
+
+            }
+            return shoppingListItems;
+        }
+
+        protected virtual void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

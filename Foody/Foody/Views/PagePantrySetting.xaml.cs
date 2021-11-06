@@ -1,4 +1,6 @@
-﻿using Foody.ViewModels;
+﻿using Foody.Data.Local;
+using Foody.Models.Local;
+using Foody.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -26,24 +28,24 @@ namespace Foody.Views
             Navigation.PushAsync(new Pantry());
         }
 
-    //    async private void Button_Clicked(object sender, EventArgs e)
-    //    {
-    //        var item = new ingredient
-    //        {
-    //            aisleBelong = "bakery",
-    //            ingredientName = "cake",
-    //            ingredientImg = ""
-    //        };
+        //async private void Button_Clicked(object sender, EventArgs e)
+        //{
+        //    var item = new ingredient
+        //    {
+        //        aisleBelong = "bakery",
+        //        ingredientName = "cake",
+        //        ingredientImg = ""
+        //    };
 
-    //        IngredientsDatabase database = await IngredientsDatabase.Instance;
-    //        await database.SaveIngredientAsync(item);
-    //    }
+        //    IngredientsDatabase database = await IngredientsDatabase.Instance;
+        //    await database.SaveIngredientAsync(item);
+        //}
 
-    //    async private void Button_Clicked_1(object sender, EventArgs e)
-    //    {
-    //        IngredientsDatabase database = await IngredientsDatabase.Instance;
-    //        List<ingredient> results =  await database.GetIngredientAsync();
-    //        Debug.WriteLine(results[0].aisleBelong);
-    //    }
+        //async private void Button_Clicked_1(object sender, EventArgs e)
+        //{
+        //    IngredientsDatabase database = await IngredientsDatabase.Instance;
+        //    List<ingredient> results =  await database.GetIngredientAsync();
+        //    Debug.WriteLine(results[0].aisleBelong);
+        //}
     }
 }
