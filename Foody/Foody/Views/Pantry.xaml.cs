@@ -18,7 +18,6 @@ namespace Foody.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Pantry : ContentPage
     {
-
         private readonly PantryViewModel pantryViewModel;
 
         private string querySearch { get; set; }
@@ -29,9 +28,6 @@ namespace Foody.Views
             InitializeComponent();
             CheckFavorite(true);
             BindingContext = pantryViewModel = new PantryViewModel(Navigation);
-            
-
-
         }
 
         protected override void OnAppearing()

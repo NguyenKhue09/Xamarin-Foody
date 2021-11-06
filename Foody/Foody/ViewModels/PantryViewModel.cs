@@ -60,7 +60,7 @@ namespace Foody.ViewModels
         };
         public ObservableCollection<GroupManager> manager { get; set; }
 
-        //
+
 
         INavigation Navigation;
 
@@ -82,7 +82,7 @@ namespace Foody.ViewModels
             manager = new ObservableCollection<GroupManager>(Groups);
         }
 
-        public async Task OpenOtherPage()
+    public async Task OpenOtherPage()
         {
             await Navigation.PushAsync(new PagePantrySetting());
         }
@@ -101,11 +101,11 @@ namespace Foody.ViewModels
 
             results = await App.RecipeManager.SearchRecipes(query, cuisine, intolerances);
             SearchRecipes.AddRange(results.results);
-            if (results != null && results.results.Count > 0)
+            if(results != null && results.results.Count > 0)
             {
                 Debug.WriteLine(results.results.Count.ToString());
                 await Navigation.PushAsync(new PageSearchRecipes(results));
-            }
+            }    
         }
 
         async public Task showpopup_Clicked()
@@ -122,7 +122,7 @@ namespace Foody.ViewModels
 
         public void chipCuisineSelected(string value)
         {
-            if (!cuisineList.Contains(value))
+            if(!cuisineList.Contains(value))
             {
                 cuisineList.Add(value);
             }
@@ -131,7 +131,7 @@ namespace Foody.ViewModels
 
         public void chipCuisineUnSelected(string value)
         {
-            if (value != "" || value != null)
+            if(value != "" || value != null)
             {
                 cuisineList.Remove(value);
             }

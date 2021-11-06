@@ -23,6 +23,8 @@ namespace Foody.Services.RecipeApiCall
         public Recipe RandomRecipes { get; private set; }
         public Recipe PopularRecipes { get; private set; }
         public Recipe SearchRecipesList { get; private set; }
+        public ShoppingListResult ShoppingListResult { get; private set; }
+        public IngredientInform ingredientInform { get; private set; }
 
 
         public RestService()
@@ -180,6 +182,139 @@ namespace Foody.Services.RecipeApiCall
             }
 
             return RandomRecipes;
+        }
+
+        // Shopping list api
+        public async Task AddIngredientsToShoppingList(ItemShoppingList itemShoppingList)
+        {
+            Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/mealplanner/{Constants.Constants.USER_NAME}/shopping-list/items?" +
+                $"apiKey={Constants.Constants.APIKEY}&hash={Constants.Constants.HASH_USERNAME}"));
+
+
+            try
+            {
+                string json = JsonSerializer.Serialize<ItemShoppingList>(itemShoppingList, serializerOptions);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(uri, content);
+               
+                if (response.IsSuccessStatusCode)
+                {                   
+                    Debug.WriteLine("ThanhCong");   
+                }
+                else
+                {
+                    Debug.WriteLine("Thatbai");
+                    SearchRecipesList.results = new List<Result>();
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
+        }
+
+        public async Task<ShoppingListResult> GetShoppingList()
+        {
+
+            ShoppingListResult = new ShoppingListResult();
+
+            Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/mealplanner/{Constants.Constants.USER_NAME}/shopping-list?" +
+               $"apiKey={Constants.Constants.APIKEY}&hash={Constants.Constants.HASH_USERNAME}"));
+
+            try
+            {
+
+                HttpResponseMessage response = await client.GetAsync(uri);
+                Debug.WriteLine("CallAPI");
+               
+                if (response.IsSuccessStatusCode)
+                {
+
+
+                    string content = await response.Content.ReadAsStringAsync();
+                    ShoppingListResult = JsonSerializer.Deserialize<ShoppingListResult>(content, serializerOptions);
+                    Debug.WriteLine("ThanhCong");
+                }
+                else
+                {
+                    Debug.WriteLine("Thatbai");
+                    ShoppingListResult.aisles = new List<Aisle>();
+                    await searchPopUp.closePopup();
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
+
+            return ShoppingListResult;
+        }
+
+
+        public async Task DeleteShoppingListItem(string itemId)
+        {
+            Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/mealplanner/{Constants.Constants.USER_NAME}/shopping-list/items/{itemId}?" +
+               $"apiKey={Constants.Constants.APIKEY}&hash={Constants.Constants.HASH_USERNAME}"));
+
+
+            try
+            {
+
+                HttpResponseMessage response = await client.DeleteAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("ThanhCong");
+                    Debug.WriteLine(response.RequestMessage);
+                }
+                else
+                {
+                    Debug.WriteLine(response.RequestMessage);
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
+        }
+
+        public async Task<IngredientInform> GetIngredientImg(string id)
+        {
+            Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/food/ingredients/{id}/information?apiKey={Constants.Constants.APIKEY}"));
+
+            ingredientInform = new IngredientInform();
+
+            try 
+            {
+
+                HttpResponseMessage response = await client.GetAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    ingredientInform = JsonSerializer.Deserialize<IngredientInform>(content, serializerOptions);
+                    Debug.WriteLine("ThanhCong");
+                }
+                else
+                {
+                    Debug.WriteLine("Thatbai");
+                    ingredientInform = null;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
+
+            return ingredientInform;
         }
 
     }
