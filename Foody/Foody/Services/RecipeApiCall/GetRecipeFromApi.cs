@@ -258,7 +258,7 @@ namespace Foody.Services.RecipeApiCall
         }
 
 
-        public async Task DeleteShoppingListItem(string itemId)
+        public async Task<bool> DeleteShoppingListItem(int itemId)
         {
             Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/mealplanner/{Constants.Constants.USER_NAME}/shopping-list/items/{itemId}?" +
                $"apiKey={Constants.Constants.APIKEY}&hash={Constants.Constants.HASH_USERNAME}"));
@@ -273,10 +273,12 @@ namespace Foody.Services.RecipeApiCall
                 {
                     Debug.WriteLine("ThanhCong");
                     Debug.WriteLine(response.RequestMessage);
+                    return true;
                 }
                 else
                 {
                     Debug.WriteLine(response.RequestMessage);
+                    return false;
 
                 }
             }
@@ -284,10 +286,11 @@ namespace Foody.Services.RecipeApiCall
             {
 
                 Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                return false;
             }
         }
 
-        public async Task<IngredientInform> GetIngredientImg(string id)
+        public async Task<IngredientInform> GetIngredientInform(int id)
         {
             Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/food/ingredients/{id}/information?apiKey={Constants.Constants.APIKEY}"));
 

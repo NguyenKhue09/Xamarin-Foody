@@ -14,6 +14,7 @@ namespace Foody.Models
         public int IngredientId { get; set; }
         public int IngredientIdList { get; set; }
         public double IngredientAmount { get; set; }
+        public string StringIngredientAmount { get; set; }
         public string IngredientUnits { get; set; }
     }
     public class ShoppingListGroupManager :INotifyPropertyChanged
