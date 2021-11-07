@@ -24,7 +24,7 @@ namespace Foody.Views.DetailsRecipe
            
         }
 
-        async protected override void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
             //var newItemShoppingList = new ItemShoppingList
@@ -45,7 +45,7 @@ namespace Foody.Views.DetailsRecipe
 
             //IngredientInform ingredientInform = new IngredientInform();
 
-            //ingredientInform = await App.RecipeManager.GetIngredientImg("18369");
+            //ingredientInform = await App.RecipeManager.GetIngredientInform("18369");
 
             //Debug.WriteLine(ingredientInform.image.ToString());
 

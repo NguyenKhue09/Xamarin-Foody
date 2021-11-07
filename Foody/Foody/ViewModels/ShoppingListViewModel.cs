@@ -1,4 +1,5 @@
-﻿using Foody.Models;
+﻿using Foody.Converters;
+using Foody.Models;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
 using System;
@@ -8,6 +9,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Foody.ViewModels
 {
@@ -56,15 +58,13 @@ namespace Foody.ViewModels
                                         group item by item.ingredientId into newResults
                                         orderby newResults.Key
                                         select newResults;
-                ShoppingListGroupManager shoppingListGroupManager = new ShoppingListGroupManager(aisle.aisle, SumOfShoppingListItemFromApi(queryIngredientId));
-                Console.WriteLine($"Aisle: {shoppingListGroupManager.Aisle}");
-                Console.WriteLine($"Amount1: {shoppingListGroupManager.shoppingListItems[0].IngredientAmount}");
+                ShoppingListGroupManager shoppingListGroupManager = new ShoppingListGroupManager(aisle.aisle, await SumOfShoppingListItemFromApi(queryIngredientId));
                 shoppingListGroupManagers.Add(shoppingListGroupManager);
             }
            
         }
 
-        ObservableCollection<ShoppingListItem> SumOfShoppingListItemFromApi(IOrderedEnumerable<IGrouping<int, Item>> queryIngredientId)
+        async Task<ObservableCollection<ShoppingListItem>> SumOfShoppingListItemFromApi(IOrderedEnumerable<IGrouping<int, Item>> queryIngredientId)
         {
             double amount = 0;
             ObservableCollection<ShoppingListItem> shoppingListItems = new ObservableCollection<ShoppingListItem>();
@@ -84,8 +84,14 @@ namespace Foody.ViewModels
 
                 }
                 Console.WriteLine($"\t amount: {amount}");
+                shoppingListItem.StringIngredientAmount = new Fraction(Math.Round(amount, 2)).ToString();
                 shoppingListItem.IngredientAmount = amount;
                 shoppingListItem.IngredientId = nameGroup.Key;
+                IngredientInform ingredientInform = await GetIngredientInform(nameGroup.Key);
+                if (ingredientInform != null)
+                {
+                    shoppingListItem.IngredientImg = ingredientInform.image;
+                }
                 shoppingListItems.Add(shoppingListItem);
                 amount = 0;
 
@@ -93,6 +99,13 @@ namespace Foody.ViewModels
             }
             return shoppingListItems;
         }
+
+
+        async Task<IngredientInform> GetIngredientInform(int id)
+        {
+            return await App.RecipeManager.GetIngredientInform(id);
+        }
+
 
         protected virtual void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {

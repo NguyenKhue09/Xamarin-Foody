@@ -287,7 +287,7 @@ namespace Foody.Services.RecipeApiCall
             }
         }
 
-        public async Task<IngredientInform> GetIngredientImg(string id)
+        public async Task<IngredientInform> GetIngredientInform(int id)
         {
             Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/food/ingredients/{id}/information?apiKey={Constants.Constants.APIKEY}"));
 
