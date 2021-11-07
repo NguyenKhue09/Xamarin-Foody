@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -19,6 +20,7 @@ namespace Foody.ViewModels
         public Command Checkmanager { get; }
 
         public ObservableCollection<ShoppingListGroupManager> shoppingListGroupManagers { get; set; }
+        private ShoppingListResult originalShoppintLists { get; set; }
 
         public ShoppingListViewModel()
         {
@@ -48,11 +50,11 @@ namespace Foody.ViewModels
         // Shopping list data
         async public void GetShoppingList()
         {
-            ShoppingListResult results = new ShoppingListResult();
+            originalShoppintLists = new ShoppingListResult();
 
-            results = await App.RecipeManager.GetShoppingList();
+            originalShoppintLists = await App.RecipeManager.GetShoppingList();
 
-            foreach (Aisle aisle in results.aisles)
+            foreach (Aisle aisle in originalShoppintLists.aisles)
             {
                 var queryIngredientId = from item in aisle.items
                                         group item by item.ingredientId into newResults
@@ -72,10 +74,8 @@ namespace Foody.ViewModels
             foreach (var nameGroup in queryIngredientId)
             {
                 ShoppingListItem shoppingListItem = new ShoppingListItem();
-                Console.WriteLine($"Key: {nameGroup.Key}");
                 foreach (var item in nameGroup)
                 {
-                    Console.WriteLine($"\t{item.name}, {item.id}");
                     amount += item.measures.original.amount;
                     shoppingListItem.IngredientName = item.name;
                     shoppingListItem.IngredientAisle = item.aisle;
@@ -83,7 +83,6 @@ namespace Foody.ViewModels
                     shoppingListItem.IngredientUnits = item.measures.original.unit;
 
                 }
-                Console.WriteLine($"\t amount: {amount}");
                 shoppingListItem.StringIngredientAmount = new Fraction(Math.Round(amount, 2)).ToString();
                 shoppingListItem.IngredientAmount = amount;
                 shoppingListItem.IngredientId = nameGroup.Key;
@@ -97,7 +96,40 @@ namespace Foody.ViewModels
 
 
             }
+            
             return shoppingListItems;
+        }
+
+        public async Task<bool> DeleteShoppingListItem(ShoppingListItem shoppingListItem)
+        {
+            bool result = false;
+
+            foreach (Aisle aisle in originalShoppintLists.aisles)
+            {
+                if(aisle.aisle == shoppingListItem.IngredientAisle)
+                {
+                    foreach(Item item in aisle.items)
+                    {
+                        if (item.name == shoppingListItem.IngredientName)
+                        {
+                            result = await App.RecipeManager.DeleteShoppingListItem(item.id);
+                        }
+                    }
+                }
+            }
+
+            
+            if(result)
+            {
+                foreach(ShoppingListGroupManager shoppingListGroupManager in shoppingListGroupManagers)
+                {
+                    shoppingListGroupManager.shoppingListItems.Remove(shoppingListItem);
+                }
+                return true;
+            } else
+            {
+                return false;
+            }
         }
 
 

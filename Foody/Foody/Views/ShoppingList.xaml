@@ -4,6 +4,10 @@
              x:Class="Foody.Views.ShoppingList"
              xmlns:local="clr-namespace:Foody.ViewModels" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              BackgroundColor="#f5f5f5">
+    <ContentPage.Resources>
+        <ResourceDictionary Source="../Styles/Styles.xaml" />
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
@@ -132,27 +136,31 @@
                                                                 <ColumnDefinition Width="2*"/>
                                                                 <ColumnDefinition Width="0.75*"/>
                                                             </Grid.ColumnDefinitions>
-                                                    <ffimageloading:CachedImage 
-                                                        Margin="4"
-                                                        Source="{Binding IngredientImg, StringFormat='https://spoonacular.com/cdn/ingredients_100x100/{0:F0}'}" 
-                                                        Grid.Column="0" Grid.Row="0"
-                                                        HeightRequest="60"  WidthRequest="60" Aspect="AspectFit"
-                                                        ></ffimageloading:CachedImage>
-                                                    <Label TextColor="#2F3246" FontSize="14" Grid.Column="1" Grid.Row="0"  VerticalOptions="CenterAndExpand" Margin="0,4,0,0">
-                                                                <Label.FormattedText>
-                                                                    <FormattedString>
-                                                                        <FormattedString.Spans>
-                                                                            <Span Text="{Binding IngredientName}"/>
-                                                                            <Span Text="&#x0a;"/>
-                                                                            <Span Text="{Binding StringIngredientAmount}" FontAttributes="Bold"/>
-                                                                            <Span Text=" "/>
-                                                                            <Span Text="{Binding IngredientUnits}" FontAttributes="Bold"/>
-                                                                </FormattedString.Spans>
-                                                                    </FormattedString>
-                                                                </Label.FormattedText>
+                                                            <ffimageloading:CachedImage 
+                                                                Margin="4"
+                                                                Source="{Binding IngredientImg, StringFormat='https://spoonacular.com/cdn/ingredients_100x100/{0:F0}'}" 
+                                                                Grid.Column="0" Grid.Row="0"
+                                                                HeightRequest="60"  WidthRequest="60" Aspect="AspectFit">
+                                                            </ffimageloading:CachedImage>
+                                                            <Label TextColor="#2F3246" FontSize="14" Grid.Column="1" Grid.Row="0"  VerticalOptions="CenterAndExpand" Margin="0,4,0,0">
+                                                            <Label.FormattedText>
+                                                                <FormattedString>
+                                                                    <FormattedString.Spans>
+                                                                        <Span Text="{Binding IngredientName}"/>
+                                                                        <Span Text="&#x0a;"/>
+                                                                        <Span Text="{Binding StringIngredientAmount}" FontAttributes="Bold"/>
+                                                                        <Span Text=" "/>
+                                                                        <Span Text="{Binding IngredientUnits}" FontAttributes="Bold"/>
+                                                            </FormattedString.Spans>
+                                                                </FormattedString>
+                                                            </Label.FormattedText>
                                                             </Label>
                                                             <CheckBox Grid.Column="2" Grid.Row="0" Color="Black" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
-                                                            <Image Source="delete.png" Grid.Column="2" Grid.Row="0" HorizontalOptions="End" VerticalOptions="CenterAndExpand"/>
+                                                            <Image Source="delete.png" Grid.Column="2" Grid.Row="0" HorizontalOptions="End" VerticalOptions="CenterAndExpand">
+                                                                <Image.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="DeleteShoppingListItem" CommandParameter="{Binding ., Converter={StaticResource ConvertToShoppingListItem} , ConverterParameter={Binding .}}"/>
+                                                                </Image.GestureRecognizers>
+                                                            </Image>
                                                         </Grid>
                                                     </DataTemplate>
                                                 </BindableLayout.ItemTemplate>

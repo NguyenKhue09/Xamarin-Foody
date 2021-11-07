@@ -43,7 +43,7 @@ namespace Foody.Data
             return restService.GetShoppingList();
         }
 
-        public Task DeleteShoppingListItem(string itemId)
+        public Task<bool> DeleteShoppingListItem(int itemId)
         {
             return restService.DeleteShoppingListItem(itemId);
         }

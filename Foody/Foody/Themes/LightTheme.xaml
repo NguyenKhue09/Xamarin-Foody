@@ -10,6 +10,7 @@
 
     <converters:ComparisonConverter x:Key="ComparisonConverter"/>
     <converters:ColorFromHexConverter x:Key="ColorFromHexConverter"/>
+    <converters:ConvertToShoppingListItem x:Key="ConvertToShoppingListItem"/>
     
 
     <!--#region Color Range-->
