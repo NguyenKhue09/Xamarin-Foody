@@ -123,7 +123,18 @@ namespace Foody.ViewModels
             {
                 foreach(ShoppingListGroupManager shoppingListGroupManager in shoppingListGroupManagers)
                 {
-                    shoppingListGroupManager.shoppingListItems.Remove(shoppingListItem);
+                    if(shoppingListItem.IngredientAisle == shoppingListGroupManager.Aisle)
+                    {
+                        shoppingListGroupManager.shoppingListItems.Remove(shoppingListItem);
+                        if (shoppingListGroupManager.shoppingListItems.Count == 0)
+                        {
+                            Debug.WriteLine("Empty list");
+                            deleteShoppingListGroupManagerItem(shoppingListGroupManager);
+                        }
+                        break;
+                    }
+
+                    
                 }
                 return true;
             } else
@@ -132,6 +143,10 @@ namespace Foody.ViewModels
             }
         }
 
+        void deleteShoppingListGroupManagerItem(ShoppingListGroupManager shoppingListGroupManager)
+        {
+            shoppingListGroupManagers.Remove(shoppingListGroupManager);
+        }
 
         async Task<IngredientInform> GetIngredientInform(int id)
         {
