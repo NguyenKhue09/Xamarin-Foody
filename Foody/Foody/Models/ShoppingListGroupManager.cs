@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Foody.Models
 {
-    public class ShoppingListItem
+    public class ShoppingListItem : INotifyPropertyChanged
     {
         public string IngredientName { get; set; }
         public string IngredientAisle { get; set; }
@@ -16,9 +17,33 @@ namespace Foody.Models
         public double IngredientAmount { get; set; }
         public string StringIngredientAmount { get; set; }
         public string IngredientUnits { get; set; }
+
+        public bool isChoose { get; set; }
+
+        public bool IsChoose
+        {
+            get { return isChoose; }
+            set
+            {
+                if (isChoose != value)
+                {
+                    isChoose = value;
+                    OnPropertyChanged("IsChoose");
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
     public class ShoppingListGroupManager :INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public string Aisle { get; set; }
 
         public bool isExpanded;
@@ -26,6 +51,17 @@ namespace Foody.Models
         public string iconExpand;
 
         public ObservableCollection<ShoppingListItem> shoppingListItems { get; set; }
+
+        public ObservableCollection<ShoppingListItem> ShoppingListItems
+        {
+            get { return shoppingListItems; }
+            set
+            {
+                shoppingListItems = value;
+                NotifyPropertyChanged();
+                //OnPropertyChanged("ShoppingListItems");
+            }
+        }
 
         public bool IsExpanded
         {
@@ -56,13 +92,18 @@ namespace Foody.Models
         public ShoppingListGroupManager(string aisle, ObservableCollection<ShoppingListItem> listItems, string iconExpand = "down.png", bool isExpanded = false)
         {
             Aisle = aisle;
-            shoppingListItems = new ObservableCollection<ShoppingListItem>(listItems);
+            ShoppingListItems = new ObservableCollection<ShoppingListItem>(listItems);
             IconExpand = iconExpand;
             IsExpanded = isExpanded;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+       
         protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        protected virtual void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

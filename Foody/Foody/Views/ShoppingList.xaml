@@ -91,9 +91,9 @@
                                 <Label Text="Select All" FontSize="23" TextColor="Black" 
                                    VerticalOptions="CenterAndExpand" HorizontalOptions="Start"
                                    Grid.Column="0" Margin="15,0"></Label>
-                                <CheckBox HeightRequest="36" WidthRequest="36" Color="Black"
+                                <CheckBox x:Name="SelectedAllItem" HeightRequest="36" WidthRequest="36" Color="Green"
                                       VerticalOptions="CenterAndExpand" HorizontalOptions="End"
-                                      Grid.Column="1" Margin="15,0"></CheckBox>
+                                      Grid.Column="1" Margin="15,0" CheckedChanged="SelectedAllItem_CheckedChanged"></CheckBox>
                             </Grid>
                         </Frame>
                     </StackLayout>
@@ -155,7 +155,8 @@
                                                                 </FormattedString>
                                                             </Label.FormattedText>
                                                             </Label>
-                                                            <CheckBox Grid.Column="2" Grid.Row="0" Color="Black" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+                                                    <CheckBox Grid.Column="2" Grid.Row="0" Color="Black" IsChecked="{Binding IsChoose, Mode=TwoWay}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand">
+                                                    </CheckBox>
                                                             <Image Source="delete.png" Grid.Column="2" Grid.Row="0" HorizontalOptions="End" VerticalOptions="CenterAndExpand">
                                                                 <Image.GestureRecognizers>
                                                             <TapGestureRecognizer Tapped="DeleteShoppingListItem" CommandParameter="{Binding ., Converter={StaticResource ConvertToShoppingListItem} , ConverterParameter={Binding .}}"/>
@@ -178,7 +179,7 @@
                                                 BackgroundColor="#07BDF6" CornerRadius="15" 
                                                 VerticalOptions="Start" HorizontalOptions="Center">
                             <yummy:PancakeView.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding NavToPantry}"/>
+                                <TapGestureRecognizer Tapped="Add_To_List_Tapped"/>
                             </yummy:PancakeView.GestureRecognizers>
                             <yummy:PancakeView.BackgroundGradientStops>
                                 <yummy:GradientStopCollection>

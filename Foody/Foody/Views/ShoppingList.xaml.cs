@@ -51,6 +51,17 @@ namespace Foody.Views
             };
             await this.DisplaySnackBarAsync(options);
         }
+
+        private void SelectedAllItem_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            shoppingListViewModel.isSelectedAllShoppingListItem = !shoppingListViewModel.isSelectedAllShoppingListItem;
+            shoppingListViewModel.SelectAllShoppingListItem();
+        }
+
+        private void Add_To_List_Tapped(object sender, EventArgs e)
+        {
+            shoppingListViewModel.AddShoppingListItemToCard();
+        }
     }
 
     
