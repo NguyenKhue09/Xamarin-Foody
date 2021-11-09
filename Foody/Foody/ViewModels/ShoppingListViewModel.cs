@@ -22,10 +22,15 @@ namespace Foody.ViewModels
         public ObservableCollection<ShoppingListGroupManager> shoppingListGroupManagers { get; set; }
         private ShoppingListResult originalShoppintLists { get; set; }
 
+        public bool isSelectedAllShoppingListItem = false;
+
+        private List<ShoppingListItem> selectedShoppingtListItems { get; set; }
+
         public ShoppingListViewModel()
         {
             Checkmanager = new Command<string>(manager_SelectionChanged);
             shoppingListGroupManagers = new ObservableCollection<ShoppingListGroupManager>();
+            selectedShoppingtListItems = new List<ShoppingListItem>();
         }
 
         public void manager_SelectionChanged(string topic)
@@ -86,6 +91,7 @@ namespace Foody.ViewModels
                 shoppingListItem.StringIngredientAmount = new Fraction(Math.Round(amount, 2)).ToString();
                 shoppingListItem.IngredientAmount = amount;
                 shoppingListItem.IngredientId = nameGroup.Key;
+                shoppingListItem.IsChoose = false;
                 IngredientInform ingredientInform = await GetIngredientInform(nameGroup.Key);
                 if (ingredientInform != null)
                 {
@@ -98,6 +104,31 @@ namespace Foody.ViewModels
             }
             
             return shoppingListItems;
+        }
+
+        public void AddShoppingListItemToCard()
+        {
+            foreach(ShoppingListGroupManager shoppingListGroupManager in shoppingListGroupManagers)
+            {
+                foreach(ShoppingListItem shoppingListItem in shoppingListGroupManager.shoppingListItems)
+                {
+                    selectedShoppingtListItems.Add(shoppingListItem);
+                    Debug.WriteLine(shoppingListItem.IngredientName + shoppingListItem.isChoose);
+                }
+            }
+        }
+
+        public void SelectAllShoppingListItem()
+        {
+            foreach (ShoppingListGroupManager shoppingListGroupManager in shoppingListGroupManagers)
+            {
+                foreach (ShoppingListItem shoppingListItem in shoppingListGroupManager.ShoppingListItems)
+                {
+                    
+                        shoppingListItem.IsChoose = isSelectedAllShoppingListItem;
+                    //Debug.WriteLine(shoppingListItem.IngredientName + shoppingListItem.IsChoose);
+                }
+            }
         }
 
         public async Task<bool> DeleteShoppingListItem(ShoppingListItem shoppingListItem)
@@ -123,7 +154,18 @@ namespace Foody.ViewModels
             {
                 foreach(ShoppingListGroupManager shoppingListGroupManager in shoppingListGroupManagers)
                 {
-                    shoppingListGroupManager.shoppingListItems.Remove(shoppingListItem);
+                    if(shoppingListItem.IngredientAisle == shoppingListGroupManager.Aisle)
+                    {
+                        shoppingListGroupManager.ShoppingListItems.Remove(shoppingListItem);
+                        if (shoppingListGroupManager.ShoppingListItems.Count == 0)
+                        {
+                            Debug.WriteLine("Empty list");
+                            deleteShoppingListGroupManagerItem(shoppingListGroupManager);
+                        }
+                        break;
+                    }
+
+                    
                 }
                 return true;
             } else
@@ -132,6 +174,10 @@ namespace Foody.ViewModels
             }
         }
 
+        void deleteShoppingListGroupManagerItem(ShoppingListGroupManager shoppingListGroupManager)
+        {
+            shoppingListGroupManagers.Remove(shoppingListGroupManager);
+        }
 
         async Task<IngredientInform> GetIngredientInform(int id)
         {
