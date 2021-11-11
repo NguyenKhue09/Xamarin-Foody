@@ -62,6 +62,17 @@ namespace Foody.Views
         {
             shoppingListViewModel.AddShoppingListItemToCard();
         }
+
+        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SearchBar searchBar = (SearchBar)sender;
+            Debug.WriteLine(searchBar.Text);
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new PageShoppingCart());
+        }
     }
 
     

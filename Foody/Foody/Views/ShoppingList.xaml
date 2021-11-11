@@ -29,15 +29,15 @@
                         </Grid.ColumnDefinitions>
                         <!--dòng 1 -->
                         <!--làm yummy-->
-                        <Label Text="PANTRY" FontSize="20" 
+                        <Label Text="Shopping List" FontSize="20" 
                                FontAttributes="Bold" Margin="35,10"
                                HorizontalOptions="Start" VerticalOptions="CenterAndExpand" 
                                TextColor="White" 
                                Grid.Column="0" Grid.Row="0"/>
-                        <Image Source="down1.png" HeightRequest="16" WidthRequest="16"
+                        <!--<Image Source="down1.png" HeightRequest="16" WidthRequest="16"
                                Margin="80,10"
                                VerticalOptions="CenterAndExpand" HorizontalOptions="End" 
-                               Grid.Column="0" Grid.Row="0"></Image>
+                               Grid.Column="0" Grid.Row="0"></Image>-->
                         <!--//-->
                         
                         <Image Source="barcode.png" HeightRequest="26" WidthRequest="26"
@@ -49,10 +49,15 @@
                                VerticalOptions="CenterAndExpand" HorizontalOptions="Start" 
                                Grid.Column="1" Grid.Row="0">
                             <Image.GestureRecognizers>
-                                <TapGestureRecognizer
-                                 />
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                             </Image.GestureRecognizers>
                         </Image>
+                        <Frame CornerRadius="90" BackgroundColor="Green" 
+                               HeightRequest="18" WidthRequest="18" 
+                               VerticalOptions="Start" HorizontalOptions="Start" Padding="0" Margin="21,10"
+                               Grid.Column="1" Grid.Row="0">
+                            <Label Text="2" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Frame>
                         <Image Source="menu1.png" HeightRequest="24" WidthRequest="24"
                                VerticalOptions="CenterAndExpand" HorizontalOptions="End" 
                                Grid.Column="1" Grid.Row="0" Margin="0,0,20,0"/>
@@ -61,7 +66,7 @@
                                Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
                                HeightRequest="60" WidthRequest="280" Margin="25,0,10,10"
                                HorizontalOptions="Start" VerticalOptions="Start">
-                            <SearchBar Keyboard="Text" FontSize="18"   HeightRequest="55"  Margin="10,0,0,0"  ></SearchBar>
+                            <SearchBar Keyboard="Text" FontSize="15"   HeightRequest="55"  Margin="0,0,0,0" Placeholder="Add New Item to Shopping List" TextChanged="SearchBar_TextChanged"></SearchBar>
                         </Frame>
                         <Frame  CornerRadius="10" Padding="0" HasShadow="False" BorderColor="#D8D8D8" 
                                Grid.Column="1" Grid.Row="1" 
