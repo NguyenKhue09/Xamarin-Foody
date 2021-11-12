@@ -32,17 +32,13 @@ namespace Foody.ViewModels
 
         async public void GetRecipes()
         {
-            Recipe results = new Recipe();
-
-            results = await App.RecipeManager.GetRecipes();
+            Recipe results = await App.RecipeManager.GetRecipes();
             Recipes.AddRange(results.results);
         }
 
         async public void GetRandomRecipes()
         {
-            Recipe results = new Recipe();
-
-            results = await App.RecipeManager.GetRecipes();
+            Recipe results = await App.RecipeManager.GetRecipes();
             RandomRecipes.AddRange(results.results);
             
         }

@@ -1,9 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:controls="clr-namespace:Foody.ViewModels" xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit"
              x:Class="Foody.Views.ShoppingList"
-             xmlns:local="clr-namespace:Foody.ViewModels" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:local="clr-namespace:Foody.ViewModels" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:controls="clr-namespace:Foody.Controls"
              BackgroundColor="#f5f5f5">
+    
     <ContentPage.Resources>
         <ResourceDictionary Source="../Styles/Styles.xaml" />
     </ContentPage.Resources>
@@ -29,15 +32,15 @@
                         </Grid.ColumnDefinitions>
                         <!--dòng 1 -->
                         <!--làm yummy-->
-                        <Label Text="PANTRY" FontSize="20" 
+                        <Label Text="Shopping List" FontSize="20" 
                                FontAttributes="Bold" Margin="35,10"
                                HorizontalOptions="Start" VerticalOptions="CenterAndExpand" 
                                TextColor="White" 
                                Grid.Column="0" Grid.Row="0"/>
-                        <Image Source="down1.png" HeightRequest="16" WidthRequest="16"
+                        <!--<Image Source="down1.png" HeightRequest="16" WidthRequest="16"
                                Margin="80,10"
                                VerticalOptions="CenterAndExpand" HorizontalOptions="End" 
-                               Grid.Column="0" Grid.Row="0"></Image>
+                               Grid.Column="0" Grid.Row="0"></Image>-->
                         <!--//-->
                         
                         <Image Source="barcode.png" HeightRequest="26" WidthRequest="26"
@@ -49,10 +52,15 @@
                                VerticalOptions="CenterAndExpand" HorizontalOptions="Start" 
                                Grid.Column="1" Grid.Row="0">
                             <Image.GestureRecognizers>
-                                <TapGestureRecognizer
-                                 />
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                             </Image.GestureRecognizers>
                         </Image>
+                        <Frame CornerRadius="90" BackgroundColor="Green" 
+                               HeightRequest="18" WidthRequest="18" 
+                               VerticalOptions="Start" HorizontalOptions="Start" Padding="0" Margin="21,10"
+                               Grid.Column="1" Grid.Row="0">
+                            <Label Text="2" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Frame>
                         <Image Source="menu1.png" HeightRequest="24" WidthRequest="24"
                                VerticalOptions="CenterAndExpand" HorizontalOptions="End" 
                                Grid.Column="1" Grid.Row="0" Margin="0,0,20,0"/>
@@ -61,7 +69,15 @@
                                Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
                                HeightRequest="60" WidthRequest="280" Margin="25,0,10,10"
                                HorizontalOptions="Start" VerticalOptions="Start">
-                            <controls:CustomEntry  Keyboard="Text" FontSize="18" Placeholder="Add New Item to Shopping List"  HeightRequest="55"  Margin="10,0,0,0"></controls:CustomEntry>
+                            <!--<SearchBar Keyboard="Text" FontSize="15"   HeightRequest="55"  Margin="0,0,0,0" Placeholder="Add New Item to Shopping List" TextChanged="SearchBar_TextChanged"></SearchBar>-->
+                            <Shell.SearchHandler Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                                <controls:AnimalSearchHandler Placeholder="Enter search term"
+                                      ShowsResults="true"
+                                      SearchBoxVisibility="Expanded" BackgroundColor="Aqua" >
+
+                                </controls:AnimalSearchHandler>
+                            </Shell.SearchHandler>
+
                         </Frame>
                         <Frame  CornerRadius="10" Padding="0" HasShadow="False" BorderColor="#D8D8D8" 
                                Grid.Column="1" Grid.Row="1" 
@@ -74,13 +90,12 @@
             </yummy:PancakeView>
 
             <!--Body-->
-            
-                    <CollectionView x:Name="shoplist" 
+            <CollectionView x:Name="shoplist" 
                                             BackgroundColor="#f5f5f5"
                                             VerticalScrollBarVisibility="Never" 
                                             Grid.Column="0" Grid.Row="1" 
                                             ItemsSource="{Binding shoppingListGroupManagers}" Margin="15,0">
-                        <CollectionView.Header>
+                <CollectionView.Header>
                     <StackLayout Padding="10,20" HeightRequest="120">
                         <Frame Padding="10" CornerRadius="8" HasShadow="True" Margin="0">
                             <Grid>
@@ -97,46 +112,46 @@
                             </Grid>
                         </Frame>
                     </StackLayout>
-                            
-                        </CollectionView.Header>
-                        <CollectionView.ItemsLayout>
-                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="15"/>
-                        </CollectionView.ItemsLayout>
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout Padding="10,8" Grid.Row="1" Grid.Column="0" Margin="0">
-                                    <yummy:PancakeView BackgroundColor="White" VerticalOptions="StartAndExpand" 
-                                    HorizontalOptions="FillAndExpand" Shadow="{yummy:ShadowMarkup BlurRadius=3}"  CornerRadius="10">
-                                        <behaviors:Expander  Command="{Binding Source={RelativeSource AncestorType={x:Type local:ShoppingListViewModel}}, Path=Checkmanager}"
-                                                                CommandParameter="{Binding Aisle}">
-                                            <behaviors:Expander.Header >
-                                                <Grid HorizontalOptions="FillAndExpand" HeightRequest="66" VerticalOptions="EndAndExpand">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                    </Grid.ColumnDefinitions>
 
-                                                    <Label Text="{Binding Aisle}" 
+                </CollectionView.Header>
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="15"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10,8" Grid.Row="1" Grid.Column="0" Margin="0">
+                            <yummy:PancakeView BackgroundColor="White" VerticalOptions="StartAndExpand" 
+                                    HorizontalOptions="FillAndExpand" Shadow="{yummy:ShadowMarkup BlurRadius=3}"  CornerRadius="10">
+                                <behaviors:Expander  Command="{Binding Source={RelativeSource AncestorType={x:Type local:ShoppingListViewModel}}, Path=Checkmanager}"
+                                                                CommandParameter="{Binding Aisle}">
+                                    <behaviors:Expander.Header >
+                                        <Grid HorizontalOptions="FillAndExpand" HeightRequest="66" VerticalOptions="EndAndExpand">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Text="{Binding Aisle}" 
                                                            MaxLines="1" LineBreakMode="TailTruncation"
                                                            TextColor="Black" FontSize="18" 
                                                            Grid.Column="0" Margin="15" 
                                                            VerticalOptions="EndAndExpand"/>
-                                                    <Image Source="{Binding IconExpand}" Grid.Column="1" Margin="15" VerticalOptions="EndAndExpand"></Image>
+                                            <Image Source="{Binding IconExpand}" Grid.Column="1" Margin="15" VerticalOptions="EndAndExpand"></Image>
 
 
-                                                </Grid>
-                                            </behaviors:Expander.Header>
-                                            <StackLayout BindableLayout.ItemsSource="{Binding shoppingListItems}" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,0">
-                                                <BindableLayout.ItemTemplate>
-                                                    <DataTemplate>
-                                                        
-                                                        <Grid RowSpacing="0" HeightRequest="60">
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="0.75*"/>
-                                                                <ColumnDefinition Width="2*"/>
-                                                                <ColumnDefinition Width="0.75*"/>
-                                                            </Grid.ColumnDefinitions>
-                                                            <ffimageloading:CachedImage 
+                                        </Grid>
+                                    </behaviors:Expander.Header>
+                                    <StackLayout BindableLayout.ItemsSource="{Binding shoppingListItems}" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,0">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+
+                                                <Grid RowSpacing="0" HeightRequest="60">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="0.75*"/>
+                                                        <ColumnDefinition Width="2*"/>
+                                                        <ColumnDefinition Width="0.75*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <ffimageloading:CachedImage 
                                                                 Margin="4"
                                                                 Source="{Binding IngredientImg, StringFormat='https://spoonacular.com/cdn/ingredients_100x100/{0:F0}'}" 
                                                                 Grid.Column="0" Grid.Row="0"
@@ -160,17 +175,17 @@
                                                             <Image Source="delete.png" Grid.Column="2" Grid.Row="0" HorizontalOptions="End" VerticalOptions="CenterAndExpand">
                                                                 <Image.GestureRecognizers>
                                                             <TapGestureRecognizer Tapped="DeleteShoppingListItem" CommandParameter="{Binding ., Converter={StaticResource ConvertToShoppingListItem} , ConverterParameter={Binding .}}"/>
-                                                                </Image.GestureRecognizers>
-                                                            </Image>
-                                                        </Grid>
-                                                    </DataTemplate>
-                                                </BindableLayout.ItemTemplate>
-                                            </StackLayout>
-                                        </behaviors:Expander>
-                                    </yummy:PancakeView>
-                                </StackLayout>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
+                                                        </Image.GestureRecognizers>
+                                                    </Image>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                </behaviors:Expander>
+                            </yummy:PancakeView>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
                 <CollectionView.Footer>
                     <StackLayout Padding="10,20">
                         <yummy:PancakeView  
@@ -194,9 +209,8 @@
                         </yummy:PancakeView>
                     </StackLayout>
                 </CollectionView.Footer>
-                    </CollectionView>
-
-                <!--</Grid>
+            </CollectionView>
+            <!--</Grid>
             </ScrollView>-->
         </Grid>
     </ContentPage.Content>

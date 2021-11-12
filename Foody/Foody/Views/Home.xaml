@@ -297,7 +297,6 @@
                                                 FadeAnimationForCachedImages="True"
                                                 FadeAnimationEnabled="True"
                                                 FadeAnimationDuration="100"
-                                                LoadingPlaceholder="reload.gif"
                                                 Aspect="AspectFit"
                                                 CacheType="All"
                                                 Source="{Binding image}" />
@@ -400,7 +399,6 @@
 
                                         <ffimageloading:CachedImage
                                             x:Name="loading_Image"
-                                            LoadingPlaceholder="reload.gif"
                                             CacheDuration="30"
                                             DownsampleToViewSize="True"
                                             FadeAnimationForCachedImages="True"
@@ -509,7 +507,6 @@
 
                                         <ffimageloading:CachedImage
                                             x:Name="loading_Image"
-                                            LoadingPlaceholder="reload.gif"
                                             CacheDuration="30"
                                             DownsampleToViewSize="True"
                                             FadeAnimationForCachedImages="True"
