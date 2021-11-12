@@ -19,8 +19,9 @@ namespace Foody.Services.RecipeApiCall
         private PantryViewModel pantryViewModel = new PantryViewModel();
         private SearchPopUp searchPopUp = new SearchPopUp();
 
-        
-        
+        public Recipe Recipes { get; private set; }
+       
+        public Recipe PopularRecipes { get; private set; }
         public Recipe SearchRecipesList { get; private set; }
         public ShoppingListResult ShoppingListResult { get; private set; }
         public IngredientInform ingredientInform { get; private set; }
@@ -153,10 +154,17 @@ namespace Foody.Services.RecipeApiCall
 
         public async Task<Recipe> GetRandomRecipes()
         {
-            Debug.WriteLine("Random");
+
+            string[] names = { "Ketogenic", "Gluten Free", "Vegetarian", "Lacto-Vegetarian", "Vegan", "Paleo", "Pescetarian", "Low FODMAP" };
+            Random rnd = new Random();
+            int index = rnd.Next(names.Length);
+
             Recipe RandomRecipes = new Recipe();
 
-            Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/recipes/random?number={Constants.Constants.NUMBER}&apiKey={Constants.Constants.APIKEY}&tags=vegetarian,dessert", string.Empty));
+            Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/recipes/complexSearch?number=" +
+               $"{Constants.Constants.NUMBER}&apiKey={Constants.Constants.APIKEY}&type={Constants.Constants.RANDOM_RECIPE_TYPE}" +
+               $"&diet={names[index]}&addRecipesInformation={Constants.Constants.ADDRECIPEINFORMATION}" +
+               $"&fillIngredients={Constants.Constants.FILLINGREDIENTS}&addRecipeNutrition={Constants.Constants.RECIPENUTRITION}", string.Empty));
             try
             {
 

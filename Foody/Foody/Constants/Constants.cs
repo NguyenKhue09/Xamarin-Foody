@@ -22,6 +22,8 @@ namespace Foody.Constants
         public static bool  FILLINGREDIENTS = true;
         public static bool  RECIPENUTRITION = true;
 
+        public static string RANDOM_RECIPE_TYPE = "beverage,breakfast,side dish";
+
         public static string POPULAR_RECIPE_TYPE = "marinade,fingerfood,snack,drink";
         public static string POPULAR_DIET = "Gluten Free";
 

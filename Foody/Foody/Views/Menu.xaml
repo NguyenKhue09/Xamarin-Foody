@@ -62,7 +62,7 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <Image Source="menu4.png" VerticalOptions="Start" HorizontalOptions="Start" Grid.Column="0" Grid.Row="0" HeightRequest="60" />
-                    <Label Text="Facorite Recipes" TextColor="Black" FontSize="22" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Grid.Column="1" Grid.Row="0" />
+                    <Label Text="Favorite Recipes" TextColor="Black" FontSize="22" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Grid.Column="1" Grid.Row="0" />
                 </Grid>
             </Frame>
             
