@@ -297,7 +297,6 @@
                                                 FadeAnimationForCachedImages="True"
                                                 FadeAnimationEnabled="True"
                                                 FadeAnimationDuration="100"
-                                                LoadingPlaceholder="reload.gif"
                                                 Aspect="AspectFit"
                                                 CacheType="All"
                                                 Source="{Binding image}" />
@@ -318,7 +317,7 @@
                         x:Name="collectionView_Popular"
                         Grid.Row="4"
                         Grid.Column="0"
-                        ItemsSource="{Binding Foods}"
+                        ItemsSource="{Binding Recipes}"
                         HeightRequest="100"
                         SelectionMode="Single"
                         SelectionChanged="collectionView_Popular_SelectionChanged">
@@ -354,6 +353,15 @@
                                         <ColumnDefinition Width="15" />
                                     </Grid.ColumnDefinitions>
 
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#f5f5f5" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
 
                                     <yummy:PancakeView
                                         Grid.Row="1"
@@ -381,35 +389,38 @@
                                                 FontAttributes="Bold"
                                                 FontSize="15"
                                                 HorizontalTextAlignment="Center"
-                                                Text="{Binding Name_Food}"
+                                                Text="{Binding title}"
                                                 Style="{StaticResource TxtSubtitle1_2}" />
                                         </StackLayout>
 
                                     </yummy:PancakeView>
 
                                     <Frame 
-                                        x:Name="frame"
                                         Grid.Row="0"
                                         Grid.RowSpan="2"
                                         Grid.Column="1"
-                                        CornerRadius="30"
+                                        CornerRadius="25"
                                         BackgroundColor="White"
                                         HasShadow="True"
                                         BorderColor="LightGray"
                                         Padding="8">
-
-                                        <ffimageloading:CachedImage
-                                            x:Name="loading_Image"
-                                            LoadingPlaceholder="reload.gif"
-                                            CacheDuration="30"
-                                            DownsampleToViewSize="True"
-                                            FadeAnimationForCachedImages="True"
-                                            FadeAnimationEnabled="True"
-                                            FadeAnimationDuration="100"
-                                            Aspect="AspectFit"
-                                            CacheType="All"
-                                            Source="{Binding Image_Food}" />
-
+                                        <Frame
+                                             Padding="0"
+                                             CornerRadius="20"
+                                             BackgroundColor="White"
+                                             HasShadow="False">
+                                            <ffimageloading:CachedImage
+                                                x:Name="image_loading"
+                                                CacheDuration="30"
+                                                DownsampleToViewSize="True"
+                                                FadeAnimationForCachedImages="True"
+                                                FadeAnimationEnabled="True"
+                                                FadeAnimationDuration="100"
+                                                LoadingPlaceholder="reload.gif"
+                                                Aspect="AspectFit"
+                                                CacheType="All"
+                                                Source="{Binding image}" />
+                                        </Frame>
 
                                     </Frame>
 
@@ -426,7 +437,7 @@
                         x:Name="random_recipes"
                         Grid.Row="6"
                         Grid.Column="0"
-                        ItemsSource="{Binding Foods}"
+                        ItemsSource="{Binding RandomRecipes}"
                         HeightRequest="100"
                         SelectionMode="Single"
                         SelectionChanged="random_recipes_SelectionChanged">
@@ -462,6 +473,15 @@
                                         <ColumnDefinition Width="15" />
                                     </Grid.ColumnDefinitions>
 
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#f5f5f5" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
 
                                     <yummy:PancakeView
                                         Grid.Row="1"
@@ -489,7 +509,7 @@
                                                 FontAttributes="Bold"
                                                 FontSize="15"
                                                 HorizontalTextAlignment="Center"
-                                                Text="{Binding Name_Food}"
+                                                Text="{Binding title}"
                                                 Style="{StaticResource TxtSubtitle1_2}" />
                                         </StackLayout>
 
@@ -497,27 +517,32 @@
 
 
                                     <Frame 
-                                        x:Name="frame"
                                         Grid.Row="0"
                                         Grid.RowSpan="2"
                                         Grid.Column="1"
-                                        CornerRadius="30"
+                                        CornerRadius="25"
                                         BackgroundColor="White"
                                         HasShadow="True"
                                         BorderColor="LightGray"
                                         Padding="8">
+                                        <Frame
+                                             Padding="0"
+                                             CornerRadius="20"
+                                             BackgroundColor="White"
+                                             HasShadow="False">
+                                            <ffimageloading:CachedImage
+                                                x:Name="image_loading"
+                                                CacheDuration="30"
+                                                DownsampleToViewSize="True"
+                                                FadeAnimationForCachedImages="True"
+                                                FadeAnimationEnabled="True"
+                                                FadeAnimationDuration="100"
+                                                LoadingPlaceholder="reload.gif"
+                                                Aspect="AspectFit"
+                                                CacheType="All"
+                                                Source="{Binding image}" />
+                                        </Frame>
 
-                                        <ffimageloading:CachedImage
-                                            x:Name="loading_Image"
-                                            LoadingPlaceholder="reload.gif"
-                                            CacheDuration="30"
-                                            DownsampleToViewSize="True"
-                                            FadeAnimationForCachedImages="True"
-                                            FadeAnimationEnabled="True"
-                                            FadeAnimationDuration="100"
-                                            Aspect="AspectFit"
-                                            CacheType="All"
-                                            Source="{Binding Image_Food}" />
                                     </Frame>
 
 

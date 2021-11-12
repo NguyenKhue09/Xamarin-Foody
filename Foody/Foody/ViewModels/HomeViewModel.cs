@@ -15,6 +15,7 @@ namespace Foody.ViewModels
         public ObservableRangeCollection<Food> Foods { get; set; }
         public ObservableRangeCollection<Result> Recipes { get; set; }
         public ObservableRangeCollection<Result> RandomRecipes { get; set; }
+        public ObservableRangeCollection<Result> PopularRecipes { get; set; }
 
         public ICommand NavToPantry => new Command(NavToPantryPage);
         public ICommand NavToShoppingList => new Command(NavToShoppingListPage);
@@ -32,9 +33,7 @@ namespace Foody.ViewModels
 
         async public void GetRecipes()
         {
-            Recipe results = new Recipe();
-
-            results = await App.RecipeManager.GetRecipes();
+            Recipe results = await App.RecipeManager.GetRecipes();
             Recipes.AddRange(results.results);
         }
 
@@ -42,7 +41,7 @@ namespace Foody.ViewModels
         {
             Recipe results = new Recipe();
 
-            results = await App.RecipeManager.GetRecipes();
+            results = await App.RecipeManager.GetRandomRecipes();
             RandomRecipes.AddRange(results.results);
             
         }

@@ -21,6 +21,11 @@ namespace Foody.Data
             return restService.GetRecipes();
         }
 
+        public Task<Recipe> GetRandomRecipes()
+        {
+            return restService.GetRandomRecipes();
+        }
+
         public Task<Recipe> GetPopularRecipes()
         {
             return restService.GetPopularRecipes();

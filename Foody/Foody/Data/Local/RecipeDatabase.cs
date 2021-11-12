@@ -3,24 +3,26 @@ using Foody.Models.Local;
 using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Foody.Data.Local
 {
-    public class IngredientsDatabase
+    public class RecipeDatabase
     {
         static SQLiteAsyncConnection Database;
 
-        public static readonly AsyncLazy<IngredientsDatabase> Instance = new AsyncLazy<IngredientsDatabase>(async () =>
+        public static readonly AsyncLazy<RecipeDatabase> Instance = new AsyncLazy<RecipeDatabase>(async () =>
             {
-                var instance = new IngredientsDatabase();
-                CreateTableResult result = await Database.CreateTableAsync<ingredient>();
+                var instance = new RecipeDatabase();
+                CreateTableResult IngredientTable = await Database.CreateTableAsync<ingredient>();
+                CreateTableResult FavoriteReipeTable = await Database.CreateTableAsync<FavoriteRecipe>();
                 return instance;
             }
         );
 
-        public IngredientsDatabase()
+        public RecipeDatabase()
         {
             Database = new SQLiteAsyncConnection(Constants.Constants.DatabasePath, Constants.Constants.Flags);
         }
@@ -55,6 +57,25 @@ namespace Foody.Data.Local
         {
             return Database.DeleteAsync(ingredient);
         }
+
+        // Favorite Recipe
+        //public Task<List<FavoriteRecipe>> GetFavoriteRecipes()
+        //{
+           
+        //    return null;
+        //}
+
+        //public Task<int> AddFavoriteRecipe()
+        //{
+        //    Debug.WriteLine("Add favorite recipe");
+        //    return 1;
+        //}
+
+        //public Task<int> DeleteFavoriteRecipe()
+        //{
+        //    Debug.WriteLine("Delete favorite recipe");
+        //    return 1;
+        //}
 
     }
 }
