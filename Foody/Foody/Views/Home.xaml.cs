@@ -66,7 +66,7 @@ namespace Foody.Views
         {
             base.OnAppearing();
             homeViewModel.GetRecipes();
-            //homeViewModel.GetRandomRecipes();
+            homeViewModel.GetRandomRecipes();
         }
 
 
@@ -84,12 +84,28 @@ namespace Foody.Views
             favorite_Recipes_Foody.SelectedItem = null;
         }
 
-        private void collectionView_Popular_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        async private void collectionView_Popular_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (collectionView_Popular.SelectedItem != null)
+            {
+                Debug.WriteLine("Choose");
+                Result recipe = (Result)collectionView_Popular.SelectedItem;
+                recipe.SelectedViewModelIndex = 0;
+                await Navigation.PushAsync(new DetailRecipe(recipe));
+            }
+            collectionView_Popular.SelectedItem = null;
         }
 
-        private void random_recipes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        async private void random_recipes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (random_recipes.SelectedItem != null)
+            {
+                Debug.WriteLine("Choose");
+                Result recipe = (Result)random_recipes.SelectedItem;
+                recipe.SelectedViewModelIndex = 0;
+                await Navigation.PushAsync(new DetailRecipe(recipe));
+            }
+            random_recipes.SelectedItem = null;
         }
 
     }
