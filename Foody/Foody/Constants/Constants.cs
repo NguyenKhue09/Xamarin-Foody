@@ -25,7 +25,7 @@ namespace Foody.Constants
         public static string RANDOM_RECIPE_TYPE = "beverage,breakfast,side dish";
 
         public static string POPULAR_RECIPE_TYPE = "marinade,fingerfood,snack,drink";
-        public static string POPULAR_DIET = "Gluten Free";
+        public static string POPULAR_DIET = "Whole30,Paleo,Primal,Vegetarian,Vegan,Pescetarian";
 
         // shopping list
         public static string USER_NAME = "vi-tv-n";

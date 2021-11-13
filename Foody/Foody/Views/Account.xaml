@@ -1,12 +1,87 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Foody.Views.Account">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:chips="clr-namespace:Xamarin.Forms.Chips;assembly=Xamarin.Forms.Chips"
+             x:Class="Foody.Views.Account"
+             BackgroundColor="#f5f5f5">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <Grid RowSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="300"/>
+                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!--row 1-->
+                <StackLayout BackgroundColor="White" Grid.Column="0" Grid.Row="0">
+                    <Image Source="user.png" Aspect="AspectFill" HeightRequest="80" WidthRequest="80" HorizontalOptions="Center" BackgroundColor="Aqua" Margin="0,70,0,0"/>
+                    <Label Text="Vi TV.N" TextColor="Black" FontSize="35" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,8,0,0" Padding="0"/>
+                    <Label Text="vinguyen1801@gmail.com" TextColor="Black" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" Margin="0" Padding="0"/>
+                    <Label LineBreakMode="WordWrap"  HorizontalOptions="Center" Padding="0,4">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Subscription Status " TextColor="LightGray" FontAttributes="Bold" FontSize="20" />
+                                <Span Text=" Active" TextColor="#07BDF6" FontSize="20" FontAttributes="Bold"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+                <!--row 2-->
+                <StackLayout BackgroundColor="White" Grid.Column="0" Grid.Row="1">
+                    
+                </StackLayout>
+            </Grid>
+            <!--<FlexLayout Grid.Row="1" Direction="Row" Wrap="Wrap" Padding="8" AlignItems="Center" AlignContent="SpaceBetween" BackgroundColor="White" Margin="0">
+                <chips:Chip
+                                            Text="African"
+                                            BackgroundColor="#F5F5F5"
+                                            IsToggleable="True"
+                                            AutoToggle="True"
+                                            Padding="8"
+                                            Margin="4">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                    <Setter Property="TextColor" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                    <Setter Property="TextColor" Value="#828082" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </chips:Chip>
+                <chips:Chip
+                                            Text="American"
+                                            BackgroundColor="#F5F5F5"
+                                            IsToggleable="True"
+                                            AutoToggle="True"
+                                            Padding="8"
+                                            Margin="4">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                    <Setter Property="TextColor" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                    <Setter Property="TextColor" Value="#828082" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </chips:Chip>
+            </FlexLayout>-->
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

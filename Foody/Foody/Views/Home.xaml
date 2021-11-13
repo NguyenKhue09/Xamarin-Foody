@@ -297,10 +297,10 @@
                                                 FadeAnimationForCachedImages="True"
                                                 FadeAnimationEnabled="True"
                                                 FadeAnimationDuration="100"
-                                                LoadingPlaceholder="reload.gif"
                                                 Aspect="AspectFit"
                                                 CacheType="All"
                                                 Source="{Binding image}" />
+                                            <!--LoadingPlaceholder="reload.gif"-->
                                         </Frame>
 
                                     </Frame>
@@ -417,7 +417,6 @@
                                                 FadeAnimationForCachedImages="True"
                                                 FadeAnimationEnabled="True"
                                                 FadeAnimationDuration="100"
-                                                LoadingPlaceholder="reload.gif"
                                                 Aspect="AspectFit"
                                                 CacheType="All"
                                                 Source="{Binding image}" />
@@ -538,7 +537,6 @@
                                                 FadeAnimationForCachedImages="True"
                                                 FadeAnimationEnabled="True"
                                                 FadeAnimationDuration="100"
-                                                LoadingPlaceholder="reload.gif"
                                                 Aspect="AspectFit"
                                                 CacheType="All"
                                                 Source="{Binding image}" />
