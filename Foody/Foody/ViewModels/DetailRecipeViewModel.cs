@@ -34,6 +34,7 @@ namespace Foody.ViewModels
 
 
         public int numberOfIngredient;
+        public bool isFavoriteRecipe;
        
         public Command sub { get; }
         public Command plus { get; }
@@ -45,7 +46,11 @@ namespace Foody.ViewModels
             set { SetProperty(ref numberOfIngredient, value); }
         }
 
-        
+        public bool IsFavoriteRecipe
+        {
+            get { return isFavoriteRecipe; }
+            set { SetProperty(ref isFavoriteRecipe, value); }
+        }
 
 
         public Rectangle rect { get; set; }
@@ -63,6 +68,7 @@ namespace Foody.ViewModels
             changeAmountIngredients(numberOfIngredient);
             sub = new Command(() => SubCount());
             plus = new Command(() => PlusCount());
+            IsFavoriteRecipe = false;
 
         }
 
@@ -112,12 +118,10 @@ namespace Foody.ViewModels
         
         public void changeAmountIngredients(int amount)
         {
-            Debug.WriteLine(amount);
             for (int i = 0; i < newList.Count; i++)
             {
                 newList[i].amount = double.Parse(recipe.extendedIngredients[i].amount.ToString()) * amount;
                 newList[i].amountIngre = new Fraction(newList[i].amount).ToString();
-                Debug.WriteLine(new Fraction(0.75).ToString());
                 ExtendedIngredients[i] = newList[i];
             }
             

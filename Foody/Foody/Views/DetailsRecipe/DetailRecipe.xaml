@@ -11,7 +11,6 @@
              Shell.TabBarIsVisible="False">
 
     <ContentPage.Resources>
-
         <Style x:Key="SegmentedTabStyle" TargetType="tabs1:SegmentedTabItem">
             <Setter Property="SelectedTabColor" Value="#08BCF0" />
             <Setter Property="LabelSize" Value="14" />
@@ -262,8 +261,15 @@
                         </FlexLayout>
                     </Frame>
 
-                    <Frame Grid.Column="1" Grid.Row="0" HorizontalOptions="End" Margin="6"  BackgroundColor="White" CornerRadius="60" WidthRequest="30" HeightRequest="30" HasShadow="False" Padding="10">
-                        <Image Source="heart_outline.png" HeightRequest="35" WidthRequest="35"></Image>
+                    <Frame 
+                        Grid.Column="1" Grid.Row="0" 
+                        HorizontalOptions="End" Margin="6"  
+                        BackgroundColor="White" CornerRadius="60" 
+                        WidthRequest="30" HeightRequest="30" HasShadow="False" Padding="10">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="AddRecipeToFavorite"/>
+                        </Frame.GestureRecognizers>
+                        <Image x:Name="FavoriteIcon" Source="heart_outline.png" HeightRequest="35" WidthRequest="35"></Image>
                     </Frame>
                     
                     <yummy:PancakeView 
@@ -273,7 +279,7 @@
                             VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,8,0" HeightRequest="50">
 
                         <yummy:PancakeView.GestureRecognizers>
-                            <TapGestureRecognizer Tapped = "AddItemToShoppingListAsync"/>
+                            <TapGestureRecognizer Tapped = "AddItemToShoppingListAsync" />
                         </yummy:PancakeView.GestureRecognizers>
 
                         <yummy:PancakeView.BackgroundGradientStops>

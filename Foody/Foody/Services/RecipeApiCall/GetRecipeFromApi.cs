@@ -39,8 +39,8 @@ namespace Foody.Services.RecipeApiCall
 
         public async Task<Recipe> GetRecipes()
         {
-            
-            Recipes = new Recipe();
+            Debug.WriteLine("Recipe");
+            Recipe Recipes = new Recipe();
 
             Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/recipes/complexSearch?number=" +
                 $"{Constants.Constants.NUMBER}&apiKey={Constants.Constants.APIKEY}&type={Constants.Constants.RECIPE_TYPE}" +
@@ -75,8 +75,8 @@ namespace Foody.Services.RecipeApiCall
         // popular Recipe 
         public async Task<Recipe> GetPopularRecipes()
         {
-
-            PopularRecipes = new Recipe();
+            Debug.WriteLine("Popular");
+            Recipe PopularRecipes  = new Recipe();
 
             Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/recipes/complexSearch?number=" +
                 $"{Constants.Constants.NUMBER}&apiKey={Constants.Constants.APIKEY}&type={Constants.Constants.POPULAR_RECIPE_TYPE}" +

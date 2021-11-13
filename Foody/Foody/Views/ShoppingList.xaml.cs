@@ -71,7 +71,7 @@ namespace Foody.Views
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new PageShoppingCart());
+            Navigation.PushAsync(new PageShoppingCart(shoppingListViewModel));
         }
     }
 

@@ -50,7 +50,7 @@
                                             BackgroundColor="#f5f5f5"
                                             VerticalScrollBarVisibility="Never" 
                                             Grid.Column="0" Grid.Row="2" 
-                                            ItemsSource="{Binding shoppingListGroupManagers}" Margin="15,0">
+                                            Margin="15,0">
                 <CollectionView.Header>
                     <StackLayout Padding="10,20" HeightRequest="120"></StackLayout>
 

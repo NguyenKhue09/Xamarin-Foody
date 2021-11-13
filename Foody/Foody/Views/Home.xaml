@@ -197,7 +197,6 @@
                         Grid.Column="0"
                         HeightRequest="100"
                         SelectionMode="Single"
-                        ItemsSource="{Binding Recipes}"
                         SelectionChanged="favorite_Recipes_Foody_SelectionChanged">
 
                         <CollectionView.ItemsLayout>

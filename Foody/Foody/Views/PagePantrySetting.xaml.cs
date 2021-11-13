@@ -37,13 +37,13 @@ namespace Foody.Views
         //        ingredientImg = ""
         //    };
 
-        //    IngredientsDatabase database = await IngredientsDatabase.Instance;
+        //    RecipeDatabase database = await RecipeDatabase.Instance;
         //    await database.SaveIngredientAsync(item);
         //}
 
         //async private void Button_Clicked_1(object sender, EventArgs e)
         //{
-        //    IngredientsDatabase database = await IngredientsDatabase.Instance;
+        //    RecipeDatabase database = await RecipeDatabase.Instance;
         //    List<ingredient> results =  await database.GetIngredientAsync();
         //    Debug.WriteLine(results[0].aisleBelong);
         //}

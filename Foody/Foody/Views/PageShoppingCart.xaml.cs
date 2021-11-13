@@ -17,7 +17,14 @@ namespace Foody.Views
         public PageShoppingCart()
         {
             InitializeComponent();
-            BindingContext = shoppingListViewModel = new ShoppingListViewModel();
+           
+        }
+
+        public PageShoppingCart(ShoppingListViewModel viewModel)
+        {
+            InitializeComponent();
+            BindingContext = shoppingListViewModel = viewModel;
+            shoplist.ItemsSource = shoppingListViewModel.shoppingListGroupManagers;
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -28,7 +35,7 @@ namespace Foody.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            shoppingListViewModel.GetShoppingList();
+            //shoppingListViewModel.GetShoppingList();
         }
 
     }
