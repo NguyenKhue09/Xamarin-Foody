@@ -11,7 +11,6 @@
     <converters:ComparisonConverter x:Key="ComparisonConverter"/>
     <converters:ColorFromHexConverter x:Key="ColorFromHexConverter"/>
     <converters:ConvertToShoppingListItem x:Key="ConvertToShoppingListItem"/>
-    
 
     <!--#region Color Range-->
     <Color x:Key="colPrim">#000000</Color>
