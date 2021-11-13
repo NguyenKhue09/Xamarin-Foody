@@ -58,24 +58,29 @@ namespace Foody.Data.Local
             return Database.DeleteAsync(ingredient);
         }
 
-        // Favorite Recipe
-        //public Task<List<FavoriteRecipe>> GetFavoriteRecipes()
-        //{
-           
-        //    return null;
-        //}
+        //Favorite Recipe
+        public Task<FavoriteRecipe> GetFavoriteRecipes(int id)
+        {
 
-        //public Task<int> AddFavoriteRecipe()
-        //{
-        //    Debug.WriteLine("Add favorite recipe");
-        //    return 1;
-        //}
+            return Database.Table<FavoriteRecipe>().Where(i => i.RecipeId == id).FirstOrDefaultAsync();
+        }
 
-        //public Task<int> DeleteFavoriteRecipe()
-        //{
-        //    Debug.WriteLine("Delete favorite recipe");
-        //    return 1;
-        //}
+        public Task<int> AddFavoriteRecipe(FavoriteRecipe favoriteRecipe)
+        {
+            Debug.WriteLine("Add favorite recipe");
+            return Database.InsertAsync(favoriteRecipe);
+        }
+
+        public Task<int> DeleteFavoriteRecipe(FavoriteRecipe favoriteRecipe)
+        {
+            Debug.WriteLine("Delete favorite recipe");
+            return Database.DeleteAsync(favoriteRecipe);
+        }
+        public Task<List<FavoriteRecipe>> GetAllFavoriteRecipes()
+        {
+
+            return Database.Table<FavoriteRecipe>().ToListAsync();
+        }
 
     }
 }

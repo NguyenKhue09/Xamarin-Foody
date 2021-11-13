@@ -1,6 +1,8 @@
 ﻿using Foody.Data.Local;
 using Foody.Models;
+using Foody.Models.Local;
 using Foody.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,6 +20,7 @@ namespace Foody.Views.DetailsRecipe
     public partial class DetailRecipe : ContentPage
     {
         private readonly DetailRecipeViewModel detailRecipeViewModel;
+
         public DetailRecipe(Result recipe)
         {
             InitializeComponent();
@@ -28,6 +31,7 @@ namespace Foody.Views.DetailsRecipe
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            IsFavoriteRecipe();
         }
 
         async private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -73,16 +77,45 @@ namespace Foody.Views.DetailsRecipe
         {
             detailRecipeViewModel.IsFavoriteRecipe = !detailRecipeViewModel.IsFavoriteRecipe;
 
+            Debug.WriteLine(detailRecipeViewModel.recipe.id);
+
+            FavoriteRecipe favoriteRecipe = new FavoriteRecipe
+            {
+                JsonRecipe = JsonConvert.SerializeObject(detailRecipeViewModel.recipe),
+                RecipeId = detailRecipeViewModel.recipe.id
+            };
+
             RecipeDatabase recipeDatabase = await RecipeDatabase.Instance;
 
             if (detailRecipeViewModel.IsFavoriteRecipe)
             {
                 FavoriteIcon.Source = "heart_red.png";
-                //await recipeDatabase.AddFavoriteRecipe();
+                int x = await recipeDatabase.AddFavoriteRecipe(favoriteRecipe);
+                Debug.WriteLine($"Insert in {x}");
             } else
             {
                 FavoriteIcon.Source = "heart_outline.png";
-                //await recipeDatabase.DeleteFavoriteRecipe();
+                FavoriteRecipe deleteFavoriteRecipe = await recipeDatabase.GetFavoriteRecipes(detailRecipeViewModel.recipe.id);
+                int x = await recipeDatabase.DeleteFavoriteRecipe(deleteFavoriteRecipe);
+                Debug.WriteLine($"Delete in {x}");
+            }
+        }
+
+        private async void IsFavoriteRecipe()
+        {
+            RecipeDatabase recipeDatabase = await RecipeDatabase.Instance;
+
+            FavoriteRecipe favoriteRecipe = await recipeDatabase.GetFavoriteRecipes(detailRecipeViewModel.recipe.id);
+
+            if(favoriteRecipe != null)
+            {
+                Debug.WriteLine(favoriteRecipe.RecipeId);
+                detailRecipeViewModel.IsFavoriteRecipe = true;
+                FavoriteIcon.Source = "heart_red.png";
+            } else
+            {
+                detailRecipeViewModel.IsFavoriteRecipe = false;
+                FavoriteIcon.Source = "heart_outline.png";
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using Foody.Models;
 using Foody.ViewModels;
 using Foody.Views.DetailsRecipe;
+using MvvmHelpers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -25,28 +26,7 @@ namespace Foody.Views
         public Home() 
         {
             InitializeComponent();
-            CheckFavorite(true);
             BindingContext = homeViewModel = new HomeViewModel();
-            
-
-        }
-
-        
-
-        void CheckFavorite(bool x)
-        {
-            if (x)
-            {
-                
-                lb.Height = new GridLength(0.4, GridUnitType.Star);
-                col.Height = new GridLength(0.98, GridUnitType.Star);
-            }
-            else
-            {
-                lb.Height = 0;
-                col.Height = 0;
-            }
-            
         }
 
         async void OnImageNameTapped(object sender, EventArgs args)
@@ -62,15 +42,27 @@ namespace Foody.Views
                 throw ex;
             }
         }
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
             homeViewModel.GetRecipes();
             homeViewModel.GetRandomRecipes();
+            homeViewModel.FavoriteRecipes = await homeViewModel.GetAllFavoriteRecipes();
+            
+            if (homeViewModel.FavoriteRecipes.Count > 0)
+            {
+                favorite_Recipes_Foody.ItemsSource = homeViewModel.FavoriteRecipes;
+                lb.Height = new GridLength(0.4, GridUnitType.Star);
+                col.Height = new GridLength(0.98, GridUnitType.Star);
+            }
+            else
+            {
+                lb.Height = 0;
+                col.Height = 0;
+            }
         }
 
-
-
+       
         async private void favorite_Recipes_Foody_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (favorite_Recipes_Foody.SelectedItem != null)

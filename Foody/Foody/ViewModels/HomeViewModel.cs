@@ -7,6 +7,10 @@ using Xamarin.Forms;
 using Foody.Models;
 using Foody.Services;
 using System.Diagnostics;
+using Foody.Data.Local;
+using Foody.Models.Local;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace Foody.ViewModels
 {
@@ -16,6 +20,8 @@ namespace Foody.ViewModels
         public ObservableRangeCollection<Result> Recipes { get; set; }
         public ObservableRangeCollection<Result> RandomRecipes { get; set; }
         public ObservableRangeCollection<Result> PopularRecipes { get; set; }
+        public List<Result> FavoriteRecipes { get; set; }
+
 
         public ICommand NavToPantry => new Command(NavToPantryPage);
         public ICommand NavToShoppingList => new Command(NavToShoppingListPage);
@@ -26,6 +32,7 @@ namespace Foody.ViewModels
             Foods = new ObservableRangeCollection<Food>();
             Recipes = new ObservableRangeCollection<Result>();
             RandomRecipes = new ObservableRangeCollection<Result>();
+            FavoriteRecipes = new List<Result>();
             Foods.AddRange(Repository.Foods);
 
            
@@ -44,6 +51,23 @@ namespace Foody.ViewModels
             results = await App.RecipeManager.GetRandomRecipes();
             RandomRecipes.AddRange(results.results);
             
+        }
+
+        async public Task<List<Result>> GetAllFavoriteRecipes()
+        {
+            RecipeDatabase recipeDatabase = await RecipeDatabase.Instance;
+
+            List<Result> results = new List<Result>();
+
+            List<FavoriteRecipe> favoriteRecipes = await recipeDatabase.GetAllFavoriteRecipes();
+            foreach(FavoriteRecipe favoriteRecipe in favoriteRecipes)
+            {
+                Result result = JsonConvert.DeserializeObject<Result>(favoriteRecipe.JsonRecipe);
+                Debug.WriteLine(result.id);
+                results.Add(result);
+            }
+
+            return results;
         }
 
         async public void NavToPantryPage()
