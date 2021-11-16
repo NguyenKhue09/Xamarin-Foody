@@ -34,7 +34,7 @@ namespace Foody.Views
             try
             {
                 //Code to execute on tapped event
-                await (App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/mealPlanner", true);
+                await Navigation.PushAsync(new Account());
                 
             }
             catch (Exception ex)

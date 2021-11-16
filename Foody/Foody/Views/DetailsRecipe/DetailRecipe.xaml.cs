@@ -34,13 +34,14 @@ namespace Foody.Views.DetailsRecipe
             IsFavoriteRecipe();
         }
 
-        async private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        async private void BackPress_Tapped(object sender, EventArgs e)
         {
 
             try
             {
                 //Code to execute on tapped event
-                await(App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/home", true);
+                //await(App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/home", true);
+                await Navigation.PopAsync();
             }
             catch (Exception ex)
             {

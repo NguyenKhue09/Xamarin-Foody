@@ -1,12 +1,515 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Foody.Views.Account">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:chips="clr-namespace:Xamarin.Forms.Chips;assembly=Xamarin.Forms.Chips" 
+             xmlns:controls="clr-namespace:Foody.ViewModels" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="Foody.Views.Account"
+             BackgroundColor="#f5f5f5">
+
+    <ContentPage.Resources>
+        <Style x:Key="TextStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <Grid RowSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="300"/>
+                    <RowDefinition Height="190"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <!--row 1-->
+                <StackLayout BackgroundColor="White" Grid.Column="0" Grid.Row="0">
+                    <Image Source="user.png" Aspect="AspectFill" HeightRequest="80" WidthRequest="80" HorizontalOptions="Center" Margin="0,70,0,0"/>
+                    <Label Text="Vi TV.N" TextColor="Black" FontSize="35" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,8,0,0" Padding="0"/>
+                    <Label Text="vinguyen1801@gmail.com" TextColor="Black" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" Margin="0" Padding="0"/>
+                    <Label LineBreakMode="WordWrap"  HorizontalOptions="Center" Padding="0,4">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Subscription Status " TextColor="LightGray" FontAttributes="Bold" FontSize="20" />
+                                <Span Text=" Active" TextColor="#07BDF6" FontSize="20" FontAttributes="Bold"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+                <!--row 2-->
+                <StackLayout BackgroundColor="White" Grid.Column="0" Grid.Row="1" Padding="12">
+                    <Label Text="Basic Info" TextColor="Black" FontSize="18" FontAttributes="Bold" HorizontalOptions="Start"/>
+                    <Label Text="Name" TextColor="Black" FontSize="18" FontAttributes="Bold" HorizontalOptions="Start"/>
+                    <Frame CornerRadius="10" Padding="0" HasShadow="False" BorderColor="#D8D8D8">
+                        <controls:CustomEntry x:Name="Password" Keyboard="Text" FontSize="18" HeightRequest="55"  Margin="10,0,0,0" Text="Vi TV.N"></controls:CustomEntry>
+                    </Frame>
+                    <StackLayout Orientation="Horizontal" Margin="0,8">
+                        <CheckBox Color="Blue" IsChecked="True"></CheckBox>
+                        <Label Text="Subscribe to our mailling list" FontSize="18" TextColor="Black" FontAttributes="Bold" VerticalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
+                <!--row 3-->
+                <StackLayout BackgroundColor="White" Grid.Column="0" Grid.Row="2" Padding="12">
+                    <Label Text="Do you use a grocery delivery service?" TextColor="Black" FontSize="20" FontAttributes="Bold"/>
+                    <FlexLayout Direction="Row" Wrap="Wrap" Padding="8" AlignItems="Center" AlignContent="SpaceBetween" BackgroundColor="White" Margin="0" >
+                        <chips:Chip           
+                            Text="Instacart" 
+                            TextStyle="{StaticResource TextStyle}"
+                            BackgroundColor="#F5F5F5"
+                            IsToggleable="True"
+                            AutoToggle="True"
+                            Padding="8"
+                            Margin="4,8">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                            <Setter Property="TextColor" Value="White" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                            <Setter Property="TextColor" Value="#828082" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </chips:Chip>
+                        <chips:Chip
+                            TextStyle="{StaticResource TextStyle}"
+                            Text="Amazon Fresh"
+                            BackgroundColor="#F5F5F5"
+                            IsToggleable="True"
+                            AutoToggle="True"
+                            Padding="8"
+                            Margin="4,8">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                            <Setter Property="TextColor" Value="White" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                            <Setter Property="TextColor" Value="#828082" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </chips:Chip>
+                        <chips:Chip
+                            TextStyle="{StaticResource TextStyle}"
+                            Text="No, I go to the store myself"
+                            BackgroundColor="#F5F5F5"
+                            IsToggleable="True"
+                            AutoToggle="True"
+                            Padding="8"
+                            Margin="4,8">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                            <Setter Property="TextColor" Value="White" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                            <Setter Property="TextColor" Value="#828082" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </chips:Chip>
+                    </FlexLayout>
+                </StackLayout>
+                <!--row 4-->
+                <StackLayout BackgroundColor="White" Grid.Column="0" Grid.Row="3" Padding="12">
+                    <Label Text="Allergies/Intolerances" TextColor="Black" FontSize="20" FontAttributes="Bold"/>
+                    <FlexLayout Direction="Row" Wrap="Wrap" Padding="8" AlignItems="Center" AlignContent="SpaceBetween" BackgroundColor="White" Margin="0" >
+                        <chips:Chip           
+                            Text="Dairy" 
+                            TextStyle="{StaticResource TextStyle}"
+                            BackgroundColor="#F5F5F5"
+                            IsToggleable="True"
+                            AutoToggle="True"
+                            Padding="8"
+                            Margin="4,8">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#5AE099" />
+                                            <Setter Property="TextColor" Value="White" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                            <Setter Property="TextColor" Value="#828082" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </chips:Chip>
+                        <chips:Chip           
+                            Text="Egg" 
+                            TextStyle="{StaticResource TextStyle}"
+                            BackgroundColor="#F5F5F5"
+                            IsToggleable="True"
+                            AutoToggle="True"
+                            Padding="8"
+                            Margin="4,8">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#5AE099" />
+                                            <Setter Property="TextColor" Value="White" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                            <Setter Property="TextColor" Value="#828082" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </chips:Chip>
+                        <chips:Chip           
+                            Text="Gluten" 
+                            TextStyle="{StaticResource TextStyle}"
+                            BackgroundColor="#F5F5F5"
+                            IsToggleable="True"
+                            AutoToggle="True"
+                            Padding="8"
+                            Margin="4,8">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#5AE099" />
+                                            <Setter Property="TextColor" Value="White" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                            <Setter Property="TextColor" Value="#828082" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </chips:Chip>
+                        <chips:Chip           
+                            Text="Grain" 
+                            TextStyle="{StaticResource TextStyle}"
+                            BackgroundColor="#F5F5F5"
+                            IsToggleable="True"
+                            AutoToggle="True"
+                            Padding="8"
+                            Margin="4,8">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#5AE099" />
+                                            <Setter Property="TextColor" Value="White" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                            <Setter Property="TextColor" Value="#828082" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </chips:Chip>
+                        <chips:Chip           
+                            Text="Peanut" 
+                            TextStyle="{StaticResource TextStyle}"
+                            BackgroundColor="#F5F5F5"
+                            IsToggleable="True"
+                            AutoToggle="True"
+                            Padding="8"
+                            Margin="4,8">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#5AE099" />
+                                            <Setter Property="TextColor" Value="White" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                            <Setter Property="TextColor" Value="#828082" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </chips:Chip>
+                        <chips:Chip           
+                            Text="Seafood" 
+                            TextStyle="{StaticResource TextStyle}"
+                            BackgroundColor="#F5F5F5"
+                            IsToggleable="True"
+                            AutoToggle="True"
+                            Padding="8"
+                            Margin="4,8">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#5AE099" />
+                                            <Setter Property="TextColor" Value="White" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                            <Setter Property="TextColor" Value="#828082" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </chips:Chip>
+                        <chips:Chip           
+                            Text="Sesame" 
+                            TextStyle="{StaticResource TextStyle}"
+                            BackgroundColor="#F5F5F5"
+                            IsToggleable="True"
+                            AutoToggle="True"
+                            Padding="8"
+                            Margin="4,8">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#5AE099" />
+                                            <Setter Property="TextColor" Value="White" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                            <Setter Property="TextColor" Value="#828082" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </chips:Chip>
+                        <chips:Chip           
+                            Text="Shellfish" 
+                            TextStyle="{StaticResource TextStyle}"
+                            BackgroundColor="#F5F5F5"
+                            IsToggleable="True"
+                            AutoToggle="True"
+                            Padding="8"
+                            Margin="4,8">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#5AE099" />
+                                            <Setter Property="TextColor" Value="White" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                            <Setter Property="TextColor" Value="#828082" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </chips:Chip>
+                        <chips:Chip           
+                            Text="Soy" 
+                            TextStyle="{StaticResource TextStyle}"
+                            BackgroundColor="#F5F5F5"
+                            IsToggleable="True"
+                            AutoToggle="True"
+                            Padding="8"
+                            Margin="4,8">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#5AE099" />
+                                            <Setter Property="TextColor" Value="White" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                            <Setter Property="TextColor" Value="#828082" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </chips:Chip>
+                        <chips:Chip           
+                            Text="Sulfite" 
+                            TextStyle="{StaticResource TextStyle}"
+                            BackgroundColor="#F5F5F5"
+                            IsToggleable="True"
+                            AutoToggle="True"
+                            Padding="8"
+                            Margin="4,8">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#5AE099" />
+                                            <Setter Property="TextColor" Value="White" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                            <Setter Property="TextColor" Value="#828082" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </chips:Chip>
+                        <chips:Chip           
+                            Text="Treenut" 
+                            TextStyle="{StaticResource TextStyle}"
+                            BackgroundColor="#F5F5F5"
+                            IsToggleable="True"
+                            AutoToggle="True"
+                            Padding="8"
+                            Margin="4,8">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#5AE099" />
+                                            <Setter Property="TextColor" Value="White" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                            <Setter Property="TextColor" Value="#828082" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </chips:Chip>
+                        <chips:Chip           
+                            Text="Wheat" 
+                            TextStyle="{StaticResource TextStyle}"
+                            BackgroundColor="#F5F5F5"
+                            IsToggleable="True"
+                            AutoToggle="True"
+                            Padding="8"
+                            Margin="4,8">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#5AE099" />
+                                            <Setter Property="TextColor" Value="White" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                            <Setter Property="TextColor" Value="#828082" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </chips:Chip>
+                    </FlexLayout>
+                </StackLayout>
+                <!--row 5-->
+                <StackLayout Padding="10,0,10,20" Grid.Column="0" Grid.Row="4" >
+                    <yummy:PancakeView  
+                                                BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,0"
+                                                HeightRequest="60" WidthRequest="360"
+                                                BackgroundColor="#07BDF6" CornerRadius="15" 
+                                                VerticalOptions="Start" HorizontalOptions="Center">
+                        <yummy:PancakeView.GestureRecognizers>
+                            <TapGestureRecognizer />
+                        </yummy:PancakeView.GestureRecognizers>
+                        <yummy:PancakeView.BackgroundGradientStops>
+                            <yummy:GradientStopCollection>
+                                <yummy:GradientStop Color="#5AE099" Offset="1" />
+                                <yummy:GradientStop Color="#65DCC6" Offset="0.5" />
+                                <yummy:GradientStop Color="#6CD4EC" Offset="0" />
+                            </yummy:GradientStopCollection>
+                        </yummy:PancakeView.BackgroundGradientStops>
+                        <Label Text="Update Profile" TextColor="White" FontSize="25" 
+                               FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center">
+                        </Label>
+                    </yummy:PancakeView>
+                </StackLayout>
+            </Grid>
+            <!--<FlexLayout Grid.Row="1" Direction="Row" Wrap="Wrap" Padding="8" AlignItems="Center" AlignContent="SpaceBetween" BackgroundColor="White" Margin="0">
+                <chips:Chip
+                                            Text="African"
+                                            BackgroundColor="#F5F5F5"
+                                            IsToggleable="True"
+                                            AutoToggle="True"
+                                            Padding="8"
+                                            Margin="4">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                    <Setter Property="TextColor" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                    <Setter Property="TextColor" Value="#828082" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </chips:Chip>
+                <chips:Chip
+                                            Text="American"
+                                            BackgroundColor="#F5F5F5"
+                                            IsToggleable="True"
+                                            AutoToggle="True"
+                                            Padding="8"
+                                            Margin="4">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#62CBEC" />
+                                    <Setter Property="TextColor" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#F7F5F7" />
+                                    <Setter Property="TextColor" Value="#828082" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </chips:Chip>
+            </FlexLayout>-->
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
