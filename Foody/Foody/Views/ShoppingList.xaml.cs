@@ -11,6 +11,7 @@ using System.Diagnostics;
 using Foody.Models;
 using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.CommunityToolkit.UI.Views.Options;
+using System.Collections.ObjectModel;
 
 namespace Foody.Views
 {
@@ -28,6 +29,13 @@ namespace Foody.Views
         {
             base.OnAppearing();
             shoppingListViewModel.GetShoppingList();
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            // clear để ko bị add dồn phần tử
+            shoppingListViewModel.shoppingListGroupManagers.Clear();
         }
 
         private async void DeleteShoppingListItem(object sender, EventArgs e)

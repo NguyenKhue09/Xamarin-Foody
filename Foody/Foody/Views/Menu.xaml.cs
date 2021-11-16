@@ -34,7 +34,7 @@ namespace Foody.Views
 
         private void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new PageFavorite());
+            Navigation.PushAsync(new FavoriteRecipesPage());
         }
 
         async private void TapGestureRecognizer_Tapped_4(object sender, EventArgs e)

@@ -56,6 +56,7 @@ namespace Foody.ViewModels
         async public void GetShoppingList()
         {
             originalShoppintLists = new ShoppingListResult();
+            //shoppingListGroupManagers = new ObservableCollection<ShoppingListGroupManager>();
 
             originalShoppintLists = await App.RecipeManager.GetShoppingList();
 
