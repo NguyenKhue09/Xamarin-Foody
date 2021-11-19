@@ -28,6 +28,7 @@ namespace Foody.Views
             InitializeComponent();
             CheckFavorite(true);
             BindingContext = pantryViewModel = new PantryViewModel(Navigation);
+            option.IsVisible = false;
         }
 
         protected override void OnAppearing()
@@ -112,7 +113,19 @@ namespace Foody.Views
             }
         }
 
+        private void ShowOption(object sender, EventArgs e)
+        {
+            option.IsVisible = !option.IsVisible ? true : false;
+        }
 
-        
+        private void deleteSelected(object sender, EventArgs e)
+        {
+            option.IsVisible = !option.IsVisible ? true : false;
+        }
+
+        private void deleteAll(object sender, EventArgs e)
+        {
+            option.IsVisible = !option.IsVisible ? true : false;
+        }
     }
 }

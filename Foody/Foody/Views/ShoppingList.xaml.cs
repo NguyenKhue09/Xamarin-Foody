@@ -23,6 +23,7 @@ namespace Foody.Views
         {
             InitializeComponent();
             BindingContext = shoppingListViewModel = new ShoppingListViewModel();
+            option.IsVisible = false;
         }
 
         protected override void OnAppearing()
@@ -80,6 +81,16 @@ namespace Foody.Views
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             Navigation.PushAsync(new PageShoppingCart(shoppingListViewModel));
+        }
+
+        private void ShowOption(object sender, EventArgs e)
+        {
+            option.IsVisible = !option.IsVisible ? true : false;
+        }
+
+        private void deletaAllItems(object sender, EventArgs e)
+        {
+            option.IsVisible = !option.IsVisible ? true : false;
         }
     }
 

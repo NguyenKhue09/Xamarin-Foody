@@ -62,7 +62,13 @@
                         </Image>
                         <Image Source="menu1.png" HeightRequest="24" WidthRequest="24"
                                VerticalOptions="CenterAndExpand" HorizontalOptions="End" 
-                               Grid.Column="1" Grid.Row="0" Margin="0,0,20,0"/>
+                               Grid.Column="1" Grid.Row="0" Margin="0,0,20,0">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                Tapped="ShowOption"
+                                 />
+                            </Image.GestureRecognizers>
+                        </Image>
                         <!--dòng 2-->
                         <Frame CornerRadius="10" Padding="0" HasShadow="False" BorderColor="#D8D8D8" 
                                Grid.Column="0" Grid.Row="1" 
@@ -1716,6 +1722,28 @@
                     </ContentView>
                 </tabs1:ViewSwitcher>
             </Grid>
+            <AbsoluteLayout  Grid.Row="0" Grid.RowSpan="2"  Margin="10,60" x:Name="option">
+                <Frame  BackgroundColor="White" AbsoluteLayout.LayoutBounds="1,0,250,100" AbsoluteLayout.LayoutFlags="PositionProportional" Padding="0" Margin="0" HasShadow="True" BorderColor="Gray" >
+                    <StackLayout>
+                        <Label x:Name="btnDelte" Text="Delete Selected Items" Margin="0,10"
+                        FontSize="18" TextColor="Black"
+                        HorizontalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="deleteSelected">
+                            </TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label x:Name="btnDelteAll" Text="Delete All Items" Margin="0,10"
+                        FontSize="18" TextColor="Black"
+                        HorizontalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="deleteAll" >
+                            </TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    </StackLayout>
+                </Frame>
+            </AbsoluteLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
