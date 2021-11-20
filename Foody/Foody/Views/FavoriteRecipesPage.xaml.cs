@@ -26,7 +26,17 @@ namespace Foody.Views
         {
             base.OnAppearing();
             homeViewModel.FavoriteRecipes = await homeViewModel.GetAllFavoriteRecipes();
-            favorite_Recipes_Foody.ItemsSource = homeViewModel.FavoriteRecipes;
+            if (homeViewModel.FavoriteRecipes.Count > 0)
+            {
+                favorite_Recipes_Foody.ItemsSource = homeViewModel.FavoriteRecipes;
+                row1.Height = 0;
+                row2.Height = new GridLength(1, GridUnitType.Star);
+            }
+            else
+            {
+                row1.Height = new GridLength(1, GridUnitType.Star);
+                row2.Height = 0;
+            }
         }
 
         private async void favorite_Recipes_Foody_SelectionChanged(object sender, SelectionChangedEventArgs e)
