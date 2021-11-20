@@ -20,7 +20,7 @@ namespace Foody.Services.RecipeApiCall
         private SearchPopUp searchPopUp = new SearchPopUp();
 
         public Recipe Recipes { get; private set; }
-       
+     
         public Recipe PopularRecipes { get; private set; }
         public Recipe SearchRecipesList { get; private set; }
         public ShoppingListResult ShoppingListResult { get; private set; }
@@ -48,7 +48,7 @@ namespace Foody.Services.RecipeApiCall
                 $"&fillIngredients={Constants.Constants.FILLINGREDIENTS}&addRecipeNutrition={Constants.Constants.RECIPENUTRITION}", string.Empty));
             try
             {
-           
+         
                 HttpResponseMessage response = await client.GetAsync(uri);
                 Debug.WriteLine("CallAPI");
                 if (response.IsSuccessStatusCode)
@@ -128,8 +128,7 @@ namespace Foody.Services.RecipeApiCall
                 await pantryViewModel.showpopup_Clicked();
                 if (response.IsSuccessStatusCode)
                 {
-
-                    
+                  
                     string content = await response.Content.ReadAsStringAsync();
                     SearchRecipesList = JsonSerializer.Deserialize<Recipe>(content, serializerOptions);
                     Debug.WriteLine("ThanhCong");
@@ -269,7 +268,6 @@ namespace Foody.Services.RecipeApiCall
         {
             Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/mealplanner/{Constants.Constants.USER_NAME}/shopping-list/items/{itemId}?" +
                $"apiKey={Constants.Constants.APIKEY}&hash={Constants.Constants.HASH_USERNAME}"));
-
 
             try
             {
