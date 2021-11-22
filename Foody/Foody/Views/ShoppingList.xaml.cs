@@ -37,6 +37,7 @@ namespace Foody.Views
             base.OnDisappearing();
             // clear để ko bị add dồn phần tử
             shoppingListViewModel.shoppingListGroupManagers.Clear();
+            
         }
 
         private async void DeleteShoppingListItem(object sender, EventArgs e)
@@ -63,7 +64,7 @@ namespace Foody.Views
 
         private void SelectedAllItem_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-            shoppingListViewModel.isSelectedAllShoppingListItem = !shoppingListViewModel.isSelectedAllShoppingListItem;
+            //shoppingListViewModel.IsSelectedAllShoppingListItem = !shoppingListViewModel.IsSelectedAllShoppingListItem;
             shoppingListViewModel.SelectAllShoppingListItem();
         }
 
@@ -88,8 +89,9 @@ namespace Foody.Views
             option.IsVisible = !option.IsVisible ? true : false;
         }
 
-        private void deletaAllItems(object sender, EventArgs e)
+        private async void deleteAllSelectedItems(object sender, EventArgs e)
         {
+            _ = await shoppingListViewModel.DeleteAllSelectedShoppingListItem();
             option.IsVisible = !option.IsVisible ? true : false;
         }
     }

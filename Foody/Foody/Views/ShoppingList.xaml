@@ -114,7 +114,7 @@
                                    VerticalOptions="CenterAndExpand" HorizontalOptions="Start"
                                    Grid.Column="0" Margin="15,0"></Label>
                                 <CheckBox x:Name="SelectedAllItem" HeightRequest="36" WidthRequest="36" Color="Green"
-                                      VerticalOptions="CenterAndExpand" HorizontalOptions="End"
+                                      VerticalOptions="CenterAndExpand" HorizontalOptions="End" IsChecked="{Binding IsSelectedAllShoppingListItem, Mode=TwoWay}"
                                       Grid.Column="1" Margin="15,0" CheckedChanged="SelectedAllItem_CheckedChanged"></CheckBox>
                             </Grid>
                         </Frame>
@@ -224,7 +224,7 @@
                         FontSize="18" TextColor="Black"
                         HorizontalOptions="Center">
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="deletaAllItems" >
+                            <TapGestureRecognizer Tapped="deleteAllSelectedItems" >
                             </TapGestureRecognizer>
                         </Label.GestureRecognizers>
                     </Label>
