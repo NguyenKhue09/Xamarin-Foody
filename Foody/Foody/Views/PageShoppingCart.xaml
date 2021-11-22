@@ -25,7 +25,7 @@
                            VerticalOptions="CenterAndExpand"
                            HeightRequest="40" WidthRequest="40" Grid.Row="0" Grid.Column="0">
                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                            <TapGestureRecognizer Tapped="BackToShoppingList_Tapped" />
                         </Image.GestureRecognizers>
                     </Image>
                     <Label Text="SHOPPING CART" 
@@ -46,7 +46,7 @@
             </StackLayout>
             
             <!--Body2-->
-            <CollectionView x:Name="shoplist" 
+            <CollectionView x:Name="shoplist" ItemsSource="{Binding shoppingListGroupManagers}"
                                             BackgroundColor="#f5f5f5"
                                             VerticalScrollBarVisibility="Never" 
                                             Grid.Column="0" Grid.Row="2" 
