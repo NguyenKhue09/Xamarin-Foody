@@ -1,6 +1,7 @@
 ﻿using Foody.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,10 +25,12 @@ namespace Foody.Views
         {
             InitializeComponent();
             BindingContext = shoppingListViewModel = viewModel;
-            shoplist.ItemsSource = shoppingListViewModel.shoppingListGroupManagers;
+            //shoplist.ItemsSource = shoppingListViewModel.shoppingListGroupManagers;
+            Debug.WriteLine(shoppingListViewModel.shoppingListGroupManagers.Count());
+            
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private void BackToShoppingList_Tapped(object sender, EventArgs e)
         {
             Navigation.PushAsync(new ShoppingList());
         }

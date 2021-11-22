@@ -283,7 +283,8 @@
                                         BackgroundColor="White"
                                         HasShadow="True"
                                         BorderColor="LightGray"
-                                        Padding="8">
+                                        Padding="8"
+                                        >
                                         <Frame
                                              Padding="0"
                                              CornerRadius="20"

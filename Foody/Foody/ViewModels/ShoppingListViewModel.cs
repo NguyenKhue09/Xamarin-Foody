@@ -24,6 +24,12 @@ namespace Foody.ViewModels
 
         public bool isSelectedAllShoppingListItem = false;
 
+        public bool IsSelectedAllShoppingListItem
+        {
+            get { return isSelectedAllShoppingListItem; }
+            set { SetProperty(ref isSelectedAllShoppingListItem, value); }
+        }
+
         private List<ShoppingListItem> selectedShoppingtListItems { get; set; }
 
         public ShoppingListViewModel()
@@ -109,11 +115,19 @@ namespace Foody.ViewModels
 
         public void AddShoppingListItemToCard()
         {
-            foreach(ShoppingListGroupManager shoppingListGroupManager in shoppingListGroupManagers)
+            foreach (ShoppingListGroupManager shoppingListGroupManager in shoppingListGroupManagers)
             {
                 foreach(ShoppingListItem shoppingListItem in shoppingListGroupManager.shoppingListItems)
                 {
-                    selectedShoppingtListItems.Add(shoppingListItem);
+
+                    if(shoppingListItem.isChoose && !selectedShoppingtListItems.Contains(shoppingListItem))
+                    {
+                        selectedShoppingtListItems.Add(shoppingListItem);
+                    } else if(!shoppingListItem.isChoose && selectedShoppingtListItems.Contains(shoppingListItem))
+                    {
+                        selectedShoppingtListItems.Remove(shoppingListItem);
+                    }
+                    
                     Debug.WriteLine(shoppingListItem.IngredientName + shoppingListItem.isChoose);
                 }
             }
@@ -130,6 +144,32 @@ namespace Foody.ViewModels
                     //Debug.WriteLine(shoppingListItem.IngredientName + shoppingListItem.IsChoose);
                 }
             }
+        }
+
+        public async Task<bool> DeleteAllSelectedShoppingListItem()
+        {
+
+            AddShoppingListItemToCard();
+            Debug.WriteLine(selectedShoppingtListItems.Count);
+
+            foreach (ShoppingListItem shoppingListItem in selectedShoppingtListItems)
+            {
+
+                bool result = await DeleteShoppingListItem(shoppingListItem);
+                if (!result)
+                {
+                    return false;
+                }
+            }
+
+            if(IsSelectedAllShoppingListItem)
+            {
+                IsSelectedAllShoppingListItem = false;
+            }
+
+            Debug.WriteLine(IsSelectedAllShoppingListItem);
+            
+            return true;
         }
 
         public async Task<bool> DeleteShoppingListItem(ShoppingListItem shoppingListItem)
@@ -165,7 +205,6 @@ namespace Foody.ViewModels
                         }
                         break;
                     }
-
                     
                 }
                 return true;
