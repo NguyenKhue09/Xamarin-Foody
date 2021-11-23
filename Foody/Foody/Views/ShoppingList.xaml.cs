@@ -70,13 +70,13 @@ namespace Foody.Views
 
         private void Add_To_List_Tapped(object sender, EventArgs e)
         {
-            shoppingListViewModel.AddShoppingListItemToCard();
+            shoppingListViewModel.GetSelectedShoppingListItem();
         }
 
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
             SearchBar searchBar = (SearchBar)sender;
-            Debug.WriteLine(searchBar.Text);
+            shoppingListViewModel.SearchIngredient(searchBar.Text);
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)

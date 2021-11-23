@@ -20,14 +20,23 @@ namespace Foody.ViewModels
         public Command Checkmanager { get; }
 
         public ObservableCollection<ShoppingListGroupManager> shoppingListGroupManagers { get; set; }
+
+        public ObservableRangeCollection<IngredientInform> SearchIngredients { get; set; }
         private ShoppingListResult originalShoppintLists { get; set; }
 
         public bool isSelectedAllShoppingListItem = false;
+        public bool isShowSearchIngredientItem = false;
 
         public bool IsSelectedAllShoppingListItem
         {
             get { return isSelectedAllShoppingListItem; }
             set { SetProperty(ref isSelectedAllShoppingListItem, value); }
+        }
+
+        public bool IsShowSearchIngredientItem
+        {
+            get { return isShowSearchIngredientItem; }
+            set { SetProperty(ref isShowSearchIngredientItem, value); }
         }
 
         private List<ShoppingListItem> selectedShoppingtListItems { get; set; }
@@ -37,6 +46,7 @@ namespace Foody.ViewModels
             Checkmanager = new Command<string>(manager_SelectionChanged);
             shoppingListGroupManagers = new ObservableCollection<ShoppingListGroupManager>();
             selectedShoppingtListItems = new List<ShoppingListItem>();
+            SearchIngredients = new ObservableRangeCollection<IngredientInform>();
         }
 
         public void manager_SelectionChanged(string topic)
@@ -113,7 +123,7 @@ namespace Foody.ViewModels
             return shoppingListItems;
         }
 
-        public void AddShoppingListItemToCard()
+        public void GetSelectedShoppingListItem()
         {
             foreach (ShoppingListGroupManager shoppingListGroupManager in shoppingListGroupManagers)
             {
@@ -149,7 +159,7 @@ namespace Foody.ViewModels
         public async Task<bool> DeleteAllSelectedShoppingListItem()
         {
 
-            AddShoppingListItemToCard();
+            GetSelectedShoppingListItem();
             Debug.WriteLine(selectedShoppingtListItems.Count);
 
             foreach (ShoppingListItem shoppingListItem in selectedShoppingtListItems)
@@ -224,6 +234,29 @@ namespace Foody.ViewModels
             return await App.RecipeManager.GetIngredientInform(id);
         }
 
+
+        async public void SearchIngredient(string searchString)
+        {
+            
+            SearchIngredients.Clear();
+            Debug.WriteLine(SearchIngredients.Count);
+            SearchIngredientsResult results = await App.RecipeManager.SearchIngredients(searchString);
+
+            if (results != null)
+            {
+                Debug.WriteLine(results.results.Count);
+                if (results.results.Count > 0)
+                {
+                    IsShowSearchIngredientItem = true;
+                    SearchIngredients.AddRange(results.results);
+                }
+                else
+                {
+                    IsShowSearchIngredientItem = false;
+                }
+            }
+            
+        }
 
         protected virtual void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
