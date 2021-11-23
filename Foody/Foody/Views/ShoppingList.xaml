@@ -223,9 +223,9 @@
             </AbsoluteLayout>
 
             <!--result search-->
-            <AbsoluteLayout Grid.Row="0" Grid.RowSpan="2"  Margin="25,137,10,0" IsVisible="false" >
-                <Frame  BackgroundColor="White" AbsoluteLayout.LayoutBounds="0,0,280,500" AbsoluteLayout.LayoutFlags="PositionProportional" Padding="0" Margin="0" HasShadow="True" BorderColor="Gray">
-                    <ListView>
+            <AbsoluteLayout x:Name="LstIngredientsSearch" Grid.Row="0" Grid.RowSpan="2"  Margin="25,137,10,0" IsVisible="{Binding IsShowSearchIngredientItem}" >
+                <Frame  BackgroundColor="White" AbsoluteLayout.LayoutBounds="0,0,280,300" AbsoluteLayout.LayoutFlags="PositionProportional" Padding="0" Margin="0" HasShadow="True" BorderColor="Gray">
+                    <ListView ItemsSource="{Binding SearchIngredients}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
@@ -236,7 +236,7 @@
                                         </Grid.ColumnDefinitions>
                                         <ffimageloading:CachedImage 
                                                                 Margin="4"
-                                                                Source="{Binding IngredientImg, StringFormat='https://spoonacular.com/cdn/ingredients_100x100/{0:F0}'}" 
+                                                                Source="{Binding image, StringFormat='https://spoonacular.com/cdn/ingredients_100x100/{0:F0}'}" 
                                                                 Grid.Column="0" Grid.Row="0"
                                                                 HeightRequest="60"  WidthRequest="60" Aspect="AspectFit">
                                         </ffimageloading:CachedImage>
@@ -244,11 +244,7 @@
                                             <Label.FormattedText>
                                                 <FormattedString>
                                                     <FormattedString.Spans>
-                                                        <Span Text="{Binding IngredientName}"/>
-                                                        <Span Text="&#x0a;"/>
-                                                        <Span Text="{Binding StringIngredientAmount}" FontAttributes="Bold"/>
-                                                        <Span Text=" "/>
-                                                        <Span Text="{Binding IngredientUnits}" FontAttributes="Bold"/>
+                                                        <Span Text="{Binding name}"/>
                                                     </FormattedString.Spans>
                                                 </FormattedString>
                                             </Label.FormattedText>

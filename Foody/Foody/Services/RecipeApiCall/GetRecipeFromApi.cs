@@ -327,5 +327,37 @@ namespace Foody.Services.RecipeApiCall
             return ingredientInform;
         }
 
+        public async Task<SearchIngredientsResult> SearchIngredients(string searchString)
+        {
+            SearchIngredientsResult results = new SearchIngredientsResult();
+
+            Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/food/ingredients/search?apiKey={Constants.Constants.APIKEY}&query={searchString}&number={3}"));
+
+            try
+            {
+
+                HttpResponseMessage response = await client.GetAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    results = JsonSerializer.Deserialize<SearchIngredientsResult>(content, serializerOptions);
+                    Debug.WriteLine("ThanhCong");
+                }
+                else
+                {
+                    Debug.WriteLine("Thatbai");
+                    results = null;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
+
+            return results;
+        }
+
     }
 }
