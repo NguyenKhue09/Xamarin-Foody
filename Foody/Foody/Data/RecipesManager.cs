@@ -58,5 +58,10 @@ namespace Foody.Data
             return restService.GetIngredientInform(id);
         }
 
+        public Task<SearchIngredientsResult> SearchIngredients(string searchString)
+        {
+            return restService.SearchIngredients(searchString);
+        }
+
     }
 }
