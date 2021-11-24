@@ -26,6 +26,7 @@ namespace Foody.ViewModels
 
         public bool isSelectedAllShoppingListItem = false;
         public bool isShowSearchIngredientItem = false;
+        public string showHeightResultSearch = "";
 
         public bool IsSelectedAllShoppingListItem
         {
@@ -37,6 +38,12 @@ namespace Foody.ViewModels
         {
             get { return isShowSearchIngredientItem; }
             set { SetProperty(ref isShowSearchIngredientItem, value); }
+        }
+
+        public string ShowHeightResultSearch
+        {
+            get { return showHeightResultSearch; }
+            set { SetProperty(ref showHeightResultSearch, value); }
         }
 
         private List<ShoppingListItem> selectedShoppingtListItems { get; set; }
@@ -247,6 +254,18 @@ namespace Foody.ViewModels
                 Debug.WriteLine(results.results.Count);
                 if (results.results.Count > 0)
                 {
+                    if(results.results.Count == 1)
+                    {
+                        ShowHeightResultSearch = "0,0,280,60";
+                    }
+                    else if(results.results.Count == 2)
+                    {
+                        ShowHeightResultSearch = "0,0,280,120";
+                    }
+                    else
+                    {
+                        ShowHeightResultSearch = "0,0,280,180";
+                    }
                     IsShowSearchIngredientItem = true;
                     SearchIngredients.AddRange(results.results);
                 }
