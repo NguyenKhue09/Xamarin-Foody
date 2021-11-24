@@ -238,17 +238,15 @@ namespace Foody.ViewModels
         async public void SearchIngredient(string searchString)
         {
             
-            SearchIngredients.Clear();
-            Debug.WriteLine(SearchIngredients.Count);
             SearchIngredientsResult results = await App.RecipeManager.SearchIngredients(searchString);
 
             if (results != null)
             {
-                Debug.WriteLine(results.results.Count);
                 if (results.results.Count > 0)
                 {
-                    IsShowSearchIngredientItem = true;
+                    SearchIngredients.Clear();
                     SearchIngredients.AddRange(results.results);
+                    IsShowSearchIngredientItem = true;
                 }
                 else
                 {

@@ -73,10 +73,13 @@ namespace Foody.Views
             shoppingListViewModel.GetSelectedShoppingListItem();
         }
 
-        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
+            //shoppingListViewModel.SearchIngredients.Clear();
             SearchBar searchBar = (SearchBar)sender;
+            await Task.Delay(300);
             shoppingListViewModel.SearchIngredient(searchBar.Text);
+            Debug.WriteLine(shoppingListViewModel.SearchIngredients.Count);
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
