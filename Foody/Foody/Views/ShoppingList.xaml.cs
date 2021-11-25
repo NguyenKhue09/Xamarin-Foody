@@ -97,6 +97,11 @@ namespace Foody.Views
             _ = await shoppingListViewModel.DeleteAllSelectedShoppingListItem();
             option.IsVisible = !option.IsVisible ? true : false;
         }
+
+        private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 
     
