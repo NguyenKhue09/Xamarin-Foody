@@ -225,7 +225,7 @@
             <!--result search-->
             <AbsoluteLayout x:Name="LstIngredientsSearch" Grid.Row="0" Grid.RowSpan="2"  Margin="25,137,10,0" IsVisible="{Binding IsShowSearchIngredientItem}" >
                 <Frame  BackgroundColor="White" AbsoluteLayout.LayoutBounds="0,0,280,300" AbsoluteLayout.LayoutFlags="PositionProportional" Padding="0" Margin="0" HasShadow="True" BorderColor="Gray">
-                    <ListView ItemsSource="{Binding SearchIngredients}">
+                    <ListView ItemsSource="{Binding SearchIngredients}" BackgroundColor="White" SelectionMode="Single">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
