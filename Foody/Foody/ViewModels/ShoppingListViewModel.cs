@@ -160,7 +160,6 @@ namespace Foody.ViewModels
         {
 
             GetSelectedShoppingListItem();
-            Debug.WriteLine(selectedShoppingtListItems.Count);
 
             foreach (ShoppingListItem shoppingListItem in selectedShoppingtListItems)
             {
@@ -176,9 +175,7 @@ namespace Foody.ViewModels
             {
                 IsSelectedAllShoppingListItem = false;
             }
-
-            Debug.WriteLine(IsSelectedAllShoppingListItem);
-            
+            selectedShoppingtListItems.Clear();
             return true;
         }
 

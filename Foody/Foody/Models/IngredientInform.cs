@@ -11,5 +11,6 @@ namespace Foody.Models
         public string name { get; set; }
         public string aisle { get; set; }
         public string unit { get; set; }
+        public double amount { get; set; }
     }
 }

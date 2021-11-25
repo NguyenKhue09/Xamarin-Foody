@@ -297,7 +297,7 @@ namespace Foody.Services.RecipeApiCall
 
         public async Task<IngredientInform> GetIngredientInform(int id)
         {
-            Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/food/ingredients/{id}/information?apiKey={Constants.Constants.APIKEY}"));
+            Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/food/ingredients/{id}/information?apiKey={Constants.Constants.APIKEY}&amount=1"));
 
             ingredientInform = new IngredientInform();
 
