@@ -36,6 +36,7 @@ namespace Foody.Views
         {
             base.OnDisappearing();
             // clear để ko bị add dồn phần tử
+            shoppingListViewModel.IsSelectedAllShoppingListItem = false;
             shoppingListViewModel.shoppingListGroupManagers.Clear();
             
         }
@@ -98,9 +99,47 @@ namespace Foody.Views
             option.IsVisible = !option.IsVisible ? true : false;
         }
 
-        private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
+        private async void AddIngredientToSPL_Tapped(object sender, EventArgs e)
+        {
+            if (IngredientsSearch.SelectedItem != null)
+            {
+                IngredientInform selectedItem = (IngredientInform)IngredientsSearch.SelectedItem;
+                AddIngredientToSPLImg.Source = "loading.gif";
+                IngredientInform ingredientInform = await App.RecipeManager.GetIngredientInform(selectedItem.id);
+                if(ingredientInform != null)
+                {
+                    ItemShoppingList itemShoppingList = new ItemShoppingList
+                    {
+                        aisle = ingredientInform.aisle,
+                        parse = true,
+                        item = $"{ingredientInform.amount} {ingredientInform.unit} {ingredientInform.name}"
+                    };
+                    bool result  = await App.RecipeManager.AddIngredientsToShoppingList(itemShoppingList);
+                    if(result)
+                    {
+                        AddIngredientToSPLImg.Source = "plus1.png";
+                        shoppingListViewModel.shoppingListGroupManagers.Clear();
+                        shoppingListViewModel.IsShowSearchIngredientItem = false;
+                        shoppingListViewModel.GetShoppingList();
+                        SearchBarIngredient.Text = null;
+                    } else
+                    {
+                        AddIngredientToSPLImg.Source = "plus1.png";
+                        await DisplayAlert("Error", "Add ingredient to shopping list fail!", "OK");
+                        shoppingListViewModel.IsShowSearchIngredientItem = false;
+                        SearchBarIngredient.Text = null;
+                    }
+                } else
+                {
+                    AddIngredientToSPLImg.Source = "plus1.png";
+                    await DisplayAlert("Error", "Add ingredient to shopping list fail!", "OK");
+                    shoppingListViewModel.IsShowSearchIngredientItem = false;
+                    SearchBarIngredient.Text = null;
+                }
+            }
+
+            IngredientsSearch.SelectedItem = null;
         }
     }
 

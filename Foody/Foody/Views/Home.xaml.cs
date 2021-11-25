@@ -47,7 +47,7 @@ namespace Foody.Views
             base.OnAppearing();
             //homeViewModel.GetRecipes();
             //homeViewModel.GetRandomRecipes();
-            //homeViewModel.FavoriteRecipes = await homeViewModel.GetAllFavoriteRecipes();
+            homeViewModel.FavoriteRecipes = await homeViewModel.GetAllFavoriteRecipes();
             
             if (homeViewModel.FavoriteRecipes.Count > 0)
             {

@@ -73,14 +73,18 @@
                                HeightRequest="60" 
                                Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" WidthRequest="280" Margin="25,0,10,10"
                                HorizontalOptions="Start" VerticalOptions="Start">
-                            <SearchBar Keyboard="Text" FontSize="15"   HeightRequest="55"  Margin="0,0,0,0" Placeholder="Add New Item to Shopping List" TextChanged="SearchBar_TextChanged"></SearchBar>
+                            <SearchBar x:Name="SearchBarIngredient" Keyboard="Text" FontSize="15"   HeightRequest="55"  Margin="0,0,0,0" Placeholder="Add New Item to Shopping List" TextChanged="SearchBar_TextChanged"></SearchBar>
                         </Frame>
 
-                        <Frame  CornerRadius="10" Padding="0" HasShadow="False" BorderColor="#D8D8D8" 
+                        <Frame x:Name="AddIngredientToSPL"  CornerRadius="10" Padding="0" HasShadow="False" BorderColor="#D8D8D8"
                                Grid.Column="1" Grid.Row="1" 
                                HeightRequest="60" WidthRequest="50" Margin="0,0,22,10"
                                HorizontalOptions="End" VerticalOptions="Start">
-                            <Image Source="plus1.png"  Margin="12"/>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AddIngredientToSPL_Tapped" />
+                            </Frame.GestureRecognizers>
+
+                            <Image x:Name="AddIngredientToSPLImg" Source="plus1.png"  Margin="12"/>
                         </Frame>
                     </Grid>
                 </StackLayout>
@@ -226,9 +230,9 @@
             <AbsoluteLayout x:Name="LstIngredientsSearch" Grid.Row="0" Grid.RowSpan="2"  Margin="25,137,10,0" IsVisible="{Binding IsShowSearchIngredientItem}" >
                 <Frame  BackgroundColor="White" AbsoluteLayout.LayoutBounds="{Binding ShowHeightResultSearch}"  AbsoluteLayout.LayoutFlags="PositionProportional" Padding="0" Margin="0" HasShadow="True" BorderColor="Gray">
                     <CollectionView 
+                        x:Name="IngredientsSearch"
                         ItemsSource="{Binding SearchIngredients}" 
-                        BackgroundColor="White" SelectionMode="Single" 
-                        SelectionChanged="CollectionView_SelectionChanged">
+                        BackgroundColor="White" SelectionMode="Single">
                         
                         <CollectionView.ItemsLayout>
                             <GridItemsLayout
