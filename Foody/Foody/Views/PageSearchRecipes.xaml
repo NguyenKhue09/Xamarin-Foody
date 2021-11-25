@@ -16,7 +16,7 @@
             <FlexLayout Direction="Row" Padding="8,14" BackgroundColor="#07BDF6" Grid.Column="0" Grid.Row="0">
                 <Image FlexLayout.Shrink="0" Source="left1.png" HeightRequest="32" WidthRequest="32">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                        <TapGestureRecognizer Tapped="BackToPantry_Tapped" />
                     </Image.GestureRecognizers>
                 </Image>
                 <Label

@@ -52,7 +52,7 @@
                                VerticalOptions="CenterAndExpand" HorizontalOptions="Start" 
                                Grid.Column="1" Grid.Row="0">
                             <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                <TapGestureRecognizer Tapped="ShoppingListToShoppingCart"/>
                             </Image.GestureRecognizers>
                         </Image>
                         <Frame CornerRadius="90" BackgroundColor="Green" 
@@ -73,14 +73,18 @@
                                HeightRequest="60" 
                                Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" WidthRequest="280" Margin="25,0,10,10"
                                HorizontalOptions="Start" VerticalOptions="Start">
-                            <SearchBar Keyboard="Text" FontSize="15"   HeightRequest="55"  Margin="0,0,0,0" Placeholder="Add New Item to Shopping List" TextChanged="SearchBar_TextChanged"></SearchBar>
+                            <SearchBar x:Name="SearchBarIngredient" Keyboard="Text" FontSize="15"   HeightRequest="55"  Margin="0,0,0,0" Placeholder="Add New Item to Shopping List" TextChanged="SearchBar_TextChanged"></SearchBar>
                         </Frame>
 
-                        <Frame  CornerRadius="10" Padding="0" HasShadow="False" BorderColor="#D8D8D8" 
+                        <Frame x:Name="AddIngredientToSPL"  CornerRadius="10" Padding="0" HasShadow="False" BorderColor="#D8D8D8"
                                Grid.Column="1" Grid.Row="1" 
                                HeightRequest="60" WidthRequest="50" Margin="0,0,22,10"
                                HorizontalOptions="End" VerticalOptions="Start">
-                            <Image Source="plus1.png"  Margin="12"/>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AddIngredientToSPL_Tapped" />
+                            </Frame.GestureRecognizers>
+
+                            <Image x:Name="AddIngredientToSPLImg" Source="plus1.png"  Margin="12"/>
                         </Frame>
                     </Grid>
                 </StackLayout>
@@ -224,36 +228,62 @@
 
             <!--result search-->
             <AbsoluteLayout x:Name="LstIngredientsSearch" Grid.Row="0" Grid.RowSpan="2"  Margin="25,137,10,0" IsVisible="{Binding IsShowSearchIngredientItem}" >
-                <Frame  BackgroundColor="White" AbsoluteLayout.LayoutBounds="0,0,280,300" AbsoluteLayout.LayoutFlags="PositionProportional" Padding="0" Margin="0" HasShadow="True" BorderColor="Gray">
-                    <ListView ItemsSource="{Binding SearchIngredients}">
-                        <ListView.ItemTemplate>
+                <Frame  BackgroundColor="White" AbsoluteLayout.LayoutBounds="0,0,280,185"  AbsoluteLayout.LayoutFlags="PositionProportional" Padding="0" Margin="0" HasShadow="True" BorderColor="Gray">
+                    <CollectionView 
+                        x:Name="IngredientsSearch"
+                        ItemsSource="{Binding SearchIngredients}" 
+                        BackgroundColor="White" SelectionMode="Single">
+                        
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout
+                                Orientation="Vertical"
+                                HorizontalItemSpacing="0"
+                                SnapPointsType="MandatorySingle"
+                                SnapPointsAlignment="Center" />
+                        </CollectionView.ItemsLayout>
+                        
+                        <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <ViewCell>
-                                    <Grid RowSpacing="0" HeightRequest="60">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.75*"/>
-                                            <ColumnDefinition Width="2*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <ffimageloading:CachedImage 
-                                                                Margin="4"
-                                                                Source="{Binding image, StringFormat='https://spoonacular.com/cdn/ingredients_100x100/{0:F0}'}" 
-                                                                Grid.Column="0" Grid.Row="0"
-                                                                HeightRequest="60"  WidthRequest="60" Aspect="AspectFit">
-                                        </ffimageloading:CachedImage>
-                                        <Label TextColor="#2F3246" FontSize="14" Grid.Column="1" Grid.Row="0"  VerticalOptions="CenterAndExpand" Margin="0,4,0,0">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <FormattedString.Spans>
-                                                        <Span Text="{Binding name}"/>
-                                                    </FormattedString.Spans>
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>
-                                    </Grid>
-                                </ViewCell>
+                                <Grid RowSpacing="0" HeightRequest="60">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.75*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="White" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="#f5f5f5" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+
+                                    <ffimageloading:CachedImage 
+                                        Margin="4"
+                                        Source="{Binding image, StringFormat='https://spoonacular.com/cdn/ingredients_100x100/{0:F0}'}" 
+                                        Grid.Column="0" Grid.Row="0"
+                                        HeightRequest="60"  WidthRequest="60" Aspect="AspectFit">
+                                    </ffimageloading:CachedImage>
+                                    <Label TextColor="#2F3246" FontSize="14" Grid.Column="1" Grid.Row="0"  VerticalOptions="CenterAndExpand" Margin="0,4,0,0">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <FormattedString.Spans>
+                                                    <Span Text="{Binding name}"/>
+                                                </FormattedString.Spans>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Grid>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
                 </Frame>
             </AbsoluteLayout>
         </Grid>

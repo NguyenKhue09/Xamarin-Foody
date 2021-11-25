@@ -23,7 +23,7 @@ namespace Foody.Views
             BindingContext = pantrySettingViewModel = new PantrySettingViewModel();
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private void BackToPantry_Tapped(object sender, EventArgs e)
         {
             Navigation.PushAsync(new Pantry());
         }

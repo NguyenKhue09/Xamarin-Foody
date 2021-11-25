@@ -45,8 +45,8 @@ namespace Foody.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            homeViewModel.GetRecipes();
-            homeViewModel.GetRandomRecipes();
+            //homeViewModel.GetRecipes();
+            //homeViewModel.GetRandomRecipes();
             homeViewModel.FavoriteRecipes = await homeViewModel.GetAllFavoriteRecipes();
             
             if (homeViewModel.FavoriteRecipes.Count > 0)

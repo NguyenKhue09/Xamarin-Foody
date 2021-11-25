@@ -28,17 +28,17 @@ namespace Foody.Views
 
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private void Signin_Tapped(object sender, EventArgs e)
         {
             Navigation.PopAsync();
         }
 
-        async private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        async private void ForgotPassword_Tapped(object sender, EventArgs e)
         {
             await Navigation.PushPopupAsync(new ForgotPassword());
         }
 
-        private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
+        private void Gmail_Tapped(object sender, EventArgs e)
         {
 
         }

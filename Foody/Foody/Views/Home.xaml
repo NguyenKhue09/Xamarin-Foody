@@ -203,7 +203,7 @@
                             <GridItemsLayout
                                 Orientation="Horizontal"
                                 HorizontalItemSpacing="13"
-                                SnapPointsType="MandatorySingle"
+                                SnapPointsType="Mandatory"
                                 SnapPointsAlignment="Center" />
                         </CollectionView.ItemsLayout>
 
@@ -447,7 +447,7 @@
                                 Orientation="Horizontal"
                                 HorizontalItemSpacing="13"
                                 SnapPointsType="MandatorySingle"
-                                SnapPointsAlignment="Center" />
+                                SnapPointsAlignment="Center"/>
                         </CollectionView.ItemsLayout>
 
                         <CollectionView.ItemTemplate>

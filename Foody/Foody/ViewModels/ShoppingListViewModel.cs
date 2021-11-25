@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -26,6 +27,16 @@ namespace Foody.ViewModels
 
         public bool isSelectedAllShoppingListItem = false;
         public bool isShowSearchIngredientItem = false;
+
+        public Rectangle showHeightResultSearch { get; set; }
+        public int x = 0;
+        public int y = 0;
+        public int z = 200;
+        public int t = 185;
+        //public Rectangle ShowHeightResultSearch {
+        //    get { return showHeightResultSearch; }
+        //    set { SetProperty(ref showHeightResultSearch, value); }
+        //}
 
         public bool IsSelectedAllShoppingListItem
         {
@@ -238,17 +249,29 @@ namespace Foody.ViewModels
         async public void SearchIngredient(string searchString)
         {
             
-            SearchIngredients.Clear();
-            Debug.WriteLine(SearchIngredients.Count);
             SearchIngredientsResult results = await App.RecipeManager.SearchIngredients(searchString);
 
             if (results != null)
             {
-                Debug.WriteLine(results.results.Count);
                 if (results.results.Count > 0)
                 {
-                    IsShowSearchIngredientItem = true;
+                       
+                    SearchIngredients.Clear();
                     SearchIngredients.AddRange(results.results);
+                    if (results.results.Count == 1)
+                    {
+                        //ShowHeightResultSearch = new Rectangle(0, 0, 280, 65);
+                    }
+                    else if (results.results.Count == 2)
+                    {
+                        //ShowHeightResultSearch = new Rectangle(0, 0, 280, 125);
+                    }
+                    else
+                    {
+                        //ShowHeightResultSearch = new Rectangle(0, 0, 280, 185);
+                    }
+                    //Debug.WriteLine(ShowHeightResultSearch);
+                    IsShowSearchIngredientItem = true;
                 }
                 else
                 {

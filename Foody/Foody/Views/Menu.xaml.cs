@@ -17,37 +17,37 @@ namespace Foody.Views
             InitializeComponent();
         }
 
-        async private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        async private void MenuToHome_Tapped(object sender, EventArgs e)
         {
             await (App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/home", true);
         }
 
-        async private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        async private void MenuToPantry_Tapped(object sender, EventArgs e)
         {
             await (App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/pantry", true);
         }
 
-        async private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
+        async private void MenuToShoppingList_Tapped(object sender, EventArgs e)
         {
             await(App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/shoppingList", true);
         }
 
-        private void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
+        private void MenuToFavortiteRecipes_Tapped(object sender, EventArgs e)
         {
             Navigation.PushAsync(new FavoriteRecipesPage());
         }
 
-        async private void TapGestureRecognizer_Tapped_4(object sender, EventArgs e)
+        async private void MenuToMealPlanner_Tapped(object sender, EventArgs e)
         {
             await(App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/mealPlanner", true);
         }
 
-        private void TapGestureRecognizer_Tapped_5(object sender, EventArgs e)
+        private void MenuToAccount_Tapped(object sender, EventArgs e)
         {
             Navigation.PushAsync(new Account());
         }
 
-        private void TapGestureRecognizer_Tapped_6(object sender, EventArgs e)
+        private void Logout_Tapped(object sender, EventArgs e)
         {
             Navigation.PushAsync(new Login());
         }

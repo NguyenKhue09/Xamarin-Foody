@@ -37,7 +37,7 @@
                         FontSize="18" TextColor="Black" FontAttributes="Bold"
                         HorizontalOptions="End">
                     <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1">
+                        <TapGestureRecognizer Tapped="ForgotPassword_Tapped">
                         </TapGestureRecognizer>
                     </Label.GestureRecognizers>
                 </Label>
@@ -68,7 +68,7 @@
                         BackgroundColor="White" BorderColor="#D8D8D8" Margin="0,5" Padding="0"
                         HeightRequest="70" CornerRadius="15">
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2"  />
+                        <TapGestureRecognizer Tapped="Gmail_Tapped"  />
                     </Frame.GestureRecognizers>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -88,13 +88,13 @@
                      HorizontalOptions="Center" VerticalOptions="EndAndExpand" Margin="5"
                     >
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped">
+                    <TapGestureRecognizer Tapped="Signin_Tapped">
                     </TapGestureRecognizer>
                 </Label.GestureRecognizers>
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text="Have an account? " TextColor="Black"  FontSize="22" />
-                        <Span Text="Sing in" TextColor="Blue" FontSize="22" FontAttributes="Bold" />
+                        <Span Text="Sign in" TextColor="Blue" FontSize="22" FontAttributes="Bold" />
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
