@@ -74,7 +74,7 @@ namespace Foody.Views
             }
 
         }
-        async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        async void PantrySetting(object sender, EventArgs e)
         {
             try
             {

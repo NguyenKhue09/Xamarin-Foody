@@ -82,7 +82,7 @@ namespace Foody.Views
             Debug.WriteLine(shoppingListViewModel.SearchIngredients.Count);
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private void ShoppingListToShoppingCart(object sender, EventArgs e)
         {
             Navigation.PushAsync(new PageShoppingCart(shoppingListViewModel));
         }
@@ -96,6 +96,11 @@ namespace Foody.Views
         {
             _ = await shoppingListViewModel.DeleteAllSelectedShoppingListItem();
             option.IsVisible = !option.IsVisible ? true : false;
+        }
+
+        private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 

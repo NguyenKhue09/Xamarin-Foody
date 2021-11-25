@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -26,6 +27,13 @@ namespace Foody.ViewModels
 
         public bool isSelectedAllShoppingListItem = false;
         public bool isShowSearchIngredientItem = false;
+
+        public Rectangle showHeightResultSearch { get; set; }
+
+        public Rectangle ShowHeightResultSearch {
+            get { return showHeightResultSearch; }
+            set { _ = SetProperty(ref showHeightResultSearch, value); }
+        }
 
         public bool IsSelectedAllShoppingListItem
         {
@@ -244,8 +252,22 @@ namespace Foody.ViewModels
             {
                 if (results.results.Count > 0)
                 {
+                       
                     SearchIngredients.Clear();
                     SearchIngredients.AddRange(results.results);
+                    if (results.results.Count == 1)
+                    {
+                        ShowHeightResultSearch = new Rectangle(0, 0, 280, 65);
+                    }
+                    else if (results.results.Count == 2)
+                    {
+                        ShowHeightResultSearch = new Rectangle(0, 0, 280, 125);
+                    }
+                    else
+                    {
+                        ShowHeightResultSearch = new Rectangle(0, 0, 280, 185);
+                    }
+                    Debug.WriteLine(ShowHeightResultSearch);
                     IsShowSearchIngredientItem = true;
                 }
                 else

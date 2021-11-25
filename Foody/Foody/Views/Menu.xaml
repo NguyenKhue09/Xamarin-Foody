@@ -12,7 +12,7 @@
             
             <Frame  Margin="20,0,20,8" HasShadow="True" Padding="30,0" CornerRadius="12" >
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    <TapGestureRecognizer Tapped="MenuToHome_Tapped"/>
                 </Frame.GestureRecognizers>
                 <Grid ColumnSpacing="0">
                     <Grid.ColumnDefinitions>
@@ -26,7 +26,7 @@
             
             <Frame  Margin="20,0,20,8" HasShadow="True" Padding="30,0" CornerRadius="12">
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                    <TapGestureRecognizer Tapped="MenuToPantry_Tapped"/>
                 </Frame.GestureRecognizers>
                 <Grid ColumnSpacing="0">
                     <Grid.ColumnDefinitions>
@@ -40,7 +40,7 @@
             
             <Frame  Margin="20,0,20,8" HasShadow="True" Padding="30,0" CornerRadius="12">
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2"/>
+                    <TapGestureRecognizer Tapped="MenuToShoppingList_Tapped"/>
                 </Frame.GestureRecognizers>
                 <Grid ColumnSpacing="0">
                     <Grid.ColumnDefinitions>
@@ -54,7 +54,7 @@
             
             <Frame  Margin="20,0,20,8" HasShadow="True" Padding="30,0" CornerRadius="12">
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3"/>
+                    <TapGestureRecognizer Tapped="MenuToFavortiteRecipes_Tapped"/>
                 </Frame.GestureRecognizers>
                 <Grid ColumnSpacing="0">
                     <Grid.ColumnDefinitions>
@@ -68,7 +68,7 @@
             
             <Frame  Margin="20,0,20,8" HasShadow="True" Padding="30,0" CornerRadius="12">
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_4"/>
+                    <TapGestureRecognizer Tapped="MenuToMealPlanner_Tapped"/>
                 </Frame.GestureRecognizers>
                 <Grid ColumnSpacing="0">
                     <Grid.ColumnDefinitions>
@@ -82,7 +82,7 @@
             
             <Frame  Margin="20,0,20,8" HasShadow="True" Padding="30,0" CornerRadius="12">
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_5"/>
+                    <TapGestureRecognizer Tapped="MenuToAccount_Tapped"/>
                 </Frame.GestureRecognizers>
                 <Grid ColumnSpacing="0">
                     <Grid.ColumnDefinitions>
@@ -96,7 +96,7 @@
             
             <Frame  Margin="20,0,20,8" HasShadow="True" Padding="30,0" CornerRadius="12">
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_6"/>
+                    <TapGestureRecognizer Tapped="Logout_Tapped"/>
                 </Frame.GestureRecognizers>
                 <Grid ColumnSpacing="0">
                     <Grid.ColumnDefinitions>
