@@ -127,5 +127,13 @@ namespace Foody.Views
         {
             option.IsVisible = !option.IsVisible ? true : false;
         }
+
+        private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SearchBar searchBar = (SearchBar)sender;
+            await Task.Delay(300);
+            pantryViewModel.SearchIngredient(searchBar.Text);
+            Debug.WriteLine(pantryViewModel.SearchIngredients.Count);
+        }
     }
 }
