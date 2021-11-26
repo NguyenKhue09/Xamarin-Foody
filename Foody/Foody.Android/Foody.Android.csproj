@@ -65,6 +65,9 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2244" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Auth">
+      <Version>119.2.0.2</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.GooglePlayServices.Base">
       <Version>117.6.0.2</Version>
     </PackageReference>
@@ -76,6 +79,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GoogleManager.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Renderers\CustomEntryRenderer.cs" />
     <Compile Include="Renderers\CustomShellRenderer.cs" />
@@ -84,6 +88,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <GoogleServicesJson Include="google-services.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
