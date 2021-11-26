@@ -228,7 +228,7 @@
 
             <!--result search-->
             <AbsoluteLayout x:Name="LstIngredientsSearch" Grid.Row="0" Grid.RowSpan="2"  Margin="25,137,10,0" IsVisible="{Binding IsShowSearchIngredientItem}" >
-                <Frame  BackgroundColor="White" AbsoluteLayout.LayoutBounds="0,0,280,185"  AbsoluteLayout.LayoutFlags="PositionProportional" Padding="0" Margin="0" HasShadow="True" BorderColor="Gray">
+                <Frame  BackgroundColor="White" AbsoluteLayout.LayoutBounds="{Binding ShowHeightResultSearch, Converter={StaticResource ConvertStringToRectangle} , ConverterParameter={Binding ShowHeightResultSearch}}"  AbsoluteLayout.LayoutFlags="PositionProportional" Padding="0" Margin="0" HasShadow="True" BorderColor="Gray">
                     <CollectionView 
                         x:Name="IngredientsSearch"
                         ItemsSource="{Binding SearchIngredients}" 

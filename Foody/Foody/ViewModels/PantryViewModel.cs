@@ -31,6 +31,24 @@ namespace Foody.ViewModels
         public Command ChipIntolerancesUnselectedCommand { get; }
 
         //
+        public ObservableRangeCollection<IngredientInform> SearchIngredients { get; set; }
+
+        public bool isShowSearchIngredientItem = false;
+
+        public string showHeightResultSearch = "0,0,0,0";
+
+        public string ShowHeightResultSearch
+        {
+            get { return showHeightResultSearch; }
+            set { SetProperty(ref showHeightResultSearch, value); }
+        }
+
+        public bool IsShowSearchIngredientItem
+        {
+            get { return isShowSearchIngredientItem; }
+            set { SetProperty(ref isShowSearchIngredientItem, value); }
+        }
+
         public Command Checkmanager { get; }
 
         public ObservableCollection<ShoppingListGroupManager> Groups = new ObservableCollection<ShoppingListGroupManager>{
@@ -77,6 +95,7 @@ namespace Foody.ViewModels
             ChipIntolerancesUnselectedCommand = new Command<string>(chipIntolerancesUnSelected);
             intolerancesList = new List<string>();
             cuisineList = new List<string>();
+            SearchIngredients = new ObservableRangeCollection<IngredientInform>();
             //
             Checkmanager = new Command<string>(manager_SelectionChanged);
             manager = new ObservableCollection<ShoppingListGroupManager>(Groups);
@@ -177,7 +196,42 @@ namespace Foody.ViewModels
             }
         }
 
-        
+        //search pantry manager
+        async public void SearchIngredient(string searchString)
+        {
+
+            SearchIngredientsResult results = await App.RecipeManager.SearchIngredients(searchString);
+
+            if (results != null)
+            {
+                if (results.results.Count > 0)
+                {
+
+                    SearchIngredients.Clear();
+                    SearchIngredients.AddRange(results.results);
+                    if (results.results.Count == 1)
+                    {
+                        ShowHeightResultSearch = "0,0,280,65";
+                    }
+                    else if (results.results.Count == 2)
+                    {
+                        ShowHeightResultSearch = "0,0,280,125";
+                    }
+                    else
+                    {
+                        ShowHeightResultSearch = "0,0,280,185";
+                    }
+                    IsShowSearchIngredientItem = true;
+                }
+                else
+                {
+                    IsShowSearchIngredientItem = false;
+                }
+            }
+
+        }
+
+
     } 
     
 }
