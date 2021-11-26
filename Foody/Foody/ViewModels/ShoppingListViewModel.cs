@@ -29,10 +29,7 @@ namespace Foody.ViewModels
         public bool isShowSearchIngredientItem = false;
 
         public Rectangle showHeightResultSearch { get; set; }
-        public int x = 0;
-        public int y = 0;
-        public int z = 200;
-        public int t = 185;
+        
         //public Rectangle ShowHeightResultSearch {
         //    get { return showHeightResultSearch; }
         //    set { SetProperty(ref showHeightResultSearch, value); }
