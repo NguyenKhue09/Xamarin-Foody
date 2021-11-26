@@ -1,0 +1,170 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using Android.App;
+using Android.Content;
+using Android.Gms.Auth.Api;
+using Android.Gms.Auth.Api.SignIn;
+using Android.Gms.Common;
+using Android.Gms.Common.Apis;
+using Android.Gms.Tasks;
+using Android.OS;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
+using Firebase;
+using Firebase.Auth;
+using Foody.Droid;
+using Foody.Models;
+using Xamarin.Forms;
+
+[assembly: Dependency(typeof(GoogleManager))]
+namespace Foody.Droid
+{
+	[Obsolete]
+    public class GoogleManager : Java.Lang.Object, IGoogleManager, GoogleApiClient.IConnectionCallbacks, GoogleApiClient.IOnConnectionFailedListener, IOnSuccessListener, IOnFailureListener
+	{
+		public Action<GoogleUser, string> _onLoginComplete;
+		public static GoogleApiClient _googleApiClient { get; set; }
+		public static GoogleManager Instance { get; private set; }
+		Context _context;
+		FirebaseAuth firebaseAuth;
+
+		public GoogleManager()
+		{
+			_context = global::Android.App.Application.Context;
+			Instance = this;
+			firebaseAuth = GetFirebaseAuth();
+		}
+
+		private FirebaseAuth GetFirebaseAuth()
+		{
+			var app = FirebaseApp.InitializeApp(_context);
+			FirebaseAuth mAuth;
+
+			if (app == null)
+			{
+				var options = new FirebaseOptions.Builder()
+					.SetProjectId("foodyxamarin")
+					.SetApplicationId("foodyxamarin")
+					.SetApiKey("AIzaSyDh_NsI8BjYC_ES970kx5VnP6yC_j8YMc8")
+					.SetDatabaseUrl("https://foodyxamarin.firebaseio.com")
+					.SetStorageBucket("foodyxamarin.appspot.com")
+					.Build();
+
+				app = FirebaseApp.InitializeApp(_context, options);
+				mAuth = FirebaseAuth.Instance;
+			}
+			else
+			{
+				mAuth = FirebaseAuth.Instance;
+			}
+			return mAuth;
+		}
+
+		public void Login(Action<GoogleUser, string> onLoginComplete)
+		{
+            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DefaultSignIn)
+                                                             .RequestIdToken("237009156143-8um28at1u88anpa0fmnqu8ar85jklp11.apps.googleusercontent.com")
+                                                             .RequestEmail()
+                                                             .Build();
+            _googleApiClient = new GoogleApiClient.Builder((_context).ApplicationContext)
+                .AddConnectionCallbacks(this)
+                .AddOnConnectionFailedListener(this)
+                .AddApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .AddScope(new Scope(Scopes.Profile))
+                .Build();
+
+            _onLoginComplete = onLoginComplete;
+            if (firebaseAuth.CurrentUser == null)
+            {
+                Intent signInIntent = Auth.GoogleSignInApi.GetSignInIntent(_googleApiClient);
+                ((MainActivity)Forms.Context).StartActivityForResult(signInIntent, 1);
+                _googleApiClient.Connect();
+            }
+            else
+            {
+                _onLoginComplete?.Invoke(new GoogleUser
+                {
+                    Name = firebaseAuth.CurrentUser.DisplayName,
+                    Email = firebaseAuth.CurrentUser.Email,
+                    Picture = new Uri(firebaseAuth.CurrentUser.PhotoUrl != null ? $"{firebaseAuth.CurrentUser.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg")
+                }, string.Empty);
+                Toast.MakeText(_context, firebaseAuth.CurrentUser.DisplayName, ToastLength.Long).Show();
+            }
+
+        }
+
+		public void Logout()
+		{
+			var gsoBuilder = new GoogleSignInOptions.Builder(GoogleSignInOptions.DefaultSignIn).RequestEmail();
+
+			GoogleSignIn.GetClient(_context, gsoBuilder.Build())?.SignOut();
+
+			_googleApiClient.Disconnect();
+
+			firebaseAuth.SignOut();
+
+		}
+
+		public void LoginWithFirebase(GoogleSignInAccount account)
+		{
+			var credentials = GoogleAuthProvider.GetCredential(account.IdToken, null);
+			firebaseAuth.SignInWithCredential(credentials).AddOnSuccessListener(this)
+				.AddOnFailureListener(this);
+		}
+
+		public void OnAuthCompleted(GoogleSignInResult result)
+		{
+			if (result.IsSuccess)
+			{
+				GoogleSignInAccount accountt = result.SignInAccount;
+				_onLoginComplete?.Invoke(new GoogleUser
+				{
+					Name = accountt.DisplayName,
+					Email = accountt.Email,
+					Picture = new Uri(accountt.PhotoUrl != null ? $"{accountt.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg")
+				}, string.Empty);
+			}
+			else
+			{
+				_onLoginComplete?.Invoke(null, "An error occured!");
+			}
+		}
+
+		public void OnConnected(Bundle connectionHint)
+		{
+
+		}
+
+		public void OnConnectionSuspended(int cause)
+		{
+			_onLoginComplete?.Invoke(null, "Canceled!");
+		}
+
+		public void OnConnectionFailed(ConnectionResult result)
+		{
+			_onLoginComplete?.Invoke(null, result.ErrorMessage);
+		}
+
+		public void OnSuccess(Java.Lang.Object result)
+		{
+			_onLoginComplete?.Invoke(new GoogleUser
+			{
+				Name = firebaseAuth.CurrentUser.DisplayName,
+				Email = firebaseAuth.CurrentUser.Email,
+				Picture = new Uri(firebaseAuth.CurrentUser.PhotoUrl != null ? $"{firebaseAuth.CurrentUser.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg")
+			}, string.Empty);
+
+			Toast.MakeText(_context, "Login successful", ToastLength.Short).Show();
+		}
+
+		public void OnFailure(Java.Lang.Exception e)
+		{
+			Toast.MakeText(_context, "Login Failed", ToastLength.Short).Show();
+
+		}
+	}
+}

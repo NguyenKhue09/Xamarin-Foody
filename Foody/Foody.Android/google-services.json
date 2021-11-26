@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "237009156143",
+    "project_id": "foodyxamarin",
+    "storage_bucket": "foodyxamarin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237009156143:android:bb60762c0b92bc82096eda",
+        "android_client_info": {
+          "package_name": "com.ie307.foody"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "237009156143-qnf92k3hebn36ahbdls19bch0ta351kn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ie307.foody",
+            "certificate_hash": "2631acc4b7268284fdd6fb7af30fbd57e361985e"
+          }
+        },
+        {
+          "client_id": "237009156143-8um28at1u88anpa0fmnqu8ar85jklp11.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDh_NsI8BjYC_ES970kx5VnP6yC_j8YMc8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "237009156143-8um28at1u88anpa0fmnqu8ar85jklp11.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
