@@ -267,7 +267,7 @@ namespace Foody.ViewModels
                     {
                         ShowHeightResultSearch = "0,0,280,185";
                     }
-                    Debug.WriteLine(ShowHeightResultSearch);
+                    //Debug.WriteLine(ShowHeightResultSearch);
                     IsShowSearchIngredientItem = true;
                 }
                 else
