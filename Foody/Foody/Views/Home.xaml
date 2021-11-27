@@ -23,23 +23,24 @@
             </Grid.ColumnDefinitions>
 
             <yummy:PancakeView  Grid.Column="0" Grid.Row="0" BackgroundColor="#07BDF6" CornerRadius="0,0,10,10" HeightRequest="10" WidthRequest="500">
-                <Grid>
+                <Grid ColumnSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.75*"/>
+                        <ColumnDefinition Width="0.65*"/>
                         <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="0.3*"/>
+                        <ColumnDefinition Width="0.4*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Source="user.png" Grid.Column="0" Grid.Row="0" HeightRequest="48" WidthRequest="48" VerticalOptions="Center" HorizontalOptions="Center">
-                        
-                    </Image>
+                    <yummy:PancakeView Grid.Column="0" Grid.Row="0" Padding="0" Margin="0" CornerRadius="90" HeightRequest="54" WidthRequest="54"  VerticalOptions="Center" HorizontalOptions="Center">
+                        <Image Source="user.png" Margin="0"  VerticalOptions="Center" HorizontalOptions="Center">
+                        </Image>
+                    </yummy:PancakeView>
                     <Label LineBreakMode="WordWrap" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Start">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="Hi, Nguyễn Trà Vi&#x0a;" TextColor="White" FontAttributes="Bold" FontSize="15" />
-                                <Span Text="How are you today?" TextColor="White" FontSize="12" />
+                                <Span Text="Hi, Nguyễn Trà Vi&#x0a;" TextColor="White" FontAttributes="Bold" FontSize="18" />
+                                <Span Text="How are you today?" TextColor="White" FontSize="15" />
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
