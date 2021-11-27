@@ -36,7 +36,10 @@ namespace Foody.Droid
             if (requestCode == 1)
             {
                 GoogleSignInResult result = Auth.GoogleSignInApi.GetSignInResultFromIntent(data);
-                GoogleManager.Instance.LoginWithFirebase(result.SignInAccount);
+                if(result.IsSuccess)
+                {
+                    GoogleManager.Instance.LoginWithFirebase(result.SignInAccount);
+                }
             }
         }
 

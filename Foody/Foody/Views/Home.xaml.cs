@@ -27,6 +27,8 @@ namespace Foody.Views
         {
             InitializeComponent();
             BindingContext = homeViewModel = new HomeViewModel();
+            //UserImage.Source = App.LoginViewModel.GoogleUser.Picture;
+            //UserName.Text = $"Hi, {App.LoginViewModel.GoogleUser.Name}";
         }
 
         async void OnImageNameTapped(object sender, EventArgs args)
@@ -34,8 +36,7 @@ namespace Foody.Views
             try
             {
                 //Code to execute on tapped event
-                //await Navigation.PushAsync(new Account());
-                await Navigation.PushAsync(new Login());
+                await Navigation.PushAsync(new Account());
                 
             }
             catch (Exception ex)

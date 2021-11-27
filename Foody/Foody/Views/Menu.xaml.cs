@@ -49,7 +49,7 @@ namespace Foody.Views
 
         private void Logout_Tapped(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Login());
+            App.LoginViewModel.UserLogout();
         }
     }
 }

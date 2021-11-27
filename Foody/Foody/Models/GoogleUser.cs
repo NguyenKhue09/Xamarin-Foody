@@ -14,6 +14,7 @@ namespace Foody.Models
     {
         void Login(Action<GoogleUser, string> OnLoginComplete);
 
+        void CheckUserLogin(Action<GoogleUser> IsLoggedin);
         void Logout();
     }
 }

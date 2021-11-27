@@ -27,6 +27,8 @@ namespace Foody.Droid
     public class GoogleManager : Java.Lang.Object, IGoogleManager, GoogleApiClient.IConnectionCallbacks, GoogleApiClient.IOnConnectionFailedListener, IOnSuccessListener, IOnFailureListener
 	{
 		public Action<GoogleUser, string> _onLoginComplete;
+
+		public Action<GoogleUser> _checkUserLogin;
 		public static GoogleApiClient _googleApiClient { get; set; }
 		public static GoogleManager Instance { get; private set; }
 		Context _context;
@@ -36,6 +38,16 @@ namespace Foody.Droid
 		{
 			_context = global::Android.App.Application.Context;
 			Instance = this;
+			GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DefaultSignIn)
+															 .RequestIdToken("237009156143-8um28at1u88anpa0fmnqu8ar85jklp11.apps.googleusercontent.com")
+															 .RequestEmail()
+															 .Build();
+			_googleApiClient = new GoogleApiClient.Builder((_context).ApplicationContext)
+				.AddConnectionCallbacks(this)
+				.AddOnConnectionFailedListener(this)
+				.AddApi(Auth.GOOGLE_SIGN_IN_API, gso)
+				.Build();
+			//.AddScope(new Scope(Scopes.Profile))
 			firebaseAuth = GetFirebaseAuth();
 		}
 
@@ -66,17 +78,7 @@ namespace Foody.Droid
 
 		public void Login(Action<GoogleUser, string> onLoginComplete)
 		{
-            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DefaultSignIn)
-                                                             .RequestIdToken("237009156143-8um28at1u88anpa0fmnqu8ar85jklp11.apps.googleusercontent.com")
-                                                             .RequestEmail()
-                                                             .Build();
-            _googleApiClient = new GoogleApiClient.Builder((_context).ApplicationContext)
-                .AddConnectionCallbacks(this)
-                .AddOnConnectionFailedListener(this)
-                .AddApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .AddScope(new Scope(Scopes.Profile))
-                .Build();
-
+           
             _onLoginComplete = onLoginComplete;
             if (firebaseAuth.CurrentUser == null)
             {
@@ -96,6 +98,26 @@ namespace Foody.Droid
             }
 
         }
+
+		public void CheckUserLogin(Action<GoogleUser> IsLoggedin)
+		{
+			_checkUserLogin = IsLoggedin;
+
+			if (firebaseAuth.CurrentUser != null)
+            {
+				_checkUserLogin?.Invoke(
+				new GoogleUser
+				{
+					Name = firebaseAuth.CurrentUser.DisplayName,
+					Email = firebaseAuth.CurrentUser.Email,
+					Picture = new Uri(firebaseAuth.CurrentUser.PhotoUrl != null ? $"{firebaseAuth.CurrentUser.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg")
+				});
+			} else
+            {
+				_checkUserLogin?.Invoke(null);
+			}
+			
+		}
 
 		public void Logout()
 		{
@@ -166,5 +188,7 @@ namespace Foody.Droid
 			Toast.MakeText(_context, "Login Failed", ToastLength.Short).Show();
 
 		}
-	}
+
+        
+    }
 }
