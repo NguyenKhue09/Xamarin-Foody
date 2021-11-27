@@ -39,7 +39,8 @@
                 HeightRequest="100"
                 SelectionMode="Single"
                 ItemsSource="{Binding results}"
-                ItemsLayout="VerticalGrid, 2">
+                ItemsLayout="VerticalGrid, 2"
+                SelectionChanged="favorite_Recipes_Foody_SelectionChanged">
 
 
                 <d:CollectionView.ItemsLayout>
@@ -110,7 +111,9 @@
                                                 Margin="0"
                                                 FontSize="15"
                                                 Text="{Binding title}"
-                                                Style="{StaticResource TxtSubtitle1_2}" />
+                                                Style="{StaticResource TxtSubtitle1_2}"
+                                                MaxLines="2"
+                                                LineBreakMode="TailTruncation" />
                                 </StackLayout>
 
                             </yummy:PancakeView>
