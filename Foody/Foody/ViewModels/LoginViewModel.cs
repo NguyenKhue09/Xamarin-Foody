@@ -23,6 +23,7 @@ namespace Foody.ViewModels
         public async void UserLogout()
         {
             _googleManager.Logout();
+            GoogleUser = null;
             await Shell.Current.GoToAsync("Login", true);
         }
     

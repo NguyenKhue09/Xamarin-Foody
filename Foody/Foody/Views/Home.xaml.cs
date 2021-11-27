@@ -27,6 +27,8 @@ namespace Foody.Views
         {
             InitializeComponent();
             BindingContext = homeViewModel = new HomeViewModel();
+            //UserImage.Source = App.LoginViewModel.GoogleUser.Picture;
+            //UserName.Text = $"Hi, {App.LoginViewModel.GoogleUser.Name}";
         }
 
         async void OnImageNameTapped(object sender, EventArgs args)

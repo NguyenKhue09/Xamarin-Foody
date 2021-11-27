@@ -33,14 +33,14 @@
                         <ColumnDefinition Width="0.4*"/>
                     </Grid.ColumnDefinitions>
                     <yummy:PancakeView Grid.Column="0" Grid.Row="0" Padding="0" Margin="0" CornerRadius="90" HeightRequest="54" WidthRequest="54"  VerticalOptions="Center" HorizontalOptions="Center">
-                        <Image Source="user.png" Margin="0"  VerticalOptions="Center" HorizontalOptions="Center">
+                        <Image x:Name="UserImage" Source="user.png" Margin="0"  VerticalOptions="Center" HorizontalOptions="Center">
                         </Image>
                     </yummy:PancakeView>
                     <Label LineBreakMode="WordWrap" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Start">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="Hi, Nguyễn Trà Vi&#x0a;" TextColor="White" FontAttributes="Bold" FontSize="18" />
-                                <Span Text="How are you today?" TextColor="White" FontSize="15" />
+                                <Span x:Name="UserName" Text="Hi, Nguyễn Trà Vi" TextColor="White" FontAttributes="Bold" FontSize="18" />
+                                <Span Text="&#x0a;How are you today?" TextColor="White" FontSize="15" />
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
