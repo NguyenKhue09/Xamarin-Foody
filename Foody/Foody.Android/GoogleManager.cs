@@ -46,8 +46,8 @@ namespace Foody.Droid
 				.AddConnectionCallbacks(this)
 				.AddOnConnectionFailedListener(this)
 				.AddApi(Auth.GOOGLE_SIGN_IN_API, gso)
-				.AddScope(new Scope(Scopes.Profile))
 				.Build();
+			//.AddScope(new Scope(Scopes.Profile))
 			firebaseAuth = GetFirebaseAuth();
 		}
 

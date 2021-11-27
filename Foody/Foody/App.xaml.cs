@@ -39,6 +39,7 @@ namespace Foody
             {
                 await Shell.Current.GoToAsync("Login", true);
             }
+            
         }
 
         protected override void OnSleep()
