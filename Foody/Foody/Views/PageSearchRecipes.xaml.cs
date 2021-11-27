@@ -1,7 +1,9 @@
 ﻿using Foody.Models;
+using Foody.Views.DetailsRecipe;
 using MvvmHelpers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +27,19 @@ namespace Foody.Views
         private void BackToPantry_Tapped(object sender, EventArgs e)
         {
             Navigation.PushAsync(new Pantry());
+        }
+
+        private async void favorite_Recipes_Foody_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (favorite_Recipes_Foody.SelectedItem != null)
+            {
+                Debug.WriteLine("Choose");
+                Result recipe = (Result)favorite_Recipes_Foody.SelectedItem;
+                recipe.SelectedViewModelIndex = 0;
+                await Navigation.PushAsync(new DetailRecipe(recipe));
+            }
+
+            favorite_Recipes_Foody.SelectedItem = null;
         }
     }
 }

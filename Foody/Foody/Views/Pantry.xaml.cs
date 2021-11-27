@@ -1,5 +1,6 @@
 ﻿using Foody.Models;
 using Foody.ViewModels;
+using Foody.Views.DetailsRecipe;
 using Foody.Views.PopUp;
 using Rg.Plugins.Popup.Extensions;
 using System;
@@ -35,7 +36,7 @@ namespace Foody.Views
         {
             base.OnAppearing();
             pantryViewModel.GetPopularRecipes();
-            //homeViewModel.GetRandomRecipes();
+            pantryViewModel.GetRandomRecipes();
         }
         void CheckFavorite(bool x)
         {
@@ -134,6 +135,45 @@ namespace Foody.Views
             await Task.Delay(300);
             pantryViewModel.SearchIngredient(searchBar.Text);
             Debug.WriteLine(pantryViewModel.SearchIngredients.Count);
+        }
+
+        private async void collectionView_ingredients_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (collectionView_ingredients.SelectedItem != null)
+            {
+                Debug.WriteLine("Choose");
+                Result recipe = (Result)collectionView_ingredients.SelectedItem;
+                recipe.SelectedViewModelIndex = 0;
+                await Navigation.PushAsync(new DetailRecipe(recipe));
+            }
+
+            collectionView_ingredients.SelectedItem = null;
+        }
+
+        private async void collectionView_Popular_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (collectionView_Popular.SelectedItem != null)
+            {
+                Debug.WriteLine("Choose");
+                Result recipe = (Result)collectionView_Popular.SelectedItem;
+                recipe.SelectedViewModelIndex = 0;
+                await Navigation.PushAsync(new DetailRecipe(recipe));
+            }
+
+            collectionView_Popular.SelectedItem = null;
+        }
+
+        private async void collectionView_Random_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (collectionView_Random.SelectedItem != null)
+            {
+                Debug.WriteLine("Choose");
+                Result recipe = (Result)collectionView_Random.SelectedItem;
+                recipe.SelectedViewModelIndex = 0;
+                await Navigation.PushAsync(new DetailRecipe(recipe));
+            }
+
+            collectionView_Random.SelectedItem = null;
         }
     }
 }
