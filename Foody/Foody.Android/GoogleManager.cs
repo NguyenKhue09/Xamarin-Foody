@@ -38,6 +38,16 @@ namespace Foody.Droid
 		{
 			_context = global::Android.App.Application.Context;
 			Instance = this;
+			GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DefaultSignIn)
+															 .RequestIdToken("237009156143-8um28at1u88anpa0fmnqu8ar85jklp11.apps.googleusercontent.com")
+															 .RequestEmail()
+															 .Build();
+			_googleApiClient = new GoogleApiClient.Builder((_context).ApplicationContext)
+				.AddConnectionCallbacks(this)
+				.AddOnConnectionFailedListener(this)
+				.AddApi(Auth.GOOGLE_SIGN_IN_API, gso)
+				.AddScope(new Scope(Scopes.Profile))
+				.Build();
 			firebaseAuth = GetFirebaseAuth();
 		}
 
@@ -68,17 +78,7 @@ namespace Foody.Droid
 
 		public void Login(Action<GoogleUser, string> onLoginComplete)
 		{
-            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DefaultSignIn)
-                                                             .RequestIdToken("237009156143-8um28at1u88anpa0fmnqu8ar85jklp11.apps.googleusercontent.com")
-                                                             .RequestEmail()
-                                                             .Build();
-            _googleApiClient = new GoogleApiClient.Builder((_context).ApplicationContext)
-                .AddConnectionCallbacks(this)
-                .AddOnConnectionFailedListener(this)
-                .AddApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .AddScope(new Scope(Scopes.Profile))
-                .Build();
-
+           
             _onLoginComplete = onLoginComplete;
             if (firebaseAuth.CurrentUser == null)
             {

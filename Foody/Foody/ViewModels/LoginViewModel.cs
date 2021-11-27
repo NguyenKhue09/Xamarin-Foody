@@ -20,9 +20,16 @@ namespace Foody.ViewModels
             _googleManager = DependencyService.Get<IGoogleManager>();
         }
 
+        public async void UserLogout()
+        {
+            _googleManager.Logout();
+            await Shell.Current.GoToAsync("Login", true);
+        }
+    
         public void UserGoogleLogin()
         {
             _googleManager.Login(OnLoginComplete);
+
         }
 
         public void CheckUserLogin()
