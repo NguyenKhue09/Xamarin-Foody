@@ -27,6 +27,8 @@ namespace Foody.Droid
     public class GoogleManager : Java.Lang.Object, IGoogleManager, GoogleApiClient.IConnectionCallbacks, GoogleApiClient.IOnConnectionFailedListener, IOnSuccessListener, IOnFailureListener
 	{
 		public Action<GoogleUser, string> _onLoginComplete;
+
+		public Action<GoogleUser> _checkUserLogin;
 		public static GoogleApiClient _googleApiClient { get; set; }
 		public static GoogleManager Instance { get; private set; }
 		Context _context;
@@ -97,6 +99,26 @@ namespace Foody.Droid
 
         }
 
+		public void CheckUserLogin(Action<GoogleUser> IsLoggedin)
+		{
+			_checkUserLogin = IsLoggedin;
+
+			if (firebaseAuth.CurrentUser != null)
+            {
+				_checkUserLogin?.Invoke(
+				new GoogleUser
+				{
+					Name = firebaseAuth.CurrentUser.DisplayName,
+					Email = firebaseAuth.CurrentUser.Email,
+					Picture = new Uri(firebaseAuth.CurrentUser.PhotoUrl != null ? $"{firebaseAuth.CurrentUser.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg")
+				});
+			} else
+            {
+				_checkUserLogin?.Invoke(null);
+			}
+			
+		}
+
 		public void Logout()
 		{
 			var gsoBuilder = new GoogleSignInOptions.Builder(GoogleSignInOptions.DefaultSignIn).RequestEmail();
@@ -166,5 +188,7 @@ namespace Foody.Droid
 			Toast.MakeText(_context, "Login Failed", ToastLength.Short).Show();
 
 		}
-	}
+
+        
+    }
 }

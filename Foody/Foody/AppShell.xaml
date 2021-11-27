@@ -19,6 +19,7 @@
                 <Setter Property="Shell.TabBarUnselectedColor" Value="Red"/>
                 <Setter Property="Shell.TabBarTitleColor" Value="Red"/>
                 <Setter Property="Shell.NavBarIsVisible" Value="False"/>
+                <Setter Property="Shell.FlyoutItemIsVisible" Value="False"/>
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" >
             </Style>
@@ -26,6 +27,10 @@
         </ResourceDictionary>
     </Shell.Resources>
 
+
+    <!--<ShellContent 
+        Route="Login"
+        ContentTemplate="{DataTemplate local:Login}"/>-->
 
     <TabBar Route="tabbar">
         <ShellContent Icon="home.png" ContentTemplate="{DataTemplate local:Home}" Route="home"/>
