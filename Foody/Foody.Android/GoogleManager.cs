@@ -86,7 +86,7 @@ namespace Foody.Droid
             if (firebaseAuth.CurrentUser == null)
             {
                 //Intent signInIntent = Auth.GoogleSignInApi.GetSignInIntent(_googleApiClient);
-                ((MainActivity)Forms.Context).StartActivityForResult(_googleApiClient.SignInIntent, 1);
+                (MainActivity.Instance).StartActivityForResult(_googleApiClient.SignInIntent, 1);
                 //_googleApiClient.Connect();
             }
             else
