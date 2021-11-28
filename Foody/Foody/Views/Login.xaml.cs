@@ -45,14 +45,19 @@ namespace Foody.Views
             await Navigation.PushPopupAsync( new ForgotPassword());
         }
 
-        private async void LoginGmail_Tapped(object sender, EventArgs e)
+        private void LoginGmail_Tapped(object sender, EventArgs e)
         {
             App.LoginViewModel.UserGoogleLogin();
         }
 
-        async private void CreateAccount_Tapped(object sender, EventArgs e)
+        private async void CreateAccount_Tapped(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new CreateAccount());
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
         }
     }
 }
