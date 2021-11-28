@@ -26,27 +26,32 @@ namespace Foody.Views
         public Home() 
         {
             InitializeComponent();
-            BindingContext = homeViewModel = new HomeViewModel();
-            //UserImage.Source = App.LoginViewModel.GoogleUser.Picture;
-            //UserName.Text = $"Hi, {App.LoginViewModel.GoogleUser.Name}";
+            BindingContext = homeViewModel = new HomeViewModel();  
         }
-
         async void OnImageNameTapped(object sender, EventArgs args)
         {
             try
             {
                 //Code to execute on tapped event
-                await Navigation.PushAsync(new Account());
-                
+                //await Navigation.PushAsync(new Account());
+                await Shell.Current.GoToAsync("//tabbar/menu/Account", true);
+
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
+
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+            if (App.LoginViewModel.ObsGoogleUser != null)
+            {
+                UserImage.Source = App.LoginViewModel.ObsGoogleUser.Picture;
+                UserName.Text = App.LoginViewModel.ObsGoogleUser.Name == "" ? $"Hi, {App.LoginViewModel.ObsGoogleUser.Email}" : $"Hi, {App.LoginViewModel.ObsGoogleUser.Name}";
+            }
+
             //homeViewModel.GetRecipes();
             //homeViewModel.GetRandomRecipes();
             homeViewModel.FavoriteRecipes = await homeViewModel.GetAllFavoriteRecipes();

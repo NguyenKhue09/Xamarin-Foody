@@ -2,6 +2,7 @@
 using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace Foody.Views
         async public void NavToHomePage()
         {
 
-            await (App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/home", true);
+            await (Application.Current.MainPage as Shell).GoToAsync("//tabbar/home", true);
 
         }
 
@@ -38,9 +39,25 @@ namespace Foody.Views
             await Navigation.PushPopupAsync(new ForgotPassword());
         }
 
-        private void Gmail_Tapped(object sender, EventArgs e)
+        private async void Gmail_Tapped(object sender, EventArgs e)
         {
+           
+            App.LoginViewModel.UserGoogleLogin();
+            if (App.LoginViewModel.IsLogin)
+            {
+               
+                await(Application.Current.MainPage as Shell).GoToAsync("//tabbar/home", true);
+            }
+        }
 
+        private async void RegisterUser_Tapped(object sender, EventArgs e)
+        {
+            App.LoginViewModel.RegisterUser(txtUserEmail.Text, Password.Text);
+            if (App.LoginViewModel.IsLogin)
+            {
+                
+                await(Application.Current.MainPage as Shell).GoToAsync("//tabbar/home", true);
+            }
         }
     }
 }

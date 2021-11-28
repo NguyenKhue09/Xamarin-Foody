@@ -29,13 +29,12 @@ namespace Foody
             RecipeManager = new RecipesManager(new RestService());
             InitializeComponent();
             MainPage = new AppShell();
-            Routing.RegisterRoute("Login", typeof(Login));
             LoginViewModel.CheckUserLogin();
         }
 
         protected async override void OnStart()
         {
-            if(!LoginViewModel.isLogin)
+            if (!LoginViewModel.IsLogin)
             {
                 await Shell.Current.GoToAsync("Login", true);
             }

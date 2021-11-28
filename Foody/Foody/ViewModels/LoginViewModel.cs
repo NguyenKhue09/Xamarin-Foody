@@ -1,5 +1,6 @@
 ﻿using Foody.Models;
 using Foody.Views;
+using MvvmHelpers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,28 +9,55 @@ using Xamarin.Forms;
 
 namespace Foody.ViewModels
 {
-    public class LoginViewModel
+    public class LoginViewModel: BaseViewModel
     {
         private readonly IGoogleManager _googleManager;
-        public GoogleUser GoogleUser { get; set; }
+        public GoogleUser GoogleUser;
 
-        public bool isLogin { get; set; }
+        public GoogleUser ObsGoogleUser
+        {
+            get => GoogleUser;
+            set => SetProperty(ref GoogleUser, value);
+        }
+
+        public bool isLogin;
+
+        public bool IsLogin
+        {
+            get => isLogin;
+            set => SetProperty(ref isLogin, value);
+        }
+
 
         public LoginViewModel()
         {
+            
             _googleManager = DependencyService.Get<IGoogleManager>();
         }
 
         public async void UserLogout()
         {
             _googleManager.Logout();
-            GoogleUser = null;
+            ObsGoogleUser = null;
+            IsLogin = false;
             await Shell.Current.GoToAsync("Login", true);
         }
     
         public void UserGoogleLogin()
         {
             _googleManager.Login(OnLoginComplete);
+
+        }
+
+        public void UserLoginGmailPassword(string UserName, string Password)
+        {
+            _googleManager.LoginGmailPassword(OnLoginComplete, UserName, Password);
+
+        }
+
+        public void RegisterUser(string UserEmail, string Password)
+        {
+            _googleManager.RegisterUser(OnRegisterComplete, UserEmail, Password);
 
         }
 
@@ -43,22 +71,52 @@ namespace Foody.ViewModels
             Debug.WriteLine("Call onlogin compelete");
             if (googleUser != null)
             {
-                GoogleUser = new GoogleUser
+                ObsGoogleUser = new GoogleUser
                 {
                     Name = googleUser.Name,
                     Email = googleUser.Email,
                     Picture = googleUser.Picture,
+                    UID = googleUser.UID
                 };
                 Debug.WriteLine(GoogleUser.Name);
                 Debug.WriteLine(GoogleUser.Email);
                 Debug.WriteLine(GoogleUser.Picture);
+                Debug.WriteLine(GoogleUser.UID);
                 NavToHomePage();
-                isLogin = true;
+                IsLogin = true;
 
             }
             else
             {
-                isLogin = false;
+                IsLogin = false;
+                
+            }
+        }
+
+        private void OnRegisterComplete(GoogleUser googleUser, string message)
+        {
+            Debug.WriteLine("Call onregister compelete");
+            if (googleUser != null)
+            {
+                ObsGoogleUser = new GoogleUser
+                {
+                    Name = googleUser.Name,
+                    Email = googleUser.Email,
+                    Picture = googleUser.Picture,
+                    UID = googleUser.UID
+                };
+                Debug.WriteLine(GoogleUser.Name);
+                Debug.WriteLine(GoogleUser.Email);
+                Debug.WriteLine(GoogleUser.Picture);
+                Debug.WriteLine(GoogleUser.UID);
+                NavToHomePage();
+                IsLogin = true;
+
+            }
+            else
+            {
+                IsLogin = false;
+
             }
         }
 
@@ -67,22 +125,25 @@ namespace Foody.ViewModels
            
             if (googleUser != null)
             {
-                GoogleUser = new GoogleUser
+                ObsGoogleUser = new GoogleUser
                 {
                     Name = googleUser.Name,
                     Email = googleUser.Email,
                     Picture = googleUser.Picture,
+                    UID = googleUser.UID
                 };
                 Debug.WriteLine(GoogleUser.Name);
                 Debug.WriteLine(GoogleUser.Email);
                 Debug.WriteLine(GoogleUser.Picture);
+                Debug.WriteLine(GoogleUser.UID);
                 NavToHomePage();
-                isLogin = true;
+                IsLogin = true;
 
             }
             else
             {
-                isLogin = false;
+                IsLogin = false;
+               
             }
         }
 

@@ -73,19 +73,19 @@ namespace Foody.ViewModels
         async public void NavToPantryPage()
         {
 
-            await (App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/pantry", true);
+            await (Application.Current.MainPage as Shell).GoToAsync("//tabbar/pantry", true);
            
         }
 
         async public void NavToShoppingListPage()
         {
 
-            await (App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/shoppingList", true);
+            await (Application.Current.MainPage as Shell).GoToAsync("//tabbar/shoppingList", true);
         }
         async public void NavToMealPlannerPage()
         {
 
-            await (App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/mealPlanner", true);
+            await (Application.Current.MainPage as Shell).GoToAsync("//tabbar/mealPlanner", true);
         }
 
         

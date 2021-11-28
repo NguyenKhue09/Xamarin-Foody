@@ -72,6 +72,7 @@ namespace Foody.Views
         private void Add_To_List_Tapped(object sender, EventArgs e)
         {
             shoppingListViewModel.GetSelectedShoppingListItem();
+
         }
 
         private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
@@ -126,14 +127,14 @@ namespace Foody.Views
                     } else
                     {
                         AddIngredientToSPLImg.Source = "plus1.png";
-                        await DisplayAlert("Error", "Add ingredient to shopping list fail!", "OK");
+                        await DisplayAlert("Error", "Add CartIngredient to shopping list fail!", "OK");
                         shoppingListViewModel.IsShowSearchIngredientItem = false;
                         SearchBarIngredient.Text = null;
                     }
                 } else
                 {
                     AddIngredientToSPLImg.Source = "plus1.png";
-                    await DisplayAlert("Error", "Add ingredient to shopping list fail!", "OK");
+                    await DisplayAlert("Error", "Add CartIngredient to shopping list fail!", "OK");
                     shoppingListViewModel.IsShowSearchIngredientItem = false;
                     SearchBarIngredient.Text = null;
                 }

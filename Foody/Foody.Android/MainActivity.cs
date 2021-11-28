@@ -7,19 +7,21 @@ using Android.OS;
 using FFImageLoading.Svg.Forms;
 using Android.Gms.Auth.Api.SignIn;
 using Android.Gms.Auth.Api;
+using Android.Widget;
 
 namespace Foody.Droid
 {
     [Activity(Label = "Foody", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        internal static MainActivity Instance { get; private set; }
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-
+            Instance = this;
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
@@ -35,11 +37,23 @@ namespace Foody.Droid
             base.OnActivityResult(requestCode, resultCode, data);
             if (requestCode == 1)
             {
-                GoogleSignInResult result = Auth.GoogleSignInApi.GetSignInResultFromIntent(data);
-                if(result.IsSuccess)
+                var task = GoogleSignIn.GetSignedInAccountFromIntent(data);
+                try
                 {
-                    GoogleManager.Instance.LoginWithFirebase(result.SignInAccount);
+                    //GoogleSignInAccount result = (GoogleSignInAccount)GoogleSignIn.GetSignedInAccountFromIntent(data).Result;
+                    GoogleSignInAccount account = (GoogleSignInAccount)task.Result;
+                    if (account != null)
+                    {
+                        GoogleManager.Instance.LoginWithFirebase(account);
+                    }
+
                 }
+                catch (Exception e) {
+                    Toast.MakeText(this, "Google Sign In Failed", ToastLength.Long).Show();
+                }
+                //GoogleSignInResult result = Auth.GoogleSignInApi.GetSignInResultFromIntent(data);
+                
+                
             }
         }
 
