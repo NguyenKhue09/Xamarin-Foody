@@ -7,6 +7,7 @@ using Android.OS;
 using FFImageLoading.Svg.Forms;
 using Android.Gms.Auth.Api.SignIn;
 using Android.Gms.Auth.Api;
+using Android.Widget;
 
 namespace Foody.Droid
 {
@@ -36,12 +37,23 @@ namespace Foody.Droid
             base.OnActivityResult(requestCode, resultCode, data);
             if (requestCode == 1)
             {
-                //GoogleSignInResult result = Auth.GoogleSignInApi.GetSignInResultFromIntent(data);
-                GoogleSignInAccount result = (GoogleSignInAccount)GoogleSignIn.GetSignedInAccountFromIntent(data).Result;
-                if (result != null)
+                var task = GoogleSignIn.GetSignedInAccountFromIntent(data);
+                try
                 {
-                    GoogleManager.Instance.LoginWithFirebase(result);
+                    //GoogleSignInAccount result = (GoogleSignInAccount)GoogleSignIn.GetSignedInAccountFromIntent(data).Result;
+                    GoogleSignInAccount account = (GoogleSignInAccount)task.Result;
+                    if (account != null)
+                    {
+                        GoogleManager.Instance.LoginWithFirebase(account);
+                    }
+
                 }
+                catch (Exception e) {
+                    Toast.MakeText(this, "Google Sign In Failed", ToastLength.Long).Show();
+                }
+                //GoogleSignInResult result = Auth.GoogleSignInApi.GetSignInResultFromIntent(data);
+                
+                
             }
         }
 
