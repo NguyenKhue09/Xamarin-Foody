@@ -19,6 +19,7 @@ namespace Foody.ViewModels
     {
         //public event PropertyChangedEventHandler PropertyChanged;
         public Command Checkmanager { get; }
+        public Command CheckGroupCart { get; }
 
         public ObservableCollection<ShoppingListGroupManager> shoppingListGroupManagers { get; set; }
 
@@ -47,14 +48,14 @@ namespace Foody.ViewModels
             set { SetProperty(ref isShowSearchIngredientItem, value); }
         }
 
-        private List<ShoppingListItem> selectedShoppingtListItems { get; set; }
+        public ObservableCollection<ShoppingListItem> selectedShoppingtListItems { get; set; }
 
         public ShoppingListViewModel()
         {
             Checkmanager = new Command<string>(manager_SelectionChanged);
             shoppingListGroupManagers = new ObservableCollection<ShoppingListGroupManager>();
-            selectedShoppingtListItems = new List<ShoppingListItem>();
             SearchIngredients = new ObservableRangeCollection<IngredientInform>();
+            selectedShoppingtListItems = new ObservableCollection<ShoppingListItem>();
         }
 
         public void manager_SelectionChanged(string topic)
@@ -96,6 +97,8 @@ namespace Foody.ViewModels
            
         }
 
+
+
         async Task<ObservableCollection<ShoppingListItem>> SumOfShoppingListItemFromApi(IOrderedEnumerable<IGrouping<int, Item>> queryIngredientId)
         {
             double amount = 0;
@@ -131,6 +134,7 @@ namespace Foody.ViewModels
             return shoppingListItems;
         }
 
+        // add to cart
         public void GetSelectedShoppingListItem()
         {
             foreach (ShoppingListGroupManager shoppingListGroupManager in shoppingListGroupManagers)

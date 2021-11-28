@@ -31,7 +31,16 @@ namespace Foody.Data.Local
         // Cart Ingredient
         public Task<List<CartIngredient>> GetIngredientAsync(string userId)
         {
-            return Database.Table<CartIngredient>().ToListAsync();
+            try
+            {
+                
+                return Database.Table<CartIngredient>().Where(i => i.userID == userId).ToListAsync();
+            }
+            catch (SQLiteException e)
+            {
+                Debug.WriteLine(e.Message);
+                return null;
+            }
         }
 
         public Task<List<CartIngredient>> GetIngredientsByAisle(string aisle)
