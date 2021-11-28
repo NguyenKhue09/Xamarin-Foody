@@ -1,4 +1,6 @@
-﻿using Foody.ViewModels;
+﻿using Foody.Data.Local;
+using Foody.Models.Local;
+using Foody.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -25,9 +27,8 @@ namespace Foody.Views
         {
             InitializeComponent();
             BindingContext = shoppingListViewModel = viewModel;
-            //shoplist.ItemsSource = shoppingListViewModel.shoppingListGroupManagers;
             Debug.WriteLine(shoppingListViewModel.shoppingListGroupManagers.Count());
-            
+
         }
 
         private void BackToShoppingList_Tapped(object sender, EventArgs e)
@@ -38,7 +39,14 @@ namespace Foody.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            //shoppingListViewModel.GetShoppingList();
+        }
+
+        private async void InitCartList()
+        {
+
+            RecipeDatabase recipeDatabase = await RecipeDatabase.Instance;
+            List<CartIngredient> cartIngredients = await recipeDatabase.GetIngredientAsync(App.LoginViewModel.ObsGoogleUser.UID);
+            shoplist.ItemsSource = cartIngredients;
         }
 
     }

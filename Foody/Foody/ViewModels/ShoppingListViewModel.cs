@@ -19,6 +19,7 @@ namespace Foody.ViewModels
     {
         //public event PropertyChangedEventHandler PropertyChanged;
         public Command Checkmanager { get; }
+        public Command CheckGroupCart { get; }
 
         public ObservableCollection<ShoppingListGroupManager> shoppingListGroupManagers { get; set; }
 
@@ -95,6 +96,8 @@ namespace Foody.ViewModels
             }
            
         }
+
+
 
         async Task<ObservableCollection<ShoppingListItem>> SumOfShoppingListItemFromApi(IOrderedEnumerable<IGrouping<int, Item>> queryIngredientId)
         {

@@ -9,12 +9,14 @@ namespace Foody.Models.Local
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
+        public int ingredientId { get; set; }
 
         public string userID { get; set;}
         public string aisleBelong { get; set; }
         public string ingredientName { get; set; }
 
         public string ingredientImg { get; set; }
+        public string ingredientUnits { get; set; }
 
         public double amount { get; set; }
     }

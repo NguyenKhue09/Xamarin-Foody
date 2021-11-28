@@ -12,6 +12,8 @@ using Foody.Models;
 using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.CommunityToolkit.UI.Views.Options;
 using System.Collections.ObjectModel;
+using Foody.Models.Local;
+using Foody.Data.Local;
 
 namespace Foody.Views
 {
@@ -69,10 +71,27 @@ namespace Foody.Views
             shoppingListViewModel.SelectAllShoppingListItem();
         }
 
-        private void Add_To_List_Tapped(object sender, EventArgs e)
+        private async void Add_To_List_Tapped(object sender, EventArgs e)
         {
             shoppingListViewModel.GetSelectedShoppingListItem();
-
+            RecipeDatabase recipeDatabase = await RecipeDatabase.Instance;
+            foreach (ShoppingListItem shoppingListItem in shoppingListViewModel.selectedShoppingtListItems)
+            {
+                CartIngredient cartIngredient = new CartIngredient();
+                cartIngredient.aisleBelong = shoppingListItem.IngredientAisle;
+                cartIngredient.amount = shoppingListItem.IngredientAmount;
+                cartIngredient.ingredientImg = shoppingListItem.IngredientImg;
+                cartIngredient.ingredientName = shoppingListItem.IngredientName;
+                cartIngredient.ingredientId = shoppingListItem.IngredientId;
+                cartIngredient.userID = App.LoginViewModel.ObsGoogleUser.UID;
+                cartIngredient.ingredientUnits = shoppingListItem.IngredientUnits;
+                bool checkDelete = await shoppingListViewModel.DeleteShoppingListItem(shoppingListItem);
+                if(checkDelete)
+                {
+                    await recipeDatabase.SaveIngredientAsync(cartIngredient);
+                }
+            }
+            shoppingListViewModel.selectedShoppingtListItems.Clear();
         }
 
         private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
