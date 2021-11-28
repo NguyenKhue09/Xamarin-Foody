@@ -16,5 +16,14 @@ namespace Foody.Views
         {
             InitializeComponent();
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            UserImg.Source = App.LoginViewModel.ObsGoogleUser.Picture;
+            UserEmail.Text = App.LoginViewModel.ObsGoogleUser.Email;
+            UserName.Text = App.LoginViewModel.ObsGoogleUser.Name;
+            UserNameEdit.Text = App.LoginViewModel.ObsGoogleUser.Name;
+        }
     }
 }
