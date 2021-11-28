@@ -16,7 +16,8 @@ namespace Foody.ViewModels
 {
     public class DetailRecipeViewModel : BaseViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChange;
+
         public INavigation Navigation;
         public Result recipe { get; set; }
         public List<Nutrient> newNutrients { get; set; }
@@ -75,7 +76,7 @@ namespace Foody.ViewModels
 
         protected virtual void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChange?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public List<Nutrient> setProgresBarValue(List<Nutrient> nutrients)

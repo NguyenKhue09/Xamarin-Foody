@@ -10,12 +10,11 @@ namespace Foody
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(Home), typeof(Home));
-            Routing.RegisterRoute(nameof(Pantry), typeof(Pantry));
-            Routing.RegisterRoute(nameof(ShoppingList), typeof(ShoppingList));
-            Routing.RegisterRoute(nameof(MealPlan), typeof(MealPlan));
-           
-            
+
+            Routing.RegisterRoute("Login", typeof(Login));
+            Routing.RegisterRoute("Account", typeof(Account));
+            Routing.RegisterRoute("FavoriteRecipes", typeof(FavoriteRecipesPage));
+
         }
 
     }

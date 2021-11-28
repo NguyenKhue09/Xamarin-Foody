@@ -19,32 +19,32 @@ namespace Foody.Views
 
         async private void MenuToHome_Tapped(object sender, EventArgs e)
         {
-            await (App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/home", true);
+            await (Application.Current.MainPage as Shell).GoToAsync("//tabbar/home", true);
         }
 
         async private void MenuToPantry_Tapped(object sender, EventArgs e)
         {
-            await (App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/pantry", true);
+            await (Application.Current.MainPage as Shell).GoToAsync("//tabbar/pantry", true);
         }
 
         async private void MenuToShoppingList_Tapped(object sender, EventArgs e)
         {
-            await(App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/shoppingList", true);
+            await(Application.Current.MainPage as Shell).GoToAsync("//tabbar/shoppingList", true);
         }
 
-        private void MenuToFavortiteRecipes_Tapped(object sender, EventArgs e)
+        private async void MenuToFavortiteRecipes_Tapped(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new FavoriteRecipesPage());
+            await(Application.Current.MainPage as Shell).GoToAsync("//tabbar/menu/FavoriteRecipes", true);
         }
 
         async private void MenuToMealPlanner_Tapped(object sender, EventArgs e)
         {
-            await(App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/mealPlanner", true);
+            await(Application.Current.MainPage as Shell).GoToAsync("//tabbar/mealPlanner", true);
         }
 
-        private void MenuToAccount_Tapped(object sender, EventArgs e)
+        private async void MenuToAccount_Tapped(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Account());
+            await(Application.Current.MainPage as Shell).GoToAsync("//tabbar/menu/Account", true);
         }
 
         private void Logout_Tapped(object sender, EventArgs e)

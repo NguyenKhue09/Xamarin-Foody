@@ -29,7 +29,6 @@ namespace Foody
             RecipeManager = new RecipesManager(new RestService());
             InitializeComponent();
             MainPage = new AppShell();
-            Routing.RegisterRoute("Login", typeof(Login));
             LoginViewModel.CheckUserLogin();
         }
 

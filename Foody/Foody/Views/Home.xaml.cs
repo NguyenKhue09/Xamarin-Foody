@@ -33,8 +33,9 @@ namespace Foody.Views
             try
             {
                 //Code to execute on tapped event
-                await Navigation.PushAsync(new Account());
-                
+                //await Navigation.PushAsync(new Account());
+                await Shell.Current.GoToAsync("//tabbar/menu/Account", true);
+
             }
             catch (Exception ex)
             {

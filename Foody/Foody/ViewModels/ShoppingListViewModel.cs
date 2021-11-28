@@ -17,7 +17,7 @@ namespace Foody.ViewModels
 {
     public class ShoppingListViewModel : BaseViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        //public event PropertyChangedEventHandler PropertyChanged;
         public Command Checkmanager { get; }
 
         public ObservableCollection<ShoppingListGroupManager> shoppingListGroupManagers { get; set; }
@@ -278,9 +278,9 @@ namespace Foody.ViewModels
             
         }
 
-        protected virtual void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        //protected virtual void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //}
     }
 }
