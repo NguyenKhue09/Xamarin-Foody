@@ -24,7 +24,7 @@
                 <Label Text="Email" 
                        FontSize="18" TextColor="Black" FontAttributes="Bold"/>
                 <Frame CornerRadius="10" Padding="0" HasShadow="False" BorderColor="#D8D8D8">
-                    <controls:CustomEntry x:Name="txtUserId" Keyboard="Text"  FontSize="20" HeightRequest="55"  Margin="10,0,0,0"></controls:CustomEntry>
+                    <controls:CustomEntry x:Name="txtUserEmail" Keyboard="Text"  FontSize="20" HeightRequest="55"  Margin="10,0,0,0"></controls:CustomEntry>
                 </Frame>
 
                 <Label Text="Password" 
@@ -48,7 +48,7 @@
                     HeightRequest="60" WidthRequest="450"
                     BackgroundColor="#07BDF6" CornerRadius="15" HorizontalOptions="Center">
                     <yummy:PancakeView.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Login}"/>
+                        <TapGestureRecognizer Tapped="RegisterUser_Tapped"/>
                     </yummy:PancakeView.GestureRecognizers>
                     <yummy:PancakeView.BackgroundGradientStops>
                         <yummy:GradientStopCollection>

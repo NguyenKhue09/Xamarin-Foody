@@ -72,6 +72,7 @@ namespace Foody.Views
         private void Add_To_List_Tapped(object sender, EventArgs e)
         {
             shoppingListViewModel.GetSelectedShoppingListItem();
+
         }
 
         private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)

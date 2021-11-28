@@ -103,6 +103,38 @@ namespace Foody.Droid
 
         }
 
+        public void LoginGmailPassword(Action<GoogleUser, string> OnLoginGmailPasswordComplete, string UserEmail, string UserPassword)
+        {
+            _onLoginComplete = OnLoginGmailPasswordComplete;
+            LoginWithFirebase(UserEmail, UserPassword);
+        }
+
+        public void RegisterUser(Action<GoogleUser, string> OnRegisterUser, string UserEmail, string UserPassword)
+        {
+            _onLoginComplete = OnRegisterUser;
+            RegisterUser(UserEmail, UserPassword);
+        }
+
+        public void RegisterUser(string UserEmail, string Password)
+        {
+            
+            firebaseAuth.CreateUserWithEmailAndPassword(UserEmail, Password).AddOnSuccessListener(this)
+                .AddOnFailureListener(this);
+        }
+
+        public void LoginWithFirebase(GoogleSignInAccount account)
+        {
+            var credentials = GoogleAuthProvider.GetCredential(account.IdToken, null);
+            firebaseAuth.SignInWithCredential(credentials).AddOnSuccessListener(this)
+                .AddOnFailureListener(this);
+        }
+
+        public void LoginWithFirebase(string UserEmail, string UserPassword)
+        {   
+            firebaseAuth.SignInWithEmailAndPassword(UserEmail, UserPassword).AddOnSuccessListener(this)
+                .AddOnFailureListener(this);
+        }
+
         public void CheckUserLogin(Action<GoogleUser> IsLoggedin)
         {
             _checkUserLogin = IsLoggedin;
@@ -135,13 +167,6 @@ namespace Foody.Droid
 
             firebaseAuth.SignOut();
 
-        }
-
-        public void LoginWithFirebase(GoogleSignInAccount account)
-        {
-            var credentials = GoogleAuthProvider.GetCredential(account.IdToken, null);
-            firebaseAuth.SignInWithCredential(credentials).AddOnSuccessListener(this)
-            	.AddOnFailureListener(this);
         }
 
         public void OnAuthCompleted(GoogleSignInResult result)
@@ -193,8 +218,10 @@ namespace Foody.Droid
 
         public void OnFailure(Java.Lang.Exception e)
         {
-            Toast.MakeText(_context, "Login Failed", ToastLength.Short).Show();
+            Toast.MakeText(_context, $"Login Failed", ToastLength.Short).Show();
 
         }
+
+        
     }
 }

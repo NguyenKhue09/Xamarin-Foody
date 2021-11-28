@@ -28,17 +28,10 @@ namespace Foody.ViewModels
             set => SetProperty(ref isLogin, value);
         }
 
-        public string test;
-
-        public string Test
-        {
-            get => test;
-            set => SetProperty(ref test, value);
-        }
 
         public LoginViewModel()
         {
-            Test = "VLVVLVLV";
+            
             _googleManager = DependencyService.Get<IGoogleManager>();
         }
 
@@ -53,6 +46,18 @@ namespace Foody.ViewModels
         public void UserGoogleLogin()
         {
             _googleManager.Login(OnLoginComplete);
+
+        }
+
+        public void UserLoginGmailPassword(string UserName, string Password)
+        {
+            _googleManager.LoginGmailPassword(OnLoginComplete, UserName, Password);
+
+        }
+
+        public void RegisterUser(string UserEmail, string Password)
+        {
+            _googleManager.RegisterUser(OnRegisterComplete, UserEmail, Password);
 
         }
 
@@ -78,14 +83,40 @@ namespace Foody.ViewModels
                 Debug.WriteLine(GoogleUser.Picture);
                 Debug.WriteLine(GoogleUser.UID);
                 NavToHomePage();
-                Test = googleUser.Name;
                 IsLogin = true;
 
             }
             else
             {
                 IsLogin = false;
-                Test = "VLVVLVLV";
+                
+            }
+        }
+
+        private void OnRegisterComplete(GoogleUser googleUser, string message)
+        {
+            Debug.WriteLine("Call onregister compelete");
+            if (googleUser != null)
+            {
+                ObsGoogleUser = new GoogleUser
+                {
+                    Name = googleUser.Name,
+                    Email = googleUser.Email,
+                    Picture = googleUser.Picture,
+                    UID = googleUser.UID
+                };
+                Debug.WriteLine(GoogleUser.Name);
+                Debug.WriteLine(GoogleUser.Email);
+                Debug.WriteLine(GoogleUser.Picture);
+                Debug.WriteLine(GoogleUser.UID);
+                NavToHomePage();
+                IsLogin = true;
+
+            }
+            else
+            {
+                IsLogin = false;
+
             }
         }
 
@@ -107,13 +138,12 @@ namespace Foody.ViewModels
                 Debug.WriteLine(GoogleUser.UID);
                 NavToHomePage();
                 IsLogin = true;
-                Test = googleUser.Name;
 
             }
             else
             {
                 IsLogin = false;
-                Test = "VLVVLVLV";
+               
             }
         }
 

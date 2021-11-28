@@ -15,7 +15,8 @@ namespace Foody.Models
     public interface IGoogleManager
     {
         void Login(Action<GoogleUser, string> OnLoginComplete);
-
+        void RegisterUser(Action<GoogleUser, string> OnRegisterUser, string UserEmail, string UserPassword);
+        void LoginGmailPassword(Action<GoogleUser, string> OnLoginGmailPasswordComplete, string UserEmail, string UserPassword);
         void CheckUserLogin(Action<GoogleUser> IsLoggedin);
         void Logout();
     }
