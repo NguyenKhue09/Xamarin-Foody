@@ -23,13 +23,14 @@ using Xamarin.Forms;
 [assembly: Dependency(typeof(GoogleManager))]
 namespace Foody.Droid
 {
-    [Obsolete]
-    public class GoogleManager : Java.Lang.Object, IGoogleManager, GoogleApiClient.IConnectionCallbacks, GoogleApiClient.IOnConnectionFailedListener, IOnSuccessListener, IOnFailureListener
+    
+    public class GoogleManager : Java.Lang.Object, IGoogleManager, IOnSuccessListener, IOnFailureListener
     {
         public Action<GoogleUser, string> _onLoginComplete;
 
         public Action<GoogleUser> _checkUserLogin;
-        public static GoogleApiClient _googleApiClient { get; set; }
+        //public static GoogleApiClient _googleApiClient { get; set; }
+        public static GoogleSignInClient _googleApiClient { get; set; }
         public static GoogleManager Instance { get; private set; }
         Context _context;
         FirebaseAuth firebaseAuth;
@@ -41,13 +42,15 @@ namespace Foody.Droid
             GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DefaultSignIn)
                                                              .RequestIdToken("237009156143-8um28at1u88anpa0fmnqu8ar85jklp11.apps.googleusercontent.com")
                                                              .RequestEmail()
+                                                             .RequestProfile()
                                                              .Build();
-            _googleApiClient = new GoogleApiClient.Builder((_context).ApplicationContext)
-            	.AddConnectionCallbacks(this)
-            	.AddOnConnectionFailedListener(this)
-            	.AddApi(Auth.GOOGLE_SIGN_IN_API, gso)
-            	.Build();
+            //_googleApiClient = new GoogleApiClient.Builder((_context).ApplicationContext)
+            //	.AddConnectionCallbacks(this)
+            //	.AddOnConnectionFailedListener(this)
+            //	.AddApi(Auth.GOOGLE_SIGN_IN_API, gso)
+            //	.Build();
             //.AddScope(new Scope(Scopes.Profile))
+            _googleApiClient = GoogleSignIn.GetClient(_context, gso);
             firebaseAuth = GetFirebaseAuth();
         }
 
@@ -82,9 +85,9 @@ namespace Foody.Droid
             _onLoginComplete = onLoginComplete;
             if (firebaseAuth.CurrentUser == null)
             {
-                Intent signInIntent = Auth.GoogleSignInApi.GetSignInIntent(_googleApiClient);
-                ((MainActivity)Forms.Context).StartActivityForResult(signInIntent, 1);
-                _googleApiClient.Connect();
+                //Intent signInIntent = Auth.GoogleSignInApi.GetSignInIntent(_googleApiClient);
+                ((MainActivity)Forms.Context).StartActivityForResult(_googleApiClient.SignInIntent, 1);
+                //_googleApiClient.Connect();
             }
             else
             {
@@ -125,7 +128,7 @@ namespace Foody.Droid
 
             GoogleSignIn.GetClient(_context, gsoBuilder.Build())?.SignOut();
 
-            _googleApiClient.Disconnect();
+            //_googleApiClient.Disconnect();
 
             firebaseAuth.SignOut();
 
