@@ -47,14 +47,14 @@ namespace Foody.ViewModels
             set { SetProperty(ref isShowSearchIngredientItem, value); }
         }
 
-        private List<ShoppingListItem> selectedShoppingtListItems { get; set; }
+        public ObservableCollection<ShoppingListItem> selectedShoppingtListItems { get; set; }
 
         public ShoppingListViewModel()
         {
             Checkmanager = new Command<string>(manager_SelectionChanged);
             shoppingListGroupManagers = new ObservableCollection<ShoppingListGroupManager>();
-            selectedShoppingtListItems = new List<ShoppingListItem>();
             SearchIngredients = new ObservableRangeCollection<IngredientInform>();
+            selectedShoppingtListItems = new ObservableCollection<ShoppingListItem>();
         }
 
         public void manager_SelectionChanged(string topic)
@@ -131,6 +131,7 @@ namespace Foody.ViewModels
             return shoppingListItems;
         }
 
+        // add to cart
         public void GetSelectedShoppingListItem()
         {
             foreach (ShoppingListGroupManager shoppingListGroupManager in shoppingListGroupManagers)

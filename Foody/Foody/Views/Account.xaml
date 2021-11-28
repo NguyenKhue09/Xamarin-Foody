@@ -28,7 +28,7 @@
                     <yummy:PancakeView 
                         Padding="0" Margin="0,40,0,0" BackgroundColor="White" CornerRadius="90" 
                         HeightRequest="100" WidthRequest="100"  VerticalOptions="Center" 
-                        HorizontalOptions="Center" Border="{yummy:BorderMarkup Color=Green, Thickness=3}">
+                        HorizontalOptions="Center" Border="{yummy:BorderMarkup Color = #24cc3c, Thickness=3}">
                         <ffimageloading:CachedImage
                             x:Name="UserImg"
                             DownsampleToViewSize="True"
@@ -38,8 +38,8 @@
                             VerticalOptions="Center" HorizontalOptions="Center" Aspect="AspectFit">
                         </ffimageloading:CachedImage>
                     </yummy:PancakeView>
-                    <Label x:Name="UserName"  TextColor="Black" FontSize="35"  HorizontalOptions="Center" Margin="0,8,0,0" Padding="0"/>
-                    <Label x:Name="UserEmail"  TextColor="Black" FontSize="20"  HorizontalOptions="Center" Margin="0" Padding="0"/>
+                    <Label x:Name="UserName"  TextColor="Black" FontSize="30" FontAttributes="Bold"  HorizontalOptions="Center" Margin="0,8,0,0" Padding="0"/>
+                    <Label x:Name="UserEmail"  TextColor="Black" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" Margin="0" Padding="0"/>
                     <Label LineBreakMode="WordWrap"  HorizontalOptions="Center" Padding="0,4">
                         <Label.FormattedText>
                             <FormattedString>
