@@ -25,7 +25,15 @@ namespace Foody.Views
             BindingContext = this;
         }
 
-        
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            if(App.LoginViewModel.IsLogin)
+            {
+                await(Application.Current.MainPage as Shell).GoToAsync("//tabbar/menu", true);
+            }
+        }
+
         async public void NavToHomePage()
         {
             Debug.WriteLine("Navigation");

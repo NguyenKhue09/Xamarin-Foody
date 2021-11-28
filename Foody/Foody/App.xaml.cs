@@ -35,7 +35,7 @@ namespace Foody
 
         protected async override void OnStart()
         {
-            if(!LoginViewModel.isLogin)
+            if (!LoginViewModel.IsLogin)
             {
                 await Shell.Current.GoToAsync("Login", true);
             }

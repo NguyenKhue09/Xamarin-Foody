@@ -1,5 +1,6 @@
 ﻿using Foody.Models;
 using Foody.Views;
+using MvvmHelpers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,22 +9,44 @@ using Xamarin.Forms;
 
 namespace Foody.ViewModels
 {
-    public class LoginViewModel
+    public class LoginViewModel: BaseViewModel
     {
         private readonly IGoogleManager _googleManager;
-        public GoogleUser GoogleUser { get; set; }
+        public GoogleUser GoogleUser;
 
-        public bool isLogin { get; set; }
+        public GoogleUser ObsGoogleUser
+        {
+            get => GoogleUser;
+            set => SetProperty(ref GoogleUser, value);
+        }
+
+        public bool isLogin;
+
+        public bool IsLogin
+        {
+            get => isLogin;
+            set => SetProperty(ref isLogin, value);
+        }
+
+        public string test;
+
+        public string Test
+        {
+            get => test;
+            set => SetProperty(ref test, value);
+        }
 
         public LoginViewModel()
         {
+            Test = "VLVVLVLV";
             _googleManager = DependencyService.Get<IGoogleManager>();
         }
 
         public async void UserLogout()
         {
             _googleManager.Logout();
-            GoogleUser = null;
+            ObsGoogleUser = null;
+            IsLogin = false;
             await Shell.Current.GoToAsync("Login", true);
         }
     
@@ -43,7 +66,7 @@ namespace Foody.ViewModels
             Debug.WriteLine("Call onlogin compelete");
             if (googleUser != null)
             {
-                GoogleUser = new GoogleUser
+                ObsGoogleUser = new GoogleUser
                 {
                     Name = googleUser.Name,
                     Email = googleUser.Email,
@@ -53,12 +76,14 @@ namespace Foody.ViewModels
                 Debug.WriteLine(GoogleUser.Email);
                 Debug.WriteLine(GoogleUser.Picture);
                 NavToHomePage();
-                isLogin = true;
+                Test = googleUser.Name;
+                IsLogin = true;
 
             }
             else
             {
-                isLogin = false;
+                IsLogin = false;
+                Test = "VLVVLVLV";
             }
         }
 
@@ -67,7 +92,7 @@ namespace Foody.ViewModels
            
             if (googleUser != null)
             {
-                GoogleUser = new GoogleUser
+                ObsGoogleUser = new GoogleUser
                 {
                     Name = googleUser.Name,
                     Email = googleUser.Email,
@@ -77,12 +102,14 @@ namespace Foody.ViewModels
                 Debug.WriteLine(GoogleUser.Email);
                 Debug.WriteLine(GoogleUser.Picture);
                 NavToHomePage();
-                isLogin = true;
+                IsLogin = true;
+                Test = googleUser.Name;
 
             }
             else
             {
-                isLogin = false;
+                IsLogin = false;
+                Test = "VLVVLVLV";
             }
         }
 

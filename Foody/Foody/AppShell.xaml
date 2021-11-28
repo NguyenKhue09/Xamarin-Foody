@@ -37,7 +37,7 @@
         <ShellContent Icon="store.png" ContentTemplate="{DataTemplate local:Pantry}" Route="pantry"/>
         <ShellContent Icon="basket.png" ContentTemplate="{DataTemplate local:ShoppingList}" Route="shoppingList"/>
         <ShellContent Icon="fork.png" ContentTemplate="{DataTemplate local:MealPlan}" Route="mealPlanner"/>
-        <ShellContent Icon="menu.png" ContentTemplate="{DataTemplate local:Menu}" />
+        <ShellContent Icon="menu.png" ContentTemplate="{DataTemplate local:Menu}" Route="menu" />
     </TabBar>
 
 
