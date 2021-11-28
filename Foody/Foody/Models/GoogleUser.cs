@@ -7,6 +7,7 @@ namespace Foody.Models
 {
     public class GoogleUser
     {
+        public string UID { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public Uri Picture { get; set; }

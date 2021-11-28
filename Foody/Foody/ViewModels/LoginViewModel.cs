@@ -71,10 +71,12 @@ namespace Foody.ViewModels
                     Name = googleUser.Name,
                     Email = googleUser.Email,
                     Picture = googleUser.Picture,
+                    UID = googleUser.UID
                 };
                 Debug.WriteLine(GoogleUser.Name);
                 Debug.WriteLine(GoogleUser.Email);
                 Debug.WriteLine(GoogleUser.Picture);
+                Debug.WriteLine(GoogleUser.UID);
                 NavToHomePage();
                 Test = googleUser.Name;
                 IsLogin = true;
@@ -97,10 +99,12 @@ namespace Foody.ViewModels
                     Name = googleUser.Name,
                     Email = googleUser.Email,
                     Picture = googleUser.Picture,
+                    UID = googleUser.UID
                 };
                 Debug.WriteLine(GoogleUser.Name);
                 Debug.WriteLine(GoogleUser.Email);
                 Debug.WriteLine(GoogleUser.Picture);
+                Debug.WriteLine(GoogleUser.UID);
                 NavToHomePage();
                 IsLogin = true;
                 Test = googleUser.Name;

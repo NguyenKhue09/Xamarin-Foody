@@ -126,14 +126,14 @@ namespace Foody.Views
                     } else
                     {
                         AddIngredientToSPLImg.Source = "plus1.png";
-                        await DisplayAlert("Error", "Add ingredient to shopping list fail!", "OK");
+                        await DisplayAlert("Error", "Add CartIngredient to shopping list fail!", "OK");
                         shoppingListViewModel.IsShowSearchIngredientItem = false;
                         SearchBarIngredient.Text = null;
                     }
                 } else
                 {
                     AddIngredientToSPLImg.Source = "plus1.png";
-                    await DisplayAlert("Error", "Add ingredient to shopping list fail!", "OK");
+                    await DisplayAlert("Error", "Add CartIngredient to shopping list fail!", "OK");
                     shoppingListViewModel.IsShowSearchIngredientItem = false;
                     SearchBarIngredient.Text = null;
                 }

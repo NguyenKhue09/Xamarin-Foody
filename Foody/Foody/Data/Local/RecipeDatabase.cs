@@ -16,7 +16,7 @@ namespace Foody.Data.Local
         public static readonly AsyncLazy<RecipeDatabase> Instance = new AsyncLazy<RecipeDatabase>(async () =>
             {
                 var instance = new RecipeDatabase();
-                CreateTableResult IngredientTable = await Database.CreateTableAsync<ingredient>();
+                CreateTableResult IngredientTable = await Database.CreateTableAsync<CartIngredient>();
                 CreateTableResult FavoriteReipeTable = await Database.CreateTableAsync<FavoriteRecipe>();
                 return instance;
             }
@@ -27,22 +27,24 @@ namespace Foody.Data.Local
             Database = new SQLiteAsyncConnection(Constants.Constants.DatabasePath, Constants.Constants.Flags);
         }
          
-        public Task<List<ingredient>> GetIngredientAsync()
+
+        // Cart Ingredient
+        public Task<List<CartIngredient>> GetIngredientAsync(string userId)
         {
-            return Database.Table<ingredient>().ToListAsync();
+            return Database.Table<CartIngredient>().ToListAsync();
         }
 
-        public Task<List<ingredient>> GetIngredientsByAisle(string aisle)
+        public Task<List<CartIngredient>> GetIngredientsByAisle(string aisle)
         {
-            return Database.QueryAsync<ingredient>($"SELECT * FROM [ingredient] WHERE [aisleBelong] = {aisle}");
+            return Database.QueryAsync<CartIngredient>($"SELECT * FROM [CartIngredient] WHERE [aisleBelong] = {aisle}");
         }
 
-        public Task<ingredient> GetIngredientById(int id)
+        public Task<CartIngredient> GetIngredientById(int id)
         {
-            return Database.Table<ingredient>().Where(i => i.ID == id).FirstOrDefaultAsync();
+            return Database.Table<CartIngredient>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
 
-        public Task<int> SaveIngredientAsync(ingredient ingredient)
+        public Task<int> SaveIngredientAsync(CartIngredient ingredient)
         {
             if(ingredient.ID != 0)
             {
@@ -53,7 +55,7 @@ namespace Foody.Data.Local
             }
         }
 
-        public Task<int> DeleteIngredientAsync(ingredient ingredient)
+        public Task<int> DeleteIngredientAsync(CartIngredient ingredient)
         {
             return Database.DeleteAsync(ingredient);
         }
