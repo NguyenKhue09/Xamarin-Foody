@@ -95,7 +95,8 @@ namespace Foody.Droid
                 {
                     Name = firebaseAuth.CurrentUser.DisplayName,
                     Email = firebaseAuth.CurrentUser.Email,
-                    Picture = new Uri(firebaseAuth.CurrentUser.PhotoUrl != null ? $"{firebaseAuth.CurrentUser.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg")
+                    Picture = new Uri(firebaseAuth.CurrentUser.PhotoUrl != null ? $"{firebaseAuth.CurrentUser.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg"),
+                    UID = firebaseAuth.CurrentUser.Uid
                 }, string.Empty);
                 Toast.MakeText(_context, firebaseAuth.CurrentUser.DisplayName, ToastLength.Long).Show();
             }
@@ -113,8 +114,10 @@ namespace Foody.Droid
             	{
             		Name = firebaseAuth.CurrentUser.DisplayName,
             		Email = firebaseAuth.CurrentUser.Email,
-            		Picture = new Uri(firebaseAuth.CurrentUser.PhotoUrl != null ? $"{firebaseAuth.CurrentUser.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg")
-            	});
+            		Picture = new Uri(firebaseAuth.CurrentUser.PhotoUrl != null ? $"{firebaseAuth.CurrentUser.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg"),
+                    UID = firebaseAuth.CurrentUser.Uid
+
+                });
             } else
             {
             	_checkUserLogin?.Invoke(null);
@@ -150,8 +153,9 @@ namespace Foody.Droid
             	{
             		Name = accountt.DisplayName,
             		Email = accountt.Email,
-            		Picture = new Uri(accountt.PhotoUrl != null ? $"{accountt.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg")
-            	}, string.Empty);
+            		Picture = new Uri(accountt.PhotoUrl != null ? $"{accountt.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg"),
+                    UID = firebaseAuth.CurrentUser.ProviderId
+                }, string.Empty);
             }
             else
             {
@@ -180,7 +184,8 @@ namespace Foody.Droid
             {
             	Name = firebaseAuth.CurrentUser.DisplayName,
                 Email = firebaseAuth.CurrentUser.Email,
-            	Picture = new Uri(firebaseAuth.CurrentUser.PhotoUrl != null ? $"{firebaseAuth.CurrentUser.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg")
+            	Picture = new Uri(firebaseAuth.CurrentUser.PhotoUrl != null ? $"{firebaseAuth.CurrentUser.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg"),
+                UID = firebaseAuth.CurrentUser.Uid
             }, string.Empty);
 
             Toast.MakeText(_context, "Login successful", ToastLength.Short).Show();
