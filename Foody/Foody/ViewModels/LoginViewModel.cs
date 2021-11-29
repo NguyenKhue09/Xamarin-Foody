@@ -15,11 +15,17 @@ namespace Foody.ViewModels
         private readonly IGoogleManager _googleManager;
         private ForgotPasswordPopUp forgotPasswordPopUp;
         public GoogleUser GoogleUser;
+        public GoogleUser GoogleUserDetails;
 
         public GoogleUser ObsGoogleUser
         {
             get => GoogleUser;
             set => SetProperty(ref GoogleUser, value);
+        }
+        public GoogleUser ObsGoogleUserDetails
+        {
+            get => GoogleUserDetails;
+            set => SetProperty(ref GoogleUserDetails, value);
         }
 
         public bool isLogin;
@@ -58,6 +64,12 @@ namespace Foody.ViewModels
 
         }
 
+        public void GetUserDetails()
+        {
+            _googleManager.GetUserDetails(OnGetUserDetailsComplete);
+
+        }
+
         public void RegisterUser(string UserEmail, string Password)
         {
             _googleManager.RegisterUser(OnRegisterComplete, UserEmail, Password);
@@ -87,10 +99,6 @@ namespace Foody.ViewModels
                     Picture = googleUser.Picture,
                     UID = googleUser.UID
                 };
-                Debug.WriteLine(GoogleUser.Name);
-                Debug.WriteLine(GoogleUser.Email);
-                Debug.WriteLine(GoogleUser.Picture);
-                Debug.WriteLine(GoogleUser.UID);
                 NavToHomePage();
                 IsLogin = true;
 
@@ -104,7 +112,7 @@ namespace Foody.ViewModels
 
         private void OnRegisterComplete(GoogleUser googleUser, string message)
         {
-            Debug.WriteLine("Call onregister compelete");
+
             if (googleUser != null)
             {
                 ObsGoogleUser = new GoogleUser
@@ -114,13 +122,9 @@ namespace Foody.ViewModels
                     Picture = googleUser.Picture,
                     UID = googleUser.UID
                 };
-                Debug.WriteLine(GoogleUser.Name);
-                Debug.WriteLine(GoogleUser.Email);
-                Debug.WriteLine(GoogleUser.Picture);
-                Debug.WriteLine(GoogleUser.UID);
+                GetUserDetails();
                 NavToHomePage();
                 IsLogin = true;
-
             }
             else
             {
@@ -132,6 +136,32 @@ namespace Foody.ViewModels
         private async void OnResetPassword()
         {
             await forgotPasswordPopUp.closeResetPasswordPopup();
+        }
+
+        private void OnGetUserDetailsComplete(GoogleUser googleUser, string message)
+        {
+            Debug.WriteLine("OnGetUserDetailsComplete");
+            if (googleUser != null)
+            {
+                ObsGoogleUserDetails = new GoogleUser
+                {
+                    Name = googleUser.Name,
+                    Email = googleUser.Email,
+                    Picture = googleUser.Picture,
+                    UID = googleUser.UID
+                };
+                Debug.WriteLine("Get user detail");
+                Debug.WriteLine(ObsGoogleUserDetails.Name);
+                Debug.WriteLine(ObsGoogleUserDetails.Email);
+                Debug.WriteLine(ObsGoogleUserDetails.Picture);
+                Debug.WriteLine(ObsGoogleUserDetails.UID);
+
+            }
+            else
+            {
+                ObsGoogleUserDetails = null;
+
+            }
         }
 
         private  void IsUserLogin(GoogleUser googleUser)
@@ -146,10 +176,6 @@ namespace Foody.ViewModels
                     Picture = googleUser.Picture,
                     UID = googleUser.UID
                 };
-                Debug.WriteLine(GoogleUser.Name);
-                Debug.WriteLine(GoogleUser.Email);
-                Debug.WriteLine(GoogleUser.Picture);
-                Debug.WriteLine(GoogleUser.UID);
                 NavToHomePage();
                 IsLogin = true;
 
@@ -163,7 +189,6 @@ namespace Foody.ViewModels
 
         async public void NavToHomePage()
         {
-            Debug.WriteLine("Navigation");
             await (Application.Current.MainPage as Shell).GoToAsync("//tabbar/home", true);
         }
     }
