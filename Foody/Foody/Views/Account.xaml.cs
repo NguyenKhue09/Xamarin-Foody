@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace Foody.Views
             UserImg.Source = App.LoginViewModel.ObsGoogleUser.Picture;
             UserEmail.Text = App.LoginViewModel.ObsGoogleUser.Email;
             // check null ObsGoogleUserDetails
-            if (App.LoginViewModel.ObsGoogleUserDetails != null)
+            if (App.LoginViewModel.ObsGoogleUserDetails != null && (App.LoginViewModel.ObsGoogleUser.Name == "" || App.LoginViewModel.ObsGoogleUser.Name == null))
             {
                 UserName.Text = App.LoginViewModel.ObsGoogleUserDetails.Name;
                 UserNameEdit.Text = App.LoginViewModel.ObsGoogleUserDetails.Name;
@@ -40,10 +41,9 @@ namespace Foody.Views
             if(UserNameEdit.Text != null || UserNameEdit.Text != "")
             {
                 App.LoginViewModel.UpdateUserDetails(UserNameEdit.Text, App.LoginViewModel.ObsGoogleUser.Picture.ToString());
-                if(App.LoginViewModel.ObsGoogleUserDetails != null)
+                if(App.LoginViewModel.IsUpdateDetailSuccess)
                 {
-                    UserName.Text = App.LoginViewModel.ObsGoogleUserDetails.Name;
-                    UserNameEdit.Text = App.LoginViewModel.ObsGoogleUserDetails.Name;
+                    UserName.Text = UserNameEdit.Text;
                 }
                 
             }

@@ -33,7 +33,7 @@ namespace Foody.Droid
 
         public Action<GoogleUser> _checkUserLogin;
         public Action _resetPassword;
-        public Action _updateUserDetail;
+        public Action<bool> _updateUserDetail;
         //public static GoogleApiClient _googleApiClient { get; set; }
         public static GoogleSignInClient _googleApiClient { get; set; }
         public static GoogleManager Instance { get; private set; }
@@ -150,7 +150,7 @@ namespace Foody.Droid
                 .AddOnFailureListener(new HandleOnFailure(OnUpdateUserDetailFailure));
         }
 
-        public void UpdateUserDetail(Action OnUpdateUserDetail, string UserName, string UserImg)
+        public void UpdateUserDetail(Action<bool> OnUpdateUserDetail, string UserName, string UserImg)
         {
             _updateUserDetail = OnUpdateUserDetail;
             UpdateUserDetailToFireStore(UserName, UserImg);
@@ -164,13 +164,15 @@ namespace Foody.Droid
 
         private void GetUserDetailFromFireStore()
         {
-            FirebaseFirestore.Instance
+            if (firebaseAuth.CurrentUser != null)
+            {
+                FirebaseFirestore.Instance
                 .Collection("Users")
                 .Document(firebaseAuth.CurrentUser.Uid)
                 .Get()
                 .AddOnSuccessListener(new HandleOnSuccess(OnGetUserDetailSuccess))
                 .AddOnFailureListener(new HandleOnFailure(OnGetUserDetailFailure));
-
+            }
         }
 
         public void ResetPassword(Action OnResetPassword, string UserEmail)
@@ -180,9 +182,15 @@ namespace Foody.Droid
         }
         public void RegisterUserWithFirebase(string UserEmail, string Password)
         {
-            
-            firebaseAuth.CreateUserWithEmailAndPassword(UserEmail, Password).AddOnSuccessListener(new HandleOnSuccess(OnSuccess))
+            if(UserEmail != null && Password != null)
+            {
+                firebaseAuth.CreateUserWithEmailAndPassword(UserEmail, Password).AddOnSuccessListener(new HandleOnSuccess(OnSuccess))
                 .AddOnFailureListener(new HandleOnFailure(OnFailure));
+            } else
+            {
+                Toast.MakeText(_context, "Please type your UserEmail/Password!", ToastLength.Long).Show();
+            }
+            
         }
 
         public void LoginWithFirebase(GoogleSignInAccount account)
@@ -193,9 +201,17 @@ namespace Foody.Droid
         }
 
         public void LoginGmailPasswordWithFirebase(string UserEmail, string UserPassword)
-        {   
-            firebaseAuth.SignInWithEmailAndPassword(UserEmail, UserPassword).AddOnSuccessListener(new HandleOnSuccess(OnSuccess))
-                .AddOnFailureListener(new HandleOnFailure(OnFailure));
+        {
+            if (UserEmail != null && UserPassword != null)
+            {
+                firebaseAuth.SignInWithEmailAndPassword(UserEmail, UserPassword).AddOnSuccessListener(new HandleOnSuccess(OnSuccess))
+               .AddOnFailureListener(new HandleOnFailure(OnFailure));
+            }
+            else
+            {
+                Toast.MakeText(_context, "Please type your UserEmail/Password!", ToastLength.Long).Show();
+            }
+           
         }
 
         public void CheckUserLogin(Action<GoogleUser> IsLoggedin)
@@ -318,7 +334,7 @@ namespace Foody.Droid
 
             if (result is DocumentSnapshot docRef)
             {
-                Toast.MakeText(_context, $"{docRef.Get("Name")} + {docRef.Exists()}", ToastLength.Long).Show();
+                //Toast.MakeText(_context, $"{docRef.Get("Name")} + {docRef.Exists()}", ToastLength.Long).Show();
                 if (docRef.Exists())
                 {
                     _onGetUserDetailsComplete.Invoke(
@@ -344,12 +360,13 @@ namespace Foody.Droid
 
         public void OnUpdateUserDetailSuccess(Java.Lang.Object result)
         {
-            _updateUserDetail.Invoke();
+            _updateUserDetail.Invoke(true);
             Toast.MakeText(_context, $"Update user detail success", ToastLength.Short).Show();
         }
 
         public void OnUpdateUserDetailFailure(Java.Lang.Exception e)
         {
+            _updateUserDetail.Invoke(false);
             Toast.MakeText(_context, $"Update user detail failure", ToastLength.Short).Show();
         }
 

@@ -62,5 +62,10 @@ namespace Foody.Views
             Debug.WriteLine("Create Acounnt");
             App.LoginViewModel.RegisterUser(txtUserEmail.Text, Password.Text);
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
     }
 }
