@@ -59,5 +59,14 @@ namespace Foody.Views
         {
             return true;
         }
+
+        private async void LoginGmailPassword_Tapped(object sender, EventArgs e)
+        {
+            App.LoginViewModel.UserLoginGmailPassword(txtUserEmail.Text, Password.Text);
+            if(App.LoginViewModel.IsLogin)
+            {
+                await(Application.Current.MainPage as Shell).GoToAsync("//tabbar/home", true);
+            }
+        }
     }
 }

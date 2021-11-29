@@ -49,7 +49,7 @@ namespace Foody.Views
             if (App.LoginViewModel.ObsGoogleUser != null)
             {
                 UserImage.Source = App.LoginViewModel.ObsGoogleUser.Picture;
-                UserName.Text = $"Hi, {App.LoginViewModel.ObsGoogleUser.Name}";
+                UserName.Text = App.LoginViewModel.ObsGoogleUser.Name == "" ? $"Hi, {App.LoginViewModel.ObsGoogleUser.Email}" : $"Hi, {App.LoginViewModel.ObsGoogleUser.Name}";
             }
 
             //homeViewModel.GetRecipes();
