@@ -1,7 +1,6 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Text;
 
 namespace Foody.Models.Local
@@ -20,26 +19,7 @@ namespace Foody.Models.Local
         public string ingredientUnits { get; set; }
 
         public double amount { get; set; }
-        public bool isChoose { get; set; }
+        public bool IsChoose { get; set; }
 
-        public bool IsChoose
-        {
-            get { return isChoose; }
-            set
-            {
-                if (isChoose != value)
-                {
-                    isChoose = value;
-                    OnPropertyChanged("IsChoose");
-                }
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

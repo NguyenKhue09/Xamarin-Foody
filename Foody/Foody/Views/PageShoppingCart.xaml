@@ -51,7 +51,7 @@
                                             BackgroundColor="#f5f5f5"
                                             VerticalScrollBarVisibility="Never" 
                                             Grid.Column="0" Grid.Row="2" 
-                                            ItemsSource="{Binding shoppingListGroupAisleBelong}" Margin="15,0">
+                                            ItemsSource="{Binding shoppingCartGroupAisleBelong}" Margin="15,0">
                 <CollectionView.Header>
                     <StackLayout Padding="10,20" HeightRequest="120"></StackLayout>
 
@@ -65,7 +65,7 @@
                             <yummy:PancakeView BackgroundColor="White" VerticalOptions="StartAndExpand" 
                                     HorizontalOptions="FillAndExpand" Shadow="{yummy:ShadowMarkup BlurRadius=3}"  CornerRadius="10">
                                 <behaviors:Expander  Command="{Binding Source={RelativeSource AncestorType={x:Type local:ShoppingListViewModel}}, Path=CheckGroupAisleBelong}"
-                                                                CommandParameter="{Binding aisleBelong}">
+                                                                CommandParameter="{Binding Aisle}">
                                     <behaviors:Expander.Header >
                                         <Grid HorizontalOptions="FillAndExpand" HeightRequest="66" VerticalOptions="EndAndExpand">
                                             <Grid.ColumnDefinitions>
@@ -112,7 +112,7 @@
                                                             </FormattedString>
                                                         </Label.FormattedText>
                                                     </Label>
-                                                    <CheckBox Grid.Column="2" Grid.Row="0" Color="Black"  HorizontalOptions="Center" VerticalOptions="CenterAndExpand" IsChecked="{Binding IsChoose, Mode=TwoWay}" >
+                                                    <CheckBox Grid.Column="2" Grid.Row="0" Color="Black"  HorizontalOptions="Center" VerticalOptions="CenterAndExpand" IsChecked="{Binding IsChoose, Mode=TwoWay}" CheckedChanged="CheckBox_CheckedChanged" >
                                                     </CheckBox>
                                                     
                                                 </Grid>
