@@ -46,33 +46,24 @@ namespace Foody.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            Debug.WriteLine("Home Appearing");
+
             if (App.LoginViewModel.ObsGoogleUser != null)
             {
                 UserImage.Source = App.LoginViewModel.ObsGoogleUser.Picture;
-                Debug.WriteLine(App.LoginViewModel.ObsGoogleUser.Picture);
-                if (App.LoginViewModel.ObsGoogleUser.Name == null)
+                if (App.LoginViewModel.ObsGoogleUser.Name == null || App.LoginViewModel.ObsGoogleUser.Name == "")
                 {
-                    Debug.WriteLine("Name null");
-                   
                     if (App.LoginViewModel.ObsGoogleUserDetails != null)
                     {
-                        Debug.WriteLine(App.LoginViewModel.ObsGoogleUserDetails.Name);
                         UserName.Text = $"Hi, {App.LoginViewModel.ObsGoogleUserDetails.Name}";
                     } else
                     {
-                        Debug.WriteLine("Detail null");
                         UserName.Text = $"Hi, {App.LoginViewModel.ObsGoogleUser.Email}";
                     }
                 } else
                 {
-                    Debug.WriteLine(App.LoginViewModel.ObsGoogleUser.Name);
                     UserName.Text = $"Hi, {App.LoginViewModel.ObsGoogleUser.Name}";
                 }
                
-            } else
-            {
-                Debug.WriteLine("User null");
             }
 
             //homeViewModel.GetRecipes();

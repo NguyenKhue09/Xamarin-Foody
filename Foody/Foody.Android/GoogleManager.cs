@@ -33,6 +33,7 @@ namespace Foody.Droid
 
         public Action<GoogleUser> _checkUserLogin;
         public Action _resetPassword;
+        public Action _updateUserDetail;
         //public static GoogleApiClient _googleApiClient { get; set; }
         public static GoogleSignInClient _googleApiClient { get; set; }
         public static GoogleManager Instance { get; private set; }
@@ -137,6 +138,22 @@ namespace Foody.Droid
                 .Collection("Users")
                 .Document(firebaseAuth.CurrentUser.Uid)
                 .Set(new HashMap(userData), SetOptions.Merge());
+        }
+
+        private void UpdateUserDetailToFireStore(string UserName, string UserImg)
+        {
+            FirebaseFirestore.Instance
+                .Collection("Users")
+                .Document(firebaseAuth.CurrentUser.Uid)
+                .Update("Name", UserName, "Picture", UserImg)
+                .AddOnSuccessListener(new HandleOnSuccess(OnUpdateUserDetailSuccess))
+                .AddOnFailureListener(new HandleOnFailure(OnUpdateUserDetailFailure));
+        }
+
+        public void UpdateUserDetail(Action OnUpdateUserDetail, string UserName, string UserImg)
+        {
+            _updateUserDetail = OnUpdateUserDetail;
+            UpdateUserDetailToFireStore(UserName, UserImg);
         }
 
         public void GetUserDetails(Action<GoogleUser, string> OnGetUserDetailsComplete)
@@ -301,9 +318,9 @@ namespace Foody.Droid
 
             if (result is DocumentSnapshot docRef)
             {
-                Toast.MakeText(_context, $"{docRef.Get("Name")}", ToastLength.Long).Show();
-                //if (docRef.Get("doc") != null)
-                //{
+                Toast.MakeText(_context, $"{docRef.Get("Name")} + {docRef.Exists()}", ToastLength.Long).Show();
+                if (docRef.Exists())
+                {
                     _onGetUserDetailsComplete.Invoke(
                         new GoogleUser
                         {
@@ -313,7 +330,7 @@ namespace Foody.Droid
                             Picture = new Uri(docRef.Get("Picture").ToString()),
                         }
                         , string.Empty);
-                //}
+                }
             }
 
             
@@ -325,7 +342,18 @@ namespace Foody.Droid
             Toast.MakeText(_context, $"Get user detail Failed", ToastLength.Short).Show();
         }
 
-       
+        public void OnUpdateUserDetailSuccess(Java.Lang.Object result)
+        {
+            _updateUserDetail.Invoke();
+            Toast.MakeText(_context, $"Update user detail success", ToastLength.Short).Show();
+        }
+
+        public void OnUpdateUserDetailFailure(Java.Lang.Exception e)
+        {
+            Toast.MakeText(_context, $"Update user detail failure", ToastLength.Short).Show();
+        }
+
+
     }
 
     public class HandleOnCompleteListenter : Java.Lang.Object, IOnCompleteListener
