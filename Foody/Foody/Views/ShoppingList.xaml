@@ -195,7 +195,7 @@
                                                 BackgroundColor="#07BDF6" CornerRadius="15" 
                                                 VerticalOptions="Start" HorizontalOptions="Center">
                             <yummy:PancakeView.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="Add_To_List_Tapped"/>
+                                <TapGestureRecognizer Tapped="Add_To_Cart_Tapped"/>
                             </yummy:PancakeView.GestureRecognizers>
                             <yummy:PancakeView.BackgroundGradientStops>
                                 <yummy:GradientStopCollection>

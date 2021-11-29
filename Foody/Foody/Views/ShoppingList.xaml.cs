@@ -71,7 +71,7 @@ namespace Foody.Views
             shoppingListViewModel.SelectAllShoppingListItem();
         }
 
-        private async void Add_To_List_Tapped(object sender, EventArgs e)
+        private async void Add_To_Cart_Tapped(object sender, EventArgs e)
         {
             shoppingListViewModel.GetSelectedShoppingListItem();
             RecipeDatabase recipeDatabase = await RecipeDatabase.Instance;

@@ -112,7 +112,7 @@
                                                             </FormattedString>
                                                         </Label.FormattedText>
                                                     </Label>
-                                                    <CheckBox Grid.Column="2" Grid.Row="0" Color="Black"  HorizontalOptions="Center" VerticalOptions="CenterAndExpand"> <!--IsChecked="{Binding IsChoose, Mode=TwoWay}"-->
+                                                    <CheckBox Grid.Column="2" Grid.Row="0" Color="Black"  HorizontalOptions="Center" VerticalOptions="CenterAndExpand" IsChecked="{Binding IsChoose, Mode=TwoWay}" >
                                                     </CheckBox>
                                                     
                                                 </Grid>

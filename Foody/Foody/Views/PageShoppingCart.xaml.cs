@@ -1,4 +1,5 @@
 ﻿using Foody.Data.Local;
+using Foody.Models;
 using Foody.Models.Local;
 using Foody.ViewModels;
 using System;

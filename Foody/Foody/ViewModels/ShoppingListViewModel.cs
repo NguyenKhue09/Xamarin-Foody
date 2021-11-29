@@ -68,28 +68,11 @@ namespace Foody.ViewModels
             changeExpand(topic);
         }
 
-        public void aisleBelong_SelectionChanged(string aisle)
-        {
-            changeExpandIcon(aisle);
-        }
+
 
         public void changeExpand(string item)
         {
             foreach (ShoppingListGroupManager group in shoppingListGroupManagers)
-            {
-
-
-                if (item == group.Aisle)
-                {
-                    group.IsExpanded = !group.IsExpanded;
-                    group.IconExpand = group.IsExpanded ? "up.png" : "down.png";
-                }
-            }
-        }
-
-        public void changeExpandIcon(string item)
-        {
-            foreach (ShoppingListGroupManager group in shoppingListGroupAisleBelong)
             {
 
 
@@ -137,7 +120,6 @@ namespace Foody.ViewModels
                     shoppingListItem.IngredientAisle = item.aisle;
                     shoppingListItem.IngredientIdList = item.id;
                     shoppingListItem.IngredientUnits = item.measures.original.unit;
-
                 }
                 shoppingListItem.StringIngredientAmount = new Fraction(Math.Round(amount, 2)).ToString();
                 shoppingListItem.IngredientAmount = amount;
@@ -154,61 +136,6 @@ namespace Foody.ViewModels
 
             }
             
-            return shoppingListItems;
-        }
-
-        //Shopping cart data
-        async public void GetShoppingCart()
-        {
-            RecipeDatabase recipeDatabase = await RecipeDatabase.Instance;
-            List<CartIngredient> cartIngredients = await recipeDatabase.GetIngredientAsync(App.LoginViewModel.ObsGoogleUser.UID);
-            var queryIngredientAisle = from item in cartIngredients
-                                    group item by item.aisleBelong into newResults
-                                    orderby newResults.Key
-                                    select newResults;
-            foreach (var namegroup in queryIngredientAisle)
-            {
-                var queryIngredientId = from item in namegroup
-                                        group item by item.ingredientId into newResults
-                                        orderby newResults.Key
-                                        select newResults;
-                ShoppingListGroupManager shoppingListGroupManager = new ShoppingListGroupManager(namegroup.Key, await SumOfShoppingCartItemFromApi(queryIngredientId));
-                shoppingListGroupAisleBelong.Add(shoppingListGroupManager);
-            }
-        }
-
-        async Task<ObservableCollection<ShoppingListItem>> SumOfShoppingCartItemFromApi(IOrderedEnumerable<IGrouping<int, CartIngredient>> queryIngredientId)
-        {
-            double amount = 0;
-            ObservableCollection<ShoppingListItem> shoppingListItems = new ObservableCollection<ShoppingListItem>();
-
-            foreach (var nameGroup in queryIngredientId)
-            {
-                ShoppingListItem shoppingListItem = new ShoppingListItem();
-                foreach (var item in nameGroup)
-                {
-                    amount += item.amount;
-                    shoppingListItem.IngredientName = item.ingredientName;
-                    shoppingListItem.IngredientAisle = item.aisleBelong;
-                    shoppingListItem.IngredientIdList = item.ingredientId;
-                    shoppingListItem.IngredientUnits = item.ingredientUnits;
-
-                }
-                shoppingListItem.StringIngredientAmount = new Fraction(Math.Round(amount, 2)).ToString();
-                shoppingListItem.IngredientAmount = amount;
-                shoppingListItem.IngredientId = nameGroup.Key;
-                shoppingListItem.IsChoose = false;
-                IngredientInform ingredientInform = await GetIngredientInform(nameGroup.Key);
-                if (ingredientInform != null)
-                {
-                    shoppingListItem.IngredientImg = ingredientInform.image;
-                }
-                shoppingListItems.Add(shoppingListItem);
-                amount = 0;
-
-
-            }
-
             return shoppingListItems;
         }
 
@@ -364,5 +291,85 @@ namespace Foody.ViewModels
         //{
         //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         //}
+
+
+
+
+        //Shopping cart 
+        public void aisleBelong_SelectionChanged(string aisle)
+        {
+            changeExpandIcon(aisle);
+        }
+        public void changeExpandIcon(string item)
+        {
+            foreach (ShoppingListGroupManager group in shoppingListGroupAisleBelong)
+            {
+
+
+                if (item == group.Aisle)
+                {
+                    group.IsExpanded = !group.IsExpanded;
+                    group.IconExpand = group.IsExpanded ? "up.png" : "down.png";
+                }
+            }
+        }
+
+        //Shopping cart data
+        async public void GetShoppingCart()
+        {
+            RecipeDatabase recipeDatabase = await RecipeDatabase.Instance;
+            List<CartIngredient> cartIngredients = await recipeDatabase.GetIngredientAsync(App.LoginViewModel.ObsGoogleUser.UID);
+            var queryIngredientAisle = from item in cartIngredients
+                                       group item by item.aisleBelong into newResults
+                                       orderby newResults.Key
+                                       select newResults;
+           
+            foreach (var namegroup in queryIngredientAisle)
+            {
+                var queryIngredientId = from item in namegroup
+                                        group item by item.ingredientId into newResults
+                                        orderby newResults.Key
+                                        select newResults;
+                ShoppingListGroupManager shoppingListGroupManager = new ShoppingListGroupManager(namegroup.Key, await SumOfShoppingCartItemFromApi(queryIngredientId));
+                shoppingListGroupAisleBelong.Add(shoppingListGroupManager);
+            }
+        }
+
+        async Task<ObservableCollection<ShoppingListItem>> SumOfShoppingCartItemFromApi(IOrderedEnumerable<IGrouping<int, CartIngredient>> queryIngredientId)
+        {
+            double amount = 0;
+            ObservableCollection<ShoppingListItem> shoppingListItems = new ObservableCollection<ShoppingListItem>();
+
+            foreach (var nameGroup in queryIngredientId)
+            {
+                ShoppingListItem shoppingListItem = new ShoppingListItem();
+                foreach (var item in nameGroup)
+                {
+                    amount += item.amount;
+                    shoppingListItem.IngredientName = item.ingredientName;
+                    shoppingListItem.IngredientAisle = item.aisleBelong;
+                    shoppingListItem.IngredientIdList = item.ingredientId;
+                    shoppingListItem.IngredientUnits = item.ingredientUnits;
+                }
+                shoppingListItem.StringIngredientAmount = new Fraction(Math.Round(amount, 2)).ToString();
+                shoppingListItem.IngredientAmount = amount;
+                shoppingListItem.IngredientId = nameGroup.Key;
+                shoppingListItem.IsChoose = true;
+                IngredientInform ingredientInform = await GetIngredientInform(nameGroup.Key);
+                if (ingredientInform != null)
+                {
+                    shoppingListItem.IngredientImg = ingredientInform.image;
+                }
+                shoppingListItems.Add(shoppingListItem);
+                amount = 0;
+
+
+            }
+
+            return shoppingListItems;
+        }
+
+        //Delete shopping cart item
+        
     }
 }
