@@ -1,4 +1,5 @@
 ﻿using Foody.Data.Local;
+using Foody.Models;
 using Foody.Models.Local;
 using Foody.ViewModels;
 using System;
@@ -20,7 +21,6 @@ namespace Foody.Views
         public PageShoppingCart()
         {
             InitializeComponent();
-           
         }
 
         public PageShoppingCart(ShoppingListViewModel viewModel)
@@ -39,15 +39,22 @@ namespace Foody.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            shoppingListViewModel.GetShoppingCart();
         }
 
-        private async void InitCartList()
+        private async void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-
             RecipeDatabase recipeDatabase = await RecipeDatabase.Instance;
             List<CartIngredient> cartIngredients = await recipeDatabase.GetIngredientAsync(App.LoginViewModel.ObsGoogleUser.UID);
-            shoplist.ItemsSource = cartIngredients;
+            foreach(CartIngredient cartIngredient in cartIngredients)
+            {
+                //if(cartIngredient.IsChoose == false)
+                //{
+                //    await shoppingListViewModel.DeleteShoppingCartItem(cartIngredient);
+                //}    
+                Debug.WriteLine(cartIngredient.IsChoose);
+                Debug.WriteLine(cartIngredient.ingredientName);
+            }
         }
-
     }
 }

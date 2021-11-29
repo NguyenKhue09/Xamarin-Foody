@@ -19,5 +19,7 @@ namespace Foody.Models.Local
         public string ingredientUnits { get; set; }
 
         public double amount { get; set; }
+        public bool IsChoose { get; set; }
+
     }
 }

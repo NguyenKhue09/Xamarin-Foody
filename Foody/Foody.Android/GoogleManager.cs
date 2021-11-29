@@ -16,29 +16,37 @@ using Android.Views;
 using Android.Widget;
 using Firebase;
 using Firebase.Auth;
+using Firebase.Firestore;
 using Foody.Droid;
 using Foody.Models;
+using Java.Util;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(GoogleManager))]
 namespace Foody.Droid
 {
-    
-    public class GoogleManager : Java.Lang.Object, IGoogleManager, IOnSuccessListener, IOnFailureListener
+
+    public class GoogleManager : Java.Lang.Object, IGoogleManager
     {
         public Action<GoogleUser, string> _onLoginComplete;
+        public Action<GoogleUser, string> _onGetUserDetailsComplete;
 
         public Action<GoogleUser> _checkUserLogin;
+        public Action _resetPassword;
+        public Action<bool> _updateUserDetail;
         //public static GoogleApiClient _googleApiClient { get; set; }
         public static GoogleSignInClient _googleApiClient { get; set; }
         public static GoogleManager Instance { get; private set; }
         Context _context;
         FirebaseAuth firebaseAuth;
 
+        private bool isRegister {get; set;}
+
         public GoogleManager()
         {
-            _context = global::Android.App.Application.Context;
+            _context = Android.App.Application.Context;
             Instance = this;
+            isRegister = false;
             GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DefaultSignIn)
                                                              .RequestIdToken("237009156143-8um28at1u88anpa0fmnqu8ar85jklp11.apps.googleusercontent.com")
                                                              .RequestEmail()
@@ -106,33 +114,104 @@ namespace Foody.Droid
         public void LoginGmailPassword(Action<GoogleUser, string> OnLoginGmailPasswordComplete, string UserEmail, string UserPassword)
         {
             _onLoginComplete = OnLoginGmailPasswordComplete;
-            LoginWithFirebase(UserEmail, UserPassword);
+            LoginGmailPasswordWithFirebase(UserEmail, UserPassword);
         }
 
         public void RegisterUser(Action<GoogleUser, string> OnRegisterUser, string UserEmail, string UserPassword)
         {
+            isRegister = true;
             _onLoginComplete = OnRegisterUser;
-            RegisterUser(UserEmail, UserPassword);
+            RegisterUserWithFirebase(UserEmail, UserPassword);
         }
 
-        public void RegisterUser(string UserEmail, string Password)
+        private void SaveUserDetailToFireStore(GoogleUser googleUser)
         {
+            var userData = new Dictionary<string, Java.Lang.Object>
+            {
+                { "UID", firebaseAuth.CurrentUser.Uid },
+                { "Name", googleUser.Name == null ? googleUser.Email : googleUser.Name},
+                { "Email", googleUser.Email },
+                { "Picture", googleUser.Picture.ToString() }
+            };
+
+            FirebaseFirestore.Instance
+                .Collection("Users")
+                .Document(firebaseAuth.CurrentUser.Uid)
+                .Set(new HashMap(userData), SetOptions.Merge());
+        }
+
+        private void UpdateUserDetailToFireStore(string UserName, string UserImg)
+        {
+            FirebaseFirestore.Instance
+                .Collection("Users")
+                .Document(firebaseAuth.CurrentUser.Uid)
+                .Update("Name", UserName, "Picture", UserImg)
+                .AddOnSuccessListener(new HandleOnSuccess(OnUpdateUserDetailSuccess))
+                .AddOnFailureListener(new HandleOnFailure(OnUpdateUserDetailFailure));
+        }
+
+        public void UpdateUserDetail(Action<bool> OnUpdateUserDetail, string UserName, string UserImg)
+        {
+            _updateUserDetail = OnUpdateUserDetail;
+            UpdateUserDetailToFireStore(UserName, UserImg);
+        }
+
+        public void GetUserDetails(Action<GoogleUser, string> OnGetUserDetailsComplete)
+        {
+            _onGetUserDetailsComplete = OnGetUserDetailsComplete;
+            GetUserDetailFromFireStore();
+        }
+
+        private void GetUserDetailFromFireStore()
+        {
+            if (firebaseAuth.CurrentUser != null)
+            {
+                FirebaseFirestore.Instance
+                .Collection("Users")
+                .Document(firebaseAuth.CurrentUser.Uid)
+                .Get()
+                .AddOnSuccessListener(new HandleOnSuccess(OnGetUserDetailSuccess))
+                .AddOnFailureListener(new HandleOnFailure(OnGetUserDetailFailure));
+            }
+        }
+
+        public void ResetPassword(Action OnResetPassword, string UserEmail)
+        {
+            _resetPassword = OnResetPassword;
+            firebaseAuth.SendPasswordResetEmail(UserEmail).AddOnCompleteListener(new HandleOnCompleteListenter(OnResetPasswordSuccess, OnResetPasswordFailure));
+        }
+        public void RegisterUserWithFirebase(string UserEmail, string Password)
+        {
+            if(UserEmail != null && Password != null)
+            {
+                firebaseAuth.CreateUserWithEmailAndPassword(UserEmail, Password).AddOnSuccessListener(new HandleOnSuccess(OnSuccess))
+                .AddOnFailureListener(new HandleOnFailure(OnFailure));
+            } else
+            {
+                Toast.MakeText(_context, "Please type your UserEmail/Password!", ToastLength.Long).Show();
+            }
             
-            firebaseAuth.CreateUserWithEmailAndPassword(UserEmail, Password).AddOnSuccessListener(this)
-                .AddOnFailureListener(this);
         }
 
         public void LoginWithFirebase(GoogleSignInAccount account)
         {
             var credentials = GoogleAuthProvider.GetCredential(account.IdToken, null);
-            firebaseAuth.SignInWithCredential(credentials).AddOnSuccessListener(this)
-                .AddOnFailureListener(this);
+            firebaseAuth.SignInWithCredential(credentials).AddOnSuccessListener(new HandleOnSuccess(OnSuccess))
+                .AddOnFailureListener(new HandleOnFailure(OnFailure));
         }
 
-        public void LoginWithFirebase(string UserEmail, string UserPassword)
-        {   
-            firebaseAuth.SignInWithEmailAndPassword(UserEmail, UserPassword).AddOnSuccessListener(this)
-                .AddOnFailureListener(this);
+        public void LoginGmailPasswordWithFirebase(string UserEmail, string UserPassword)
+        {
+            if (UserEmail != null && UserPassword != null)
+            {
+                firebaseAuth.SignInWithEmailAndPassword(UserEmail, UserPassword).AddOnSuccessListener(new HandleOnSuccess(OnSuccess))
+               .AddOnFailureListener(new HandleOnFailure(OnFailure));
+            }
+            else
+            {
+                Toast.MakeText(_context, "Please type your UserEmail/Password!", ToastLength.Long).Show();
+            }
+           
         }
 
         public void CheckUserLogin(Action<GoogleUser> IsLoggedin)
@@ -141,18 +220,18 @@ namespace Foody.Droid
 
             if (firebaseAuth.CurrentUser != null)
             {
-            	_checkUserLogin?.Invoke(
-            	new GoogleUser
-            	{
-            		Name = firebaseAuth.CurrentUser.DisplayName,
-            		Email = firebaseAuth.CurrentUser.Email,
-            		Picture = new Uri(firebaseAuth.CurrentUser.PhotoUrl != null ? $"{firebaseAuth.CurrentUser.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg"),
+                _checkUserLogin?.Invoke(
+                new GoogleUser
+                {
+                    Name = firebaseAuth.CurrentUser.DisplayName,
+                    Email = firebaseAuth.CurrentUser.Email,
+                    Picture = new Uri(firebaseAuth.CurrentUser.PhotoUrl != null ? $"{firebaseAuth.CurrentUser.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg"),
                     UID = firebaseAuth.CurrentUser.Uid
 
                 });
             } else
             {
-            	_checkUserLogin?.Invoke(null);
+               _checkUserLogin?.Invoke(null);
             }
             
         }
@@ -173,18 +252,18 @@ namespace Foody.Droid
         {
             if (result.IsSuccess)
             {
-            	GoogleSignInAccount accountt = result.SignInAccount;
-            	_onLoginComplete?.Invoke(new GoogleUser
-            	{
-            		Name = accountt.DisplayName,
-            		Email = accountt.Email,
-            		Picture = new Uri(accountt.PhotoUrl != null ? $"{accountt.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg"),
-                    UID = firebaseAuth.CurrentUser.ProviderId
+                GoogleSignInAccount accountt = result.SignInAccount;
+                _onLoginComplete?.Invoke(new GoogleUser
+                {
+                    Name = accountt.DisplayName,
+                    Email = accountt.Email,
+                    Picture = new Uri(accountt.PhotoUrl != null ? $"{accountt.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg"),
+                    UID = firebaseAuth.CurrentUser.Uid
                 }, string.Empty);
             }
             else
             {
-            	_onLoginComplete?.Invoke(null, "An error occured!");
+                _onLoginComplete?.Invoke(null, "An error occured!");
             }
         }
 
@@ -205,23 +284,149 @@ namespace Foody.Droid
 
         public void OnSuccess(Java.Lang.Object result)
         {
-            _onLoginComplete?.Invoke(new GoogleUser
+            GoogleUser userData = new GoogleUser
             {
-            	Name = firebaseAuth.CurrentUser.DisplayName,
+                Name = firebaseAuth.CurrentUser.DisplayName,
                 Email = firebaseAuth.CurrentUser.Email,
-            	Picture = new Uri(firebaseAuth.CurrentUser.PhotoUrl != null ? $"{firebaseAuth.CurrentUser.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg"),
+                Picture = new Uri(firebaseAuth.CurrentUser.PhotoUrl != null ? $"{firebaseAuth.CurrentUser.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg"),
                 UID = firebaseAuth.CurrentUser.Uid
-            }, string.Empty);
+            };
 
-            Toast.MakeText(_context, "Login successful", ToastLength.Short).Show();
+            _onLoginComplete?.Invoke(userData, string.Empty);
+            if(isRegister)
+            {
+                SaveUserDetailToFireStore(userData);
+                Toast.MakeText(_context, "Register successful", ToastLength.Short).Show();
+                isRegister = false;
+            } else
+            {
+                Toast.MakeText(_context, "Login successful", ToastLength.Short).Show();
+            }
+            
         }
 
         public void OnFailure(Java.Lang.Exception e)
         {
-            Toast.MakeText(_context, $"Login Failed", ToastLength.Short).Show();
-
+            if (isRegister)
+            {
+                Toast.MakeText(_context, $"Register Failed", ToastLength.Short).Show();
+                isRegister = false;
+            } else
+            {
+                Toast.MakeText(_context, $"Login Failed", ToastLength.Short).Show();
+            }
         }
 
-        
+        public void OnResetPasswordSuccess()
+        {
+            _resetPassword.Invoke();
+            Toast.MakeText(_context, "Check your email!", ToastLength.Short).Show();
+        }
+
+        public void OnResetPasswordFailure()
+        {
+            _resetPassword.Invoke();
+            Toast.MakeText(_context, $"ResetPassword Failed", ToastLength.Short).Show();
+        }
+
+        public void OnGetUserDetailSuccess(Java.Lang.Object result)
+        {
+
+            if (result is DocumentSnapshot docRef)
+            {
+                //Toast.MakeText(_context, $"{docRef.Get("Name")} + {docRef.Exists()}", ToastLength.Long).Show();
+                if (docRef.Exists())
+                {
+                    _onGetUserDetailsComplete.Invoke(
+                        new GoogleUser
+                        {
+                            Name = docRef.Get("Name").ToString(),
+                            UID = docRef.Get("UID").ToString(),
+                            Email = docRef.Get("Email").ToString(),
+                            Picture = new Uri(docRef.Get("Picture").ToString()),
+                        }
+                        , string.Empty);
+                }
+            }
+
+            
+        }
+
+        public void OnGetUserDetailFailure(Java.Lang.Exception e)
+        {
+            
+            Toast.MakeText(_context, $"Get user detail Failed", ToastLength.Short).Show();
+        }
+
+        public void OnUpdateUserDetailSuccess(Java.Lang.Object result)
+        {
+            _updateUserDetail.Invoke(true);
+            Toast.MakeText(_context, $"Update user detail success", ToastLength.Short).Show();
+        }
+
+        public void OnUpdateUserDetailFailure(Java.Lang.Exception e)
+        {
+            _updateUserDetail.Invoke(false);
+            Toast.MakeText(_context, $"Update user detail failure", ToastLength.Short).Show();
+        }
+
+
+    }
+
+    public class HandleOnCompleteListenter : Java.Lang.Object, IOnCompleteListener
+    {
+        Context _context;
+        private Action OnSuccess;
+        private Action OnFailure;
+        public HandleOnCompleteListenter(Action success, Action failure)
+        {
+            _context = Android.App.Application.Context;
+            OnSuccess = success;
+            OnFailure = failure;
+
+        }
+        public void OnComplete(Task task)
+        {
+            if(task.IsSuccessful)
+            {
+                OnSuccess.Invoke();
+            } else
+            {
+                OnFailure.Invoke();
+                //Toast.MakeText(_context, task.Exception.Message, ToastLength.Short).Show();
+            }
+        }
+    }
+
+    public class HandleOnSuccess : Java.Lang.Object, IOnSuccessListener
+    {
+        Context _context;
+
+        private Action<Java.Lang.Object> OnSuccessCall;
+        public HandleOnSuccess(Action<Java.Lang.Object> success)
+        {
+            _context = Android.App.Application.Context;
+            OnSuccessCall = success;
+        }
+        public void OnSuccess(Java.Lang.Object result)
+        {
+            OnSuccessCall.Invoke(result);
+        }
+    }
+
+    public class HandleOnFailure : Java.Lang.Object, IOnFailureListener
+    {
+        Context _context;
+
+        private Action<Java.Lang.Exception> OnFailureCall;
+        public HandleOnFailure(Action<Java.Lang.Exception> failure)
+        {
+            _context = Android.App.Application.Context;
+            OnFailureCall = failure;
+        }
+        public void OnFailure(Java.Lang.Exception e)
+        {
+            OnFailureCall.Invoke(e);
+        }
     }
 }
