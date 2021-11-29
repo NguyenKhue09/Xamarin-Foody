@@ -22,6 +22,14 @@ namespace Foody.Views
             BindingContext = this;
         }
 
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (App.LoginViewModel.IsLogin)
+            {
+                await(Application.Current.MainPage as Shell).GoToAsync("//tabbar/menu", true);
+            }
+        }
         async public void NavToHomePage()
         {
 
@@ -45,19 +53,14 @@ namespace Foody.Views
             App.LoginViewModel.UserGoogleLogin();
             if (App.LoginViewModel.IsLogin)
             {
-               
                 await(Application.Current.MainPage as Shell).GoToAsync("//tabbar/home", true);
             }
         }
 
-        private async void RegisterUser_Tapped(object sender, EventArgs e)
+        private void RegisterUser_Tapped(object sender, EventArgs e)
         {
+            Debug.WriteLine("Create Acounnt");
             App.LoginViewModel.RegisterUser(txtUserEmail.Text, Password.Text);
-            if (App.LoginViewModel.IsLogin)
-            {
-                
-                await(Application.Current.MainPage as Shell).GoToAsync("//tabbar/home", true);
-            }
         }
     }
 }

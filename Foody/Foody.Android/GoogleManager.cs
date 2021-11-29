@@ -16,17 +16,20 @@ using Android.Views;
 using Android.Widget;
 using Firebase;
 using Firebase.Auth;
+using Firebase.Firestore;
 using Foody.Droid;
 using Foody.Models;
+using Java.Util;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(GoogleManager))]
 namespace Foody.Droid
 {
-    
-    public class GoogleManager : Java.Lang.Object, IGoogleManager, IOnSuccessListener, IOnFailureListener
+
+    public class GoogleManager : Java.Lang.Object, IGoogleManager
     {
         public Action<GoogleUser, string> _onLoginComplete;
+        public Action<GoogleUser, string> _onGetUserDetailsComplete;
 
         public Action<GoogleUser> _checkUserLogin;
         public Action _resetPassword;
@@ -36,10 +39,13 @@ namespace Foody.Droid
         Context _context;
         FirebaseAuth firebaseAuth;
 
+        private bool isRegister {get; set;}
+
         public GoogleManager()
         {
-            _context = global::Android.App.Application.Context;
+            _context = Android.App.Application.Context;
             Instance = this;
+            isRegister = false;
             GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DefaultSignIn)
                                                              .RequestIdToken("237009156143-8um28at1u88anpa0fmnqu8ar85jklp11.apps.googleusercontent.com")
                                                              .RequestEmail()
@@ -112,8 +118,42 @@ namespace Foody.Droid
 
         public void RegisterUser(Action<GoogleUser, string> OnRegisterUser, string UserEmail, string UserPassword)
         {
+            isRegister = true;
             _onLoginComplete = OnRegisterUser;
             RegisterUserWithFirebase(UserEmail, UserPassword);
+        }
+
+        private void SaveUserDetailToFireStore(GoogleUser googleUser)
+        {
+            var userData = new Dictionary<string, Java.Lang.Object>
+            {
+                { "UID", firebaseAuth.CurrentUser.Uid },
+                { "Name", googleUser.Name == null ? googleUser.Email : googleUser.Name},
+                { "Email", googleUser.Email },
+                { "Picture", googleUser.Picture.ToString() }
+            };
+
+            FirebaseFirestore.Instance
+                .Collection("Users")
+                .Document(firebaseAuth.CurrentUser.Uid)
+                .Set(new HashMap(userData), SetOptions.Merge());
+        }
+
+        public void GetUserDetails(Action<GoogleUser, string> OnGetUserDetailsComplete)
+        {
+            _onGetUserDetailsComplete = OnGetUserDetailsComplete;
+            GetUserDetailFromFireStore();
+        }
+
+        private void GetUserDetailFromFireStore()
+        {
+            FirebaseFirestore.Instance
+                .Collection("Users")
+                .Document(firebaseAuth.CurrentUser.Uid)
+                .Get()
+                .AddOnSuccessListener(new HandleOnSuccess(OnGetUserDetailSuccess))
+                .AddOnFailureListener(new HandleOnFailure(OnGetUserDetailFailure));
+
         }
 
         public void ResetPassword(Action OnResetPassword, string UserEmail)
@@ -124,21 +164,21 @@ namespace Foody.Droid
         public void RegisterUserWithFirebase(string UserEmail, string Password)
         {
             
-            firebaseAuth.CreateUserWithEmailAndPassword(UserEmail, Password).AddOnSuccessListener(this)
-                .AddOnFailureListener(this);
+            firebaseAuth.CreateUserWithEmailAndPassword(UserEmail, Password).AddOnSuccessListener(new HandleOnSuccess(OnSuccess))
+                .AddOnFailureListener(new HandleOnFailure(OnFailure));
         }
 
         public void LoginWithFirebase(GoogleSignInAccount account)
         {
             var credentials = GoogleAuthProvider.GetCredential(account.IdToken, null);
-            firebaseAuth.SignInWithCredential(credentials).AddOnSuccessListener(this)
-                .AddOnFailureListener(this);
+            firebaseAuth.SignInWithCredential(credentials).AddOnSuccessListener(new HandleOnSuccess(OnSuccess))
+                .AddOnFailureListener(new HandleOnFailure(OnFailure));
         }
 
         public void LoginGmailPasswordWithFirebase(string UserEmail, string UserPassword)
         {   
-            firebaseAuth.SignInWithEmailAndPassword(UserEmail, UserPassword).AddOnSuccessListener(this)
-                .AddOnFailureListener(this);
+            firebaseAuth.SignInWithEmailAndPassword(UserEmail, UserPassword).AddOnSuccessListener(new HandleOnSuccess(OnSuccess))
+                .AddOnFailureListener(new HandleOnFailure(OnFailure));
         }
 
         public void CheckUserLogin(Action<GoogleUser> IsLoggedin)
@@ -185,7 +225,7 @@ namespace Foody.Droid
                     Name = accountt.DisplayName,
                     Email = accountt.Email,
                     Picture = new Uri(accountt.PhotoUrl != null ? $"{accountt.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg"),
-                    UID = firebaseAuth.CurrentUser.ProviderId
+                    UID = firebaseAuth.CurrentUser.Uid
                 }, string.Empty);
             }
             else
@@ -211,20 +251,37 @@ namespace Foody.Droid
 
         public void OnSuccess(Java.Lang.Object result)
         {
-            _onLoginComplete?.Invoke(new GoogleUser
+            GoogleUser userData = new GoogleUser
             {
                 Name = firebaseAuth.CurrentUser.DisplayName,
                 Email = firebaseAuth.CurrentUser.Email,
                 Picture = new Uri(firebaseAuth.CurrentUser.PhotoUrl != null ? $"{firebaseAuth.CurrentUser.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg"),
                 UID = firebaseAuth.CurrentUser.Uid
-            }, string.Empty);
+            };
 
-            Toast.MakeText(_context, "Login successful", ToastLength.Short).Show();
+            _onLoginComplete?.Invoke(userData, string.Empty);
+            if(isRegister)
+            {
+                SaveUserDetailToFireStore(userData);
+                Toast.MakeText(_context, "Register successful", ToastLength.Short).Show();
+                isRegister = false;
+            } else
+            {
+                Toast.MakeText(_context, "Login successful", ToastLength.Short).Show();
+            }
+            
         }
 
         public void OnFailure(Java.Lang.Exception e)
         {
-            Toast.MakeText(_context, $"Login Failed", ToastLength.Short).Show();
+            if (isRegister)
+            {
+                Toast.MakeText(_context, $"Register Failed", ToastLength.Short).Show();
+                isRegister = false;
+            } else
+            {
+                Toast.MakeText(_context, $"Login Failed", ToastLength.Short).Show();
+            }
         }
 
         public void OnResetPasswordSuccess()
@@ -239,6 +296,36 @@ namespace Foody.Droid
             Toast.MakeText(_context, $"ResetPassword Failed", ToastLength.Short).Show();
         }
 
+        public void OnGetUserDetailSuccess(Java.Lang.Object result)
+        {
+
+            if (result is DocumentSnapshot docRef)
+            {
+                Toast.MakeText(_context, $"{docRef.Get("Name")}", ToastLength.Long).Show();
+                //if (docRef.Get("doc") != null)
+                //{
+                    _onGetUserDetailsComplete.Invoke(
+                        new GoogleUser
+                        {
+                            Name = docRef.Get("Name").ToString(),
+                            UID = docRef.Get("UID").ToString(),
+                            Email = docRef.Get("Email").ToString(),
+                            Picture = new Uri(docRef.Get("Picture").ToString()),
+                        }
+                        , string.Empty);
+                //}
+            }
+
+            
+        }
+
+        public void OnGetUserDetailFailure(Java.Lang.Exception e)
+        {
+            
+            Toast.MakeText(_context, $"Get user detail Failed", ToastLength.Short).Show();
+        }
+
+       
     }
 
     public class HandleOnCompleteListenter : Java.Lang.Object, IOnCompleteListener
@@ -248,7 +335,7 @@ namespace Foody.Droid
         private Action OnFailure;
         public HandleOnCompleteListenter(Action success, Action failure)
         {
-            _context = global::Android.App.Application.Context;
+            _context = Android.App.Application.Context;
             OnSuccess = success;
             OnFailure = failure;
 
@@ -261,8 +348,40 @@ namespace Foody.Droid
             } else
             {
                 OnFailure.Invoke();
-                Toast.MakeText(_context, task.Exception.Message, ToastLength.Short).Show();
+                //Toast.MakeText(_context, task.Exception.Message, ToastLength.Short).Show();
             }
+        }
+    }
+
+    public class HandleOnSuccess : Java.Lang.Object, IOnSuccessListener
+    {
+        Context _context;
+
+        private Action<Java.Lang.Object> OnSuccessCall;
+        public HandleOnSuccess(Action<Java.Lang.Object> success)
+        {
+            _context = Android.App.Application.Context;
+            OnSuccessCall = success;
+        }
+        public void OnSuccess(Java.Lang.Object result)
+        {
+            OnSuccessCall.Invoke(result);
+        }
+    }
+
+    public class HandleOnFailure : Java.Lang.Object, IOnFailureListener
+    {
+        Context _context;
+
+        private Action<Java.Lang.Exception> OnFailureCall;
+        public HandleOnFailure(Action<Java.Lang.Exception> failure)
+        {
+            _context = Android.App.Application.Context;
+            OnFailureCall = failure;
+        }
+        public void OnFailure(Java.Lang.Exception e)
+        {
+            OnFailureCall.Invoke(e);
         }
     }
 }

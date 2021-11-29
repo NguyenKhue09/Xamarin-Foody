@@ -16,7 +16,6 @@ namespace Foody.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Login : ContentPage
     {
-        public ICommand login => new Command(NavToHomePage);
 
         public Login()
         {
@@ -63,7 +62,8 @@ namespace Foody.Views
         private async void LoginGmailPassword_Tapped(object sender, EventArgs e)
         {
             App.LoginViewModel.UserLoginGmailPassword(txtUserEmail.Text, Password.Text);
-            if(App.LoginViewModel.IsLogin)
+            //App.LoginViewModel.GetUserDetails();
+            if (App.LoginViewModel.IsLogin)
             {
                 await(Application.Current.MainPage as Shell).GoToAsync("//tabbar/home", true);
             }
