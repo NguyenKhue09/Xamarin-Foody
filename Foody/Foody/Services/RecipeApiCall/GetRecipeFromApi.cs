@@ -132,13 +132,13 @@ namespace Foody.Services.RecipeApiCall
                     string content = await response.Content.ReadAsStringAsync();
                     SearchRecipesList = JsonSerializer.Deserialize<Recipe>(content, serializerOptions);
                     Debug.WriteLine("ThanhCong");
-                    await searchPopUp.closePopup();
+                    await searchPopUp.closeSearchPopup();
                 }
                 else
                 {
                     Debug.WriteLine("Thatbai");
                     SearchRecipesList.results = new List<Result>();
-                    await searchPopUp.closePopup();
+                    await searchPopUp.closeSearchPopup();
 
                 }
             }
@@ -250,7 +250,7 @@ namespace Foody.Services.RecipeApiCall
                 {
                     Debug.WriteLine("Thatbai");
                     ShoppingListResult.aisles = new List<Aisle>();
-                    await searchPopUp.closePopup();
+                    await searchPopUp.closeSearchPopup();
 
                 }
             }

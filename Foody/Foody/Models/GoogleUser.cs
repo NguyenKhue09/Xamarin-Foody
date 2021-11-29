@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Foody.Views.PopUp;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -18,6 +19,7 @@ namespace Foody.Models
         void RegisterUser(Action<GoogleUser, string> OnRegisterUser, string UserEmail, string UserPassword);
         void LoginGmailPassword(Action<GoogleUser, string> OnLoginGmailPasswordComplete, string UserEmail, string UserPassword);
         void CheckUserLogin(Action<GoogleUser> IsLoggedin);
+        void ResetPassword(Action OnResetPassword, string UserEmail);
         void Logout();
     }
 }

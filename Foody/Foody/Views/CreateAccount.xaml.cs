@@ -36,7 +36,7 @@ namespace Foody.Views
 
         async private void ForgotPassword_Tapped(object sender, EventArgs e)
         {
-            await Navigation.PushPopupAsync(new ForgotPassword());
+            await Navigation.PushPopupAsync(new ForgotPasswordPopUp());
         }
 
         private async void Gmail_Tapped(object sender, EventArgs e)

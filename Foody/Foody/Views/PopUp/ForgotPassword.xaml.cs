@@ -11,18 +11,23 @@ using Xamarin.Forms.Xaml;
 namespace Foody.Views.PopUp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ForgotPassword : Rg.Plugins.Popup.Pages.PopupPage
+    public partial class ForgotPasswordPopUp : Rg.Plugins.Popup.Pages.PopupPage
     {
-        public ICommand ResetPassword => new Command(resetpassword);
-        public ForgotPassword()
+        
+        public ForgotPasswordPopUp()
         {
             InitializeComponent();
             BindingContext = this;
         }
 
-        async public void resetpassword()
+        public async Task closeResetPasswordPopup()
         {
             await Navigation.PopPopupAsync();
+        }
+
+        private void ResetPassword_Tapped(object sender, EventArgs e)
+        {
+            App.LoginViewModel.ResetPassword(UserEmail.Text);
         }
     }
 }

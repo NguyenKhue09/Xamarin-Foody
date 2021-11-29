@@ -29,6 +29,7 @@ namespace Foody.Droid
         public Action<GoogleUser, string> _onLoginComplete;
 
         public Action<GoogleUser> _checkUserLogin;
+        public Action _resetPassword;
         //public static GoogleApiClient _googleApiClient { get; set; }
         public static GoogleSignInClient _googleApiClient { get; set; }
         public static GoogleManager Instance { get; private set; }
@@ -106,16 +107,21 @@ namespace Foody.Droid
         public void LoginGmailPassword(Action<GoogleUser, string> OnLoginGmailPasswordComplete, string UserEmail, string UserPassword)
         {
             _onLoginComplete = OnLoginGmailPasswordComplete;
-            LoginWithFirebase(UserEmail, UserPassword);
+            LoginGmailPasswordWithFirebase(UserEmail, UserPassword);
         }
 
         public void RegisterUser(Action<GoogleUser, string> OnRegisterUser, string UserEmail, string UserPassword)
         {
             _onLoginComplete = OnRegisterUser;
-            RegisterUser(UserEmail, UserPassword);
+            RegisterUserWithFirebase(UserEmail, UserPassword);
         }
 
-        public void RegisterUser(string UserEmail, string Password)
+        public void ResetPassword(Action OnResetPassword, string UserEmail)
+        {
+            _resetPassword = OnResetPassword;
+            firebaseAuth.SendPasswordResetEmail(UserEmail).AddOnCompleteListener(new HandleOnCompleteListenter(OnResetPasswordSuccess, OnResetPasswordFailure));
+        }
+        public void RegisterUserWithFirebase(string UserEmail, string Password)
         {
             
             firebaseAuth.CreateUserWithEmailAndPassword(UserEmail, Password).AddOnSuccessListener(this)
@@ -129,7 +135,7 @@ namespace Foody.Droid
                 .AddOnFailureListener(this);
         }
 
-        public void LoginWithFirebase(string UserEmail, string UserPassword)
+        public void LoginGmailPasswordWithFirebase(string UserEmail, string UserPassword)
         {   
             firebaseAuth.SignInWithEmailAndPassword(UserEmail, UserPassword).AddOnSuccessListener(this)
                 .AddOnFailureListener(this);
@@ -141,18 +147,18 @@ namespace Foody.Droid
 
             if (firebaseAuth.CurrentUser != null)
             {
-            	_checkUserLogin?.Invoke(
-            	new GoogleUser
-            	{
-            		Name = firebaseAuth.CurrentUser.DisplayName,
-            		Email = firebaseAuth.CurrentUser.Email,
-            		Picture = new Uri(firebaseAuth.CurrentUser.PhotoUrl != null ? $"{firebaseAuth.CurrentUser.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg"),
+                _checkUserLogin?.Invoke(
+                new GoogleUser
+                {
+                    Name = firebaseAuth.CurrentUser.DisplayName,
+                    Email = firebaseAuth.CurrentUser.Email,
+                    Picture = new Uri(firebaseAuth.CurrentUser.PhotoUrl != null ? $"{firebaseAuth.CurrentUser.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg"),
                     UID = firebaseAuth.CurrentUser.Uid
 
                 });
             } else
             {
-            	_checkUserLogin?.Invoke(null);
+               _checkUserLogin?.Invoke(null);
             }
             
         }
@@ -173,18 +179,18 @@ namespace Foody.Droid
         {
             if (result.IsSuccess)
             {
-            	GoogleSignInAccount accountt = result.SignInAccount;
-            	_onLoginComplete?.Invoke(new GoogleUser
-            	{
-            		Name = accountt.DisplayName,
-            		Email = accountt.Email,
-            		Picture = new Uri(accountt.PhotoUrl != null ? $"{accountt.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg"),
+                GoogleSignInAccount accountt = result.SignInAccount;
+                _onLoginComplete?.Invoke(new GoogleUser
+                {
+                    Name = accountt.DisplayName,
+                    Email = accountt.Email,
+                    Picture = new Uri(accountt.PhotoUrl != null ? $"{accountt.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg"),
                     UID = firebaseAuth.CurrentUser.ProviderId
                 }, string.Empty);
             }
             else
             {
-            	_onLoginComplete?.Invoke(null, "An error occured!");
+                _onLoginComplete?.Invoke(null, "An error occured!");
             }
         }
 
@@ -207,9 +213,9 @@ namespace Foody.Droid
         {
             _onLoginComplete?.Invoke(new GoogleUser
             {
-            	Name = firebaseAuth.CurrentUser.DisplayName,
+                Name = firebaseAuth.CurrentUser.DisplayName,
                 Email = firebaseAuth.CurrentUser.Email,
-            	Picture = new Uri(firebaseAuth.CurrentUser.PhotoUrl != null ? $"{firebaseAuth.CurrentUser.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg"),
+                Picture = new Uri(firebaseAuth.CurrentUser.PhotoUrl != null ? $"{firebaseAuth.CurrentUser.PhotoUrl}" : $"https://autisticdating.net/imgs/profile-placeholder.jpg"),
                 UID = firebaseAuth.CurrentUser.Uid
             }, string.Empty);
 
@@ -219,9 +225,44 @@ namespace Foody.Droid
         public void OnFailure(Java.Lang.Exception e)
         {
             Toast.MakeText(_context, $"Login Failed", ToastLength.Short).Show();
-
         }
 
-        
+        public void OnResetPasswordSuccess()
+        {
+            _resetPassword.Invoke();
+            Toast.MakeText(_context, "Check your email!", ToastLength.Short).Show();
+        }
+
+        public void OnResetPasswordFailure()
+        {
+            _resetPassword.Invoke();
+            Toast.MakeText(_context, $"ResetPassword Failed", ToastLength.Short).Show();
+        }
+
+    }
+
+    public class HandleOnCompleteListenter : Java.Lang.Object, IOnCompleteListener
+    {
+        Context _context;
+        private Action OnSuccess;
+        private Action OnFailure;
+        public HandleOnCompleteListenter(Action success, Action failure)
+        {
+            _context = global::Android.App.Application.Context;
+            OnSuccess = success;
+            OnFailure = failure;
+
+        }
+        public void OnComplete(Task task)
+        {
+            if(task.IsSuccessful)
+            {
+                OnSuccess.Invoke();
+            } else
+            {
+                OnFailure.Invoke();
+                Toast.MakeText(_context, task.Exception.Message, ToastLength.Short).Show();
+            }
+        }
     }
 }
