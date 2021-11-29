@@ -24,7 +24,7 @@
                 <Label Text="Email" 
                        FontSize="18" TextColor="Black" FontAttributes="Bold"/>
                 <Frame CornerRadius="10" Padding="0" HasShadow="False" BorderColor="#D8D8D8">
-                    <controls:CustomEntry x:Name="txtUserEmail" Keyboard="Text"  FontSize="20" HeightRequest="55"  Margin="10,0,0,0"></controls:CustomEntry>
+                    <controls:CustomEntry x:Name="txtUserEmail" Keyboard="Email"  FontSize="20" HeightRequest="55"  Margin="10,0,0,0"></controls:CustomEntry>
                 </Frame>
 
                 <Label Text="Password" 

@@ -1,5 +1,6 @@
 ﻿using Foody.Models;
 using Foody.Views;
+using Foody.Views.PopUp;
 using MvvmHelpers;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace Foody.ViewModels
     public class LoginViewModel: BaseViewModel
     {
         private readonly IGoogleManager _googleManager;
+        private ForgotPasswordPopUp forgotPasswordPopUp;
         public GoogleUser GoogleUser;
 
         public GoogleUser ObsGoogleUser
@@ -33,6 +35,7 @@ namespace Foody.ViewModels
         {
             
             _googleManager = DependencyService.Get<IGoogleManager>();
+            forgotPasswordPopUp = new ForgotPasswordPopUp();
         }
 
         public async void UserLogout()
@@ -58,6 +61,12 @@ namespace Foody.ViewModels
         public void RegisterUser(string UserEmail, string Password)
         {
             _googleManager.RegisterUser(OnRegisterComplete, UserEmail, Password);
+
+        }
+
+        public void ResetPassword(string UserEmail)
+        {
+            _googleManager.ResetPassword(OnResetPassword, UserEmail);
 
         }
 
@@ -118,6 +127,11 @@ namespace Foody.ViewModels
                 IsLogin = false;
 
             }
+        }
+
+        private async void OnResetPassword()
+        {
+            await forgotPasswordPopUp.closeResetPasswordPopup();
         }
 
         private  void IsUserLogin(GoogleUser googleUser)

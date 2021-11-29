@@ -18,7 +18,7 @@ namespace Foody.Views.PopUp
             this.CloseWhenBackgroundIsClicked = false;
         }
 
-        public async Task closePopup()
+        public async Task closeSearchPopup()
         {
             await Navigation.PopPopupAsync();
         }
