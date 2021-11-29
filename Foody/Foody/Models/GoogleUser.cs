@@ -18,7 +18,7 @@ namespace Foody.Models
         void Login(Action<GoogleUser, string> OnLoginComplete);
         void GetUserDetails(Action<GoogleUser, string> OnGetUserDetailsComplete);
         void RegisterUser(Action<GoogleUser, string> OnRegisterUser, string UserEmail, string UserPassword);
-        void UpdateUserDetail(Action OnUpdateUserDetail, string UserName, string UserImg);
+        void UpdateUserDetail(Action<bool> OnUpdateUserDetail, string UserName, string UserImg);
         void LoginGmailPassword(Action<GoogleUser, string> OnLoginGmailPasswordComplete, string UserEmail, string UserPassword);
         void CheckUserLogin(Action<GoogleUser> IsLoggedin);
         void ResetPassword(Action OnResetPassword, string UserEmail);

@@ -36,12 +36,21 @@ namespace Foody.ViewModels
             set => SetProperty(ref isLogin, value);
         }
 
+        public bool isUpdateDetailSuccess;
+
+        public bool IsUpdateDetailSuccess
+        {
+            get => isLogin;
+            set => SetProperty(ref isUpdateDetailSuccess, value);
+        }
+
 
         public LoginViewModel()
         {
             
             _googleManager = DependencyService.Get<IGoogleManager>();
             forgotPasswordPopUp = new ForgotPasswordPopUp();
+            IsUpdateDetailSuccess = false;
         }
 
         public async void UserLogout()
@@ -90,8 +99,8 @@ namespace Foody.ViewModels
 
         public void CheckUserLogin()
         {
+            GetUserDetails();
             _googleManager.CheckUserLogin(IsUserLogin);
-            
         }
 
         private  void OnLoginComplete(GoogleUser googleUser, string message)
@@ -145,8 +154,9 @@ namespace Foody.ViewModels
             await forgotPasswordPopUp.closeResetPasswordPopup();
         }
 
-        private void OnUpdateUserDetails()
+        private void OnUpdateUserDetails(bool result)
         {
+            IsUpdateDetailSuccess = result;
             GetUserDetails();
         }
 
@@ -182,7 +192,7 @@ namespace Foody.ViewModels
                     Picture = googleUser.Picture,
                     UID = googleUser.UID
                 };
-                GetUserDetails();
+                
                 NavToHomePage();
                 IsLogin = true;
 
