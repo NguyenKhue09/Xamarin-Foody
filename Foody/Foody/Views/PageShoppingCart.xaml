@@ -51,7 +51,7 @@
                                             BackgroundColor="#f5f5f5"
                                             VerticalScrollBarVisibility="Never" 
                                             Grid.Column="0" Grid.Row="2" 
-                                            Margin="15,0">
+                                            ItemsSource="{Binding shoppingListGroupAisleBelong}" Margin="15,0">
                 <CollectionView.Header>
                     <StackLayout Padding="10,20" HeightRequest="120"></StackLayout>
 
@@ -64,7 +64,7 @@
                         <StackLayout Padding="10,8" Grid.Row="1" Grid.Column="0" Margin="0">
                             <yummy:PancakeView BackgroundColor="White" VerticalOptions="StartAndExpand" 
                                     HorizontalOptions="FillAndExpand" Shadow="{yummy:ShadowMarkup BlurRadius=3}"  CornerRadius="10">
-                                <behaviors:Expander  Command="{Binding Source={RelativeSource AncestorType={x:Type local:ShoppingListViewModel}}, Path=Checkmanager}"
+                                <behaviors:Expander  Command="{Binding Source={RelativeSource AncestorType={x:Type local:ShoppingListViewModel}}, Path=CheckGroupAisleBelong}"
                                                                 CommandParameter="{Binding aisleBelong}">
                                     <behaviors:Expander.Header >
                                         <Grid HorizontalOptions="FillAndExpand" HeightRequest="66" VerticalOptions="EndAndExpand">
@@ -73,7 +73,7 @@
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <Label Text="{Binding aisleBelong}" 
+                                            <Label Text="{Binding Aisle}" 
                                                            MaxLines="1" LineBreakMode="TailTruncation"
                                                            TextColor="Black" FontSize="18" 
                                                            Grid.Column="0" Margin="15" 
@@ -95,7 +95,7 @@
                                                     </Grid.ColumnDefinitions>
                                                     <ffimageloading:CachedImage 
                                                                 Margin="4"
-                                                                Source="{Binding ingredientImg, StringFormat='https://spoonacular.com/cdn/ingredients_100x100/{0:F0}'}" 
+                                                                Source="{Binding IngredientImg, StringFormat='https://spoonacular.com/cdn/ingredients_100x100/{0:F0}'}" 
                                                                 Grid.Column="0" Grid.Row="0"
                                                                 HeightRequest="60"  WidthRequest="60" Aspect="AspectFit">
                                                     </ffimageloading:CachedImage>
@@ -103,11 +103,11 @@
                                                         <Label.FormattedText>
                                                             <FormattedString>
                                                                 <FormattedString.Spans>
-                                                                    <Span Text="{Binding ingredientName}"/>
+                                                                    <Span Text="{Binding IngredientName}"/>
                                                                     <Span Text="&#x0a;"/>
-                                                                    <Span Text="{Binding amount}" FontAttributes="Bold"/>
+                                                                    <Span Text="{Binding StringIngredientAmount}" FontAttributes="Bold"/>
                                                                     <Span Text=" "/>
-                                                                    <Span Text="{Binding ingredientUnits}" FontAttributes="Bold"/>
+                                                                    <Span Text="{Binding IngredientUnits}" FontAttributes="Bold"/>
                                                                 </FormattedString.Spans>
                                                             </FormattedString>
                                                         </Label.FormattedText>

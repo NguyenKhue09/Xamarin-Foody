@@ -20,7 +20,6 @@ namespace Foody.Views
         public PageShoppingCart()
         {
             InitializeComponent();
-           
         }
 
         public PageShoppingCart(ShoppingListViewModel viewModel)
@@ -39,14 +38,7 @@ namespace Foody.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-        }
-
-        private async void InitCartList()
-        {
-
-            RecipeDatabase recipeDatabase = await RecipeDatabase.Instance;
-            List<CartIngredient> cartIngredients = await recipeDatabase.GetIngredientAsync(App.LoginViewModel.ObsGoogleUser.UID);
-            shoplist.ItemsSource = cartIngredients;
+            shoppingListViewModel.GetShoppingCart();
         }
 
     }
