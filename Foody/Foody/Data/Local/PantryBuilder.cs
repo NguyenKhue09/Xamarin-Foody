@@ -295,6 +295,230 @@ namespace Foody.Data.Local
                 aisleBelong = "Canned and Jarred",
                 ingredientImg = "chicken-broth.png"
              },
+             new PantryBuilderItem
+             {
+                ingredientId = 16018,
+                ingredientName = "canned black beans",
+                aisleBelong = "Canned and Jarred",
+                ingredientImg = "black-beans.jpg"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 10011693,
+                ingredientName = "canned tomatoes",
+                aisleBelong = "Canned and Jarred",
+                ingredientImg = "tomatoes-canned.png"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 2009,
+                ingredientName = "chili powder",
+                aisleBelong = "Spices and Seasonings",
+                ingredientImg = "chili-powder.jpg"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 1002014,
+                ingredientName = "cumin",
+                aisleBelong = "Spices and Seasonings",
+                ingredientImg = "ground-cumin.jpg"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 6168,
+                ingredientName = "hot sauce",
+                aisleBelong = "Condiments",
+                ingredientImg = "hot-sauce-or-tabasco.png"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 11282,
+                ingredientName = "onion",
+                aisleBelong = "Produce",
+                ingredientImg = "brown-onion.png"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 20444,
+                ingredientName = "rice",
+                aisleBelong = "Pasta and Rice",
+                ingredientImg = "uncooked-white-rice.png"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 14412,
+                ingredientName = "water",
+                aisleBelong = "Beverages",
+                ingredientImg = "water.png"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 16063,
+                ingredientName = "black eyed peas",
+                aisleBelong = "Pasta and Rice;Canned and Jarred",
+                ingredientImg = "black-eyed-peas.jpg"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 2015,
+                ingredientName = "curry powder",
+                aisleBelong = "Spices and Seasonings",
+                ingredientImg = "curry-powder.jpg"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 93663,
+                ingredientName = "garam masala",
+                aisleBelong = "Ethnic Foods;Spices and Seasonings",
+                ingredientImg = "garam-masala.jpg"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 11209,
+                ingredientName = "globe eggplant",
+                aisleBelong = "Produce",
+                ingredientImg = "eggplant.png"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 1002013,
+                ingredientName = "ground coriander",
+                aisleBelong = "Spices and Seasonings",
+                ingredientImg = "ground-coriander.jpg"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 1002014,
+                ingredientName = "ground cumin",
+                aisleBelong = "Spices and Seasonings",
+                ingredientImg = "ground-cumin.jpg"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 1002024,
+                ingredientName = "mustard powder",
+                aisleBelong = "Spices and Seasonings",
+                ingredientImg = "dry-mustard.jpg"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 10018617,
+                ingredientName = "graham cracker crumbs",
+                aisleBelong = "Sweet Snacks;Baking",
+                ingredientImg = "graham-crackers.jpg"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 16223,
+                ingredientName = "soy milk",
+                aisleBelong = "Milk, Eggs, Other Dairy",
+                ingredientImg = "soy-milk.jpg"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 1119,
+                ingredientName = "vanilla yogurt",
+                aisleBelong = "Milk, Eggs, Other Dairy",
+                ingredientImg = "vanilla-yogurt.png"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 1002046,
+                ingredientName = "dijon mustard",
+                aisleBelong = "Condiments",
+                ingredientImg = "dijon-mustard.jpg"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 19296,
+                ingredientName = "honey",
+                aisleBelong = "Nut butters, Jams, and Honey",
+                ingredientImg = "honey.png"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 1022068,
+                ingredientName = "red wine vinegar",
+                aisleBelong = "Oil, Vinegar, Salad Dressing",
+                ingredientImg = "red-wine-vinegar.jpg"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 12155,
+                ingredientName = "walnuts",
+                aisleBelong = "Nuts;Baking",
+                ingredientImg = "walnuts.jpg"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 11913,
+                ingredientName = "frozen corn",
+                aisleBelong = "Frozen",
+                ingredientImg = "corn.png"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 11913,
+                ingredientName = "frozen corn",
+                aisleBelong = "Frozen",
+                ingredientImg = "corn.png"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 20028,
+                ingredientName = "couscous",
+                aisleBelong = "Pasta and Rice;Ethnic Foods;Health Foods",
+                ingredientImg = "couscous-cooked.jpg"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 12151,
+                ingredientName = "pistachio nuts",
+                aisleBelong = "Nuts;Savory Snacks",
+                ingredientImg = "pistachios.jpg"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 10111352,
+                ingredientName = "fingerling potatoes",
+                aisleBelong = "Frozen",
+                ingredientImg = "fingerling-potatoes.jpg"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 20081,
+                ingredientName = "flour",
+                aisleBelong = "Baking",
+                ingredientImg = "flour.png"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 1090,
+                ingredientName = "powdered milk",
+                aisleBelong = "Baking",
+                ingredientImg = "milk-powdered.jpg"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 18375,
+                ingredientName = "yeast",
+                aisleBelong = "Baking",
+                ingredientImg = "yeast-granules.jpg"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 20027,
+                ingredientName = "cornflour",
+                aisleBelong = "Baking",
+                ingredientImg = "white-powder.jpg"
+             },
+             new PantryBuilderItem
+             {
+                ingredientId = 20012,
+                ingredientName = "bulgur wheat",
+                aisleBelong = "Pasta and Rice;Ethnic Foods;Health Foods",
+                ingredientImg = "bulgur-wheat.jpg"
+             },
         };
     }
 }
