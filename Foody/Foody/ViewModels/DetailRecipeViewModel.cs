@@ -148,6 +148,16 @@ namespace Foody.ViewModels
             return true;
         }
 
+        public void getIngredient()
+        {
+            foreach(ExtendedIngredient extendedIngredient in recipe.extendedIngredients)
+            {
+                Debug.WriteLine(extendedIngredient.id);
+                Debug.WriteLine(extendedIngredient.name);
+                Debug.WriteLine(extendedIngredient.aisle);
+                Debug.WriteLine(extendedIngredient.image);
+            }
+        }
         public static T jsonCloneObject<T>(T source)
         {
             string json = JsonConvert.SerializeObject(source);
