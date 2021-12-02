@@ -123,7 +123,7 @@
                         <StackLayout Padding="10,8" Grid.Row="1" Grid.Column="0" Margin="0">
                             <yummy:PancakeView BackgroundColor="White" VerticalOptions="StartAndExpand" 
                                     HorizontalOptions="FillAndExpand" Shadow="{yummy:ShadowMarkup BlurRadius=3}"  CornerRadius="10">
-                                <behaviors:Expander  Command="{Binding Source={RelativeSource AncestorType={x:Type local:ShoppingListViewModel}}, Path=Checkmanager}"
+                                <behaviors:Expander IsExpanded="{Binding IsExpanded, Mode=TwoWay}" Command="{Binding Source={RelativeSource AncestorType={x:Type local:ShoppingListViewModel}}, Path=Checkmanager}"
                                                                 CommandParameter="{Binding Aisle}">
                                     <behaviors:Expander.Header >
                                         <Grid HorizontalOptions="FillAndExpand" HeightRequest="66" VerticalOptions="EndAndExpand">

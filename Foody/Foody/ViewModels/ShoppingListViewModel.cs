@@ -58,30 +58,21 @@ namespace Foody.ViewModels
 
         public ShoppingListViewModel()
         {
-            Checkmanager = new Command<string>(manager_SelectionChanged);
+            Checkmanager = new Command<string>(changeExpand);
             shoppingListGroupManagers = new ObservableCollection<ShoppingListGroupManager>();
-            CheckGroupAisleBelong = new Command<string>(aisleBelong_SelectionChanged);
+            CheckGroupAisleBelong = new Command<string>(changeExpandIcon);
             shoppingCartGroupAisleBelong = new ObservableCollection<ShoppingListGroupManager>();
             SearchIngredients = new ObservableRangeCollection<IngredientInform>();
             selectedShoppingtListItems = new ObservableCollection<ShoppingListItem>();
         }
 
-        public void manager_SelectionChanged(string topic)
-        {
-            changeExpand(topic);
-        }
-
-
-
+        
         public void changeExpand(string item)
         {
             foreach (ShoppingListGroupManager group in shoppingListGroupManagers)
             {
-
-
                 if (item == group.Aisle)
                 {
-                    group.IsExpanded = !group.IsExpanded;
                     group.IconExpand = group.IsExpanded ? "up.png" : "down.png";
                 }
             }
@@ -299,10 +290,7 @@ namespace Foody.ViewModels
 
 
         //Shopping cart 
-        public void aisleBelong_SelectionChanged(string aisle)
-        {
-            changeExpandIcon(aisle);
-        }
+       
         public void changeExpandIcon(string item)
         {
             foreach (ShoppingListGroupManager group in shoppingCartGroupAisleBelong)
@@ -311,7 +299,6 @@ namespace Foody.ViewModels
 
                 if (item == group.Aisle)
                 {
-                    group.IsExpanded = !group.IsExpanded;
                     group.IconExpand = group.IsExpanded ? "up.png" : "down.png";
                 }
             }
