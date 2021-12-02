@@ -61,7 +61,7 @@ namespace Foody.Views
                         Debug.WriteLine(checkDelete);
                     }
                 }
-                if(checkDelete)
+                if(checkDelete || item.shoppingListItems.Count == 0)
                 { 
                     break;
                 }    
