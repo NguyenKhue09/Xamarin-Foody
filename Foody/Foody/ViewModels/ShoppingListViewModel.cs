@@ -372,7 +372,7 @@ namespace Foody.ViewModels
         }
 
         //Delete shopping cart item
-        public async Task<bool> DeleteShoppingCartItem(ShoppingListItem shoppingListItem)
+        public async Task<int>DeleteShoppingCartItem(ShoppingListItem shoppingListItem)
         {
             int result = 0;
             RecipeDatabase recipeDatabase = await RecipeDatabase.Instance;
@@ -392,29 +392,29 @@ namespace Foody.ViewModels
             }
 
 
-            //if (result != 0)
-            //{
-            //    foreach (ShoppingListGroupManager shoppingCartGroupManager in shoppingCartGroupAisleBelong)
-            //    {
-            //        if (shoppingListItem.IngredientAisle == shoppingCartGroupManager.Aisle)
-            //        {
-            //            shoppingCartGroupManager.ShoppingListItems.Remove(shoppingListItem);
-            //            if (shoppingCartGroupManager.ShoppingListItems.Count == 0)
-            //            {
-            //                Debug.WriteLine("Empty list");
-            //                deleteShoppingListGroupManagerItem(shoppingCartGroupManager);
-            //            }
-            //            break;
-            //        }
+            if (result != 0)
+            {
+                foreach (ShoppingListGroupManager shoppingCartGroupManager in shoppingCartGroupAisleBelong)
+                {
+                    if (shoppingListItem.IngredientAisle == shoppingCartGroupManager.Aisle)
+                    {
+                        shoppingCartGroupManager.ShoppingListItems.Remove(shoppingListItem);
+                        if (shoppingCartGroupManager.ShoppingListItems.Count == 0)
+                        {
+                            Debug.WriteLine("Empty list");
+                            deleteShoppingListGroupManagerItem(shoppingCartGroupManager);
+                            return 2;
+                        }
+                        
+                    }
 
-            //    }
-            //    return true;
-            //}
-            //else
-            //{
-            //    return false;
-            //}
-            return true;
+                }
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }
