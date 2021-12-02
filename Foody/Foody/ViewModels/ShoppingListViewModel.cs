@@ -32,6 +32,9 @@ namespace Foody.ViewModels
         public bool isSelectedAllShoppingListItem = false;
         public bool isShowSearchIngredientItem = false;
 
+        // group aisle shopping cart
+        IOrderedEnumerable<IGrouping<string, CartIngredient>> queryIngredientAisle;
+
         public string showHeightResultSearch = "0,0,0,0";
 
         public string ShowHeightResultSearch {
@@ -55,30 +58,21 @@ namespace Foody.ViewModels
 
         public ShoppingListViewModel()
         {
-            Checkmanager = new Command<string>(manager_SelectionChanged);
+            Checkmanager = new Command<string>(changeExpand);
             shoppingListGroupManagers = new ObservableCollection<ShoppingListGroupManager>();
-            CheckGroupAisleBelong = new Command<string>(aisleBelong_SelectionChanged);
+            CheckGroupAisleBelong = new Command<string>(changeExpandIcon);
             shoppingCartGroupAisleBelong = new ObservableCollection<ShoppingListGroupManager>();
             SearchIngredients = new ObservableRangeCollection<IngredientInform>();
             selectedShoppingtListItems = new ObservableCollection<ShoppingListItem>();
         }
 
-        public void manager_SelectionChanged(string topic)
-        {
-            changeExpand(topic);
-        }
-
-
-
+        
         public void changeExpand(string item)
         {
             foreach (ShoppingListGroupManager group in shoppingListGroupManagers)
             {
-
-
                 if (item == group.Aisle)
                 {
-                    group.IsExpanded = !group.IsExpanded;
                     group.IconExpand = group.IsExpanded ? "up.png" : "down.png";
                 }
             }
@@ -177,7 +171,7 @@ namespace Foody.ViewModels
         {
 
             GetSelectedShoppingListItem();
-            Debug.WriteLine(selectedShoppingtListItems.Count);
+            //Debug.WriteLine(selectedShoppingtListItems.Count);
 
             foreach (ShoppingListItem shoppingListItem in selectedShoppingtListItems)
             {
@@ -194,7 +188,7 @@ namespace Foody.ViewModels
                 IsSelectedAllShoppingListItem = false;
             }
 
-            Debug.WriteLine(IsSelectedAllShoppingListItem);
+            //Debug.WriteLine(IsSelectedAllShoppingListItem);
             
             return true;
         }
@@ -296,10 +290,7 @@ namespace Foody.ViewModels
 
 
         //Shopping cart 
-        public void aisleBelong_SelectionChanged(string aisle)
-        {
-            changeExpandIcon(aisle);
-        }
+       
         public void changeExpandIcon(string item)
         {
             foreach (ShoppingListGroupManager group in shoppingCartGroupAisleBelong)
@@ -308,7 +299,6 @@ namespace Foody.ViewModels
 
                 if (item == group.Aisle)
                 {
-                    group.IsExpanded = !group.IsExpanded;
                     group.IconExpand = group.IsExpanded ? "up.png" : "down.png";
                 }
             }
@@ -319,7 +309,7 @@ namespace Foody.ViewModels
         {
             RecipeDatabase recipeDatabase = await RecipeDatabase.Instance;
             List<CartIngredient> cartIngredients = await recipeDatabase.GetIngredientAsync(App.LoginViewModel.ObsGoogleUser.UID);
-            var queryIngredientAisle = from item in cartIngredients
+            queryIngredientAisle = from item in cartIngredients
                                        group item by item.aisleBelong into newResults
                                        orderby newResults.Key
                                        select newResults;
@@ -369,50 +359,53 @@ namespace Foody.ViewModels
         }
 
         //Delete shopping cart item
-        public async Task<bool> DeleteShoppingCartItem(CartIngredient shoppingListItem)
+        void deleteShoppingCartGroupManagerItem(ShoppingListGroupManager shoppingCartGroupManager)
         {
-            Debug.WriteLine(shoppingListItem.ingredientName);
-            return false;
+            shoppingCartGroupAisleBelong.Remove(shoppingCartGroupManager);
+        }
+        public async Task<bool>DeleteShoppingCartItem(ShoppingListItem shoppingListItem)
+        {
+            int result = 0;
+            RecipeDatabase recipeDatabase = await RecipeDatabase.Instance;
+            List<CartIngredient> cartIngredients = await recipeDatabase.GetIngredientAsync(App.LoginViewModel.ObsGoogleUser.UID);
+            foreach (var aisle in queryIngredientAisle)
+            {
+                if (aisle.Key == shoppingListItem.IngredientAisle)
+                {
+                    foreach (CartIngredient cartIngredient in cartIngredients)
+                    {
+                        if (cartIngredient.ingredientName == shoppingListItem.IngredientName)
+                        {
+                            result = await recipeDatabase.DeleteIngredientAsync(cartIngredient);
+                        }
+                    }
+                }
+            }
 
-            //bool result = false;
 
-            //foreach (Aisle aisle in originalShoppintLists.aisles)
-            //{
-            //    if (aisle.aisle == shoppingListItem.IngredientAisle)
-            //    {
-            //        foreach (Item item in aisle.items)
-            //        {
-            //            if (item.name == shoppingListItem.IngredientName)
-            //            {
-            //                result = await App.RecipeManager.DeleteShoppingListItem(item.id);
-            //            }
-            //        }
-            //    }
-            //}
+            if (result != 0)
+            {
+                foreach (ShoppingListGroupManager shoppingCartGroupManager in shoppingCartGroupAisleBelong)
+                {
+                    if (shoppingListItem.IngredientAisle == shoppingCartGroupManager.Aisle)
+                    {
+                        shoppingCartGroupManager.ShoppingListItems.Remove(shoppingListItem);
+                        if (shoppingCartGroupManager.ShoppingListItems.Count == 0)
+                        {
+                            Debug.WriteLine("Empty list");
+                            deleteShoppingCartGroupManagerItem(shoppingCartGroupManager);
+                            break;
+                        }
+                        
+                    }
 
-
-            //if (result)
-            //{
-            //    foreach (ShoppingListGroupManager shoppingListGroupManager in shoppingListGroupManagers)
-            //    {
-            //        if (shoppingListItem.IngredientAisle == shoppingListGroupManager.Aisle)
-            //        {
-            //            shoppingListGroupManager.ShoppingListItems.Remove(shoppingListItem);
-            //            if (shoppingListGroupManager.ShoppingListItems.Count == 0)
-            //            {
-            //                Debug.WriteLine("Empty list");
-            //                deleteShoppingListGroupManagerItem(shoppingListGroupManager);
-            //            }
-            //            break;
-            //        }
-
-            //    }
-            //    return true;
-            //}
-            //else
-            //{
-            //    return false;
-            //}
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

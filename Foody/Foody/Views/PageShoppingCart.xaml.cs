@@ -18,6 +18,7 @@ namespace Foody.Views
     public partial class PageShoppingCart : ContentPage
     {
         private readonly ShoppingListViewModel shoppingListViewModel;
+        private bool checkDelete;
         public PageShoppingCart()
         {
             InitializeComponent();
@@ -44,17 +45,29 @@ namespace Foody.Views
 
         private async void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-            RecipeDatabase recipeDatabase = await RecipeDatabase.Instance;
-            List<CartIngredient> cartIngredients = await recipeDatabase.GetIngredientAsync(App.LoginViewModel.ObsGoogleUser.UID);
-            foreach(CartIngredient cartIngredient in cartIngredients)
+            Debug.WriteLine("Call Shopping cart");
+            foreach (var item in shoppingListViewModel.shoppingCartGroupAisleBelong)
             {
-                //if(cartIngredient.IsChoose == false)
-                //{
-                //    await shoppingListViewModel.DeleteShoppingCartItem(cartIngredient);
-                //}    
-                Debug.WriteLine(cartIngredient.IsChoose);
-                Debug.WriteLine(cartIngredient.ingredientName);
-            }
+                foreach(ShoppingListItem shoppingListItem in item.shoppingListItems)
+                {
+                    if (shoppingListItem.IsChoose == false)
+                    {
+                        Debug.WriteLine(shoppingListItem.IsChoose);
+                        checkDelete = await shoppingListViewModel.DeleteShoppingCartItem(shoppingListItem);
+                        if(checkDelete)
+                        {
+                            break;
+                        }    
+                        Debug.WriteLine(checkDelete);
+                    }
+                }
+
+                if(checkDelete || item.shoppingListItems.Count == 0)
+                { 
+                    break;
+                }    
+                
+            }    
         }
     }
 }

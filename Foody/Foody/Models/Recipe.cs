@@ -31,8 +31,7 @@ namespace Foody.Models
 
     public class ExtendedIngredient
     {
-        
-        //public int id { get; set; }
+        public int? id { get; set; }
         public string aisle { get; set; }
         public string image { get; set; }
         public string consistency { get; set; }
