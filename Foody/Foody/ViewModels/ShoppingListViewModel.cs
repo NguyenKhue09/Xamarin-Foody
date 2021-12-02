@@ -32,6 +32,9 @@ namespace Foody.ViewModels
         public bool isSelectedAllShoppingListItem = false;
         public bool isShowSearchIngredientItem = false;
 
+        // group aisle shopping cart
+        IOrderedEnumerable<IGrouping<string, CartIngredient>> queryIngredientAisle;
+
         public string showHeightResultSearch = "0,0,0,0";
 
         public string ShowHeightResultSearch {
@@ -319,7 +322,7 @@ namespace Foody.ViewModels
         {
             RecipeDatabase recipeDatabase = await RecipeDatabase.Instance;
             List<CartIngredient> cartIngredients = await recipeDatabase.GetIngredientAsync(App.LoginViewModel.ObsGoogleUser.UID);
-            var queryIngredientAisle = from item in cartIngredients
+            queryIngredientAisle = from item in cartIngredients
                                        group item by item.aisleBelong into newResults
                                        orderby newResults.Key
                                        select newResults;
@@ -369,39 +372,37 @@ namespace Foody.ViewModels
         }
 
         //Delete shopping cart item
-        public async Task<bool> DeleteShoppingCartItem(CartIngredient shoppingListItem)
+        public async Task<bool> DeleteShoppingCartItem(ShoppingListItem shoppingListItem)
         {
-            Debug.WriteLine(shoppingListItem.ingredientName);
-            return false;
+            int result = 0;
+            RecipeDatabase recipeDatabase = await RecipeDatabase.Instance;
+            List<CartIngredient> cartIngredients = await recipeDatabase.GetIngredientAsync(App.LoginViewModel.ObsGoogleUser.UID);
+            foreach (var aisle in queryIngredientAisle)
+            {
+                if (aisle.Key == shoppingListItem.IngredientAisle)
+                {
+                    foreach (CartIngredient cartIngredient in cartIngredients)
+                    {
+                        if (cartIngredient.ingredientName == shoppingListItem.IngredientName)
+                        {
+                            result = await recipeDatabase.DeleteIngredientAsync(cartIngredient);
+                        }
+                    }
+                }
+            }
 
-            //bool result = false;
 
-            //foreach (Aisle aisle in originalShoppintLists.aisles)
+            //if (result != 0)
             //{
-            //    if (aisle.aisle == shoppingListItem.IngredientAisle)
+            //    foreach (ShoppingListGroupManager shoppingCartGroupManager in shoppingCartGroupAisleBelong)
             //    {
-            //        foreach (Item item in aisle.items)
+            //        if (shoppingListItem.IngredientAisle == shoppingCartGroupManager.Aisle)
             //        {
-            //            if (item.name == shoppingListItem.IngredientName)
-            //            {
-            //                result = await App.RecipeManager.DeleteShoppingListItem(item.id);
-            //            }
-            //        }
-            //    }
-            //}
-
-
-            //if (result)
-            //{
-            //    foreach (ShoppingListGroupManager shoppingListGroupManager in shoppingListGroupManagers)
-            //    {
-            //        if (shoppingListItem.IngredientAisle == shoppingListGroupManager.Aisle)
-            //        {
-            //            shoppingListGroupManager.ShoppingListItems.Remove(shoppingListItem);
-            //            if (shoppingListGroupManager.ShoppingListItems.Count == 0)
+            //            shoppingCartGroupManager.ShoppingListItems.Remove(shoppingListItem);
+            //            if (shoppingCartGroupManager.ShoppingListItems.Count == 0)
             //            {
             //                Debug.WriteLine("Empty list");
-            //                deleteShoppingListGroupManagerItem(shoppingListGroupManager);
+            //                deleteShoppingListGroupManagerItem(shoppingCartGroupManager);
             //            }
             //            break;
             //        }
@@ -413,6 +414,7 @@ namespace Foody.ViewModels
             //{
             //    return false;
             //}
+            return true;
         }
     }
 }
