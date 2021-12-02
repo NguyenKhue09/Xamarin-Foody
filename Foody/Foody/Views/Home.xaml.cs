@@ -26,7 +26,7 @@ namespace Foody.Views
         public Home() 
         {
             InitializeComponent();
-            BindingContext = homeViewModel = new HomeViewModel();  
+            BindingContext = homeViewModel = new HomeViewModel();
         }
         async void OnImageNameTapped(object sender, EventArgs args)
         {
