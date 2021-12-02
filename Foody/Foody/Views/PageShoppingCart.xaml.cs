@@ -18,7 +18,7 @@ namespace Foody.Views
     public partial class PageShoppingCart : ContentPage
     {
         private readonly ShoppingListViewModel shoppingListViewModel;
-        public int checkDelete;
+        private bool checkDelete;
         public PageShoppingCart()
         {
             InitializeComponent();
@@ -54,14 +54,14 @@ namespace Foody.Views
                     {
                         Debug.WriteLine(shoppingListItem.IsChoose);
                         checkDelete = await shoppingListViewModel.DeleteShoppingCartItem(shoppingListItem);
-                        if(checkDelete != 0)
+                        if(checkDelete)
                         {
                             break;
                         }    
                         Debug.WriteLine(checkDelete);
                     }
                 }
-                if(checkDelete !=0)
+                if(checkDelete)
                 { 
                     break;
                 }    

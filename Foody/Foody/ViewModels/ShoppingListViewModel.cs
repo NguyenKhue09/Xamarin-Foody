@@ -359,7 +359,11 @@ namespace Foody.ViewModels
         }
 
         //Delete shopping cart item
-        public async Task<int>DeleteShoppingCartItem(ShoppingListItem shoppingListItem)
+        void deleteShoppingCartGroupManagerItem(ShoppingListGroupManager shoppingCartGroupManager)
+        {
+            shoppingCartGroupAisleBelong.Remove(shoppingCartGroupManager);
+        }
+        public async Task<bool>DeleteShoppingCartItem(ShoppingListItem shoppingListItem)
         {
             int result = 0;
             RecipeDatabase recipeDatabase = await RecipeDatabase.Instance;
@@ -389,18 +393,18 @@ namespace Foody.ViewModels
                         if (shoppingCartGroupManager.ShoppingListItems.Count == 0)
                         {
                             Debug.WriteLine("Empty list");
-                            deleteShoppingListGroupManagerItem(shoppingCartGroupManager);
-                            return 2;
+                            deleteShoppingCartGroupManagerItem(shoppingCartGroupManager);
+                            break;
                         }
                         
                     }
 
                 }
-                return 1;
+                return true;
             }
             else
             {
-                return 0;
+                return false;
             }
         }
     }
