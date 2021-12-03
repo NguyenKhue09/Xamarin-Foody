@@ -374,7 +374,7 @@ namespace Foody.ViewModels
                 {
                     foreach (CartIngredient cartIngredient in cartIngredients)
                     {
-                        if (cartIngredient.ingredientName == shoppingListItem.IngredientName)
+                        if (cartIngredient.ingredientId == shoppingListItem.IngredientId)
                         {
                             result = await recipeDatabase.DeleteIngredientAsync(cartIngredient);
                         }
@@ -394,11 +394,9 @@ namespace Foody.ViewModels
                         {
                             Debug.WriteLine("Empty list");
                             deleteShoppingCartGroupManagerItem(shoppingCartGroupManager);
-                            break;
                         }
-                        
+                        break;
                     }
-
                 }
                 return true;
             }
