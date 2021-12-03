@@ -18,7 +18,7 @@ namespace Foody.Constants
         public static string APIKEY = "8742b6ff28af45379a5f06320dba113b";
         //public static string APIKEY = "409407cdfa02474f8e61e7f643a7dbec";
         //public static string APIKEY = "85e55bb723d44cffbbfcccd99a68225d";
-        //public static string APIKEY = "ef20217a3df647f8ae51ed4271f68858";
+        public static string APIKEY = "ef20217a3df647f8ae51ed4271f68858";
 
         public static string RECIPE_TYPE = "vegetarian";
         public static string DIET = "vegan";
