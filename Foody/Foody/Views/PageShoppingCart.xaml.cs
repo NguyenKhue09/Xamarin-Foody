@@ -52,12 +52,11 @@ namespace Foody.Views
                 {
                     if (shoppingListItem.IsChoose == false)
                     {
-                        ShoppingListItem cartItem = shoppingListItem;
                         Debug.WriteLine(shoppingListItem.IsChoose);
                         checkDelete = await shoppingListViewModel.DeleteShoppingCartItem(shoppingListItem);
                         if(checkDelete)
                         {
-                            IngredientInform ingredientInform = await App.RecipeManager.GetIngredientInform(cartItem.IngredientId);
+                            IngredientInform ingredientInform = await App.RecipeManager.GetIngredientInform(shoppingListItem.IngredientId);
                             if (ingredientInform != null)
                             {
                                 ItemShoppingList itemShoppingList = new ItemShoppingList
@@ -69,8 +68,6 @@ namespace Foody.Views
                                 bool result = await App.RecipeManager.AddIngredientsToShoppingList(itemShoppingList);
                                 if (result)
                                 {
-                                    shoppingListViewModel.shoppingListGroupManagers.Clear();
-                                    shoppingListViewModel.GetShoppingList();
                                     Debug.WriteLine("add shoping list from shopping cart thanh cong");
                                 }
                                 else
