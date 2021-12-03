@@ -52,12 +52,38 @@ namespace Foody.Views
                 {
                     if (shoppingListItem.IsChoose == false)
                     {
+                        ShoppingListItem cartItem = shoppingListItem;
                         Debug.WriteLine(shoppingListItem.IsChoose);
                         checkDelete = await shoppingListViewModel.DeleteShoppingCartItem(shoppingListItem);
                         if(checkDelete)
                         {
+                            IngredientInform ingredientInform = await App.RecipeManager.GetIngredientInform(cartItem.IngredientId);
+                            if (ingredientInform != null)
+                            {
+                                ItemShoppingList itemShoppingList = new ItemShoppingList
+                                {
+                                    aisle = ingredientInform.aisle,
+                                    parse = true,
+                                    item = $"{ingredientInform.amount} {ingredientInform.unit} {ingredientInform.name}"
+                                };
+                                bool result = await App.RecipeManager.AddIngredientsToShoppingList(itemShoppingList);
+                                if (result)
+                                {
+                                    shoppingListViewModel.shoppingListGroupManagers.Clear();
+                                    shoppingListViewModel.GetShoppingList();
+                                    Debug.WriteLine("add shoping list from shopping cart thanh cong");
+                                }
+                                else
+                                {
+                                    Debug.WriteLine("add shoping list from shopping cart không thanh cong");
+                                }
+                            }
+                            else
+                            {
+                                Debug.WriteLine("Call API that bai");
+                            }
                             break;
-                        }    
+                        }
                         Debug.WriteLine(checkDelete);
                     }
                 }
@@ -68,6 +94,11 @@ namespace Foody.Views
                 }    
                 
             }    
+        }
+
+        private void DeleteShoppingCartItem(object sender, EventArgs e)
+        {
+            
         }
     }
 }
