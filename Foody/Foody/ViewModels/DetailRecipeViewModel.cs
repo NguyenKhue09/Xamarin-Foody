@@ -134,7 +134,7 @@ namespace Foody.ViewModels
             Debug.WriteLine("Call function add to list");
             foreach (ExtendedIngredient item in ExtendedIngredients)
             {
-                string result = item.amount.ToString() + " " + item.unit + " " + item.name;
+                string result = item.amount.ToString() + " " + item.unit + " " + item.name ;
                 ItemShoppingList itemShoppingList = new ItemShoppingList
                 {
                     aisle = item.aisle,
