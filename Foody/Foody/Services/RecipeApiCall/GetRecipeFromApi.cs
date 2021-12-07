@@ -42,10 +42,12 @@ namespace Foody.Services.RecipeApiCall
             Debug.WriteLine("Recipe");
             Recipe Recipes = new Recipe();
 
-            Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/recipes/complexSearch?number=" +
-                $"{Constants.Constants.NUMBER}&apiKey={Constants.Constants.APIKEY}&type={Constants.Constants.RECIPE_TYPE}" +
-                $"&diet={Constants.Constants.DIET}&addRecipesInformation={Constants.Constants.ADDRECIPEINFORMATION}" +
-                $"&fillIngredients={Constants.Constants.FILLINGREDIENTS}&addRecipeNutrition={Constants.Constants.RECIPENUTRITION}", string.Empty));
+            //Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/recipes/complexSearch?number=" +
+            //    $"{Constants.Constants.NUMBER}&apiKey={Constants.Constants.APIKEY}&type={Constants.Constants.RECIPE_TYPE}" +
+            //    $"&diet={Constants.Constants.DIET}&addRecipesInformation={Constants.Constants.ADDRECIPEINFORMATION}" +
+            //    $"&fillIngredients={Constants.Constants.FILLINGREDIENTS}&addRecipeNutrition={Constants.Constants.RECIPENUTRITION}", string.Empty));
+
+            Uri uri = new Uri(string.Format("https://pantry-wizard.herokuapp.com/api/recipes/get-recipe"));
             try
             {
          
@@ -193,13 +195,14 @@ namespace Foody.Services.RecipeApiCall
         // Shopping list api
         public async Task<bool> AddIngredientsToShoppingList(ItemShoppingList itemShoppingList)
         {
-            Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/mealplanner/{Constants.Constants.USER_NAME}/shopping-list/items?" +
-                $"apiKey={Constants.Constants.APIKEY}&hash={Constants.Constants.HASH_USERNAME}"));
+            //Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/mealplanner/{Constants.Constants.USER_NAME}/shopping-list/items?" +
+            //    $"apiKey={Constants.Constants.APIKEY}&hash={Constants.Constants.HASH_USERNAME}"));
+            Uri uri = new Uri(string.Format("https://pantry-wizard.herokuapp.com/api/shopping-list/add-shopping-list-item"));
 
 
             try
             {
-                string json = JsonSerializer.Serialize<ItemShoppingList>(itemShoppingList, serializerOptions);
+                string json = JsonSerializer.Serialize(itemShoppingList, serializerOptions);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
                 HttpResponseMessage response = await client.PostAsync(uri, content);
@@ -331,8 +334,8 @@ namespace Foody.Services.RecipeApiCall
         {
             SearchIngredientsResult results = new SearchIngredientsResult();
 
-            Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/food/ingredients/search?apiKey={Constants.Constants.APIKEY}&query={searchString}&number={3}"));
-
+            Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/ingredient/search-ingredient?query={searchString}"));
+            Debug.WriteLine("API Search");
             try
             {
 

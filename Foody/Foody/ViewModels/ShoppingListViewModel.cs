@@ -109,11 +109,11 @@ namespace Foody.ViewModels
                 ShoppingListItem shoppingListItem = new ShoppingListItem();
                 foreach (var item in nameGroup)
                 {
-                    amount += item.measures.original.amount;
+                    //amount += item.measures.original.amount;
                     shoppingListItem.IngredientName = item.name;
                     shoppingListItem.IngredientAisle = item.aisle;
                     shoppingListItem.IngredientIdList = item.id;
-                    shoppingListItem.IngredientUnits = item.measures.original.unit;
+                    //shoppingListItem.IngredientUnits = item.measures.original.unit;
                 }
                 shoppingListItem.StringIngredientAmount = new Fraction(Math.Round(amount, 2)).ToString();
                 shoppingListItem.IngredientAmount = amount;

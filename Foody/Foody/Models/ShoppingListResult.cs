@@ -14,7 +14,6 @@ namespace Foody.Models
         public int id { get; set; }
         public string itemImg { get; set; }
         public string name { get; set; }
-        public Measures measures { get; set; }
         public List<object> usages { get; set; }
         public bool pantryItem { get; set; }
         public string aisle { get; set; }
