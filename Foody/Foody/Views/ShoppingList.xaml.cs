@@ -131,9 +131,12 @@ namespace Foody.Views
                 {
                     ItemShoppingList itemShoppingList = new ItemShoppingList
                     {
+                        id = ingredientInform.id,
                         aisle = ingredientInform.aisle,
-                        parse = true,
-                        item = $"{ingredientInform.amount} {ingredientInform.unit} {ingredientInform.name}"
+                        name = ingredientInform.name,
+                        amount = ingredientInform.amount,
+                        unit = ingredientInform.unit,
+                        image = ingredientInform.image
                     };
                     bool result  = await App.RecipeManager.AddIngredientsToShoppingList(itemShoppingList);
                     if(result)

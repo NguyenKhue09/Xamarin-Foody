@@ -6,8 +6,11 @@ namespace Foody.Models
 {
     public class ItemShoppingList
     {
+        public int id { get; set; }
+        public string name { get; set; }
+        public double amount { get; set; }
+        public string unit { get; set; }
         public string aisle { get; set; }
-        public string item { get; set; }
-        public bool parse = true;
+        public string image { get; set; }
     }
 }
