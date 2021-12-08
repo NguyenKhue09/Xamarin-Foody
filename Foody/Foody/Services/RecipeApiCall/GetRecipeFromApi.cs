@@ -232,8 +232,7 @@ namespace Foody.Services.RecipeApiCall
 
             ShoppingListResult = new ShoppingListResult();
 
-            Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/mealplanner/{Constants.Constants.USER_NAME}/shopping-list?" +
-               $"apiKey={Constants.Constants.APIKEY}&hash={Constants.Constants.HASH_USERNAME}"));
+            Uri uri = new Uri(string.Format("https://pantry-wizard.herokuapp.com/api/shopping-list/get-shopping-list-item"));
 
             try
             {
@@ -252,7 +251,7 @@ namespace Foody.Services.RecipeApiCall
                 else
                 {
                     Debug.WriteLine("Thatbai");
-                    ShoppingListResult.aisles = new List<Aisle>();
+                    ShoppingListResult.results = new List<Item>();
                     await searchPopUp.closeSearchPopup();
 
                 }
@@ -267,10 +266,9 @@ namespace Foody.Services.RecipeApiCall
         }
 
 
-        public async Task<bool> DeleteShoppingListItem(int itemId)
+        public async Task<bool> DeleteShoppingListItem(string itemId)
         {
-            Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/mealplanner/{Constants.Constants.USER_NAME}/shopping-list/items/{itemId}?" +
-               $"apiKey={Constants.Constants.APIKEY}&hash={Constants.Constants.HASH_USERNAME}"));
+            Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/shopping-list/delete-shopping-list-item/{itemId}"));
 
             try
             {
@@ -335,7 +333,6 @@ namespace Foody.Services.RecipeApiCall
             SearchIngredientsResult results = new SearchIngredientsResult();
 
             Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/ingredient/search-ingredient?query={searchString}"));
-            Debug.WriteLine("API Search");
             try
             {
 
