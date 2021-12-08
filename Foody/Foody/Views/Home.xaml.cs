@@ -43,6 +43,14 @@ namespace Foody.Views
             }
         }
 
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            homeViewModel.Recipes.Clear();
+            homeViewModel.RandomRecipes.Clear();
+            homeViewModel.FavoriteRecipes.Clear();
+        }
+
         protected override async void OnAppearing()
         {
             base.OnAppearing();
@@ -66,7 +74,7 @@ namespace Foody.Views
                
             }
 
-            //homeViewModel.GetRecipes();
+            homeViewModel.GetRecipes();
             //homeViewModel.GetRandomRecipes();
             homeViewModel.FavoriteRecipes = await homeViewModel.GetAllFavoriteRecipes();
             

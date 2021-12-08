@@ -13,7 +13,7 @@ namespace Foody.Models
         public string IngredientAisle { get; set; }
         public string IngredientImg { get; set; }
         public int IngredientId { get; set; }
-        public int IngredientIdList { get; set; }
+        public string IngredientIdList { get; set; }
         public double IngredientAmount { get; set; }
         public string StringIngredientAmount { get; set; }
         public string IngredientUnits { get; set; }

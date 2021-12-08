@@ -25,7 +25,7 @@ namespace Foody.Views.DetailsRecipe
         {
             InitializeComponent();
             BindingContext = detailRecipeViewModel = new DetailRecipeViewModel(recipe);
-            detailRecipeViewModel.getIngredient();
+            //detailRecipeViewModel.getIngredient();
         }
 
         protected override void OnAppearing()

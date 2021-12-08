@@ -121,7 +121,7 @@ namespace Foody.ViewModels
         {
             for (int i = 0; i < newList.Count; i++)
             {
-                newList[i].amount = double.Parse(recipe.extendedIngredients[i].amount.ToString()) * amount;
+                newList[i].amount = recipe.extendedIngredients[i].amount * amount;
                 newList[i].amountIngre = new Fraction(newList[i].amount).ToString();
                 ExtendedIngredients[i] = newList[i];
             }
@@ -134,11 +134,15 @@ namespace Foody.ViewModels
             Debug.WriteLine("Call function add to list");
             foreach (ExtendedIngredient item in ExtendedIngredients)
             {
-                string result = item.amount.ToString() + " " + item.unit + " " + item.name ;
+                
                 ItemShoppingList itemShoppingList = new ItemShoppingList
                 {
+                    id = item.id,
                     aisle = item.aisle,
-                    item = result
+                    name = item.name,
+                    amount = item.amount,
+                    unit = item.unit,
+                    image = item.image
                 };
 
                 bool response = await App.RecipeManager.AddIngredientsToShoppingList(itemShoppingList);
