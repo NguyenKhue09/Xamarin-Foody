@@ -50,7 +50,7 @@ namespace Foody.Views
             {
                 foreach(ShoppingListItem shoppingListItem in item.shoppingListItems)
                 {
-                    if (shoppingListItem.IsChoose == false)
+                    if (!shoppingListItem.IsChoose)
                     {
                         Debug.WriteLine(shoppingListItem.IsChoose);
                         checkDelete = await shoppingListViewModel.DeleteShoppingCartItem(shoppingListItem);
@@ -85,12 +85,16 @@ namespace Foody.Views
                     }
                 }
 
-                if(checkDelete || item.shoppingListItems.Count == 0)
+                if(checkDelete && item.shoppingListItems.Count == 0 )
                 { 
+                    break;
+                }   
+                else if(shoppingListViewModel.shoppingCartGroupAisleBelong.Count == 0)
+                {
                     break;
                 }    
                 
-            }    
+            }
         }
 
         private void DeleteShoppingCartItem(object sender, EventArgs e)
