@@ -18,6 +18,7 @@ namespace Foody.Views
     public partial class PageShoppingCart : ContentPage
     {
         private readonly ShoppingListViewModel shoppingListViewModel;
+
         private bool checkDelete;
         public PageShoppingCart()
         {
@@ -29,7 +30,7 @@ namespace Foody.Views
             InitializeComponent();
             BindingContext = shoppingListViewModel = viewModel;
             Debug.WriteLine(shoppingListViewModel.shoppingListGroupManagers.Count());
-
+            Debug.WriteLine("Hallo");
         }
 
         private void BackToShoppingList_Tapped(object sender, EventArgs e)
@@ -48,13 +49,13 @@ namespace Foody.Views
             Debug.WriteLine("Call Shopping cart");
             foreach (var item in shoppingListViewModel.shoppingCartGroupAisleBelong)
             {
-                foreach(ShoppingListItem shoppingListItem in item.shoppingListItems)
+                foreach (ShoppingListItem shoppingListItem in item.shoppingListItems)
                 {
                     if (!shoppingListItem.IsChoose)
                     {
                         Debug.WriteLine(shoppingListItem.IsChoose);
                         checkDelete = await shoppingListViewModel.DeleteShoppingCartItem(shoppingListItem);
-                        if(checkDelete)
+                        if (checkDelete)
                         {
                             //IngredientInform ingredientInform = await App.RecipeManager.GetIngredientInform(shoppingListItem.IngredientId);
                             //if (ingredientInform != null)
@@ -85,15 +86,10 @@ namespace Foody.Views
                     }
                 }
 
-                if(checkDelete && item.shoppingListItems.Count == 0 )
-                { 
-                    break;
-                }   
-                else if(shoppingListViewModel.shoppingCartGroupAisleBelong.Count == 0)
+                if (checkDelete || item.shoppingListItems.Count == 0)
                 {
                     break;
-                }    
-                
+                }
             }
         }
 

@@ -76,14 +76,6 @@ namespace Foody.Views
             shoppingListViewModel.GetSelectedShoppingListItem();
             foreach (ShoppingListItem shoppingListItem in shoppingListViewModel.selectedShoppingtListItems)
             {
-                //CartIngredient cartIngredient = new CartIngredient();
-                //cartIngredient.aisleBelong = shoppingListItem.IngredientAisle;
-                //cartIngredient.amount = shoppingListItem.IngredientAmount;
-                //cartIngredient.ingredientImg = shoppingListItem.IngredientImg;
-                //cartIngredient.ingredientName = shoppingListItem.IngredientName;
-                //cartIngredient.ingredientId = shoppingListItem.IngredientId;
-                //cartIngredient.userID = App.LoginViewModel.ObsGoogleUser.UID;
-                //cartIngredient.ingredientUnits = shoppingListItem.IngredientUnits;
                 ItemShoppingCart itemShoppingCart = new ItemShoppingCart
                 {
                     id = shoppingListItem.IngredientId,
@@ -99,6 +91,10 @@ namespace Foody.Views
                 {
                     bool check = await App.RecipeManager.AddIngredientsToShoppingCart(itemShoppingCart);
                 }
+                if(shoppingListViewModel.selectedShoppingtListItems.Count == 0)
+                {
+                    break;
+                }    
             }
             shoppingListViewModel.selectedShoppingtListItems.Clear();
         }

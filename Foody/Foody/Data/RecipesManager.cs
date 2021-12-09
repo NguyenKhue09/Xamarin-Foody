@@ -58,6 +58,16 @@ namespace Foody.Data
             return restService.AddIngredientsToShoppingCart(iemShoppingCart);
         }
 
+        public Task<ShoppingCartResult> GetShoppingCart()
+        {
+            return restService.GetShoppingCart();
+        }
+
+        public Task<bool> DeleteShoppingCart(string itemId)
+        {
+            return restService.DeleteShoppingCart(itemId);
+        }
+        // Ingredient
         public Task<IngredientInform> GetIngredientInform(int id)
         {
             return restService.GetIngredientInform(id);
