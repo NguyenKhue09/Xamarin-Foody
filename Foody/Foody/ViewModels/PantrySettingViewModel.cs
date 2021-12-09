@@ -75,7 +75,6 @@ namespace Foody.ViewModels
 
                 foreach(PantryBuilder item in group.PantryBuilderListItems)
                 {
-                    Debug.WriteLine($"{item.name} + {item.IsChoose}");
                     if(item.IsChoose)
                     {
                         UserPantryItem userPantryItem = new UserPantryItem
@@ -83,7 +82,6 @@ namespace Foody.ViewModels
                             userId = App.LoginViewModel.GoogleUser.UID,
                             itemId = item._id
                         };
-                        Debug.WriteLine($"{App.LoginViewModel.GoogleUser.UID} + {item._id}");
                         _ = await App.RecipeManager.AddItemToUserPantry(userPantryItem);
                     }
                    
