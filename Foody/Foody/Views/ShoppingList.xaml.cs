@@ -74,21 +74,30 @@ namespace Foody.Views
         private async void Add_To_Cart_Tapped(object sender, EventArgs e)
         {
             shoppingListViewModel.GetSelectedShoppingListItem();
-            RecipeDatabase recipeDatabase = await RecipeDatabase.Instance;
             foreach (ShoppingListItem shoppingListItem in shoppingListViewModel.selectedShoppingtListItems)
             {
-                CartIngredient cartIngredient = new CartIngredient();
-                cartIngredient.aisleBelong = shoppingListItem.IngredientAisle;
-                cartIngredient.amount = shoppingListItem.IngredientAmount;
-                cartIngredient.ingredientImg = shoppingListItem.IngredientImg;
-                cartIngredient.ingredientName = shoppingListItem.IngredientName;
-                cartIngredient.ingredientId = shoppingListItem.IngredientId;
-                cartIngredient.userID = App.LoginViewModel.ObsGoogleUser.UID;
-                cartIngredient.ingredientUnits = shoppingListItem.IngredientUnits;
+                //CartIngredient cartIngredient = new CartIngredient();
+                //cartIngredient.aisleBelong = shoppingListItem.IngredientAisle;
+                //cartIngredient.amount = shoppingListItem.IngredientAmount;
+                //cartIngredient.ingredientImg = shoppingListItem.IngredientImg;
+                //cartIngredient.ingredientName = shoppingListItem.IngredientName;
+                //cartIngredient.ingredientId = shoppingListItem.IngredientId;
+                //cartIngredient.userID = App.LoginViewModel.ObsGoogleUser.UID;
+                //cartIngredient.ingredientUnits = shoppingListItem.IngredientUnits;
+                ItemShoppingCart itemShoppingCart = new ItemShoppingCart
+                {
+                    id = shoppingListItem.IngredientId,
+                    aisle = shoppingListItem.IngredientAisle,
+                    name = shoppingListItem.IngredientName,
+                    amount = shoppingListItem.IngredientAmount,
+                    unit = shoppingListItem.IngredientUnits,
+                    image = shoppingListItem.IngredientImg,
+                    userID = App.LoginViewModel.ObsGoogleUser.UID
+                };
                 bool checkDelete = await shoppingListViewModel.DeleteShoppingListItem(shoppingListItem);
                 if(checkDelete)
                 {
-                    await recipeDatabase.SaveIngredientAsync(cartIngredient);
+                    bool check = await App.RecipeManager.AddIngredientsToShoppingCart(itemShoppingCart);
                 }
             }
             shoppingListViewModel.selectedShoppingtListItems.Clear();

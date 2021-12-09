@@ -265,7 +265,6 @@ namespace Foody.Services.RecipeApiCall
             return ShoppingListResult;
         }
 
-
         public async Task<bool> DeleteShoppingListItem(string itemId)
         {
             Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/shopping-list/delete-shopping-list-item/{itemId}"));
@@ -296,6 +295,40 @@ namespace Foody.Services.RecipeApiCall
             }
         }
 
+        // Shopping cart api
+        public async Task<bool> AddIngredientsToShoppingCart(ItemShoppingCart itemShoppingCart)
+        {
+            Uri uri = new Uri(string.Format("https://pantry-wizard.herokuapp.com/api/shopping-cart/add-shopping-cart-item"));
+
+
+            try
+            {
+                string json = JsonSerializer.Serialize(itemShoppingCart, serializerOptions);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(uri, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("ThanhCong");
+                    return true;
+                }
+                else
+                {
+                    Debug.WriteLine("Thatbai");
+                    return false;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                return false;
+            }
+        }
+
+        // Ingredient
         public async Task<IngredientInform> GetIngredientInform(int id)
         {
             Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/food/ingredients/{id}/information?apiKey={Constants.Constants.APIKEY}&amount=1"));
