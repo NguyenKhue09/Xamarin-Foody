@@ -54,7 +54,7 @@
                                HeightRequest="55" WidthRequest="350"
                                 Margin="0,0,0,15"
                                HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-                        <controls:CustomEntry  Keyboard="Text" FontSize="18" Placeholder="Search"  HeightRequest="55"  Margin="10,0,0,0"></controls:CustomEntry>
+                        <controls:CustomEntry x:Name="SearchPantryBuilder" Keyboard="Text" FontSize="18" Placeholder="Search"  HeightRequest="55"  Margin="10,0,0,0" TextChanged="Search_PantryBuilder_TextChanged"></controls:CustomEntry>
                     </Frame>
                 </Grid>
             </yummy:PancakeView>
@@ -105,11 +105,11 @@
                                                     </Grid.ColumnDefinitions>
                                                     <ffimageloading:CachedImage 
                                                                 Margin="4"
-                                                                Source="{Binding ingredientImg, StringFormat='https://spoonacular.com/cdn/ingredients_100x100/{0:F0}'}" 
+                                                                Source="{Binding image, StringFormat='https://spoonacular.com/cdn/ingredients_100x100/{0:F0}'}" 
                                                                 Grid.Column="0" Grid.Row="0"
                                                                 HeightRequest="60"  WidthRequest="60" Aspect="AspectFit">
                                                     </ffimageloading:CachedImage>
-                                                    <Label TextColor="#2F3246" Text="{Binding ingredientName}" FontSize="14" Grid.Column="1" Grid.Row="0"  VerticalOptions="CenterAndExpand" Margin="0,4,0,0">
+                                                    <Label TextColor="#2F3246" Text="{Binding name}" FontSize="14" Grid.Column="1" Grid.Row="0"  VerticalOptions="CenterAndExpand" Margin="0,4,0,0">
 
                                                     </Label>
                                                     <CheckBox Grid.Column="3" Grid.Row="0" Color="Black" IsChecked="{Binding IsChoose, Mode=TwoWay}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand">
@@ -133,7 +133,7 @@
                                                 BackgroundColor="#07BDF6" CornerRadius="15" 
                                                 VerticalOptions="Start" HorizontalOptions="Center">
                     <yummy:PancakeView.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding NavToPantry}"/>
+                        <TapGestureRecognizer Tapped="AddSelectedToPantry_Tapped"/>
                     </yummy:PancakeView.GestureRecognizers>
                     <yummy:PancakeView.BackgroundGradientStops>
                         <yummy:GradientStopCollection>
@@ -142,7 +142,7 @@
                             <yummy:GradientStop Color="#6CD4EC" Offset="0" />
                         </yummy:GradientStopCollection>
                     </yummy:PancakeView.BackgroundGradientStops>
-                    <Label Text="Add Selected to Cart" TextColor="White" FontSize="25" 
+                    <Label Text="Add Selected to Pantry" TextColor="White" FontSize="25" 
                                                        HorizontalOptions="Center" VerticalOptions="Center">
                     </Label>
                 </yummy:PancakeView>

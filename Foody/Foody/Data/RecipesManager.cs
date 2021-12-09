@@ -42,7 +42,7 @@ namespace Foody.Data
         {
             return restService.AddIngredientsToShoppingList(iemShoppingList);
         }
-         
+
         public Task<ShoppingListResult> GetShoppingList()
         {
             return restService.GetShoppingList();
@@ -63,5 +63,21 @@ namespace Foody.Data
             return restService.SearchIngredients(searchString);
         }
 
+        // PantryBuilder Api
+        public Task<PantryBuilderResult> GetPantrybuilderList()
+        {
+            return restService.GetPantrybuilderList();
+        }
+
+        public Task<PantryBuilderResult> SearchPantryBuilder(string searchString)
+        {
+            return restService.SearchPantryBuilder(searchString);
+        }
+
+        // Pantry api
+        public Task<bool> AddItemToUserPantry(UserPantryItem userPantryItem)
+        {
+            return restService.AddItemToUserPantry(userPantryItem);
+        }
     }
 }

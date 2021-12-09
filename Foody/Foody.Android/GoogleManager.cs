@@ -354,8 +354,8 @@ namespace Foody.Droid
 
         public void OnGetUserDetailFailure(Java.Lang.Exception e)
         {
-            
             Toast.MakeText(_context, $"Get user detail Failed", ToastLength.Short).Show();
+            _onGetUserDetailsComplete.Invoke(null, string.Empty);
         }
 
         public void OnUpdateUserDetailSuccess(Java.Lang.Object result)

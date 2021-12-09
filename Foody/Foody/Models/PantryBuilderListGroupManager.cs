@@ -18,9 +18,9 @@ namespace Foody.Models
 
         public string iconExpand;
 
-        public ObservableCollection<PantryBuilderItem> pantryBuilderListItems { get; set; }
+        public ObservableCollection<PantryBuilder> pantryBuilderListItems { get; set; }
 
-        public ObservableCollection<PantryBuilderItem> PantryBuilderListItems
+        public ObservableCollection<PantryBuilder> PantryBuilderListItems
         {
             get { return pantryBuilderListItems; }
             set
@@ -57,10 +57,10 @@ namespace Foody.Models
             }
         }
 
-        public PantryBuilderListGroupManager(string aisle, ObservableCollection<PantryBuilderItem> listItems, string iconExpand = "down.png", bool isExpanded = false)
+        public PantryBuilderListGroupManager(string aisle, ObservableCollection<PantryBuilder> listItems, string iconExpand = "down.png", bool isExpanded = false)
         {
             Aisle = aisle;
-            PantryBuilderListItems = new ObservableCollection<PantryBuilderItem>(listItems);
+            PantryBuilderListItems = new ObservableCollection<PantryBuilder>(listItems);
             IconExpand = iconExpand;
             IsExpanded = isExpanded;
         }

@@ -333,7 +333,7 @@ namespace Foody.ViewModels
                     amount += item.amount;
                     shoppingCartItem.IngredientName = item.ingredientName;
                     shoppingCartItem.IngredientAisle = item.aisleBelong;
-                    //shoppingCartItem.IngredientIdList = item.ingredientId;
+                    //shoppingCartItem.IngredientIdList = item.id;
                     shoppingCartItem.IngredientUnits = item.ingredientUnits;
                 }
                 shoppingCartItem.StringIngredientAmount = new Fraction(Math.Round(amount, 2)).ToString();

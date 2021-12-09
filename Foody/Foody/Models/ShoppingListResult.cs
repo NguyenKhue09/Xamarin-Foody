@@ -18,7 +18,7 @@ namespace Foody.Models
     //    public bool pantryItem { get; set; }
     //    public string aisle { get; set; }
     //    public double cost { get; set; }
-    //    public int ingredientId { get; set; }
+    //    public int id { get; set; }
     //}
 
     //public class Aisle

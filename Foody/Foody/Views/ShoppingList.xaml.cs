@@ -100,7 +100,6 @@ namespace Foody.Views
             SearchBar searchBar = (SearchBar)sender;
             await Task.Delay(300);
             shoppingListViewModel.SearchIngredient(searchBar.Text);
-            Debug.WriteLine(shoppingListViewModel.SearchIngredients.Count);
         }
 
         private void ShoppingListToShoppingCart(object sender, EventArgs e)
