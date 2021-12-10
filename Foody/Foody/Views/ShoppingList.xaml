@@ -59,7 +59,7 @@
                                HeightRequest="18" WidthRequest="18" 
                                VerticalOptions="Start" HorizontalOptions="Start" Padding="0" Margin="21,10"
                                Grid.Column="1" Grid.Row="0">
-                            <Label Text="2" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Label x:Name="totalItemShoppingCart" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
                         </Frame>
                         <Image Source="menu1.png" HeightRequest="24" WidthRequest="24"
                                VerticalOptions="CenterAndExpand" HorizontalOptions="End" 

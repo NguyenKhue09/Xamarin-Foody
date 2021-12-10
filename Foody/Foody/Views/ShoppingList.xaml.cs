@@ -26,11 +26,13 @@ namespace Foody.Views
             InitializeComponent();
             BindingContext = shoppingListViewModel = new ShoppingListViewModel();
             option.IsVisible = false;
+            
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            totalItemShoppingCart.Text = shoppingListViewModel.totalItemShoppingCart.ToString();
             shoppingListViewModel.GetShoppingList();
         }
 
@@ -40,7 +42,6 @@ namespace Foody.Views
             // clear để ko bị add dồn phần tử
             shoppingListViewModel.IsSelectedAllShoppingListItem = false;
             shoppingListViewModel.shoppingListGroupManagers.Clear();
-            
         }
 
         private async void DeleteShoppingListItem(object sender, EventArgs e)
@@ -105,7 +106,6 @@ namespace Foody.Views
             SearchBar searchBar = (SearchBar)sender;
             await Task.Delay(300);
             shoppingListViewModel.SearchIngredient(searchBar.Text);
-            Debug.WriteLine(shoppingListViewModel.SearchIngredients.Count);
         }
 
         private void ShoppingListToShoppingCart(object sender, EventArgs e)

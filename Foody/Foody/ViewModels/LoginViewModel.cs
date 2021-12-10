@@ -176,7 +176,6 @@ namespace Foody.ViewModels
             else
             {
                 ObsGoogleUserDetails = null;
-
             }
         }
 

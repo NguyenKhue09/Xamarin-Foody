@@ -45,7 +45,7 @@ namespace Foody.Data.Local
 
         public Task<List<CartIngredient>> GetIngredientsByAisle(string aisle)
         {
-            return Database.QueryAsync<CartIngredient>($"SELECT * FROM [CartIngredient] WHERE [aisleBelong] = {aisle}");
+            return Database.QueryAsync<CartIngredient>($"SELECT * FROM [CartIngredient] WHERE [aisle] = {aisle}");
         }
 
         public Task<CartIngredient> GetIngredientById(int id)

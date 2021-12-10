@@ -29,8 +29,6 @@ namespace Foody.Views
         {
             InitializeComponent();
             BindingContext = shoppingListViewModel = viewModel;
-            Debug.WriteLine(shoppingListViewModel.shoppingListGroupManagers.Count());
-            Debug.WriteLine("Hallo");
         }
 
         private void BackToShoppingList_Tapped(object sender, EventArgs e)
@@ -42,55 +40,53 @@ namespace Foody.Views
         {
             base.OnAppearing();
             shoppingListViewModel.GetShoppingCart();
+
+            if(shoppingListViewModel.totalItemShoppingCart > 0)
+            {
+                shoppingCartNull.Height = 0;
+                shoppingCart.Height= new GridLength(3, GridUnitType.Star);
+            }
+            else
+            {
+                shoppingCartNull.Height = 200;
+                shoppingCart.Height = 0;
+            }
         }
 
         private async void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
             Debug.WriteLine("Call Shopping cart");
-            foreach (var item in shoppingListViewModel.shoppingCartGroupAisleBelong)
-            {
-                foreach (ShoppingListItem shoppingListItem in item.shoppingListItems)
-                {
-                    if (!shoppingListItem.IsChoose)
-                    {
-                        Debug.WriteLine(shoppingListItem.IsChoose);
-                        checkDelete = await shoppingListViewModel.DeleteShoppingCartItem(shoppingListItem);
-                        if (checkDelete)
-                        {
-                            //IngredientInform ingredientInform = await App.RecipeManager.GetIngredientInform(shoppingListItem.IngredientId);
-                            //if (ingredientInform != null)
-                            //{
-                            //    ItemShoppingList itemShoppingList = new ItemShoppingList
-                            //    {
-                            //        aisle = ingredientInform.aisle,
-                            //        parse = true,
-                            //        item = $"{ingredientInform.amount} {ingredientInform.unit} {ingredientInform.name}"
-                            //    };
-                            //    bool result = await App.RecipeManager.AddIngredientsToShoppingList(itemShoppingList);
-                            //    if (result)
-                            //    {
-                            //        Debug.WriteLine("add shoping list from shopping cart thanh cong");
-                            //    }
-                            //    else
-                            //    {
-                            //        Debug.WriteLine("add shoping list from shopping cart không thanh cong");
-                            //    }
-                            //}
-                            //else
-                            //{
-                            //    Debug.WriteLine("Call API that bai");
-                            //}
-                            break;
-                        }
-                        Debug.WriteLine(checkDelete);
-                    }
-                }
-
-                if (checkDelete || item.shoppingListItems.Count == 0)
-                {
-                    break;
-                }
-            }
+            ShoppingListItem shoppingList = new ShoppingListItem();
+            
+            //foreach (var item in shoppingListViewModel.shoppingCartGroupAisleBelong)
+            //{
+            //    foreach (ShoppingListItem shoppingCartItem in item.shoppingListItems)
+            //    {
+            //        Debug.WriteLine(shoppingCartItem.IsChoose);
+            //        if (shoppingCartItem.IsChoose == false)
+            //        {
+            //            Debug.WriteLine("okeoke");
+            //            Debug.WriteLine(shoppingCartItem.IsChoose);
+            //            Debug.WriteLine("okeoke");
+            //            shoppingList = shoppingCartItem;
+            //            break;
+            //        }
+            //    }
+            //    Debug.WriteLine("okeoke");
+            //    if (shoppingList != null)
+            //    {
+            //        break;
+            //    }
+            //}
+            //if(shoppingList != null)
+            //{
+            //    checkDelete = await shoppingListViewModel.DeleteShoppingCartItem(shoppingList);
+            //    if (checkDelete)
+            //    {
+            //        shoppingList = null;
+            //    }
+            //}   
+              
         }
 
         private void DeleteShoppingCartItem(object sender, EventArgs e)
