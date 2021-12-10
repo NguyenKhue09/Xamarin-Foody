@@ -398,6 +398,39 @@ namespace Foody.Services.RecipeApiCall
             }
         }
 
+        public async Task<bool> AddShoppingCartToUserPantry()
+        {
+            string ueserID = App.LoginViewModel.ObsGoogleUser.UID;
+
+            Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/shopping-cart/add-shopping-cart-item-to-user-pantry/{ueserID}"));
+
+            try
+            {
+
+                HttpResponseMessage response = await client.GetAsync(uri);
+                Debug.WriteLine("CallAPI");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("ThanhCong");
+                    return true;
+                }
+                else
+                {
+                    
+                    Debug.WriteLine("Thatbai");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                return false;
+            }
+
+        }
+
         // Ingredient
         public async Task<IngredientInform> GetIngredientInform(int id)
         {

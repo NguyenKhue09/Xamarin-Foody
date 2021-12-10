@@ -98,5 +98,16 @@ namespace Foody.Views
         {
             
         }
+
+        private async void AddShoppingCartToUserPantry_Tapped(object sender, EventArgs e)
+        {
+            bool result = await App.RecipeManager.AddShoppingCartToUserPantry();
+
+            if(result)
+            {
+                shoppingListViewModel.shoppingCartGroupAisleBelong.Clear();
+                shoppingListViewModel.originalShoppintCarts = null;
+            }
+        }
     }
 }
