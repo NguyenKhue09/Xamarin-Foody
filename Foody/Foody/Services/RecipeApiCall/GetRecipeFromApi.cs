@@ -465,5 +465,70 @@ namespace Foody.Services.RecipeApiCall
                 return false;
             }
         }
+
+        public async Task<UserPantryItemResult> GetUserPantryItems(string userId)
+        {
+            UserPantryItemResult userPantryItemResult = new UserPantryItemResult();
+
+            Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/pantry/get-user-pantry-item/{userId}"));
+            try
+            {
+
+                HttpResponseMessage response = await client.GetAsync(uri);
+                Debug.WriteLine("CallAPI");
+                if (response.IsSuccessStatusCode)
+                {
+
+
+                    string content = await response.Content.ReadAsStringAsync();
+                    userPantryItemResult = JsonSerializer.Deserialize<UserPantryItemResult>(content, serializerOptions);
+
+                }
+                else
+                {
+                    Debug.WriteLine("Thatbai");
+                    userPantryItemResult.pantryItems.itemId = new List<ItemId>();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                userPantryItemResult.pantryItems.itemId = new List<ItemId>();
+            }
+
+            return userPantryItemResult;
+        }
+
+        public async Task<bool> DeleteUserPantryItem(string itemId, string userId)
+        {
+            Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/pantry/delete-user-pantry-item/{userId}/{itemId}"));
+
+            try
+            {
+
+                HttpResponseMessage response = await client.DeleteAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("ThanhCong");
+                    Debug.WriteLine(response.RequestMessage);
+                    return true;
+                }
+                else
+                {
+                    Debug.WriteLine(response.RequestMessage);
+                    return false;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                return false;
+            }
+        }
+
     }
 }

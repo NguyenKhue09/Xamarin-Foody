@@ -52,36 +52,11 @@ namespace Foody.ViewModels
 
         public Command Checkmanager { get; }
 
-        public ObservableCollection<ShoppingListGroupManager> Groups = new ObservableCollection<ShoppingListGroupManager>{
-                new ShoppingListGroupManager("Carbohydrates",
-                  new ObservableCollection<ShoppingListItem>{ new ShoppingListItem { IngredientName = "pasta", IngredientAisle = "Carb Snakes" },
-                    new ShoppingListItem { IngredientName = "potato", IngredientAisle = "The King of all Carbs" },
-                    new ShoppingListItem { IngredientName = "bread", IngredientAisle = "Soft & Gentle"},
-                    new ShoppingListItem { IngredientName = "rice", IngredientAisle = "Tiny grains of goodness" },
-                 }),
-                new ShoppingListGroupManager("Fruits",
-                   new ObservableCollection<ShoppingListItem>{ new ShoppingListItem { IngredientName = "apple", IngredientAisle = "Keep the Doctor away"},
-                    new ShoppingListItem { IngredientName = "banana", IngredientAisle = "This fruit is appeeling"},
-                    new ShoppingListItem { IngredientName = "pear", IngredientAisle = "Pear with me"},
-                }),
-                new ShoppingListGroupManager("Vegetables",
-                   new ObservableCollection<ShoppingListItem>{ new ShoppingListItem { IngredientName = "carrot", IngredientAisle = "Sounds like parrot"},
-                    new ShoppingListItem { IngredientName = "green bean", IngredientAisle = "The less popular cousin of the baked bean"},
-                    new ShoppingListItem { IngredientName = "broccoli", IngredientAisle = "Tiny food trees"},
-                    new ShoppingListItem { IngredientName = "peas", IngredientAisle = "Peas sir, can I have some more?"},
-                }),
-                new ShoppingListGroupManager("Dairy",
-                  new ObservableCollection<ShoppingListItem>{  new ShoppingListItem { IngredientName = "Milk", IngredientAisle = "Molk"},
-                    new ShoppingListItem { IngredientName = "Cheese", IngredientAisle = "Cheese + Potato = <3"},
-                    new ShoppingListItem { IngredientName = "Ice Cream", IngredientAisle = "Because I couldn't find an icon for yoghurt"},
-
-                })
-        };
-        public ObservableCollection<ShoppingListGroupManager> manager { get; set; }
-
-
 
         INavigation Navigation;
+
+        public ObservableCollection<UserPantryListGroupManager> UserPantryListGroupManagers { get; set; }
+        private ObservableCollection<ItemId> originalUserPantryItems { get; set; }
 
         public PantryViewModel(INavigation MainPageNav)
         {
@@ -100,7 +75,10 @@ namespace Foody.ViewModels
             SearchIngredients = new ObservableRangeCollection<IngredientInform>();
             //
             Checkmanager = new Command<string>(manager_SelectionChanged);
-            manager = new ObservableCollection<ShoppingListGroupManager>(Groups);
+
+            // pantry
+            UserPantryListGroupManagers = new ObservableCollection<UserPantryListGroupManager>();
+            originalUserPantryItems = new ObservableCollection<ItemId>();
         }
 
         public async Task OpenPagePantrySetting()
@@ -192,17 +170,12 @@ namespace Foody.ViewModels
         }
         public void changeExpand(string item)
         {
-            foreach (ShoppingListGroupManager group in manager)
+            foreach (UserPantryListGroupManager group in UserPantryListGroupManagers)
             {
-                
 
                 if (item == group.Aisle)
                 {
-                    group.IsExpanded = !group.IsExpanded;
                     group.IconExpand = group.IsExpanded ? "up.png" : "down.png";
-                    Debug.WriteLine(group.IconExpand);
-                    Debug.WriteLine(item);
-                    Debug.WriteLine(group.Aisle);
                 }
             }
         }
@@ -240,6 +213,96 @@ namespace Foody.ViewModels
                 }
             }
 
+        }
+
+
+        // Pantry
+        public async void GetOriginalPantryBuilderItems()
+        {
+            UserPantryItemResult userPantryItemResult = await App.RecipeManager.GetUserPantryItems(App.LoginViewModel.GoogleUser.UID);
+            
+            if (userPantryItemResult != null)
+            {
+                originalUserPantryItems = new ObservableRangeCollection<ItemId>(userPantryItemResult.pantryItems.itemId);
+            }
+            GetPantryBuilderList();
+        }
+
+        public void GetPantryBuilderList()
+        {
+
+            var queryPantryBuilderAisle = from item in originalUserPantryItems
+                                          group item by item.aisle into newResults
+                                          orderby newResults.Key
+                                          select newResults;
+
+            foreach (var aisleGroup in queryPantryBuilderAisle)
+            {
+                UserPantryListGroupManagers.Add(new UserPantryListGroupManager(
+                    aisleGroup.Key,
+                    new ObservableCollection<ItemId>(aisleGroup.ToList())
+                ));
+            }
+
+        }
+
+        public async void GetSelectedUserPantryItem()
+        {
+            foreach (UserPantryListGroupManager group in UserPantryListGroupManagers)
+            {
+                foreach (ItemId item in group.UserPantryListItems)
+                {
+                    if (item.IsChoose)
+                    {
+                        Debug.WriteLine(item.name);
+                        //_ = await DeleteShoppingListItem(item);
+                    }
+                }
+            }
+        }
+
+       
+
+        public async Task<bool> DeleteUserPantryItem(ItemId itemId)
+        {
+            bool result = false;
+
+            foreach (ItemId item in originalUserPantryItems)
+            {
+                if (item._id == itemId._id)
+                {
+                    result = await App.RecipeManager.DeleteUserPantryItem(item._id, App.LoginViewModel.GoogleUser.UID);
+                }
+            }
+
+
+            if (result)
+            {
+                foreach (UserPantryListGroupManager userPantryListGroupManager in UserPantryListGroupManagers)
+                {
+                    if (itemId.aisle == userPantryListGroupManager.Aisle)
+                    {
+                        userPantryListGroupManager.UserPantryListItems.Remove(itemId);
+                        if (userPantryListGroupManager.UserPantryListItems.Count == 0)
+                        {
+                            Debug.WriteLine("Empty list");
+                            deleteUserPantryGroupManagerItem(userPantryListGroupManager);
+                        }
+                        break;
+                    }
+
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        void deleteUserPantryGroupManagerItem(UserPantryListGroupManager userPantryListGroupManager)
+        {
+            UserPantryListGroupManagers.Remove(userPantryListGroupManager);
         }
 
     } 
