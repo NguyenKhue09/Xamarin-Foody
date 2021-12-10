@@ -89,7 +89,7 @@ namespace Foody.ViewModels
             PopularRecipes = new ObservableRangeCollection<Result>();
             RandomRecipes = new ObservableRangeCollection<Result>();
             SearchRecipes = new ObservableRangeCollection<Result>();
-            NavToPantry = new Command(async () => await OpenOtherPage(), () => !IsBusy);
+            NavToPantry = new Command(async () => await OpenPagePantrySetting(), () => !IsBusy);
             Test = new Command(async () => await showpopup_Clicked(), () => !IsBusy);
             ChipCuisineSelectedCommand = new Command<string>(chipCuisineSelected);
             ChipCuisineUnselectedCommand = new Command<string>(chipCuisineUnSelected);
@@ -103,7 +103,7 @@ namespace Foody.ViewModels
             manager = new ObservableCollection<ShoppingListGroupManager>(Groups);
         }
 
-    public async Task OpenOtherPage()
+        public async Task OpenPagePantrySetting()
         {
             await Navigation.PushAsync(new PagePantrySetting());
         }
@@ -215,7 +215,7 @@ namespace Foody.ViewModels
 
             if (results != null)
             {
-                if (results.results.Count > 0)
+                if (results.results.Count > 0 && searchString != "")
                 {
 
                     SearchIngredients.Clear();
@@ -241,7 +241,6 @@ namespace Foody.ViewModels
             }
 
         }
-
 
     } 
     
