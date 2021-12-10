@@ -126,12 +126,28 @@ namespace Foody.Views
         private void deleteSelectedUserPantryItem(object sender, EventArgs e)
         {
             option.IsVisible = !option.IsVisible ? true : false;
-            pantryViewModel.GetSelectedUserPantryItem();
+            pantryViewModel.DeleteSelectedUserPantryItem();
         }
 
-        private void deleteAllUserPantryItem(object sender, EventArgs e)
+        private async void deleteAllUserPantryItem(object sender, EventArgs e)
         {
             option.IsVisible = !option.IsVisible ? true : false;
+            bool result = await pantryViewModel.DeleteAllUserPantryItem();
+            var messageOptions = new MessageOptions
+            {
+                Foreground = Color.Black,
+                Font = Font.SystemFontOfSize(16),
+                Message = result ? $"Delete all item successfully!" : $"Delete all item fail!"
+            };
+
+            var options = new SnackBarOptions
+            {
+                MessageOptions = messageOptions,
+                Duration = TimeSpan.FromMilliseconds(3000),
+                BackgroundColor = result ? Color.FromRgb(75, 181, 67) : Color.FromRgb(250, 17, 61),
+                IsRtl = false,
+            };
+            await this.DisplaySnackBarAsync(options);
         }
 
         private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)

@@ -58,6 +58,8 @@ namespace Foody.ViewModels
         public ObservableCollection<UserPantryListGroupManager> UserPantryListGroupManagers { get; set; }
         private ObservableCollection<ItemId> originalUserPantryItems { get; set; }
 
+        private ObservableCollection<ItemId> selectedUserPantryItems { get; set; }
+
         public PantryViewModel(INavigation MainPageNav)
         {
             Navigation = MainPageNav;
@@ -79,6 +81,7 @@ namespace Foody.ViewModels
             // pantry
             UserPantryListGroupManagers = new ObservableCollection<UserPantryListGroupManager>();
             originalUserPantryItems = new ObservableCollection<ItemId>();
+            selectedUserPantryItems = new ObservableCollection<ItemId>();
         }
 
         public async Task OpenPagePantrySetting()
@@ -224,6 +227,9 @@ namespace Foody.ViewModels
             if (userPantryItemResult != null)
             {
                 originalUserPantryItems = new ObservableRangeCollection<ItemId>(userPantryItemResult.pantryItems.itemId);
+            } else
+            {
+                originalUserPantryItems.Clear();
             }
             GetPantryBuilderList();
         }
@@ -246,22 +252,43 @@ namespace Foody.ViewModels
 
         }
 
-        public async void GetSelectedUserPantryItem()
+        public void GetSelectedUserPantryItem()
         {
             foreach (UserPantryListGroupManager group in UserPantryListGroupManagers)
             {
                 foreach (ItemId item in group.UserPantryListItems)
                 {
-                    if (item.IsChoose)
+                    if (item.IsChoose && !selectedUserPantryItems.Contains(item))
                     {
-                        Debug.WriteLine(item.name);
-                        //_ = await DeleteShoppingListItem(item);
+                        selectedUserPantryItems.Add(item);
+                    }
+                    else if (!item.IsChoose && selectedUserPantryItems.Contains(item))
+                    {
+                        selectedUserPantryItems.Remove(item);
                     }
                 }
             }
         }
 
-       
+        public async void DeleteSelectedUserPantryItem()
+        {
+            GetSelectedUserPantryItem();
+            foreach(ItemId itemId in selectedUserPantryItems)
+            {
+                _ = await DeleteUserPantryItem(itemId);
+            }
+            selectedUserPantryItems.Clear();
+        }
+
+        public async Task<bool> DeleteAllUserPantryItem()
+        {
+            bool result = await App.RecipeManager.DeleteAllUserPantryItem(App.LoginViewModel.GoogleUser.UID);
+            if(result)
+            {
+                UserPantryListGroupManagers.Clear();
+            } 
+            return result;
+        }
 
         public async Task<bool> DeleteUserPantryItem(ItemId itemId)
         {

@@ -487,14 +487,14 @@ namespace Foody.Services.RecipeApiCall
                 else
                 {
                     Debug.WriteLine("Thatbai");
-                    userPantryItemResult.pantryItems.itemId = new List<ItemId>();
+                    userPantryItemResult = null;
                 }
             }
             catch (Exception ex)
             {
 
                 Debug.WriteLine(@"\tERROR {0}", ex.Message);
-                userPantryItemResult.pantryItems.itemId = new List<ItemId>();
+                userPantryItemResult = null;
             }
 
             return userPantryItemResult;
@@ -503,6 +503,36 @@ namespace Foody.Services.RecipeApiCall
         public async Task<bool> DeleteUserPantryItem(string itemId, string userId)
         {
             Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/pantry/delete-user-pantry-item/{userId}/{itemId}"));
+
+            try
+            {
+
+                HttpResponseMessage response = await client.DeleteAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("ThanhCong");
+                    Debug.WriteLine(response.RequestMessage);
+                    return true;
+                }
+                else
+                {
+                    Debug.WriteLine(response.RequestMessage);
+                    return false;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                return false;
+            }
+        }
+
+        public async Task<bool> DeleteAllUserPantryItem(string userId)
+        {
+            Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/pantry/delete-all-user-pantry-item/{userId}"));
 
             try
             {
