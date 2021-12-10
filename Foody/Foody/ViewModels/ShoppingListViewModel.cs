@@ -25,7 +25,6 @@ namespace Foody.ViewModels
 
         public ObservableCollection<ShoppingListGroupManager> shoppingListGroupManagers { get; set; }
         public ObservableCollection<ShoppingListGroupManager> shoppingCartGroupAisleBelong { get; set; }
-         public int totalItemShoppingCart { get; set; }
         public ObservableRangeCollection<IngredientInform> SearchIngredients { get; set; }
         private ShoppingListResult originalShoppintLists { get; set; }
         private ShoppingCartResult originalShoppintCarts { get; set; }
@@ -57,7 +56,6 @@ namespace Foody.ViewModels
 
         public ShoppingListViewModel()
         {
-            CheckShoppingCart();
             Checkmanager = new Command<string>(changeExpand);
             shoppingListGroupManagers = new ObservableCollection<ShoppingListGroupManager>();
             CheckGroupAisleBelong = new Command<string>(changeExpandIcon);
@@ -66,11 +64,6 @@ namespace Foody.ViewModels
             selectedShoppingtListItems = new ObservableCollection<ShoppingListItem>();
         }
 
-        public async void CheckShoppingCart()
-        {
-            ShoppingCartResult result = await App.RecipeManager.GetShoppingCart();
-            totalItemShoppingCart = result.resultsCart.Count;
-        }
         public void changeExpand(string item)
         {
             foreach (ShoppingListGroupManager group in shoppingListGroupManagers)
@@ -303,10 +296,10 @@ namespace Foody.ViewModels
             }
         }
 
-        async public void GetShoppingCart()
+        async public Task<ObservableCollection<ShoppingListGroupManager>> GetShoppingCart()
         {
             originalShoppintCarts = new ShoppingCartResult();
-
+            ObservableCollection<ShoppingListGroupManager> shoppingCartGroups = new ObservableCollection<ShoppingListGroupManager>();
             originalShoppintCarts = await App.RecipeManager.GetShoppingCart();
             var queryIngredientAisle = from item in originalShoppintCarts.resultsCart
                                        group item by item.aisle into newResults
@@ -317,10 +310,10 @@ namespace Foody.ViewModels
             {
 
                 ShoppingListGroupManager shoppingCartGroupManager = new ShoppingListGroupManager(nameGroup.Key, await SumOfShoppingCartItemFromApi(nameGroup));
-                shoppingCartGroupAisleBelong.Add(shoppingCartGroupManager);
+                shoppingCartGroups.Add(shoppingCartGroupManager);
 
             }
-
+            return shoppingCartGroups;
         }
 
         Task<ObservableCollection<ShoppingListItem>> SumOfShoppingCartItemFromApi(IGrouping<string, ItemCart> nameGroup)
@@ -399,5 +392,6 @@ namespace Foody.ViewModels
                 return false;
             }
         }
+
     }
 }

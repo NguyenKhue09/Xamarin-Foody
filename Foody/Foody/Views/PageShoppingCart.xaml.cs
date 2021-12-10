@@ -4,6 +4,7 @@ using Foody.Models.Local;
 using Foody.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,8 @@ namespace Foody.Views
         {
             InitializeComponent();
             BindingContext = shoppingListViewModel = viewModel;
+            
+            
         }
 
         private void BackToShoppingList_Tapped(object sender, EventArgs e)
@@ -36,15 +39,15 @@ namespace Foody.Views
             Navigation.PushAsync(new ShoppingList());
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
-            shoppingListViewModel.GetShoppingCart();
-
-            if(shoppingListViewModel.totalItemShoppingCart > 0)
+            shoppingListViewModel.shoppingCartGroupAisleBelong = await shoppingListViewModel.GetShoppingCart();
+            if (shoppingListViewModel.shoppingCartGroupAisleBelong.Count > 0)
             {
+                shoppingCartContain.ItemsSource = shoppingListViewModel.shoppingCartGroupAisleBelong;
                 shoppingCartNull.Height = 0;
-                shoppingCart.Height= new GridLength(3, GridUnitType.Star);
+                shoppingCart.Height = new GridLength(3, GridUnitType.Star);
             }
             else
             {
@@ -56,37 +59,39 @@ namespace Foody.Views
         private async void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
             Debug.WriteLine("Call Shopping cart");
-            ShoppingListItem shoppingList = new ShoppingListItem();
             
-            //foreach (var item in shoppingListViewModel.shoppingCartGroupAisleBelong)
-            //{
-            //    foreach (ShoppingListItem shoppingCartItem in item.shoppingListItems)
-            //    {
-            //        Debug.WriteLine(shoppingCartItem.IsChoose);
-            //        if (shoppingCartItem.IsChoose == false)
-            //        {
-            //            Debug.WriteLine("okeoke");
-            //            Debug.WriteLine(shoppingCartItem.IsChoose);
-            //            Debug.WriteLine("okeoke");
-            //            shoppingList = shoppingCartItem;
-            //            break;
-            //        }
-            //    }
-            //    Debug.WriteLine("okeoke");
-            //    if (shoppingList != null)
-            //    {
-            //        break;
-            //    }
-            //}
-            //if(shoppingList != null)
-            //{
-            //    checkDelete = await shoppingListViewModel.DeleteShoppingCartItem(shoppingList);
-            //    if (checkDelete)
-            //    {
-            //        shoppingList = null;
-            //    }
-            //}   
-              
+            if(!e.Value)
+            {
+                ShoppingListItem shoppingList = new ShoppingListItem();
+                foreach (var item in shoppingListViewModel.shoppingCartGroupAisleBelong)
+                {
+                    foreach (ShoppingListItem shoppingCartItem in item.shoppingListItems)
+                    {
+                        Debug.WriteLine(shoppingCartItem.IsChoose);
+                        if (!shoppingCartItem.isChoose)
+                        {
+                            Debug.WriteLine("okeoke");
+                            Debug.WriteLine(shoppingCartItem.IsChoose);
+                            Debug.WriteLine("okeoke");
+                            shoppingList = shoppingCartItem;
+                            break;
+                        }
+                    }
+                    if (shoppingList != null)
+                    {
+                        break;
+                    }
+                }
+                if (shoppingList != null)
+                {
+                    checkDelete = await shoppingListViewModel.DeleteShoppingCartItem(shoppingList);
+                    if (checkDelete)
+                    {
+                        Debug.WriteLine("Ổn r đó");
+                    }
+                }
+            }    
+
         }
 
         private void DeleteShoppingCartItem(object sender, EventArgs e)

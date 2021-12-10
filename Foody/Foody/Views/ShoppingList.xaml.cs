@@ -26,13 +26,22 @@ namespace Foody.Views
             InitializeComponent();
             BindingContext = shoppingListViewModel = new ShoppingListViewModel();
             option.IsVisible = false;
-            
+           
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
-            totalItemShoppingCart.Text = shoppingListViewModel.totalItemShoppingCart.ToString();
+            shoppingListViewModel.shoppingCartGroupAisleBelong = await shoppingListViewModel.GetShoppingCart();
+            if (shoppingListViewModel.shoppingCartGroupAisleBelong.Count > 0)
+            {
+                int totalItem = 0;
+                foreach( var item in shoppingListViewModel.shoppingCartGroupAisleBelong)
+                {
+                    totalItem += item.shoppingListItems.Count;
+                }    
+                totalItemShoppingCart.Text = totalItem.ToString();
+            }    
             shoppingListViewModel.GetShoppingList();
         }
 
