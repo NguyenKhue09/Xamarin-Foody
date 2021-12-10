@@ -9,12 +9,13 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using Xamarin.Forms;
 
 namespace Foody.ViewModels
 {
     public class PantrySettingViewModel : BaseViewModel
     {
-        public Command Checkmanager { get; }
+        public Xamarin.Forms.Command Checkmanager { get; }
 
         public ObservableCollection<PantryBuilderListGroupManager> PantryBuilderListGroupManagers { get; set; }
 
@@ -24,7 +25,7 @@ namespace Foody.ViewModels
         {
             PantryBuilderListGroupManagers = new ObservableCollection<PantryBuilderListGroupManager>();
             originalPantryBuilderItems = new ObservableRangeCollection<PantryBuilder>();
-            Checkmanager = new Command<string>(changeExpand);
+            Checkmanager = new Xamarin.Forms.Command<string>(changeExpand);
         }
 
         public async void GetOriginalPantryBuilderItems()
@@ -87,6 +88,7 @@ namespace Foody.ViewModels
                    
                 }
             }
+             await (Application.Current.MainPage as Shell).GoToAsync("//tabbar/pantry", true);
         }
 
         public void changeExpand(string item)

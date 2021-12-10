@@ -94,5 +94,20 @@ namespace Foody.Data
         {
             return restService.AddItemToUserPantry(userPantryItem);
         }
+
+        public Task<UserPantryItemResult> GetUserPantryItems(string userId)
+        {
+            return restService.GetUserPantryItems(userId);
+        }
+
+        public Task<bool> DeleteUserPantryItem(string itemId, string userId)
+        {
+            return restService.DeleteUserPantryItem(itemId, userId);
+        }
+
+        public Task<bool> DeleteAllUserPantryItem(string userId)
+        {
+            return restService.DeleteAllUserPantryItem(userId);
+        }
     }
 }
