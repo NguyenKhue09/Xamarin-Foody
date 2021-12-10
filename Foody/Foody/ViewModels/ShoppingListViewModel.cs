@@ -27,8 +27,8 @@ namespace Foody.ViewModels
         public ObservableCollection<ShoppingListGroupManager> shoppingCartGroupAisleBelong { get; set; }
          public int totalItemShoppingCart { get; set; }
         public ObservableRangeCollection<IngredientInform> SearchIngredients { get; set; }
-        private ShoppingListResult originalShoppintLists { get; set; }
-        private ShoppingCartResult originalShoppintCarts { get; set; }
+        private ShoppingListResult originalShoppingLists { get; set; }
+        public ShoppingCartResult originalShoppintCarts { get; set; }
 
         public bool isSelectedAllShoppingListItem = false;
         public bool isShowSearchIngredientItem = false;
@@ -86,12 +86,12 @@ namespace Foody.ViewModels
         // Shopping list data
         async public void GetShoppingList()
         {
-            originalShoppintLists = new ShoppingListResult();
+            originalShoppingLists = new ShoppingListResult();
             //shoppingListGroupManagers = new ObservableCollection<ShoppingListGroupManager>();
 
-            originalShoppintLists = await App.RecipeManager.GetShoppingList();
+            originalShoppingLists = await App.RecipeManager.GetShoppingList();
 
-            var queryIngredientAisle = from item in originalShoppintLists.results
+            var queryIngredientAisle = from item in originalShoppingLists.results
                                        group item by item.aisle into newResults
                                        orderby newResults.Key
                                        select newResults;
@@ -202,7 +202,7 @@ namespace Foody.ViewModels
         {
             bool result = false;
 
-            foreach (Item item in originalShoppintLists.results)
+            foreach (Item item in originalShoppingLists.results)
             {
                 if (item.id == shoppingListItem.IngredientId)
                 {
