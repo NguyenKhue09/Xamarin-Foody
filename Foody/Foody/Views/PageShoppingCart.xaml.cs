@@ -58,8 +58,6 @@ namespace Foody.Views
 
         private async void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-            Debug.WriteLine("Call Shopping cart");
-            
             if(!e.Value)
             {
                 ShoppingListItem shoppingList = new ShoppingListItem();
@@ -94,9 +92,15 @@ namespace Foody.Views
 
         }
 
-        private void DeleteShoppingCartItem(object sender, EventArgs e)
+        private async void DeleteShoppingCartItem(object sender, EventArgs e)
         {
-            
+            ShoppingListItem listItem = ((TappedEventArgs)e).Parameter as ShoppingListItem;
+
+            bool result = await shoppingListViewModel.DeleteShoppingCartItem(listItem);
+            if(result)
+            {
+                Debug.WriteLine("Delete Item ShoppingCart success");
+            }    
         }
 
         private async void AddShoppingCartToUserPantry_Tapped(object sender, EventArgs e)

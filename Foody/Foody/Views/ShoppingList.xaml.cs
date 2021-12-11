@@ -107,6 +107,16 @@ namespace Foody.Views
                 }    
             }
             shoppingListViewModel.selectedShoppingtListItems.Clear();
+            shoppingListViewModel.shoppingCartGroupAisleBelong = await shoppingListViewModel.GetShoppingCart();
+            if (shoppingListViewModel.shoppingCartGroupAisleBelong.Count > 0)
+            {
+                int totalItem = 0;
+                foreach (var item in shoppingListViewModel.shoppingCartGroupAisleBelong)
+                {
+                    totalItem += item.shoppingListItems.Count;
+                }
+                totalItemShoppingCart.Text = totalItem.ToString();
+            }
         }
 
         private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)

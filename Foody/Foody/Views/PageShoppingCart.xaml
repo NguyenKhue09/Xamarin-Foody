@@ -4,6 +4,11 @@
              x:Class="Foody.Views.PageShoppingCart"
              xmlns:local="clr-namespace:Foody.ViewModels"
              BackgroundColor="#f5f5f5">
+
+    <ContentPage.Resources>
+        <ResourceDictionary Source="../Styles/Styles.xaml" />
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
@@ -116,7 +121,7 @@
                                                     </CheckBox>
                                                     <Image Source="delete.png" Grid.Column="2" Grid.Row="0" HorizontalOptions="End" VerticalOptions="CenterAndExpand">
                                                         <Image.GestureRecognizers>
-                                                            <TapGestureRecognizer Tapped="DeleteShoppingCartItem"/>
+                                                            <TapGestureRecognizer Tapped="DeleteShoppingCartItem" CommandParameter="{Binding ., Converter={StaticResource ConvertToShoppingListItem} , ConverterParameter={Binding .}}"/>
                                                         </Image.GestureRecognizers>
                                                     </Image>
                                                 </Grid>
