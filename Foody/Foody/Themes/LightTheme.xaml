@@ -12,6 +12,7 @@
     <converters:ColorFromHexConverter x:Key="ColorFromHexConverter"/>
     <converters:ConvertToShoppingListItem x:Key="ConvertToShoppingListItem"/>
     <converters:ConvertStringToRectangle x:Key="ConvertStringToRectangle"/>
+    <converters:ConvertToUserPantryItem x:Key="ConvertToUserPantryItem"/>
 
     <!--#region Color Range-->
     <Color x:Key="colPrim">#000000</Color>

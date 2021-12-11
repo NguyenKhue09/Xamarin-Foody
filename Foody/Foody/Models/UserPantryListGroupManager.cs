@@ -1,5 +1,4 @@
-﻿using Foody.Models.Local;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -8,7 +7,7 @@ using System.Text;
 
 namespace Foody.Models
 {
-    public class PantryBuilderListGroupManager: INotifyPropertyChanged
+    public class UserPantryListGroupManager : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -18,14 +17,14 @@ namespace Foody.Models
 
         public string iconExpand;
 
-        public ObservableCollection<PantryBuilder> pantryBuilderListItems { get; set; }
+        public ObservableCollection<ItemId> userPantryListItems { get; set; }
 
-        public ObservableCollection<PantryBuilder> PantryBuilderListItems
+        public ObservableCollection<ItemId> UserPantryListItems
         {
-            get { return pantryBuilderListItems; }
+            get { return userPantryListItems; }
             set
             {
-                pantryBuilderListItems = value;
+                userPantryListItems = value;
                 NotifyPropertyChanged();
             }
         }
@@ -57,10 +56,10 @@ namespace Foody.Models
             }
         }
 
-        public PantryBuilderListGroupManager(string aisle, ObservableCollection<PantryBuilder> listItems, string iconExpand = "down.png", bool isExpanded = false)
+        public UserPantryListGroupManager(string aisle, ObservableCollection<ItemId> listItems, string iconExpand = "down.png", bool isExpanded = false)
         {
             Aisle = aisle;
-            PantryBuilderListItems = new ObservableCollection<PantryBuilder>(listItems);
+            UserPantryListItems = new ObservableCollection<ItemId>(listItems);
             IconExpand = iconExpand;
             IsExpanded = isExpanded;
         }

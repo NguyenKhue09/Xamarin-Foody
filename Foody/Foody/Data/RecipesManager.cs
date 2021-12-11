@@ -42,7 +42,7 @@ namespace Foody.Data
         {
             return restService.AddIngredientsToShoppingList(iemShoppingList);
         }
-         
+
         public Task<ShoppingListResult> GetShoppingList()
         {
             return restService.GetShoppingList();
@@ -52,7 +52,27 @@ namespace Foody.Data
         {
             return restService.DeleteShoppingListItem(itemId);
         }
+        //shopping cart api
+        public Task<bool> AddIngredientsToShoppingCart(ItemShoppingCart iemShoppingCart)
+        {
+            return restService.AddIngredientsToShoppingCart(iemShoppingCart);
+        }
 
+        public Task<ShoppingCartResult> GetShoppingCart()
+        {
+            return restService.GetShoppingCart();
+        }
+
+        public Task<bool> DeleteShoppingCart(string itemId)
+        {
+            return restService.DeleteShoppingCart(itemId);
+        }
+
+        public Task<bool> AddShoppingCartToUserPantry()
+        {
+            return restService.AddShoppingCartToUserPantry();
+        }
+        // Ingredient
         public Task<IngredientInform> GetIngredientInform(int id)
         {
             return restService.GetIngredientInform(id);
@@ -63,5 +83,36 @@ namespace Foody.Data
             return restService.SearchIngredients(searchString);
         }
 
+        // PantryBuilder Api
+        public Task<PantryBuilderResult> GetPantrybuilderList()
+        {
+            return restService.GetPantrybuilderList();
+        }
+
+        public Task<PantryBuilderResult> SearchPantryBuilder(string searchString)
+        {
+            return restService.SearchPantryBuilder(searchString);
+        }
+
+        // Pantry api
+        public Task<bool> AddItemToUserPantry(UserPantryItem userPantryItem)
+        {
+            return restService.AddItemToUserPantry(userPantryItem);
+        }
+
+        public Task<UserPantryItemResult> GetUserPantryItems(string userId)
+        {
+            return restService.GetUserPantryItems(userId);
+        }
+
+        public Task<bool> DeleteUserPantryItem(string itemId, string userId)
+        {
+            return restService.DeleteUserPantryItem(itemId, userId);
+        }
+
+        public Task<bool> DeleteAllUserPantryItem(string userId)
+        {
+            return restService.DeleteAllUserPantryItem(userId);
+        }
     }
 }

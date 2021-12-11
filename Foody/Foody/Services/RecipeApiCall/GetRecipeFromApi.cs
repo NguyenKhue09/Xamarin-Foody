@@ -24,9 +24,9 @@ namespace Foody.Services.RecipeApiCall
         public Recipe PopularRecipes { get; private set; }
         public Recipe SearchRecipesList { get; private set; }
         public ShoppingListResult ShoppingListResult { get; private set; }
+        public ShoppingCartResult ShoppingCartResult { get; private set; }
         public IngredientInform ingredientInform { get; private set; }
-
-
+        public PantryBuilderResult PantryBuilderResult { get; private set; }
         public RestService()
         {
             client = new HttpClient();
@@ -70,6 +70,7 @@ namespace Foody.Services.RecipeApiCall
             {
                 
                 Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                Recipes.results = new List<Result>();
             }
 
             return Recipes;
@@ -106,8 +107,8 @@ namespace Foody.Services.RecipeApiCall
             }
             catch (Exception ex)
             {
-
                 Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                PopularRecipes.results = new List<Result>();
             }
 
             return PopularRecipes;
@@ -149,6 +150,8 @@ namespace Foody.Services.RecipeApiCall
             {
 
                 Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                SearchRecipesList.results = new List<Result>();
+                await searchPopUp.closeSearchPopup();
             }
 
             return SearchRecipesList;
@@ -187,7 +190,7 @@ namespace Foody.Services.RecipeApiCall
             }
             catch (Exception ex)
             {
-
+                RandomRecipes.results = new List<Result>();
                 Debug.WriteLine(@"\tERROR {0}", ex.Message);
             }
 
@@ -267,7 +270,6 @@ namespace Foody.Services.RecipeApiCall
             return ShoppingListResult;
         }
 
-
         public async Task<bool> DeleteShoppingListItem(string itemId)
         {
             Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/shopping-list/delete-shopping-list-item/{itemId}"));
@@ -298,6 +300,138 @@ namespace Foody.Services.RecipeApiCall
             }
         }
 
+        // Shopping cart api
+        public async Task<bool> AddIngredientsToShoppingCart(ItemShoppingCart itemShoppingCart)
+        {
+            Uri uri = new Uri(string.Format("https://pantry-wizard.herokuapp.com/api/shopping-cart/add-shopping-cart-item"));
+
+
+            try
+            {
+                string json = JsonSerializer.Serialize(itemShoppingCart, serializerOptions);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(uri, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("ThanhCong");
+                    return true;
+                }
+                else
+                {
+                    Debug.WriteLine("Thatbai");
+                    return false;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                return false;
+            }
+        }
+        public async Task<ShoppingCartResult> GetShoppingCart()
+        {
+            string ueserID = App.LoginViewModel.ObsGoogleUser.UID;
+            
+            ShoppingCartResult = new ShoppingCartResult();
+
+            Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/shopping-cart/get-shopping-cart-item/{ueserID}"));
+           
+            try
+            {
+
+                HttpResponseMessage response = await client.GetAsync(uri);
+                Debug.WriteLine("CallAPI");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    ShoppingCartResult = JsonSerializer.Deserialize<ShoppingCartResult>(content, serializerOptions);
+                    Debug.WriteLine("ThanhCong");
+                }
+                else
+                {
+                    ShoppingCartResult.resultsCart = new List<ItemCart>();
+                    Debug.WriteLine("Thatbai");
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
+
+            return ShoppingCartResult;
+        }
+
+        public async Task<bool> DeleteShoppingCart(string itemId)
+        {
+            Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/shopping-cart/delete-shopping-cart-item/{itemId}"));
+            
+            try
+            {
+
+                HttpResponseMessage response = await client.DeleteAsync(uri);
+                
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("ThanhCong");
+                    Debug.WriteLine(response.RequestMessage);
+                    return true;
+                }
+                else
+                {
+                    Debug.WriteLine(response.RequestMessage);
+                    return false;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                return false;
+            }
+        }
+
+        public async Task<bool> AddShoppingCartToUserPantry()
+        {
+            string ueserID = App.LoginViewModel.ObsGoogleUser.UID;
+
+            Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/shopping-cart/add-shopping-cart-item-to-user-pantry/{ueserID}"));
+
+            try
+            {
+
+                HttpResponseMessage response = await client.GetAsync(uri);
+                Debug.WriteLine("CallAPI");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("ThanhCong");
+                    return true;
+                }
+                else
+                {
+                    
+                    Debug.WriteLine("Thatbai");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                return false;
+            }
+
+        }
+
+        // Ingredient
         public async Task<IngredientInform> GetIngredientInform(int id)
         {
             Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/food/ingredients/{id}/information?apiKey={Constants.Constants.APIKEY}&amount=1"));
@@ -359,6 +493,201 @@ namespace Foody.Services.RecipeApiCall
             }
 
             return results;
+        }
+
+        // Pantry Builder Api
+        public async Task<PantryBuilderResult> GetPantrybuilderList()
+        {
+
+            PantryBuilderResult = new PantryBuilderResult();
+
+            Uri uri = new Uri(string.Format("https://pantry-wizard.herokuapp.com/api/pantry-builder/get-pantry-builder"));
+
+            try
+            {
+
+                HttpResponseMessage response = await client.GetAsync(uri);
+                Debug.WriteLine("CallAPI");
+
+                if (response.IsSuccessStatusCode)
+                {
+
+                    string content = await response.Content.ReadAsStringAsync();
+                    PantryBuilderResult = JsonSerializer.Deserialize<PantryBuilderResult>(content, serializerOptions);
+                    Debug.WriteLine("ThanhCong");
+                }
+                else
+                {
+                    Debug.WriteLine("Thatbai");
+                    PantryBuilderResult.pantryBuilder = new List<PantryBuilder>();
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
+
+            return PantryBuilderResult;
+        }
+
+        public async Task<PantryBuilderResult> SearchPantryBuilder(string searchString)
+        {
+            PantryBuilderResult results = new PantryBuilderResult();
+
+            Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/pantry-builder/search-pantry-builder?query={searchString}"));
+            try
+            {
+
+                HttpResponseMessage response = await client.GetAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    results = JsonSerializer.Deserialize<PantryBuilderResult>(content, serializerOptions);
+                    Debug.WriteLine("ThanhCong");
+                }
+                else
+                {
+                    Debug.WriteLine("Thatbai");
+                    results = null;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
+
+            return results;
+        }
+
+        // Pantry api
+        public async Task<bool> AddItemToUserPantry(UserPantryItem userPantryItem)
+        {
+            
+            Uri uri = new Uri(string.Format("https://pantry-wizard.herokuapp.com/api/pantry/add-user-pantry-item"));
+
+            try
+            {
+                string json = JsonSerializer.Serialize(userPantryItem, serializerOptions);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(uri, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("ThanhCong");
+                    return true;
+                }
+                else
+                {
+                    Debug.WriteLine("Thatbai");
+                    return false;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                return false;
+            }
+        }
+
+        public async Task<UserPantryItemResult> GetUserPantryItems(string userId)
+        {
+            UserPantryItemResult userPantryItemResult = new UserPantryItemResult();
+
+            Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/pantry/get-user-pantry-item/{userId}"));
+            try
+            {
+
+                HttpResponseMessage response = await client.GetAsync(uri);
+                Debug.WriteLine("CallAPI");
+                if (response.IsSuccessStatusCode)
+                {
+
+
+                    string content = await response.Content.ReadAsStringAsync();
+                    userPantryItemResult = JsonSerializer.Deserialize<UserPantryItemResult>(content, serializerOptions);
+
+                }
+                else
+                {
+                    Debug.WriteLine("Thatbai");
+                    userPantryItemResult = null;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                userPantryItemResult = null;
+            }
+
+            return userPantryItemResult;
+        }
+
+        public async Task<bool> DeleteUserPantryItem(string itemId, string userId)
+        {
+            Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/pantry/delete-user-pantry-item/{userId}/{itemId}"));
+
+            try
+            {
+
+                HttpResponseMessage response = await client.DeleteAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("ThanhCong");
+                    Debug.WriteLine(response.RequestMessage);
+                    return true;
+                }
+                else
+                {
+                    Debug.WriteLine(response.RequestMessage);
+                    return false;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                return false;
+            }
+        }
+
+        public async Task<bool> DeleteAllUserPantryItem(string userId)
+        {
+            Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/pantry/delete-all-user-pantry-item/{userId}"));
+
+            try
+            {
+
+                HttpResponseMessage response = await client.DeleteAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("ThanhCong");
+                    Debug.WriteLine(response.RequestMessage);
+                    return true;
+                }
+                else
+                {
+                    Debug.WriteLine(response.RequestMessage);
+                    return false;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                return false;
+            }
         }
 
     }

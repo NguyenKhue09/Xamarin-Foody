@@ -25,15 +25,13 @@ namespace Foody.ViewModels
 
         public ObservableCollection<ShoppingListGroupManager> shoppingListGroupManagers { get; set; }
         public ObservableCollection<ShoppingListGroupManager> shoppingCartGroupAisleBelong { get; set; }
-
         public ObservableRangeCollection<IngredientInform> SearchIngredients { get; set; }
-        private ShoppingListResult originalShoppintLists { get; set; }
+        private ShoppingListResult originalShoppingLists { get; set; }
+        public ShoppingCartResult originalShoppintCarts { get; set; }
 
         public bool isSelectedAllShoppingListItem = false;
         public bool isShowSearchIngredientItem = false;
 
-        // group aisle shopping cart
-        IOrderedEnumerable<IGrouping<string, CartIngredient>> queryIngredientAisle;
 
         public string showHeightResultSearch = "0,0,0,0";
 
@@ -66,7 +64,6 @@ namespace Foody.ViewModels
             selectedShoppingtListItems = new ObservableCollection<ShoppingListItem>();
         }
 
-        
         public void changeExpand(string item)
         {
             foreach (ShoppingListGroupManager group in shoppingListGroupManagers)
@@ -82,12 +79,12 @@ namespace Foody.ViewModels
         // Shopping list data
         async public void GetShoppingList()
         {
-            originalShoppintLists = new ShoppingListResult();
+            originalShoppingLists = new ShoppingListResult();
             //shoppingListGroupManagers = new ObservableCollection<ShoppingListGroupManager>();
 
-            originalShoppintLists = await App.RecipeManager.GetShoppingList();
+            originalShoppingLists = await App.RecipeManager.GetShoppingList();
 
-            var queryIngredientAisle = from item in originalShoppintLists.results
+            var queryIngredientAisle = from item in originalShoppingLists.results
                                        group item by item.aisle into newResults
                                        orderby newResults.Key
                                        select newResults;
@@ -198,7 +195,7 @@ namespace Foody.ViewModels
         {
             bool result = false;
 
-            foreach (Item item in originalShoppintLists.results)
+            foreach (Item item in originalShoppingLists.results)
             {
                 if (item.id == shoppingListItem.IngredientId)
                 {
@@ -299,58 +296,57 @@ namespace Foody.ViewModels
             }
         }
 
-        //Shopping cart data 
-        async public void GetShoppingCart()
+        async public Task<ObservableCollection<ShoppingListGroupManager>> GetShoppingCart()
         {
-            RecipeDatabase recipeDatabase = await RecipeDatabase.Instance;
-            List<CartIngredient> cartIngredients = await recipeDatabase.GetIngredientAsync(App.LoginViewModel.ObsGoogleUser.UID);
-            queryIngredientAisle = from item in cartIngredients
-                                       group item by item.aisleBelong into newResults
+            originalShoppintCarts = new ShoppingCartResult();
+            ObservableCollection<ShoppingListGroupManager> shoppingCartGroups = new ObservableCollection<ShoppingListGroupManager>();
+            originalShoppintCarts = await App.RecipeManager.GetShoppingCart();
+            var queryIngredientAisle = from item in originalShoppintCarts.resultsCart
+                                       group item by item.aisle into newResults
                                        orderby newResults.Key
                                        select newResults;
-           
-            foreach (var namegroup in queryIngredientAisle)
+
+            foreach (var nameGroup in queryIngredientAisle)
             {
-                var queryIngredientId = from item in namegroup
-                                        group item by item.ingredientId into newResults
-                                        orderby newResults.Key
-                                        select newResults;
-                ShoppingListGroupManager shoppingCartGroupManager = new ShoppingListGroupManager(namegroup.Key, await SumOfShoppingCartItemFromApi(queryIngredientId));
-                shoppingCartGroupAisleBelong.Add(shoppingCartGroupManager);
+
+                ShoppingListGroupManager shoppingCartGroupManager = new ShoppingListGroupManager(nameGroup.Key, await SumOfShoppingCartItemFromApi(nameGroup));
+                shoppingCartGroups.Add(shoppingCartGroupManager);
+
             }
+            return shoppingCartGroups;
         }
 
-        async Task<ObservableCollection<ShoppingListItem>> SumOfShoppingCartItemFromApi(IOrderedEnumerable<IGrouping<int, CartIngredient>> queryIngredientId)
+        Task<ObservableCollection<ShoppingListItem>> SumOfShoppingCartItemFromApi(IGrouping<string, ItemCart> nameGroup)
         {
             double amount = 0;
             ObservableCollection<ShoppingListItem> shoppingCartItems = new ObservableCollection<ShoppingListItem>();
 
-            foreach (var nameGroup in queryIngredientId)
+
+
+            var queryIngredientId = from item in nameGroup.ToList()
+                                    group item by item.id into newResults
+                                    orderby newResults.Key
+                                    select newResults;
+            foreach (var group in queryIngredientId)
             {
                 ShoppingListItem shoppingCartItem = new ShoppingListItem();
-                foreach (var item in nameGroup)
+                foreach (var item in group)
                 {
                     amount += item.amount;
-                    shoppingCartItem.IngredientName = item.ingredientName;
-                    shoppingCartItem.IngredientAisle = item.aisleBelong;
-                    //shoppingCartItem.IngredientIdList = item.ingredientId;
-                    shoppingCartItem.IngredientUnits = item.ingredientUnits;
+                    shoppingCartItem.IngredientName = item.name;
+                    shoppingCartItem.IngredientAisle = item.aisle;
+                    shoppingCartItem.IngredientIdList = item._id;
+                    shoppingCartItem.IngredientId = item.id;
+                    shoppingCartItem.IngredientUnits = item.unit;
+                    shoppingCartItem.IngredientImg = item.image;
                 }
                 shoppingCartItem.StringIngredientAmount = new Fraction(Math.Round(amount, 2)).ToString();
                 shoppingCartItem.IngredientAmount = amount;
-                shoppingCartItem.IngredientId = nameGroup.Key;
-                shoppingCartItem.IsChoose = true;
-                IngredientInform ingredientInform = await GetIngredientInform(nameGroup.Key);
-                if (ingredientInform != null)
-                {
-                    shoppingCartItem.IngredientImg = ingredientInform.image;
-                }
-                shoppingCartItems.Add(shoppingCartItem);
                 amount = 0;
-
-
+                shoppingCartItem.IsChoose = true;
+                shoppingCartItems.Add(shoppingCartItem);
             }
-            return shoppingCartItems;
+            return Task.FromResult(shoppingCartItems);
         }
 
         //Delete shopping cart item
@@ -358,40 +354,36 @@ namespace Foody.ViewModels
         {
             shoppingCartGroupAisleBelong.Remove(shoppingCartGroupManager);
         }
-        public async Task<bool>DeleteShoppingCartItem(ShoppingListItem shoppingListItem)
+        public async Task<bool> DeleteShoppingCartItem(ShoppingListItem shoppingCartItem)
         {
-            int result = 0;
-            RecipeDatabase recipeDatabase = await RecipeDatabase.Instance;
-            List<CartIngredient> cartIngredients = await recipeDatabase.GetIngredientAsync(App.LoginViewModel.ObsGoogleUser.UID);
-            foreach (var aisle in queryIngredientAisle)
+            bool result = false;
+
+            foreach (ItemCart item in originalShoppintCarts.resultsCart)
             {
-                if (aisle.Key == shoppingListItem.IngredientAisle)
+                if (item.id == shoppingCartItem.IngredientId)
                 {
-                    foreach (CartIngredient cartIngredient in cartIngredients)
-                    {
-                        if (cartIngredient.ingredientId == shoppingListItem.IngredientId)
-                        {
-                            result = await recipeDatabase.DeleteIngredientAsync(cartIngredient);
-                        }
-                    }
+                    Debug.WriteLine(item.name);
+                    result = await App.RecipeManager.DeleteShoppingCart(item._id);
                 }
             }
 
 
-            if (result != 0)
+            if (result)
             {
                 foreach (ShoppingListGroupManager shoppingCartGroupManager in shoppingCartGroupAisleBelong)
                 {
-                    if (shoppingListItem.IngredientAisle == shoppingCartGroupManager.Aisle)
+                    if (shoppingCartItem.IngredientAisle == shoppingCartGroupManager.Aisle)
                     {
-                        shoppingCartGroupManager.ShoppingListItems.Remove(shoppingListItem);
+                        shoppingCartGroupManager.ShoppingListItems.Remove(shoppingCartItem);
                         if (shoppingCartGroupManager.ShoppingListItems.Count == 0)
                         {
                             Debug.WriteLine("Empty list");
                             deleteShoppingCartGroupManagerItem(shoppingCartGroupManager);
+                            break;
                         }
                         break;
                     }
+
                 }
                 return true;
             }
@@ -400,5 +392,6 @@ namespace Foody.ViewModels
                 return false;
             }
         }
+
     }
 }

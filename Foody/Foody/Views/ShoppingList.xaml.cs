@@ -26,11 +26,22 @@ namespace Foody.Views
             InitializeComponent();
             BindingContext = shoppingListViewModel = new ShoppingListViewModel();
             option.IsVisible = false;
+           
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
+            shoppingListViewModel.shoppingCartGroupAisleBelong = await shoppingListViewModel.GetShoppingCart();
+            if (shoppingListViewModel.shoppingCartGroupAisleBelong.Count > 0)
+            {
+                int totalItem = 0;
+                foreach( var item in shoppingListViewModel.shoppingCartGroupAisleBelong)
+                {
+                    totalItem += item.shoppingListItems.Count;
+                }    
+                totalItemShoppingCart.Text = totalItem.ToString();
+            }    
             shoppingListViewModel.GetShoppingList();
         }
 
@@ -40,7 +51,6 @@ namespace Foody.Views
             // clear để ko bị add dồn phần tử
             shoppingListViewModel.IsSelectedAllShoppingListItem = false;
             shoppingListViewModel.shoppingListGroupManagers.Clear();
-            
         }
 
         private async void DeleteShoppingListItem(object sender, EventArgs e)
@@ -74,24 +84,39 @@ namespace Foody.Views
         private async void Add_To_Cart_Tapped(object sender, EventArgs e)
         {
             shoppingListViewModel.GetSelectedShoppingListItem();
-            RecipeDatabase recipeDatabase = await RecipeDatabase.Instance;
             foreach (ShoppingListItem shoppingListItem in shoppingListViewModel.selectedShoppingtListItems)
             {
-                CartIngredient cartIngredient = new CartIngredient();
-                cartIngredient.aisleBelong = shoppingListItem.IngredientAisle;
-                cartIngredient.amount = shoppingListItem.IngredientAmount;
-                cartIngredient.ingredientImg = shoppingListItem.IngredientImg;
-                cartIngredient.ingredientName = shoppingListItem.IngredientName;
-                cartIngredient.ingredientId = shoppingListItem.IngredientId;
-                cartIngredient.userID = App.LoginViewModel.ObsGoogleUser.UID;
-                cartIngredient.ingredientUnits = shoppingListItem.IngredientUnits;
+                ItemShoppingCart itemShoppingCart = new ItemShoppingCart
+                {
+                    id = shoppingListItem.IngredientId,
+                    aisle = shoppingListItem.IngredientAisle,
+                    name = shoppingListItem.IngredientName,
+                    amount = shoppingListItem.IngredientAmount,
+                    unit = shoppingListItem.IngredientUnits,
+                    image = shoppingListItem.IngredientImg,
+                    userID = App.LoginViewModel.ObsGoogleUser.UID
+                };
                 bool checkDelete = await shoppingListViewModel.DeleteShoppingListItem(shoppingListItem);
                 if(checkDelete)
                 {
-                    await recipeDatabase.SaveIngredientAsync(cartIngredient);
+                    bool check = await App.RecipeManager.AddIngredientsToShoppingCart(itemShoppingCart);
                 }
+                if(shoppingListViewModel.selectedShoppingtListItems.Count == 0)
+                {
+                    break;
+                }    
             }
             shoppingListViewModel.selectedShoppingtListItems.Clear();
+            shoppingListViewModel.shoppingCartGroupAisleBelong = await shoppingListViewModel.GetShoppingCart();
+            if (shoppingListViewModel.shoppingCartGroupAisleBelong.Count > 0)
+            {
+                int totalItem = 0;
+                foreach (var item in shoppingListViewModel.shoppingCartGroupAisleBelong)
+                {
+                    totalItem += item.shoppingListItems.Count;
+                }
+                totalItemShoppingCart.Text = totalItem.ToString();
+            }
         }
 
         private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
@@ -100,7 +125,6 @@ namespace Foody.Views
             SearchBar searchBar = (SearchBar)sender;
             await Task.Delay(300);
             shoppingListViewModel.SearchIngredient(searchBar.Text);
-            Debug.WriteLine(shoppingListViewModel.SearchIngredients.Count);
         }
 
         private void ShoppingListToShoppingCart(object sender, EventArgs e)

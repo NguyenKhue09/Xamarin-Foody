@@ -21,12 +21,25 @@ namespace Foody.Views
         {
             InitializeComponent();
             BindingContext = pantrySettingViewModel = new PantrySettingViewModel();
-            pantrySettingViewModel.GetPantryBuilderList();
+            pantrySettingViewModel.GetOriginalPantryBuilderItems();
+            //pantrySettingViewModel.GetPantryBuilderList();
         }
 
         private void BackToPantry_Tapped(object sender, EventArgs e)
         {
             Navigation.PushAsync(new Pantry());
+        }
+
+        private async void Search_PantryBuilder_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            await Task.Delay(300);
+            pantrySettingViewModel.SearchOriginalPantryBuilderItems(SearchPantryBuilder.Text);
+            
+        }
+
+        private void AddSelectedToPantry_Tapped(object sender, EventArgs e)
+        {
+            pantrySettingViewModel.GetSelectedPantryBuidlerItem();
         }
     }
 }

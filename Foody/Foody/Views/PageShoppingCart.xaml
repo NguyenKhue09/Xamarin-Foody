@@ -4,12 +4,17 @@
              x:Class="Foody.Views.PageShoppingCart"
              xmlns:local="clr-namespace:Foody.ViewModels"
              BackgroundColor="#f5f5f5">
+
+    <ContentPage.Resources>
+        <ResourceDictionary Source="../Styles/Styles.xaml" />
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="65"/>
-                <RowDefinition Height="0"/> <!--200-->
-                <RowDefinition Height="3*"/>
+                <RowDefinition x:Name="shoppingCartNull" /> 
+                <RowDefinition x:Name="shoppingCart" /> 
             </Grid.RowDefinitions>
 
             <!--header-->
@@ -47,11 +52,11 @@
             </StackLayout>
             
             <!--Body2-->
-            <CollectionView x:Name="shoplist" 
+            <CollectionView x:Name="shoppingCartContain" 
                                             BackgroundColor="#f5f5f5"
                                             VerticalScrollBarVisibility="Never" 
                                             Grid.Column="0" Grid.Row="2" 
-                                            ItemsSource="{Binding shoppingCartGroupAisleBelong}" Margin="15,0">
+                                            Margin="15,0">
                 <CollectionView.Header>
                     <StackLayout Padding="10,20" HeightRequest="120"></StackLayout>
 
@@ -116,7 +121,7 @@
                                                     </CheckBox>
                                                     <Image Source="delete.png" Grid.Column="2" Grid.Row="0" HorizontalOptions="End" VerticalOptions="CenterAndExpand">
                                                         <Image.GestureRecognizers>
-                                                            <TapGestureRecognizer Tapped="DeleteShoppingCartItem"/>
+                                                            <TapGestureRecognizer Tapped="DeleteShoppingCartItem" CommandParameter="{Binding ., Converter={StaticResource ConvertToShoppingListItem} , ConverterParameter={Binding .}}"/>
                                                         </Image.GestureRecognizers>
                                                     </Image>
                                                 </Grid>
@@ -136,7 +141,7 @@
                                                 BackgroundColor="#07BDF6" CornerRadius="15" 
                                                 VerticalOptions="Start" HorizontalOptions="Center">
                             <yummy:PancakeView.GestureRecognizers>
-                                <TapGestureRecognizer />
+                                <TapGestureRecognizer Tapped="AddShoppingCartToUserPantry_Tapped"/>
                             </yummy:PancakeView.GestureRecognizers>
                             <yummy:PancakeView.BackgroundGradientStops>
                                 <yummy:GradientStopCollection>

@@ -11,6 +11,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.Extensions;
+using Xamarin.CommunityToolkit.UI.Views.Options;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -37,6 +39,8 @@ namespace Foody.Views
             base.OnAppearing();
             pantryViewModel.GetPopularRecipes();
             pantryViewModel.GetRandomRecipes();
+            pantryViewModel.UserPantryListGroupManagers.Clear();
+            pantryViewModel.GetOriginalPantryBuilderItems();
         }
         void CheckFavorite(bool x)
         {
@@ -119,14 +123,31 @@ namespace Foody.Views
             option.IsVisible = !option.IsVisible ? true : false;
         }
 
-        private void deleteSelected(object sender, EventArgs e)
+        private void deleteSelectedUserPantryItem(object sender, EventArgs e)
         {
             option.IsVisible = !option.IsVisible ? true : false;
+            pantryViewModel.DeleteSelectedUserPantryItem();
         }
 
-        private void deleteAll(object sender, EventArgs e)
+        private async void deleteAllUserPantryItem(object sender, EventArgs e)
         {
             option.IsVisible = !option.IsVisible ? true : false;
+            bool result = await pantryViewModel.DeleteAllUserPantryItem();
+            var messageOptions = new MessageOptions
+            {
+                Foreground = Color.Black,
+                Font = Font.SystemFontOfSize(16),
+                Message = result ? $"Delete all item successfully!" : $"Delete all item fail!"
+            };
+
+            var options = new SnackBarOptions
+            {
+                MessageOptions = messageOptions,
+                Duration = TimeSpan.FromMilliseconds(3000),
+                BackgroundColor = result ? Color.FromRgb(75, 181, 67) : Color.FromRgb(250, 17, 61),
+                IsRtl = false,
+            };
+            await this.DisplaySnackBarAsync(options);
         }
 
         private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
@@ -174,6 +195,28 @@ namespace Foody.Views
             }
 
             collectionView_Random.SelectedItem = null;
+        }
+
+        private async void DeleteUserPantryItem_Tapped(object sender, EventArgs e)
+        {
+            ItemId item = ((TappedEventArgs)e).Parameter as ItemId;
+
+            bool result = await pantryViewModel.DeleteUserPantryItem(item);
+            var messageOptions = new MessageOptions
+            {
+                Foreground = Color.Black,
+                Font = Font.SystemFontOfSize(16),
+                Message = result ? $"Delete {item.name} successfully!" : $"Delete {item.name} fail!"
+            };
+
+            var options = new SnackBarOptions
+            {
+                MessageOptions = messageOptions,
+                Duration = TimeSpan.FromMilliseconds(3000),
+                BackgroundColor = result ? Color.FromRgb(75, 181, 67) : Color.FromRgb(250, 17, 61),
+                IsRtl = false,
+            };
+            await this.DisplaySnackBarAsync(options);
         }
     }
 }
