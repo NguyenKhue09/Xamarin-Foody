@@ -286,7 +286,7 @@ namespace Foody.ViewModels
             bool result = await App.RecipeManager.AddItemToUserPantry(userPantryItem);
             return result;
         }
-        public async void DeleteSelectedUserPantryItem()
+        public async Task<int> DeleteSelectedUserPantryItem()
         {
             GetSelectedUserPantryItem();
             foreach(ItemId itemId in selectedUserPantryItems)
@@ -294,6 +294,8 @@ namespace Foody.ViewModels
                 _ = await DeleteUserPantryItem(itemId);
             }
             selectedUserPantryItems.Clear();
+
+            return UserPantryListGroupManagers.Count;
         }
 
         public async Task<bool> DeleteAllUserPantryItem()

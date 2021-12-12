@@ -122,11 +122,12 @@ namespace Foody.Views
             option.IsVisible = !option.IsVisible ? true : false;
         }
 
-        private void deleteSelectedUserPantryItem(object sender, EventArgs e)
+        private async void deleteSelectedUserPantryItem(object sender, EventArgs e)
         {
             option.IsVisible = !option.IsVisible ? true : false;
-            pantryViewModel.DeleteSelectedUserPantryItem();
-            if (pantryViewModel.UserPantryListGroupManagers.Count > 0)
+            int result = await pantryViewModel.DeleteSelectedUserPantryItem();
+
+            if (result > 0)
             {
                 lb.Height = new GridLength(0.4, GridUnitType.Star);
                 col.Height = new GridLength(0.98, GridUnitType.Star);
