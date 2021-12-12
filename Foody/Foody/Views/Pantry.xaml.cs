@@ -285,8 +285,21 @@ namespace Foody.Views
                     pantryViewModel.IsShowSearchIngredientItem = false;
                     SearchBarIngredient.Text = null;
                 }
+                if (pantryViewModel.UserPantryListGroupManagers.Count > 0)
+                {
+                    lb.Height = new GridLength(0.4, GridUnitType.Star);
+                    col.Height = new GridLength(0.98, GridUnitType.Star);
+                    PTnormal.Height = 0;
+                    PTlist.Height = new GridLength(1, GridUnitType.Star);
+                }
+                else
+                {
+                    lb.Height = 0;
+                    col.Height = 0;
+                    PTnormal.Height = new GridLength(1, GridUnitType.Star);
+                    PTlist.Height = 0;
+                }
             }
-
             IngredientsSearch.SelectedItem = null;
         }
     }
