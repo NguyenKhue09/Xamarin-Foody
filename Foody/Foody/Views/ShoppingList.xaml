@@ -55,7 +55,7 @@
                                 <TapGestureRecognizer Tapped="ShoppingListToShoppingCart"/>
                             </Image.GestureRecognizers>
                         </Image>
-                        <Frame CornerRadius="90" BackgroundColor="Green" 
+                        <Frame x:Name="showTotalItemShoppingCart" CornerRadius="90" BackgroundColor="Green" 
                                HeightRequest="18" WidthRequest="18" 
                                VerticalOptions="Start" HorizontalOptions="Start" Padding="0" Margin="21,10"
                                Grid.Column="1" Grid.Row="0">

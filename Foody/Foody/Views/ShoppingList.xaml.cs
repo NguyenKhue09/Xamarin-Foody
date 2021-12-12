@@ -26,7 +26,7 @@ namespace Foody.Views
             InitializeComponent();
             BindingContext = shoppingListViewModel = new ShoppingListViewModel();
             option.IsVisible = false;
-           
+            showTotalItemShoppingCart.IsVisible = false;
         }
 
         protected async override void OnAppearing()
@@ -39,9 +39,14 @@ namespace Foody.Views
                 foreach( var item in shoppingListViewModel.shoppingCartGroupAisleBelong)
                 {
                     totalItem += item.shoppingListItems.Count;
-                }    
+                }
+                showTotalItemShoppingCart.IsVisible = true;
                 totalItemShoppingCart.Text = totalItem.ToString();
-            }    
+            }
+            else
+            {
+                showTotalItemShoppingCart.IsVisible = false;
+            }
             shoppingListViewModel.GetShoppingList();
         }
 
@@ -116,6 +121,11 @@ namespace Foody.Views
                     totalItem += item.shoppingListItems.Count;
                 }
                 totalItemShoppingCart.Text = totalItem.ToString();
+                showTotalItemShoppingCart.IsVisible = true;
+            }
+            else
+            {
+                showTotalItemShoppingCart.IsVisible = false;
             }
         }
 
