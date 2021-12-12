@@ -220,10 +220,10 @@ namespace Foody.ViewModels
 
 
         // Pantry
-        public async void GetOriginalPantryBuilderItems()
+        public async Task<ObservableCollection<UserPantryListGroupManager>> GetOriginalPantryBuilderItems()
         {
             UserPantryItemResult userPantryItemResult = await App.RecipeManager.GetUserPantryItems(App.LoginViewModel.GoogleUser.UID);
-            
+            ObservableCollection < UserPantryListGroupManager > userPantryListGroups = new ObservableCollection<UserPantryListGroupManager>();
             if (userPantryItemResult != null)
             {
                 originalUserPantryItems = new ObservableRangeCollection<ItemId>(userPantryItemResult.pantryItems.itemId);
@@ -231,26 +231,37 @@ namespace Foody.ViewModels
             {
                 originalUserPantryItems.Clear();
             }
-            GetPantryBuilderList();
-        }
-
-        public void GetPantryBuilderList()
-        {
-
             var queryPantryBuilderAisle = from item in originalUserPantryItems
                                           group item by item.aisle into newResults
                                           orderby newResults.Key
                                           select newResults;
-
             foreach (var aisleGroup in queryPantryBuilderAisle)
             {
-                UserPantryListGroupManagers.Add(new UserPantryListGroupManager(
+                userPantryListGroups.Add(new UserPantryListGroupManager(
                     aisleGroup.Key,
                     new ObservableCollection<ItemId>(aisleGroup.ToList())
                 ));
             }
-
+            return userPantryListGroups;
         }
+
+        //public void GetPantryBuilderList()
+        //{
+
+        //    var queryPantryBuilderAisle = from item in originalUserPantryItems
+        //                                  group item by item.aisle into newResults
+        //                                  orderby newResults.Key
+        //                                  select newResults;
+
+        //    foreach (var aisleGroup in queryPantryBuilderAisle)
+        //    {
+        //        UserPantryListGroupManagers.Add(new UserPantryListGroupManager(
+        //            aisleGroup.Key,
+        //            new ObservableCollection<ItemId>(aisleGroup.ToList())
+        //        ));
+        //    }
+
+        //}
 
         public void GetSelectedUserPantryItem()
         {

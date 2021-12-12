@@ -29,24 +29,20 @@ namespace Foody.Views
         public Pantry()
         {
             InitializeComponent();
-            CheckFavorite(true);
             BindingContext = pantryViewModel = new PantryViewModel(Navigation);
             option.IsVisible = false;
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
             pantryViewModel.GetPopularRecipes();
             pantryViewModel.GetRandomRecipes();
             pantryViewModel.UserPantryListGroupManagers.Clear();
-            pantryViewModel.GetOriginalPantryBuilderItems();
-        }
-        void CheckFavorite(bool x)
-        {
-            if (x)
+            pantryViewModel.UserPantryListGroupManagers = await pantryViewModel.GetOriginalPantryBuilderItems();
+            if (pantryViewModel.UserPantryListGroupManagers.Count > 0)
             {
-
+                manager.ItemsSource = pantryViewModel.UserPantryListGroupManagers;
                 lb.Height = new GridLength(0.4, GridUnitType.Star);
                 col.Height = new GridLength(0.98, GridUnitType.Star);
                 PTnormal.Height = 0;
@@ -59,7 +55,6 @@ namespace Foody.Views
                 PTnormal.Height = new GridLength(1, GridUnitType.Star);
                 PTlist.Height = 0;
             }
-
         }
         private void TabPantry_SelectedTabIndexChanged(object sender, SelectedPositionChangedEventArgs e)
         {
@@ -127,6 +122,20 @@ namespace Foody.Views
         {
             option.IsVisible = !option.IsVisible ? true : false;
             pantryViewModel.DeleteSelectedUserPantryItem();
+            if (pantryViewModel.UserPantryListGroupManagers.Count > 0)
+            {
+                lb.Height = new GridLength(0.4, GridUnitType.Star);
+                col.Height = new GridLength(0.98, GridUnitType.Star);
+                PTnormal.Height = 0;
+                PTlist.Height = new GridLength(1, GridUnitType.Star);
+            }
+            else
+            {
+                lb.Height = 0;
+                col.Height = 0;
+                PTnormal.Height = new GridLength(1, GridUnitType.Star);
+                PTlist.Height = 0;
+            }
         }
 
         private async void deleteAllUserPantryItem(object sender, EventArgs e)
@@ -147,6 +156,10 @@ namespace Foody.Views
                 BackgroundColor = result ? Color.FromRgb(75, 181, 67) : Color.FromRgb(250, 17, 61),
                 IsRtl = false,
             };
+            lb.Height = 0;
+            col.Height = 0;
+            PTnormal.Height = new GridLength(1, GridUnitType.Star);
+            PTlist.Height = 0;
             await this.DisplaySnackBarAsync(options);
         }
 
@@ -216,6 +229,20 @@ namespace Foody.Views
                 BackgroundColor = result ? Color.FromRgb(75, 181, 67) : Color.FromRgb(250, 17, 61),
                 IsRtl = false,
             };
+            if (pantryViewModel.UserPantryListGroupManagers.Count > 0)
+            {
+                lb.Height = new GridLength(0.4, GridUnitType.Star);
+                col.Height = new GridLength(0.98, GridUnitType.Star);
+                PTnormal.Height = 0;
+                PTlist.Height = new GridLength(1, GridUnitType.Star);
+            }
+            else
+            {
+                lb.Height = 0;
+                col.Height = 0;
+                PTnormal.Height = new GridLength(1, GridUnitType.Star);
+                PTlist.Height = 0;
+            }
             await this.DisplaySnackBarAsync(options);
         }
     }
