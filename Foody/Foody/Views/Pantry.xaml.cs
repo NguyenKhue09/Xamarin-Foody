@@ -271,7 +271,22 @@ namespace Foody.Views
                         AddItemToUserPantryImg.Source = "plus1.png";
                         pantryViewModel.UserPantryListGroupManagers.Clear();
                         pantryViewModel.IsShowSearchIngredientItem = false;
-                        _ = await pantryViewModel.GetOriginalPantryBuilderItems();
+                        pantryViewModel.UserPantryListGroupManagers = await pantryViewModel.GetOriginalPantryBuilderItems();
+                        if (pantryViewModel.UserPantryListGroupManagers.Count > 0)
+                        {
+                            manager.ItemsSource = pantryViewModel.UserPantryListGroupManagers;
+                            lb.Height = new GridLength(0.4, GridUnitType.Star);
+                            col.Height = new GridLength(0.98, GridUnitType.Star);
+                            PTnormal.Height = 0;
+                            PTlist.Height = new GridLength(1, GridUnitType.Star);
+                        }
+                        else
+                        {
+                            lb.Height = 0;
+                            col.Height = 0;
+                            PTnormal.Height = new GridLength(1, GridUnitType.Star);
+                            PTlist.Height = 0;
+                        }
                         SearchBarIngredient.Text = null;
                     }
                     else
