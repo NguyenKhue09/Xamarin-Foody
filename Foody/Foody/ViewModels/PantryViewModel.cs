@@ -186,7 +186,7 @@ namespace Foody.ViewModels
         //search pantry manager
         async public void SearchUserPantryItem(string searchString)
         {
-
+            Debug.WriteLine("Call search pantry");
             PantryBuilderResult results = await App.RecipeManager.SearchPantryBuilder(searchString);
 
             if (results != null)
