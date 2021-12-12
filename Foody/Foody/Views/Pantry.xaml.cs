@@ -167,7 +167,11 @@ namespace Foody.Views
         {
             SearchBar searchBar = (SearchBar)sender;
             await Task.Delay(300);
-            pantryViewModel.SearchUserPantryItem(searchBar.Text);
+            if(searchBar.Text != null)
+            {
+                pantryViewModel.SearchUserPantryItem(searchBar.Text);
+            }
+            
             Debug.WriteLine(pantryViewModel.SearchUserPantryItems.Count);
         }
 
@@ -267,7 +271,7 @@ namespace Foody.Views
                         AddItemToUserPantryImg.Source = "plus1.png";
                         pantryViewModel.UserPantryListGroupManagers.Clear();
                         pantryViewModel.IsShowSearchIngredientItem = false;
-                        pantryViewModel.GetOriginalPantryBuilderItems();
+                        _ = await pantryViewModel.GetOriginalPantryBuilderItems();
                         SearchBarIngredient.Text = null;
                     }
                     else
