@@ -29,24 +29,20 @@ namespace Foody.Views
         public Pantry()
         {
             InitializeComponent();
-            CheckFavorite(true);
             BindingContext = pantryViewModel = new PantryViewModel(Navigation);
             option.IsVisible = false;
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
             pantryViewModel.GetPopularRecipes();
             pantryViewModel.GetRandomRecipes();
             pantryViewModel.UserPantryListGroupManagers.Clear();
-            pantryViewModel.GetOriginalPantryBuilderItems();
-        }
-        void CheckFavorite(bool x)
-        {
-            if (x)
+            pantryViewModel.UserPantryListGroupManagers = await pantryViewModel.GetOriginalPantryBuilderItems();
+            if (pantryViewModel.UserPantryListGroupManagers.Count > 0)
             {
-
+                manager.ItemsSource = pantryViewModel.UserPantryListGroupManagers;
                 lb.Height = new GridLength(0.4, GridUnitType.Star);
                 col.Height = new GridLength(0.98, GridUnitType.Star);
                 PTnormal.Height = 0;
@@ -59,7 +55,6 @@ namespace Foody.Views
                 PTnormal.Height = new GridLength(1, GridUnitType.Star);
                 PTlist.Height = 0;
             }
-
         }
         private void TabPantry_SelectedTabIndexChanged(object sender, SelectedPositionChangedEventArgs e)
         {
@@ -123,10 +118,25 @@ namespace Foody.Views
             option.IsVisible = !option.IsVisible ? true : false;
         }
 
-        private void deleteSelectedUserPantryItem(object sender, EventArgs e)
+        private async void deleteSelectedUserPantryItem(object sender, EventArgs e)
         {
             option.IsVisible = !option.IsVisible ? true : false;
-            pantryViewModel.DeleteSelectedUserPantryItem();
+            int result = await pantryViewModel.DeleteSelectedUserPantryItem();
+
+            if (result > 0)
+            {
+                lb.Height = new GridLength(0.4, GridUnitType.Star);
+                col.Height = new GridLength(0.98, GridUnitType.Star);
+                PTnormal.Height = 0;
+                PTlist.Height = new GridLength(1, GridUnitType.Star);
+            }
+            else
+            {
+                lb.Height = 0;
+                col.Height = 0;
+                PTnormal.Height = new GridLength(1, GridUnitType.Star);
+                PTlist.Height = 0;
+            }
         }
 
         private async void deleteAllUserPantryItem(object sender, EventArgs e)
@@ -147,6 +157,10 @@ namespace Foody.Views
                 BackgroundColor = result ? Color.FromRgb(75, 181, 67) : Color.FromRgb(250, 17, 61),
                 IsRtl = false,
             };
+            lb.Height = 0;
+            col.Height = 0;
+            PTnormal.Height = new GridLength(1, GridUnitType.Star);
+            PTlist.Height = 0;
             await this.DisplaySnackBarAsync(options);
         }
 
@@ -154,8 +168,12 @@ namespace Foody.Views
         {
             SearchBar searchBar = (SearchBar)sender;
             await Task.Delay(300);
-            pantryViewModel.SearchIngredient(searchBar.Text);
-            Debug.WriteLine(pantryViewModel.SearchIngredients.Count);
+            if(searchBar.Text != null)
+            {
+                pantryViewModel.SearchUserPantryItem(searchBar.Text);
+            }
+            
+            Debug.WriteLine(pantryViewModel.SearchUserPantryItems.Count);
         }
 
         private async void collectionView_ingredients_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -216,7 +234,93 @@ namespace Foody.Views
                 BackgroundColor = result ? Color.FromRgb(75, 181, 67) : Color.FromRgb(250, 17, 61),
                 IsRtl = false,
             };
+            if (pantryViewModel.UserPantryListGroupManagers.Count > 0)
+            {
+                lb.Height = new GridLength(0.4, GridUnitType.Star);
+                col.Height = new GridLength(0.98, GridUnitType.Star);
+                PTnormal.Height = 0;
+                PTlist.Height = new GridLength(1, GridUnitType.Star);
+            }
+            else
+            {
+                lb.Height = 0;
+                col.Height = 0;
+                PTnormal.Height = new GridLength(1, GridUnitType.Star);
+                PTlist.Height = 0;
+            }
             await this.DisplaySnackBarAsync(options);
+        }
+
+        private async void AddIngredientToPUserPantry_Tapped(object sender, EventArgs e)
+        {
+            if (IngredientsSearch.SelectedItem != null)
+            {
+                PantryBuilder selectedItem = (PantryBuilder)IngredientsSearch.SelectedItem;
+
+                AddItemToUserPantryImg.Source = "loading.gif";
+                if (selectedItem != null)
+                {
+                    UserPantryItem userPantryItem = new UserPantryItem
+                    {
+                        userId = App.LoginViewModel.GoogleUser.UID,
+                        itemId = selectedItem._id
+                    };
+
+                    bool result = await App.RecipeManager.AddItemToUserPantry(userPantryItem);
+                    if (result)
+                    {
+                        AddItemToUserPantryImg.Source = "plus1.png";
+                        pantryViewModel.UserPantryListGroupManagers.Clear();
+                        pantryViewModel.IsShowSearchIngredientItem = false;
+                        pantryViewModel.UserPantryListGroupManagers = await pantryViewModel.GetOriginalPantryBuilderItems();
+                        if (pantryViewModel.UserPantryListGroupManagers.Count > 0)
+                        {
+                            manager.ItemsSource = pantryViewModel.UserPantryListGroupManagers;
+                            lb.Height = new GridLength(0.4, GridUnitType.Star);
+                            col.Height = new GridLength(0.98, GridUnitType.Star);
+                            PTnormal.Height = 0;
+                            PTlist.Height = new GridLength(1, GridUnitType.Star);
+                        }
+                        else
+                        {
+                            lb.Height = 0;
+                            col.Height = 0;
+                            PTnormal.Height = new GridLength(1, GridUnitType.Star);
+                            PTlist.Height = 0;
+                        }
+                        SearchBarIngredient.Text = null;
+                    }
+                    else
+                    {
+                        AddItemToUserPantryImg.Source = "plus1.png";
+                        await DisplayAlert("Error", "Add item to user pantry fail!", "OK");
+                        pantryViewModel.IsShowSearchIngredientItem = false;
+                        SearchBarIngredient.Text = null;
+                    }
+                }
+                else
+                {
+                    AddItemToUserPantryImg.Source = "plus1.png";
+                    await DisplayAlert("Error", "Add item to user pantry fail!", "OK");
+                    pantryViewModel.IsShowSearchIngredientItem = false;
+                    SearchBarIngredient.Text = null;
+                }
+                if (pantryViewModel.UserPantryListGroupManagers.Count > 0)
+                {
+                    lb.Height = new GridLength(0.4, GridUnitType.Star);
+                    col.Height = new GridLength(0.98, GridUnitType.Star);
+                    PTnormal.Height = 0;
+                    PTlist.Height = new GridLength(1, GridUnitType.Star);
+                }
+                else
+                {
+                    lb.Height = 0;
+                    col.Height = 0;
+                    PTnormal.Height = new GridLength(1, GridUnitType.Star);
+                    PTlist.Height = 0;
+                }
+            }
+            IngredientsSearch.SelectedItem = null;
         }
     }
 }

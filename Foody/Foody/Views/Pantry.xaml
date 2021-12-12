@@ -80,7 +80,10 @@
                                Grid.Column="1" Grid.Row="1" 
                                HeightRequest="60" WidthRequest="65" Margin="0,0,0,40"
                                HorizontalOptions="Start" VerticalOptions="Center">
-                            <Image Source="plus1.png"  Margin="21"/>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AddIngredientToPUserPantry_Tapped" />
+                            </Frame.GestureRecognizers>
+                            <Image x:Name="AddItemToUserPantryImg" Source="plus1.png"  Margin="21"/>
                         </Frame>
 
                     </Grid>
@@ -154,7 +157,7 @@
                                         BackgroundColor="#f5f5f5"
                                         VerticalScrollBarVisibility="Never" 
                                         Grid.Column="0" Grid.Row="1" 
-                                        ItemsSource="{Binding UserPantryListGroupManagers}" Margin="0">
+                                        Margin="0">
                                 <CollectionView.ItemsLayout>
                                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="15"/>
                                 </CollectionView.ItemsLayout>
@@ -1796,11 +1799,11 @@
             </AbsoluteLayout>
             
             <!--result search-->
-            <AbsoluteLayout x:Name="LstIngredientsSearch" Grid.Row="0" Grid.RowSpan="2"  Margin="25,137,10,0" IsVisible="{Binding IsShowSearchIngredientItem}" >
+            <AbsoluteLayout x:Name="LstIngredientsSearch" Grid.Row="0" Grid.RowSpan="2"  Margin="8,137,10,0" IsVisible="{Binding IsShowSearchIngredientItem}" >
                 <Frame  BackgroundColor="White" AbsoluteLayout.LayoutBounds="{Binding ShowHeightResultSearch, Converter={StaticResource ConvertStringToRectangle} , ConverterParameter={Binding ShowHeightResultSearch}}"  AbsoluteLayout.LayoutFlags="PositionProportional" Padding="0" Margin="0" HasShadow="True" BorderColor="Gray">
                     <CollectionView 
                         x:Name="IngredientsSearch"
-                        ItemsSource="{Binding SearchIngredients}" 
+                        ItemsSource="{Binding SearchUserPantryItems}" 
                         BackgroundColor="White" SelectionMode="Single">
 
                         <CollectionView.ItemsLayout>

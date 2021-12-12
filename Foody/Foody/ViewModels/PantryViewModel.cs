@@ -32,7 +32,7 @@ namespace Foody.ViewModels
         public Command ChipIntolerancesUnselectedCommand { get; }
 
         //
-        public ObservableRangeCollection<IngredientInform> SearchIngredients { get; set; }
+        public ObservableRangeCollection<PantryBuilder> SearchUserPantryItems { get; set; }
 
         public bool isShowSearchIngredientItem = false;
 
@@ -74,7 +74,7 @@ namespace Foody.ViewModels
             ChipIntolerancesUnselectedCommand = new Command<string>(chipIntolerancesUnSelected);
             intolerancesList = new List<string>();
             cuisineList = new List<string>();
-            SearchIngredients = new ObservableRangeCollection<IngredientInform>();
+            SearchUserPantryItems = new ObservableRangeCollection<PantryBuilder>();
             //
             Checkmanager = new Command<string>(manager_SelectionChanged);
 
@@ -184,23 +184,23 @@ namespace Foody.ViewModels
         }
 
         //search pantry manager
-        async public void SearchIngredient(string searchString)
+        async public void SearchUserPantryItem(string searchString)
         {
-
-            SearchIngredientsResult results = await App.RecipeManager.SearchIngredients(searchString);
+            Debug.WriteLine("Call search pantry");
+            PantryBuilderResult results = await App.RecipeManager.SearchPantryBuilder(searchString);
 
             if (results != null)
             {
-                if (results.results.Count > 0 && searchString != "")
+                if (results.pantryBuilder.Count > 0 && searchString != "")
                 {
 
-                    SearchIngredients.Clear();
-                    SearchIngredients.AddRange(results.results);
-                    if (results.results.Count == 1)
+                    SearchUserPantryItems.Clear();
+                    SearchUserPantryItems.AddRange(results.pantryBuilder);
+                    if (results.pantryBuilder.Count == 1)
                     {
                         ShowHeightResultSearch = "0,0,280,65";
                     }
-                    else if (results.results.Count == 2)
+                    else if (results.pantryBuilder.Count == 2)
                     {
                         ShowHeightResultSearch = "0,0,280,125";
                     }
@@ -220,10 +220,10 @@ namespace Foody.ViewModels
 
 
         // Pantry
-        public async void GetOriginalPantryBuilderItems()
+        public async Task<ObservableCollection<UserPantryListGroupManager>> GetOriginalPantryBuilderItems()
         {
             UserPantryItemResult userPantryItemResult = await App.RecipeManager.GetUserPantryItems(App.LoginViewModel.GoogleUser.UID);
-            
+            ObservableCollection < UserPantryListGroupManager > userPantryListGroups = new ObservableCollection<UserPantryListGroupManager>();
             if (userPantryItemResult != null)
             {
                 originalUserPantryItems = new ObservableRangeCollection<ItemId>(userPantryItemResult.pantryItems.itemId);
@@ -231,26 +231,37 @@ namespace Foody.ViewModels
             {
                 originalUserPantryItems.Clear();
             }
-            GetPantryBuilderList();
-        }
-
-        public void GetPantryBuilderList()
-        {
-
             var queryPantryBuilderAisle = from item in originalUserPantryItems
                                           group item by item.aisle into newResults
                                           orderby newResults.Key
                                           select newResults;
-
             foreach (var aisleGroup in queryPantryBuilderAisle)
             {
-                UserPantryListGroupManagers.Add(new UserPantryListGroupManager(
+                userPantryListGroups.Add(new UserPantryListGroupManager(
                     aisleGroup.Key,
                     new ObservableCollection<ItemId>(aisleGroup.ToList())
                 ));
             }
-
+            return userPantryListGroups;
         }
+
+        //public void GetPantryBuilderList()
+        //{
+
+        //    var queryPantryBuilderAisle = from item in originalUserPantryItems
+        //                                  group item by item.aisle into newResults
+        //                                  orderby newResults.Key
+        //                                  select newResults;
+
+        //    foreach (var aisleGroup in queryPantryBuilderAisle)
+        //    {
+        //        UserPantryListGroupManagers.Add(new UserPantryListGroupManager(
+        //            aisleGroup.Key,
+        //            new ObservableCollection<ItemId>(aisleGroup.ToList())
+        //        ));
+        //    }
+
+        //}
 
         public void GetSelectedUserPantryItem()
         {
@@ -270,7 +281,12 @@ namespace Foody.ViewModels
             }
         }
 
-        public async void DeleteSelectedUserPantryItem()
+        public async Task<bool> AddItemUserPantry(UserPantryItem userPantryItem)
+        {
+            bool result = await App.RecipeManager.AddItemToUserPantry(userPantryItem);
+            return result;
+        }
+        public async Task<int> DeleteSelectedUserPantryItem()
         {
             GetSelectedUserPantryItem();
             foreach(ItemId itemId in selectedUserPantryItems)
@@ -278,6 +294,8 @@ namespace Foody.ViewModels
                 _ = await DeleteUserPantryItem(itemId);
             }
             selectedUserPantryItems.Clear();
+
+            return UserPantryListGroupManagers.Count;
         }
 
         public async Task<bool> DeleteAllUserPantryItem()

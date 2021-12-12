@@ -106,8 +106,17 @@ namespace Foody.Views
                         }
                     }
                 }
-            }    
-
+            }
+            if (shoppingListViewModel.shoppingCartGroupAisleBelong.Count > 0)
+            {
+                shoppingCartNull.Height = 0;
+                shoppingCart.Height = new GridLength(3, GridUnitType.Star);
+            }
+            else
+            {
+                shoppingCartNull.Height = 200;
+                shoppingCart.Height = 0;
+            }
         }
 
         private async void DeleteShoppingCartItem(object sender, EventArgs e)
@@ -117,6 +126,16 @@ namespace Foody.Views
             bool result = await shoppingListViewModel.DeleteShoppingCartItem(listItem);
             if(result)
             {
+                if (shoppingListViewModel.shoppingCartGroupAisleBelong.Count > 0)
+                {
+                    shoppingCartNull.Height = 0;
+                    shoppingCart.Height = new GridLength(3, GridUnitType.Star);
+                }
+                else
+                {
+                    shoppingCartNull.Height = 200;
+                    shoppingCart.Height = 0;
+                }
                 Debug.WriteLine("Delete Item ShoppingCart success");
             }    
         }
@@ -130,6 +149,8 @@ namespace Foody.Views
                 shoppingListViewModel.shoppingCartGroupAisleBelong.Clear();
                 shoppingListViewModel.originalShoppintCarts = null;
             }
+            shoppingCartNull.Height = 200;
+            shoppingCart.Height = 0;
         }
     }
 }
