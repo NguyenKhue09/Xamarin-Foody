@@ -47,7 +47,16 @@ namespace Foody.Views
             {
                 showTotalItemShoppingCart.IsVisible = false;
             }
-            shoppingListViewModel.GetShoppingList();
+            shoppingListViewModel.shoppingListGroupManagers = await shoppingListViewModel.GetShoppingList();
+            if(shoppingListViewModel.shoppingListGroupManagers.Count >0)
+            {
+                shoplist.ItemsSource = shoppingListViewModel.shoppingListGroupManagers;
+                btnAddToCart.IsVisible = true;
+            }
+            else
+            {
+                btnAddToCart.IsVisible=false;
+            }
         }
 
         protected override void OnDisappearing()
@@ -77,6 +86,14 @@ namespace Foody.Views
                 BackgroundColor = result ? Color.FromRgb(75, 181, 67) : Color.FromRgb(250, 17, 61),
                 IsRtl = false,
             };
+            if (shoppingListViewModel.shoppingListGroupManagers.Count > 0)
+            {
+                btnAddToCart.IsVisible = true;
+            }
+            else
+            {
+                btnAddToCart.IsVisible = false;
+            }
             await this.DisplaySnackBarAsync(options);
         }
 
@@ -112,6 +129,14 @@ namespace Foody.Views
                 }    
             }
             shoppingListViewModel.selectedShoppingtListItems.Clear();
+            if (shoppingListViewModel.shoppingListGroupManagers.Count > 0)
+            {
+                btnAddToCart.IsVisible = true;
+            }
+            else
+            {
+                btnAddToCart.IsVisible = false;
+            }
             shoppingListViewModel.shoppingCartGroupAisleBelong = await shoppingListViewModel.GetShoppingCart();
             if (shoppingListViewModel.shoppingCartGroupAisleBelong.Count > 0)
             {
@@ -155,6 +180,7 @@ namespace Foody.Views
         {
             _ = await shoppingListViewModel.DeleteAllSelectedShoppingListItem();
             option.IsVisible = !option.IsVisible ? true : false;
+            btnAddToCart.IsVisible = false;
         }
 
 
@@ -182,7 +208,16 @@ namespace Foody.Views
                         AddIngredientToSPLImg.Source = "plus1.png";
                         shoppingListViewModel.shoppingListGroupManagers.Clear();
                         shoppingListViewModel.IsShowSearchIngredientItem = false;
-                        shoppingListViewModel.GetShoppingList();
+                        shoppingListViewModel.shoppingListGroupManagers = await shoppingListViewModel.GetShoppingList();
+                        if (shoppingListViewModel.shoppingListGroupManagers.Count > 0)
+                        {
+                            shoplist.ItemsSource = shoppingListViewModel.shoppingListGroupManagers;
+                            btnAddToCart.IsVisible = true;
+                        }
+                        else
+                        {
+                            btnAddToCart.IsVisible = false;
+                        }
                         SearchBarIngredient.Text = null;
                     } else
                     {
