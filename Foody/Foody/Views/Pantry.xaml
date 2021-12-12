@@ -80,7 +80,10 @@
                                Grid.Column="1" Grid.Row="1" 
                                HeightRequest="60" WidthRequest="65" Margin="0,0,0,40"
                                HorizontalOptions="Start" VerticalOptions="Center">
-                            <Image Source="plus1.png"  Margin="21"/>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AddIngredientToPUserPantry_Tapped" />
+                            </Frame.GestureRecognizers>
+                            <Image x:Name="AddItemToUserPantryImg" Source="plus1.png"  Margin="21"/>
                         </Frame>
 
                     </Grid>
@@ -1800,7 +1803,7 @@
                 <Frame  BackgroundColor="White" AbsoluteLayout.LayoutBounds="{Binding ShowHeightResultSearch, Converter={StaticResource ConvertStringToRectangle} , ConverterParameter={Binding ShowHeightResultSearch}}"  AbsoluteLayout.LayoutFlags="PositionProportional" Padding="0" Margin="0" HasShadow="True" BorderColor="Gray">
                     <CollectionView 
                         x:Name="IngredientsSearch"
-                        ItemsSource="{Binding SearchIngredients}" 
+                        ItemsSource="{Binding SearchUserPantryItems}" 
                         BackgroundColor="White" SelectionMode="Single">
 
                         <CollectionView.ItemsLayout>

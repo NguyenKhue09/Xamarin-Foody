@@ -131,7 +131,7 @@ namespace Foody.Views
 
         private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //shoppingListViewModel.SearchIngredients.Clear();
+            //shoppingListViewModel.SearchUserPantryItems.Clear();
             SearchBar searchBar = (SearchBar)sender;
             await Task.Delay(300);
             shoppingListViewModel.SearchIngredient(searchBar.Text);
