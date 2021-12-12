@@ -228,9 +228,9 @@
                                     <RowDefinition x:Name="lb"/>
                                     <RowDefinition x:Name="col"/>
                                     <RowDefinition Height="0.3*"/>
-                                    <RowDefinition Height="0.98*"/>
+                                    <RowDefinition x:Name="popularRecipes"/>
                                     <RowDefinition Height="0.3*"/>
-                                    <RowDefinition Height="0.98*"/>
+                                    <RowDefinition x:Name="tryARecipes"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
