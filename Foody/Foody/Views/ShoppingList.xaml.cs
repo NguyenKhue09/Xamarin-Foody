@@ -134,7 +134,11 @@ namespace Foody.Views
             //shoppingListViewModel.SearchUserPantryItems.Clear();
             SearchBar searchBar = (SearchBar)sender;
             await Task.Delay(300);
-            shoppingListViewModel.SearchIngredient(searchBar.Text);
+            if (searchBar.Text != null)
+            {
+                shoppingListViewModel.SearchIngredient(searchBar.Text);
+            }
+           
         }
 
         private void ShoppingListToShoppingCart(object sender, EventArgs e)
