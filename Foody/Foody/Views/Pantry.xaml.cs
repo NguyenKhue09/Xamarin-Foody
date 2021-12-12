@@ -154,8 +154,8 @@ namespace Foody.Views
         {
             SearchBar searchBar = (SearchBar)sender;
             await Task.Delay(300);
-            pantryViewModel.SearchIngredient(searchBar.Text);
-            Debug.WriteLine(pantryViewModel.SearchIngredients.Count);
+            pantryViewModel.SearchUserPantryItem(searchBar.Text);
+            Debug.WriteLine(pantryViewModel.SearchUserPantryItems.Count);
         }
 
         private async void collectionView_ingredients_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -217,6 +217,50 @@ namespace Foody.Views
                 IsRtl = false,
             };
             await this.DisplaySnackBarAsync(options);
+        }
+
+        private async void AddIngredientToPUserPantry_Tapped(object sender, EventArgs e)
+        {
+            if (IngredientsSearch.SelectedItem != null)
+            {
+                PantryBuilder selectedItem = (PantryBuilder)IngredientsSearch.SelectedItem;
+
+                AddItemToUserPantryImg.Source = "loading.gif";
+                if (selectedItem != null)
+                {
+                    UserPantryItem userPantryItem = new UserPantryItem
+                    {
+                        userId = App.LoginViewModel.GoogleUser.UID,
+                        itemId = selectedItem._id
+                    };
+
+                    bool result = await App.RecipeManager.AddItemToUserPantry(userPantryItem);
+                    if (result)
+                    {
+                        AddItemToUserPantryImg.Source = "plus1.png";
+                        pantryViewModel.UserPantryListGroupManagers.Clear();
+                        pantryViewModel.IsShowSearchIngredientItem = false;
+                        pantryViewModel.GetOriginalPantryBuilderItems();
+                        SearchBarIngredient.Text = null;
+                    }
+                    else
+                    {
+                        AddItemToUserPantryImg.Source = "plus1.png";
+                        await DisplayAlert("Error", "Add item to user pantry fail!", "OK");
+                        pantryViewModel.IsShowSearchIngredientItem = false;
+                        SearchBarIngredient.Text = null;
+                    }
+                }
+                else
+                {
+                    AddItemToUserPantryImg.Source = "plus1.png";
+                    await DisplayAlert("Error", "Add item to user pantry fail!", "OK");
+                    pantryViewModel.IsShowSearchIngredientItem = false;
+                    SearchBarIngredient.Text = null;
+                }
+            }
+
+            IngredientsSearch.SelectedItem = null;
         }
     }
 }
