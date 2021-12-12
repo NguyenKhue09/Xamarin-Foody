@@ -60,7 +60,7 @@ namespace Foody.Views
         {
             if(!e.Value)
             {
-                ShoppingListItem shoppingList = new ShoppingListItem();
+                ShoppingListItem shoppingCart = new ShoppingListItem();
                 foreach (var item in shoppingListViewModel.shoppingCartGroupAisleBelong)
                 {
                     foreach (ShoppingListItem shoppingCartItem in item.shoppingListItems)
@@ -71,21 +71,39 @@ namespace Foody.Views
                             Debug.WriteLine("okeoke");
                             Debug.WriteLine(shoppingCartItem.IsChoose);
                             Debug.WriteLine("okeoke");
-                            shoppingList = shoppingCartItem;
+                            shoppingCart = shoppingCartItem;
                             break;
                         }
                     }
-                    if (shoppingList != null)
+                    if (shoppingCart.IngredientImg != null)
                     {
                         break;
                     }
                 }
-                if (shoppingList != null)
+                if (shoppingCart != null)
                 {
-                    checkDelete = await shoppingListViewModel.DeleteShoppingCartItem(shoppingList);
+                    checkDelete = await shoppingListViewModel.DeleteShoppingCartItem(shoppingCart);
                     if (checkDelete)
                     {
-                        Debug.WriteLine("Ổn r đó");
+                        ItemShoppingList itemShoppingList = new ItemShoppingList
+                        {
+                            id = shoppingCart.IngredientId,
+                            aisle = shoppingCart.IngredientAisle,
+                            name = shoppingCart.IngredientName,
+                            amount = shoppingCart.IngredientAmount,
+                            unit = shoppingCart.IngredientUnits,
+                            image = shoppingCart.IngredientImg
+                        };
+
+                        bool response = await App.RecipeManager.AddIngredientsToShoppingList(itemShoppingList);
+                        if (response)
+                        {
+                            Debug.WriteLine("Add to shoppinglist succes");
+                        }
+                        else
+                        {
+                            Debug.WriteLine("That Bai");
+                        }
                     }
                 }
             }    
