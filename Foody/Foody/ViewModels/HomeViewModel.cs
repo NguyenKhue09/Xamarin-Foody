@@ -40,7 +40,7 @@ namespace Foody.ViewModels
 
         async public void GetRecipes()
         {
-            Recipe results = await App.RecipeManager.GetRecipes();
+            Recipe results = await App.RecipeManager.GetPopularRecipes();
             if (results != null)
                 Recipes.AddRange(results.results);
         }
