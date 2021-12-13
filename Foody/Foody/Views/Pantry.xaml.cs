@@ -45,6 +45,8 @@ namespace Foody.Views
                 manager.ItemsSource = pantryViewModel.UserPantryListGroupManagers;
                 lb.Height = new GridLength(0.4, GridUnitType.Star);
                 col.Height = new GridLength(0.98, GridUnitType.Star);
+                popularRecipes.Height = new GridLength(0.98, GridUnitType.Star);
+                tryARecipes.Height = new GridLength(0.98, GridUnitType.Star);
                 PTnormal.Height = 0;
                 PTlist.Height = new GridLength(1, GridUnitType.Star);
             }
@@ -52,6 +54,8 @@ namespace Foody.Views
             {
                 lb.Height = 0;
                 col.Height = 0;
+                popularRecipes.Height = new GridLength(1.3, GridUnitType.Star);
+                tryARecipes.Height = new GridLength(1.3, GridUnitType.Star);
                 PTnormal.Height = new GridLength(1, GridUnitType.Star);
                 PTlist.Height = 0;
             }
@@ -127,6 +131,8 @@ namespace Foody.Views
             {
                 lb.Height = new GridLength(0.4, GridUnitType.Star);
                 col.Height = new GridLength(0.98, GridUnitType.Star);
+                popularRecipes.Height = new GridLength(0.98, GridUnitType.Star);
+                tryARecipes.Height = new GridLength(0.98, GridUnitType.Star);
                 PTnormal.Height = 0;
                 PTlist.Height = new GridLength(1, GridUnitType.Star);
             }
@@ -134,6 +140,8 @@ namespace Foody.Views
             {
                 lb.Height = 0;
                 col.Height = 0;
+                popularRecipes.Height = new GridLength(1.3, GridUnitType.Star);
+                tryARecipes.Height = new GridLength(1.3, GridUnitType.Star);
                 PTnormal.Height = new GridLength(1, GridUnitType.Star);
                 PTlist.Height = 0;
             }
@@ -159,6 +167,8 @@ namespace Foody.Views
             };
             lb.Height = 0;
             col.Height = 0;
+            popularRecipes.Height = new GridLength(1.3, GridUnitType.Star);
+            tryARecipes.Height = new GridLength(1.3, GridUnitType.Star);
             PTnormal.Height = new GridLength(1, GridUnitType.Star);
             PTlist.Height = 0;
             await this.DisplaySnackBarAsync(options);
@@ -238,6 +248,8 @@ namespace Foody.Views
             {
                 lb.Height = new GridLength(0.4, GridUnitType.Star);
                 col.Height = new GridLength(0.98, GridUnitType.Star);
+                popularRecipes.Height = new GridLength(0.98, GridUnitType.Star);
+                tryARecipes.Height = new GridLength(0.98, GridUnitType.Star);
                 PTnormal.Height = 0;
                 PTlist.Height = new GridLength(1, GridUnitType.Star);
             }
@@ -245,6 +257,8 @@ namespace Foody.Views
             {
                 lb.Height = 0;
                 col.Height = 0;
+                popularRecipes.Height = new GridLength(1.3, GridUnitType.Star);
+                tryARecipes.Height = new GridLength(1.3, GridUnitType.Star);
                 PTnormal.Height = new GridLength(1, GridUnitType.Star);
                 PTlist.Height = 0;
             }
@@ -278,6 +292,8 @@ namespace Foody.Views
                             manager.ItemsSource = pantryViewModel.UserPantryListGroupManagers;
                             lb.Height = new GridLength(0.4, GridUnitType.Star);
                             col.Height = new GridLength(0.98, GridUnitType.Star);
+                            popularRecipes.Height = new GridLength(0.98, GridUnitType.Star);
+                            tryARecipes.Height = new GridLength(0.98, GridUnitType.Star);
                             PTnormal.Height = 0;
                             PTlist.Height = new GridLength(1, GridUnitType.Star);
                         }
@@ -285,6 +301,8 @@ namespace Foody.Views
                         {
                             lb.Height = 0;
                             col.Height = 0;
+                            popularRecipes.Height = new GridLength(1.3, GridUnitType.Star);
+                            tryARecipes.Height = new GridLength(1.3, GridUnitType.Star);
                             PTnormal.Height = new GridLength(1, GridUnitType.Star);
                             PTlist.Height = 0;
                         }
@@ -304,20 +322,6 @@ namespace Foody.Views
                     await DisplayAlert("Error", "Add item to user pantry fail!", "OK");
                     pantryViewModel.IsShowSearchIngredientItem = false;
                     SearchBarIngredient.Text = null;
-                }
-                if (pantryViewModel.UserPantryListGroupManagers.Count > 0)
-                {
-                    lb.Height = new GridLength(0.4, GridUnitType.Star);
-                    col.Height = new GridLength(0.98, GridUnitType.Star);
-                    PTnormal.Height = 0;
-                    PTlist.Height = new GridLength(1, GridUnitType.Star);
-                }
-                else
-                {
-                    lb.Height = 0;
-                    col.Height = 0;
-                    PTnormal.Height = new GridLength(1, GridUnitType.Star);
-                    PTlist.Height = 0;
                 }
             }
             IngredientsSearch.SelectedItem = null;

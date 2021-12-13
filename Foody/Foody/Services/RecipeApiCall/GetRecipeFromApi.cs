@@ -80,12 +80,14 @@ namespace Foody.Services.RecipeApiCall
         {
             Debug.WriteLine("Popular");
             Recipe PopularRecipes  = new Recipe();
-
+            string[] Diet = { "ketogenic", "gluten free", "vegan", "primal" };
+            Random rnd = new Random();
+            int index = rnd.Next(Diet.Length);
             //Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/recipes/complexSearch?number=" +
             //    $"{Constants.Constants.NUMBER}&apiKey={Constants.Constants.APIKEY}&type={Constants.Constants.POPULAR_RECIPE_TYPE}" +
             //    $"&diet={Constants.Constants.POPULAR_DIET}&addRecipesInformation={Constants.Constants.ADDRECIPEINFORMATION}" +
             //    $"&fillIngredients={Constants.Constants.FILLINGREDIENTS}&addRecipeNutrition={Constants.Constants.RECIPENUTRITION}", string.Empty));
-            Uri uri = new Uri(string.Format("https://pantry-wizard.herokuapp.com/api/recipes/get-recipe"));
+            Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/recipes/search-recipe?diet={Diet[index]}&type=lunch"));
             try
             {
 
@@ -160,17 +162,21 @@ namespace Foody.Services.RecipeApiCall
         public async Task<Recipe> GetRandomRecipes()
         {
 
-            string[] names = { "Ketogenic", "Gluten Free", "Vegetarian", "Lacto-Vegetarian", "Vegan", "Paleo", "Pescetarian", "Low FODMAP" };
+            string[] Diet = { "ketogenic", "gluten free", "vegan", "primal" };
             Random rnd = new Random();
-            int index = rnd.Next(names.Length);
-
+            int index = rnd.Next(Diet.Length);
+            string[] Type = { "main course", "side dish", "dessert", "appetizer", "salad", "bread", "breakfast", "soup", "beverage", "sauce", "marinade", "fingerfood", "snack", "drink" };
+            Random random = new Random();
+            Debug.WriteLine(Diet[index]);
+            int index1 = random.Next(Type.Length);
             Recipe RandomRecipes = new Recipe();
+            Debug.WriteLine(Type[index1]);
 
             //Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/recipes/complexSearch?number=" +
             //   $"{Constants.Constants.NUMBER}&apiKey={Constants.Constants.APIKEY}&type={Constants.Constants.RANDOM_RECIPE_TYPE}" +
             //   $"&diet={names[index]}&addRecipesInformation={Constants.Constants.ADDRECIPEINFORMATION}" +
             //   $"&fillIngredients={Constants.Constants.FILLINGREDIENTS}&addRecipeNutrition={Constants.Constants.RECIPENUTRITION}", string.Empty));
-            Uri uri = new Uri(string.Format("https://pantry-wizard.herokuapp.com/api/recipes/get-recipe"));
+            Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/recipes/search-recipe?diet={Diet[index]}&type={Type[index1]}"));
             try
             {
 

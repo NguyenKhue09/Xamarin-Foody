@@ -77,11 +77,11 @@ namespace Foody.ViewModels
 
 
         // Shopping list data
-        async public void GetShoppingList()
+        async public Task<ObservableCollection<ShoppingListGroupManager>> GetShoppingList()
         {
             originalShoppingLists = new ShoppingListResult();
             //shoppingListGroupManagers = new ObservableCollection<ShoppingListGroupManager>();
-
+            ObservableCollection<ShoppingListGroupManager> shoppingListGroups = new ObservableCollection<ShoppingListGroupManager>();
             originalShoppingLists = await App.RecipeManager.GetShoppingList();
 
             var queryIngredientAisle = from item in originalShoppingLists.results
@@ -93,9 +93,9 @@ namespace Foody.ViewModels
             {
                 
                 ShoppingListGroupManager shoppingListGroupManager = new ShoppingListGroupManager(nameGroup.Key, await SumOfShoppingListItemFromApi(nameGroup));
-                shoppingListGroupManagers.Add(shoppingListGroupManager);
+                shoppingListGroups.Add(shoppingListGroupManager);
             }
-
+            return shoppingListGroups;
         }
 
         Task<ObservableCollection<ShoppingListItem>> SumOfShoppingListItemFromApi(IGrouping<string, Item> nameGroup)
