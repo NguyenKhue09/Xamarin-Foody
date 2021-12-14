@@ -55,6 +55,7 @@ namespace Foody.Models
         public List<ExtendedIngredient> extendedIngredients { get; set; }
         public int id { get; set; }
         public string title { get; set; }
+        public int readyInMinutes { get; set; }
         public string image { get; set; }
         public List<string> cuisines { get; set; }
         public List<string> dishTypes { get; set; }
