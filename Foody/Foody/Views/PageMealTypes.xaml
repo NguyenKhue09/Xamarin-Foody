@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="Foody.Views.PageMealTypes"
+             BackgroundColor="#f5f5f5"
+             Shell.TabBarIsVisible="False">
+    <ContentPage.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <yummy:PancakeView x:Name="headPantry"  Grid.Column="0" Grid.Row="0" 
+                               BackgroundColor="#07BDF6" CornerRadius="0,0,10,10" HeightRequest="80"  WidthRequest="500">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image FlexLayout.Shrink="0" Source="left1.png" 
+                           Margin="10,0"
+                           HorizontalOptions="Start"
+                           VerticalOptions="CenterAndExpand"
+                           HeightRequest="40" WidthRequest="40" Grid.Row="0" Grid.Column="0">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="BackMealPlan_Tapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="Meal Types" 
+                           FontSize="25"
+                           FontAttributes="Bold"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="CenterAndExpand"
+                           MaxLines="1"
+                           TextColor="White"
+                           LineBreakMode="TailTruncation" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+                </Grid>
+            </yummy:PancakeView>
+            <StackLayout Padding="15,10"  Grid.Row="1"
+                Grid.Column="0">
+                <yummy:PancakeView  HorizontalOptions="Center" VerticalOptions="EndAndExpand"
+                                    BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,0"
+                                    HeightRequest="60" WidthRequest="500"
+                                    BackgroundColor="#07BDF6" CornerRadius="15" 
+                                    Margin="38,20">
+                    <yummy:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer />
+                    </yummy:PancakeView.GestureRecognizers>
+                    <yummy:PancakeView.BackgroundGradientStops>
+                        <yummy:GradientStopCollection>
+                            <yummy:GradientStop Color="#5AE099" Offset="1" />
+                            <yummy:GradientStop Color="#65DCC6" Offset="0.5" />
+                            <yummy:GradientStop Color="#6CD4EC" Offset="0" />
+                        </yummy:GradientStopCollection>
+                    </yummy:PancakeView.BackgroundGradientStops>
+                    <Label Text="Next" TextColor="White" FontSize="25" 
+                                                       HorizontalOptions="Center" VerticalOptions="Center">
+                    </Label>
+                </yummy:PancakeView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
