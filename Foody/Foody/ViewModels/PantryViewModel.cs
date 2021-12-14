@@ -19,6 +19,7 @@ namespace Foody.ViewModels
         public List<string> cuisineList { get; set; }
         public List<string> intolerancesList { get; set; }
 
+        public ObservableRangeCollection<Result> PantryRecipes { get; set; }
         public ObservableRangeCollection<Result> PopularRecipes { get; set; }
         public ObservableRangeCollection<Result> RandomRecipes { get; set; }
         public ObservableRangeCollection<Result> SearchRecipes { get; set; }
@@ -63,6 +64,7 @@ namespace Foody.ViewModels
         public PantryViewModel(INavigation MainPageNav)
         {
             Navigation = MainPageNav;
+            PantryRecipes = new ObservableRangeCollection<Result>();
             PopularRecipes = new ObservableRangeCollection<Result>();
             RandomRecipes = new ObservableRangeCollection<Result>();
             SearchRecipes = new ObservableRangeCollection<Result>();
@@ -89,6 +91,14 @@ namespace Foody.ViewModels
             await Navigation.PushAsync(new PagePantrySetting());
         }
 
+
+        async public void GetPantryRecipes()
+        {
+            Recipe results = new Recipe();
+
+            results = await App.RecipeManager.GetPantryRecipes();
+            PantryRecipes.AddRange(results.results);
+        }
         async public void GetPopularRecipes()
         {
             Recipe results = new Recipe();

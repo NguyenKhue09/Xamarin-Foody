@@ -36,8 +36,15 @@ namespace Foody.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+
+            pantryViewModel.PantryRecipes.Clear();
+            pantryViewModel.PopularRecipes.Clear();
+            pantryViewModel.RandomRecipes.Clear();
+
             pantryViewModel.GetPopularRecipes();
             pantryViewModel.GetRandomRecipes();
+            pantryViewModel.GetPantryRecipes();
+
             pantryViewModel.UserPantryListGroupManagers.Clear();
             pantryViewModel.UserPantryListGroupManagers = await pantryViewModel.GetOriginalPantryBuilderItems();
             if (pantryViewModel.UserPantryListGroupManagers.Count > 0)
