@@ -75,6 +75,45 @@ namespace Foody.Services.RecipeApiCall
 
             return Recipes;
         }
+
+        // pantry recipes
+        public async Task<Recipe> GetPantryRecipes()
+        {
+            
+            Recipe Recipes = new Recipe();
+
+            string userId = App.LoginViewModel.GoogleUser.UID;
+
+            Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/recipes/get-recipe-by-user-pantry/{userId}"));
+            try
+            {
+
+                HttpResponseMessage response = await client.GetAsync(uri);
+                Debug.WriteLine("CallAPI");
+                if (response.IsSuccessStatusCode)
+                {
+
+
+                    string content = await response.Content.ReadAsStringAsync();
+                    Recipes = JsonSerializer.Deserialize<Recipe>(content, serializerOptions);
+
+                }
+                else
+                {
+                    Debug.WriteLine("Thatbai");
+                    Recipes.results = new List<Result>();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                Recipes.results = new List<Result>();
+            }
+
+            return Recipes;
+        }
+
         // popular Recipe 
         public async Task<Recipe> GetPopularRecipes()
         {
