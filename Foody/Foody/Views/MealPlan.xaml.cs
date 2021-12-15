@@ -15,6 +15,27 @@ namespace Foody.Views
         public MealPlan()
         {
             InitializeComponent();
+            BackgroundColor = Color.FromHex("F5F5F5");
+        }
+
+        private void SwipeItem_Invoked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SwipeItem_Invoked_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SwipeItem_Invoked_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MealPlantoPageMealTypes_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new PageMealTypes());
         }
     }
 }
