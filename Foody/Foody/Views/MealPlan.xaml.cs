@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Foody.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,11 @@ namespace Foody.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MealPlan : ContentPage
     {
+        private readonly MealPlanViewModel mealPlanViewModel;
         public MealPlan()
         {
             InitializeComponent();
+            BindingContext = mealPlanViewModel = new MealPlanViewModel();
             BackgroundColor = Color.FromHex("F5F5F5");
         }
 
@@ -35,7 +38,7 @@ namespace Foody.Views
 
         private void MealPlantoPageMealTypes_Tapped(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new PageMealTypes());
+            Navigation.PushAsync(new PageMealTypes(mealPlanViewModel));
         }
     }
 }

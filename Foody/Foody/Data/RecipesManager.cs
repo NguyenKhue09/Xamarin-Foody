@@ -130,5 +130,21 @@ namespace Foody.Data
         {
             return restService.GetUserMealPlanItem();
         }
+
+        // get api meal plan type
+        public Task<Recipe> GetMealPlanBreakfast()
+        {
+            return restService.GetMealPlanBreakfast();
+        }
+
+        public Task<Recipe> GetMealPlanLunch()
+        {
+            return restService.GetMealPlanLunch();
+        }
+
+        public Task<Recipe> GetMealPlanDinner()
+        {
+            return restService.GetMealPlanDinner();
+        }
     }
 }

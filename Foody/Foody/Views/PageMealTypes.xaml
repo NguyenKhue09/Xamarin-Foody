@@ -40,34 +40,34 @@
                 Grid.Column="0">
                 <Label Text="Select Dish Types" FontSize="28" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,35"/>
                 <Label Text="Are you cooking breakfast, lunch, dinner, or all of the above?" TextColor="Gray" FontSize="24" HorizontalTextAlignment="Center"/>
-                <Frame Padding="30" BackgroundColor="White" BorderColor="Gray" CornerRadius="15">
+                <Frame Padding="30" BackgroundColor="White" HasShadow="True" CornerRadius="15">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Label Text="Breakfast" TextColor="Black" FontSize="24" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0"/>
-                        <CheckBox Color="Black" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center"></CheckBox>
+                        <CheckBox x:Name="cbBreakfast" Color="Black" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center"></CheckBox>
                     </Grid>
                 </Frame>
-                <Frame Padding="30" BackgroundColor="White" BorderColor="Gray" CornerRadius="15">
+                <Frame Padding="30" BackgroundColor="White" HasShadow="True" CornerRadius="15">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Label Text="Lunch" TextColor="Black" FontSize="24" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0"/>
-                        <CheckBox Color="Black" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center"></CheckBox>
+                        <CheckBox x:Name="cbLunch" Color="Black" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center"></CheckBox>
                     </Grid>
                 </Frame>
-                <Frame Padding="30" BackgroundColor="White" BorderColor="Gray" CornerRadius="15">
+                <Frame Padding="30" BackgroundColor="White" HasShadow="True" CornerRadius="15">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Label Text="Dinner" TextColor="Black" FontSize="24" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0"/>
-                        <CheckBox Color="Black" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center"></CheckBox>
+                        <CheckBox x:Name="cbDinner" Color="Black" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center"></CheckBox>
                     </Grid>
                 </Frame>
 
@@ -77,7 +77,7 @@
                                     BackgroundColor="#07BDF6" CornerRadius="15" 
                                     Margin="38,20">
                     <yummy:PancakeView.GestureRecognizers>
-                        <TapGestureRecognizer />
+                        <TapGestureRecognizer Tapped="AddRecipetoMealPlan_Tapped"/>
                     </yummy:PancakeView.GestureRecognizers>
                     <yummy:PancakeView.BackgroundGradientStops>
                         <yummy:GradientStopCollection>
