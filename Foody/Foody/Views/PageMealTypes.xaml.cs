@@ -1,6 +1,8 @@
-﻿using Foody.ViewModels;
+﻿using Foody.Models;
+using Foody.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,9 +43,34 @@ namespace Foody.Views
             }
             if(mealPlanViewModel.Breakfast.Count > 0 || mealPlanViewModel.Lunch.Count > 0 || mealPlanViewModel.Dinner.Count > 0)
             {
-                if(mealPlanViewModel.Breakfast.Count > 0)
+                UserMealPlanItem userMealPlanItem = new UserMealPlanItem();
+                userMealPlanItem.userId = App.LoginViewModel.GoogleUser.UID;
+                if (mealPlanViewModel.Breakfast.Count > 0)
                 {
-
+                    foreach( var item in mealPlanViewModel.Breakfast)
+                    {
+                        userMealPlanItem.breakfastRecipe = item._id;
+                    }
+                }
+                if (mealPlanViewModel.Lunch.Count > 0)
+                {
+                    foreach (var item in mealPlanViewModel.Lunch)
+                    {
+                        userMealPlanItem.lunchRecipe = item._id;
+                    }
+                }
+                if (mealPlanViewModel.Dinner.Count > 0)
+                {
+                    foreach (var item in mealPlanViewModel.Dinner)
+                    {
+                        userMealPlanItem.dinnerRecipe = item._id;
+                    }
+                }
+                bool check = await mealPlanViewModel.AddUserMealPlannerItem(userMealPlanItem);
+                if (check)
+                {
+                    Debug.WriteLine("Them thanh cong");
+                    await Navigation.PopAsync();
                 }
             }
         }
