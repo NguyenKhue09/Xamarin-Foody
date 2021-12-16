@@ -119,5 +119,16 @@ namespace Foody.Data
         {
             return restService.DeleteAllUserPantryItem(userId);
         }
+
+        // User MealPlanner Api
+        public Task<bool> AddUserMealPlannerItem(UserMealPlanItem userMealPlanItem)
+        {
+            return restService.AddUserMealPlannerItem(userMealPlanItem);
+        }
+
+        public Task<UserMealPlanResult> GetUserMealPlanItem()
+        {
+            return restService.GetUserMealPlanItem();
+        }
     }
 }
