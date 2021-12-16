@@ -38,6 +38,39 @@
             </yummy:PancakeView>
             <StackLayout Padding="15,10"  Grid.Row="1"
                 Grid.Column="0">
+                <Label Text="Select Dish Types" FontSize="28" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,35"/>
+                <Label Text="Are you cooking breakfast, lunch, dinner, or all of the above?" TextColor="Gray" FontSize="24" HorizontalTextAlignment="Center"/>
+                <Frame Padding="30" BackgroundColor="White" BorderColor="Gray" CornerRadius="15">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Breakfast" TextColor="Black" FontSize="24" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0"/>
+                        <CheckBox Color="Black" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center"></CheckBox>
+                    </Grid>
+                </Frame>
+                <Frame Padding="30" BackgroundColor="White" BorderColor="Gray" CornerRadius="15">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Lunch" TextColor="Black" FontSize="24" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0"/>
+                        <CheckBox Color="Black" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center"></CheckBox>
+                    </Grid>
+                </Frame>
+                <Frame Padding="30" BackgroundColor="White" BorderColor="Gray" CornerRadius="15">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Dinner" TextColor="Black" FontSize="24" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0"/>
+                        <CheckBox Color="Black" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center"></CheckBox>
+                    </Grid>
+                </Frame>
+
                 <yummy:PancakeView  HorizontalOptions="Center" VerticalOptions="EndAndExpand"
                                     BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,0"
                                     HeightRequest="60" WidthRequest="500"
