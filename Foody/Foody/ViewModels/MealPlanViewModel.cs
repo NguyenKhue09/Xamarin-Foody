@@ -16,6 +16,7 @@ namespace Foody.ViewModels
         public ObservableRangeCollection<Result> LunchMealPlan { get; set; }
         public ObservableRangeCollection<Result> Dinner { get; set; }
         public ObservableRangeCollection<Result> DinnerMealPlan { get; set; }
+        public UserMealPlanResult userMeal { get; set; }
         public MealPlanViewModel()
         {
             Breakfast = new ObservableRangeCollection<Result>();
@@ -24,6 +25,7 @@ namespace Foody.ViewModels
             LunchMealPlan = new ObservableRangeCollection<Result>();
             Dinner = new ObservableRangeCollection<Result>();
             DinnerMealPlan = new ObservableRangeCollection<Result>();
+            userMeal = new UserMealPlanResult();
         }
         async public Task<ObservableRangeCollection<Result>> GetMealPlanBreakfast()
         {

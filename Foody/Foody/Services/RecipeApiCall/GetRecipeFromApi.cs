@@ -734,7 +734,11 @@ namespace Foody.Services.RecipeApiCall
         // User Meal Planner Api
         public async Task<bool> AddUserMealPlannerItem(UserMealPlanItem userMealPlanItem)
         {
-
+            Debug.WriteLine("Check data");
+            Debug.WriteLine(userMealPlanItem.userId);
+            Debug.WriteLine(userMealPlanItem.breakfastRecipe);
+            Debug.WriteLine(userMealPlanItem.lunchRecipe);
+            Debug.WriteLine(userMealPlanItem.dinnerRecipe);
             Uri uri = new Uri(string.Format("https://pantry-wizard.herokuapp.com/api/meal-plan/add-user-meal-plan"));
 
             try
