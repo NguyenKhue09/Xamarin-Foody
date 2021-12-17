@@ -119,5 +119,37 @@ namespace Foody.Data
         {
             return restService.DeleteAllUserPantryItem(userId);
         }
+
+        // User MealPlanner Api
+        public Task<bool> AddUserMealPlannerItem(UserMealPlanItem userMealPlanItem)
+        {
+            return restService.AddUserMealPlannerItem(userMealPlanItem);
+        }
+
+        public Task<UserMealPlanResult> GetUserMealPlanItem()
+        {
+            return restService.GetUserMealPlanItem();
+        }
+
+        // get api meal plan type
+        public Task<Recipe> GetMealPlanBreakfast()
+        {
+            return restService.GetMealPlanBreakfast();
+        }
+
+        public Task<Recipe> GetMealPlanLunch()
+        {
+            return restService.GetMealPlanLunch();
+        }
+
+        public Task<Recipe> GetMealPlanDinner()
+        {
+            return restService.GetMealPlanDinner();
+        }
+
+        public Task<bool> DeleteUserMealPlanItem(string type)
+        {
+            return restService.DeleteUserMealPlanItem(type);
+        }
     }
 }

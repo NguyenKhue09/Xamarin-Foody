@@ -731,5 +731,206 @@ namespace Foody.Services.RecipeApiCall
             }
         }
 
+        // User Meal Planner Api
+        public async Task<bool> AddUserMealPlannerItem(UserMealPlanItem userMealPlanItem)
+        {
+            Uri uri = new Uri(string.Format("https://pantry-wizard.herokuapp.com/api/meal-plan/add-user-meal-plan"));
+
+            try
+            {
+                string json = JsonSerializer.Serialize(userMealPlanItem, serializerOptions);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(uri, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("ThanhCong");
+                    return true;
+                }
+                else
+                {
+                    Debug.WriteLine("Thatbai");
+                    return false;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                return false;
+            }
+        }
+
+        public async Task<UserMealPlanResult> GetUserMealPlanItem()
+        {
+            UserMealPlanResult userMealPlanResult = new UserMealPlanResult();
+            string userId = App.LoginViewModel.GoogleUser.UID;
+            Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/meal-plan/get-user-meal-plan/{userId}"));
+            try
+            {
+
+                HttpResponseMessage response = await client.GetAsync(uri);
+                Debug.WriteLine("CallAPI");
+                if (response.IsSuccessStatusCode)
+                {
+
+
+                    string content = await response.Content.ReadAsStringAsync();
+                    userMealPlanResult = JsonSerializer.Deserialize<UserMealPlanResult>(content, serializerOptions);
+
+                }
+                else
+                {
+                    Debug.WriteLine("Thatbai");
+                    userMealPlanResult = null;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                userMealPlanResult = null;
+            }
+
+            return userMealPlanResult;
+        }
+        // get meal planner type
+        public async Task<Recipe> GetMealPlanLunch()
+        {
+            Debug.WriteLine("Recipe");
+            Recipe Recipes = new Recipe();
+
+            Uri uri = new Uri(string.Format("https://pantry-wizard.herokuapp.com/api/recipes/get-meal-recipe?type=lunch"));
+            try
+            {
+
+                HttpResponseMessage response = await client.GetAsync(uri);
+                Debug.WriteLine("CallAPI");
+                if (response.IsSuccessStatusCode)
+                {
+
+
+                    string content = await response.Content.ReadAsStringAsync();
+                    Recipes = JsonSerializer.Deserialize<Recipe>(content, serializerOptions);
+
+                }
+                else
+                {
+                    Debug.WriteLine("Thatbai");
+                    Recipes.results = new List<Result>();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                Recipes.results = new List<Result>();
+            }
+
+            return Recipes;
+        }
+
+        public async Task<Recipe> GetMealPlanDinner()
+        {
+            Debug.WriteLine("Recipe");
+            Recipe Recipes = new Recipe();
+
+            Uri uri = new Uri(string.Format("https://pantry-wizard.herokuapp.com/api/recipes/get-meal-recipe?type=dinner"));
+            try
+            {
+
+                HttpResponseMessage response = await client.GetAsync(uri);
+                Debug.WriteLine("CallAPI");
+                if (response.IsSuccessStatusCode)
+                {
+
+
+                    string content = await response.Content.ReadAsStringAsync();
+                    Recipes = JsonSerializer.Deserialize<Recipe>(content, serializerOptions);
+
+                }
+                else
+                {
+                    Debug.WriteLine("Thatbai");
+                    Recipes.results = new List<Result>();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                Recipes.results = new List<Result>();
+            }
+
+            return Recipes;
+        }
+
+        public async Task<Recipe> GetMealPlanBreakfast()
+        {
+            Debug.WriteLine("Recipe");
+            Recipe Recipes = new Recipe();
+
+            Uri uri = new Uri(string.Format("https://pantry-wizard.herokuapp.com/api/recipes/get-meal-recipe?type=breakfast"));
+            try
+            {
+
+                HttpResponseMessage response = await client.GetAsync(uri);
+                Debug.WriteLine("CallAPI");
+                if (response.IsSuccessStatusCode)
+                {
+
+
+                    string content = await response.Content.ReadAsStringAsync();
+                    Recipes = JsonSerializer.Deserialize<Recipe>(content, serializerOptions);
+
+                }
+                else
+                {
+                    Debug.WriteLine("Thatbai");
+                    Recipes.results = new List<Result>();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                Recipes.results = new List<Result>();
+            }
+
+            return Recipes;
+        }
+
+        public async Task<bool> DeleteUserMealPlanItem(string type)
+        {
+            string userId = App.LoginViewModel.GoogleUser.UID;
+            Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/meal-plan/delete-user-meal-plan/{userId}/{type}"));
+
+            try
+            {
+
+                HttpResponseMessage response = await client.DeleteAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("ThanhCong");
+                    Debug.WriteLine(response.RequestMessage);
+                    return true;
+                }
+                else
+                {
+                    Debug.WriteLine(response.RequestMessage);
+                    return false;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                return false;
+            }
+        }
     }
 }

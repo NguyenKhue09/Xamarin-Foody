@@ -122,7 +122,8 @@ namespace Foody.ViewModels
             for (int i = 0; i < newList.Count; i++)
             {
                 newList[i].amount = recipe.extendedIngredients[i].amount * amount;
-                newList[i].amountIngre = new Fraction(newList[i].amount).ToString();
+                //newList[i].amountIngre = new Fraction(Math.Round(newList[i].amount, 2)).ToString();
+                newList[i].amountIngre = Math.Round(newList[i].amount, 2).ToString();
                 ExtendedIngredients[i] = newList[i];
             }
             

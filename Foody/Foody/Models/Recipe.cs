@@ -54,6 +54,7 @@ namespace Foody.Models
         public bool vegan { get; set; }
         public List<ExtendedIngredient> extendedIngredients { get; set; }
         public int id { get; set; }
+        public string _id { get; set; }
         public string title { get; set; }
         public int readyInMinutes { get; set; }
         public string image { get; set; }
