@@ -11,20 +11,14 @@ namespace Foody.ViewModels
     public class MealPlanViewModel : BaseViewModel
     {
         public ObservableRangeCollection<Result> Breakfast { get; set; }
-        public ObservableRangeCollection<Result> BreakfastMealPlan { get; set; }
         public ObservableRangeCollection<Result> Lunch { get; set; }
-        public ObservableRangeCollection<Result> LunchMealPlan { get; set; }
         public ObservableRangeCollection<Result> Dinner { get; set; }
-        public ObservableRangeCollection<Result> DinnerMealPlan { get; set; }
         public UserMealPlanResult userMeal { get; set; }
         public MealPlanViewModel()
         {
             Breakfast = new ObservableRangeCollection<Result>();
-            BreakfastMealPlan = new ObservableRangeCollection<Result>();
             Lunch = new ObservableRangeCollection<Result>();
-            LunchMealPlan = new ObservableRangeCollection<Result>();
             Dinner = new ObservableRangeCollection<Result>();
-            DinnerMealPlan = new ObservableRangeCollection<Result>();
             userMeal = new UserMealPlanResult();
         }
         async public Task<ObservableRangeCollection<Result>> GetMealPlanBreakfast()
@@ -78,6 +72,12 @@ namespace Foody.ViewModels
                 userMealPlan = Results;
             }
             return userMealPlan;
+        }
+
+        public async Task<bool> DeleteUserMealPlanItem(string type)
+        {
+            bool result = await App.RecipeManager.DeleteUserMealPlanItem(type);
+            return result;
         }
     }
 }

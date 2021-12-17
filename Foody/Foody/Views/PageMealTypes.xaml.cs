@@ -29,16 +29,22 @@ namespace Foody.Views
 
         private async void AddRecipetoMealPlan_Tapped(object sender, EventArgs e)
         {
-            if(cbBreakfast.IsChecked == true)
+            mealPlanViewModel.Breakfast.Clear();
+            mealPlanViewModel.Lunch.Clear();
+            mealPlanViewModel.Dinner.Clear();
+            if (cbBreakfast.IsChecked == true)
             {
+                mealPlanViewModel.Breakfast.Clear();
                 mealPlanViewModel.Breakfast = await mealPlanViewModel.GetMealPlanBreakfast();
             }
             if(cbDinner.IsChecked == true)
             {
+                mealPlanViewModel.Dinner.Clear();
                 mealPlanViewModel.Dinner = await mealPlanViewModel.GetMealPlanDinner();
             }
             if (cbLunch.IsChecked == true)
             {
+                mealPlanViewModel.Lunch.Clear();
                 mealPlanViewModel.Lunch = await mealPlanViewModel.GetMealPlanLunch();
             }
             if(mealPlanViewModel.Breakfast.Count > 0 || mealPlanViewModel.Lunch.Count > 0 || mealPlanViewModel.Dinner.Count > 0)

@@ -36,7 +36,9 @@
                            VerticalOptions="Center"
                             HorizontalOptions="Center"
                            Grid.Column="1">
-                        
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="DeleteAll_Tapped" />
+                        </Image.GestureRecognizers>
                     </Image>
                 </Grid>
             </yummy:PancakeView>
@@ -74,21 +76,24 @@
                                 <SwipeItem x:Name="deleteBreakfast"
                                    IconImageSource="delete.png"
                                    BackgroundColor="#ff5f56"
-                                   Invoked="SwipeItem_Invoked" />
+                                   Invoked="deleteBreakfast_Invoked" />
                                 <SwipeItem x:Name="resetBreakfast"
                                    IconImageSource="refreshing.png"
                                    BackgroundColor="#07BDF6"
-                                   Invoked="SwipeItem_Invoked_1" />
+                                   Invoked="resetBreakfast_Invoked" />
                                 <SwipeItem x:Name="addBreakfast"
                                    IconImageSource="plusWhite.png"
                                    BackgroundColor="#07BDF6"
-                                   Invoked="SwipeItem_Invoked_2" />
+                                   Invoked="resetBreakfast_Invoked" />
                             </SwipeItems>
                         </SwipeView.LeftItems>
                         <!-- Content -->
                         <Grid HeightRequest="140"
                           WidthRequest="300"
                           BackgroundColor="White" ColumnSpacing="0" RowSpacing="0">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="BreakfastToDetail_Tapped"/>
+                            </Grid.GestureRecognizers>
                             <Grid.RowDefinitions>
                                 <RowDefinition x:Name="row1Breakfast" />
                                 <RowDefinition x:Name="row2Breakfast" />
@@ -113,7 +118,8 @@
                                     <Image Source="clock.png" Grid.Column="1" HeightRequest="16" Margin="0,8,4,0"/>
                                     <Label x:Name="timeBreakfast" FontSize="16" Margin="0,10,8,0" TextColor="#2596be" Grid.Column="2"/>
                                 </Grid>
-                                <Label x:Name="titleBreakfast" FontSize="19" Margin="0,0,8,0" TextColor="Gray"/>
+                                <Label x:Name="titleBreakfast" FontSize="19" Margin="0,0,8,0" TextColor="Gray" MaxLines="2"
+                                                LineBreakMode="TailTruncation" />
                             </StackLayout>
                         </Grid>
                     </SwipeView>
@@ -126,21 +132,24 @@
                                 <SwipeItem x:Name="deleteLunch"
                                IconImageSource="delete.png"
                                BackgroundColor="#ff5f56"
-                               Invoked="SwipeItem_Invoked" />
+                               Invoked="deleteLunch_Invoked" />
                                 <SwipeItem x:Name="resetLunch"
                                IconImageSource="refreshing.png"
                                BackgroundColor="#07BDF6"
-                               Invoked="SwipeItem_Invoked_1" />
+                               Invoked="resetLunch_Invoked" />
                                 <SwipeItem x:Name="addLunch"
                                IconImageSource="plusWhite.png"
                                BackgroundColor="#07BDF6"
-                               Invoked="SwipeItem_Invoked_2" />
+                               Invoked="resetLunch_Invoked" />
                             </SwipeItems>
                         </SwipeView.LeftItems>
                         <!-- Content -->
                         <Grid HeightRequest="140"
                           WidthRequest="300"
                           BackgroundColor="White" ColumnSpacing="0" RowSpacing="0">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="LunchToDetail_Tapped"/>
+                            </Grid.GestureRecognizers>
                             <Grid.RowDefinitions>
                                 <RowDefinition x:Name="row1Lunch"/>
                                 <RowDefinition x:Name="row2Lunch"/>
@@ -165,7 +174,8 @@
                                     <Image Source="clock.png" Grid.Column="1" HeightRequest="16" Margin="0,8,4,0"/>
                                     <Label  x:Name="timeLunch" FontSize="16" Margin="0,10,8,0" TextColor="#2596be" Grid.Column="2"/>
                                 </Grid>
-                                <Label  x:Name="titleLunch" FontSize="19" Margin="0,0,8,0" TextColor="Gray"/>
+                                <Label  x:Name="titleLunch" FontSize="19" Margin="0,0,8,0" TextColor="Gray" MaxLines="2"
+                                                LineBreakMode="TailTruncation" />
                             </StackLayout>
                         </Grid>
                     </SwipeView>
@@ -178,21 +188,24 @@
                                 <SwipeItem x:Name="deletebinner"
                                IconImageSource="delete.png"
                                BackgroundColor="#ff5f56"
-                               Invoked="SwipeItem_Invoked" />
+                               Invoked="deletebinner_Invoked" />
                                 <SwipeItem x:Name="resetDinner"
                                IconImageSource="refreshing.png"
                                BackgroundColor="#07BDF6"
-                               Invoked="SwipeItem_Invoked_1" />
+                               Invoked="resetDinner_Invoked" />
                                 <SwipeItem x:Name="addDinner"
                                IconImageSource="plusWhite.png"
                                BackgroundColor="#07BDF6"
-                               Invoked="SwipeItem_Invoked_2" />
+                               Invoked="resetDinner_Invoked" />
                             </SwipeItems>
                         </SwipeView.LeftItems>
                         <!-- Content -->
                         <Grid HeightRequest="140"
                           WidthRequest="300"
                           BackgroundColor="White" ColumnSpacing="0" RowSpacing="0">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="DinnerToDetail_Tapped"/>
+                            </Grid.GestureRecognizers>
                             <Grid.RowDefinitions>
                                 <RowDefinition x:Name="row1Dinner"/>
                                 <RowDefinition x:Name="row2Dinner"/>
@@ -217,7 +230,8 @@
                                     <Image Source="clock.png" Grid.Column="1" HeightRequest="16" Margin="0,8,4,0"/>
                                     <Label  x:Name="timeDinner" FontSize="16" Margin="0,10,8,0" TextColor="#2596be" Grid.Column="2"/>
                                 </Grid>
-                                <Label x:Name="titleDinner" FontSize="19" Margin="0,0,8,0" TextColor="Gray"/>
+                                <Label x:Name="titleDinner" FontSize="19" Margin="0,0,8,0" TextColor="Gray" MaxLines="2"
+                                                LineBreakMode="TailTruncation" />
                             </StackLayout>
                         </Grid>
                     </SwipeView>
