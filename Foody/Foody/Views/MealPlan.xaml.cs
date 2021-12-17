@@ -47,11 +47,9 @@ namespace Foody.Views
                     imgBreakfast.Source = mealPlanViewModel.userMeal.breakfastRecipe.image;
                     timeBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.readyInMinutes.ToString() + "min";
                     titleBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.title;
-                    Debug.WriteLine(mealPlanViewModel.userMeal.breakfastRecipe.title);
                 }    
                 else
                 {
-                    Debug.WriteLine("Nulll");
                     deleteBreakfast.IsVisible = false;
                     resetBreakfast.IsVisible = false;
                     addBreakfast.IsVisible = true;
@@ -68,11 +66,9 @@ namespace Foody.Views
                     imgLunch.Source = mealPlanViewModel.userMeal.lunchRecipe.image;
                     timeLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.readyInMinutes.ToString() + "min";
                     titleLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.title;
-                    Debug.WriteLine(mealPlanViewModel.userMeal.lunchRecipe.title);
                 }
                 else
                 {
-                    Debug.WriteLine("Nulll");
                     deleteLunch.IsVisible = false;
                     resetLunch.IsVisible = false;
                     addLunch.IsVisible = true;
@@ -89,11 +85,9 @@ namespace Foody.Views
                     imgDinner.Source = mealPlanViewModel.userMeal.dinnerRecipe.image;
                     timeDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.readyInMinutes.ToString() + "min";
                     titleDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.title;
-                    Debug.WriteLine(mealPlanViewModel.userMeal.dinnerRecipe.title);
                 }
                 else
                 {
-                    Debug.WriteLine("Nulll");
                     deletebinner.IsVisible = false;
                     resetDinner.IsVisible = false;
                     addDinner.IsVisible = true;
@@ -770,14 +764,12 @@ namespace Foody.Views
 
         private async void BreakfastToDetail_Tapped(object sender, EventArgs e)
         {
-            Debug.WriteLine("check data breakfast");
             if (mealPlanViewModel.userMeal != null)
             {
                 Debug.WriteLine(mealPlanViewModel.userMeal.breakfastRecipe.title);
                 if (mealPlanViewModel.userMeal.breakfastRecipe != null)
                 {
                     Result recipe = mealPlanViewModel.userMeal.breakfastRecipe;
-                    Debug.WriteLine($"no null {recipe.title}");
                     recipe.SelectedViewModelIndex = 0;
                     await Navigation.PushAsync(new DetailRecipe(recipe));
                 }
@@ -786,14 +778,11 @@ namespace Foody.Views
 
         private async void LunchToDetail_Tapped(object sender, EventArgs e)
         {
-            Debug.WriteLine("check data ;unch");
             if (mealPlanViewModel.userMeal != null)
             {
-                Debug.WriteLine(mealPlanViewModel.userMeal.lunchRecipe.title);
                 if (mealPlanViewModel.userMeal.lunchRecipe != null)
                 {
                     Result recipe = mealPlanViewModel.userMeal.lunchRecipe;
-                    Debug.WriteLine($"no null {recipe.title}");
                     recipe.SelectedViewModelIndex = 0;
                     await Navigation.PushAsync(new DetailRecipe(recipe));
                 }
@@ -802,14 +791,12 @@ namespace Foody.Views
 
         private async void DinnerToDetail_Tapped(object sender, EventArgs e)
         {
-            Debug.WriteLine("check data dinner");
-            //Debug.WriteLine(mealPlanViewModel.userMeal.dinnerRecipe.title);
+            
             if (mealPlanViewModel.userMeal != null)
             {
                 if (mealPlanViewModel.userMeal.dinnerRecipe != null)
                 {
                     Result recipe = mealPlanViewModel.userMeal.dinnerRecipe;
-                    Debug.WriteLine($"no null {recipe.title}");
                     recipe.SelectedViewModelIndex = 0;
                     await Navigation.PushAsync(new DetailRecipe(recipe));
                 }
