@@ -8,8 +8,8 @@
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
-                <RowDefinition x:Name="row1" Height="*"/>
-                <RowDefinition x:Name="row2" Height="0"/>
+                <RowDefinition x:Name="row1" />
+                <RowDefinition x:Name="row2" />
             </Grid.RowDefinitions>
             <!--Header-->
             <yummy:PancakeView  Grid.Column="0" Grid.Row="0" BackgroundColor="#07BDF6" CornerRadius="0,0,10,10" HeightRequest="80" WidthRequest="500">
@@ -66,6 +66,7 @@
             </StackLayout>
             <!--Row 2-->
             <StackLayout Grid.Row="2">
+                <!--breakfast-->
                 <Frame BorderColor="Gray" CornerRadius="20" Padding="0" Margin="20,100,20,0">
                     <SwipeView>
                         <SwipeView.LeftItems>
@@ -120,6 +121,7 @@
                         </Grid>
                     </SwipeView>
                 </Frame>
+                <!--lucnh-->
                 <Frame BorderColor="Gray" CornerRadius="20" Padding="0" Margin="20,30">
                     <SwipeView>
                         <SwipeView.LeftItems>
@@ -172,6 +174,7 @@
                         </Grid>
                     </SwipeView>
                 </Frame>
+                <!--dinner-->
                 <Frame BorderColor="Gray" CornerRadius="20" Padding="0" Margin="20,0">
                     <SwipeView>
                         <SwipeView.LeftItems>

@@ -19,7 +19,15 @@ namespace Foody.Views
             InitializeComponent();
             BindingContext = mealPlanViewModel = new MealPlanViewModel();
             BackgroundColor = Color.FromHex("F5F5F5");
+            row1.Height = 0;
+            row2.Height = new GridLength(1, GridUnitType.Star);
         }
+
+        //protected async override void OnAppearing()
+        //{
+        //    base.OnAppearing();
+            
+        //}
 
         private void SwipeItem_Invoked(object sender, EventArgs e)
         {
