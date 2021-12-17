@@ -38,9 +38,9 @@
             </yummy:PancakeView>
             <StackLayout Padding="15,10"  Grid.Row="1"
                 Grid.Column="0">
-                <Label Text="Select Dish Types" FontSize="28" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,35"/>
+                <Label Text="Select Dish Types" FontSize="28" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,15,0,8"/>
                 <Label Text="Are you cooking breakfast, lunch, dinner, or all of the above?" TextColor="Gray" FontSize="24" HorizontalTextAlignment="Center"/>
-                <Frame Padding="30" BackgroundColor="White" HasShadow="True" CornerRadius="15">
+                <Frame Padding="25" BackgroundColor="White" HasShadow="True" CornerRadius="15" Margin="0,24,0,0">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -50,7 +50,7 @@
                         <CheckBox x:Name="cbBreakfast" Color="Black" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center"></CheckBox>
                     </Grid>
                 </Frame>
-                <Frame Padding="30" BackgroundColor="White" HasShadow="True" CornerRadius="15">
+                <Frame Padding="25" BackgroundColor="White" HasShadow="True" CornerRadius="15" Margin="0,16,0,0">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -60,7 +60,7 @@
                         <CheckBox x:Name="cbLunch" Color="Black" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center"></CheckBox>
                     </Grid>
                 </Frame>
-                <Frame Padding="30" BackgroundColor="White" HasShadow="True" CornerRadius="15">
+                <Frame Padding="25" BackgroundColor="White" HasShadow="True" CornerRadius="15" Margin="0,16,0,0">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>

@@ -8,8 +8,8 @@
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
-                <RowDefinition x:Name="row1" Height="*"/>
-                <RowDefinition x:Name="row2" Height="0"/>
+                <RowDefinition x:Name="row1" Height="0"/>
+                <RowDefinition x:Name="row2" Height="*"/>
             </Grid.RowDefinitions>
             <!--Header-->
             <yummy:PancakeView  Grid.Column="0" Grid.Row="0" BackgroundColor="#07BDF6" CornerRadius="0,0,10,10" HeightRequest="80" WidthRequest="500">
@@ -19,7 +19,7 @@
                         <ColumnDefinition Width="40"/>
                     </Grid.ColumnDefinitions>
                     <Label
-                    Text="Dayly Meal Plan" 
+                    Text="Daily Meal Planner" 
                     FontSize="27"
                     FontAttributes="Bold"
                     VerticalOptions="Center"
@@ -66,7 +66,7 @@
             </StackLayout>
             <!--Row 2-->
             <StackLayout Grid.Row="2">
-                <Frame BorderColor="Gray" CornerRadius="20" Padding="0" Margin="20,100,20,0">
+                <Frame BorderColor="Gray" CornerRadius="20" Padding="0" Margin="20,50,20,0">
                     <SwipeView>
                         <SwipeView.LeftItems>
                             <SwipeItems>
