@@ -8,11 +8,11 @@ namespace Foody.Models
     {
         public string userId { get; set; }
 
-        public string breakfastRecipe = null;
+        public string breakfastRecipe { get; set; }
 
-        public string lunchRecipe = null;
+        public string lunchRecipe { get; set; }
 
-        public string dinnerRecipe = null;
+        public string dinnerRecipe { get; set; }
 
     }   
 }
