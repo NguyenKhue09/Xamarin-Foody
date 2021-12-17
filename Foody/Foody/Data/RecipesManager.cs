@@ -146,5 +146,10 @@ namespace Foody.Data
         {
             return restService.GetMealPlanDinner();
         }
+
+        public Task<bool> DeleteUserMealPlanItem(string type)
+        {
+            return restService.DeleteUserMealPlanItem(type);
+        }
     }
 }
