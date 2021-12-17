@@ -21,14 +21,16 @@ namespace Foody.Views
         {
             InitializeComponent();
             BindingContext = mealPlanViewModel = new MealPlanViewModel();
+
         }
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            mealPlanViewModel.userMeal = null;
+            
             mealPlanViewModel.userMeal = await mealPlanViewModel.GetUserMealPlanItem();
-            if(mealPlanViewModel.userMeal.breakfastRecipe != null || mealPlanViewModel.userMeal.lunchRecipe != null || mealPlanViewModel.userMeal.dinnerRecipe != null)
+            
+            if (mealPlanViewModel.userMeal.breakfastRecipe != null || mealPlanViewModel.userMeal.lunchRecipe != null || mealPlanViewModel.userMeal.dinnerRecipe != null)
             {
                 BackgroundColor = Color.FromHex("F5F5F5");
                 row1.Height = 0;
@@ -769,37 +771,50 @@ namespace Foody.Views
         private async void BreakfastToDetail_Tapped(object sender, EventArgs e)
         {
             Debug.WriteLine("check data breakfast");
-            Debug.WriteLine(mealPlanViewModel.userMeal.breakfastRecipe.title);
-            if (mealPlanViewModel.userMeal.breakfastRecipe != null)
+            if (mealPlanViewModel.userMeal != null)
             {
-                Result recipe = mealPlanViewModel.userMeal.breakfastRecipe;
-                recipe.SelectedViewModelIndex = 0;
-                await Navigation.PushAsync(new DetailRecipe(recipe));
+                Debug.WriteLine(mealPlanViewModel.userMeal.breakfastRecipe.title);
+                if (mealPlanViewModel.userMeal.breakfastRecipe != null)
+                {
+                    Result recipe = mealPlanViewModel.userMeal.breakfastRecipe;
+                    Debug.WriteLine($"no null {recipe.title}");
+                    recipe.SelectedViewModelIndex = 0;
+                    await Navigation.PushAsync(new DetailRecipe(recipe));
+                }
             }
         }
 
         private async void LunchToDetail_Tapped(object sender, EventArgs e)
         {
             Debug.WriteLine("check data ;unch");
-            Debug.WriteLine(mealPlanViewModel.userMeal.lunchRecipe.title);
-            if (mealPlanViewModel.userMeal.lunchRecipe != null)
+            if (mealPlanViewModel.userMeal != null)
             {
-                Result recipe = mealPlanViewModel.userMeal.lunchRecipe;
-                recipe.SelectedViewModelIndex = 0;
-                await Navigation.PushAsync(new DetailRecipe(recipe));
+                Debug.WriteLine(mealPlanViewModel.userMeal.lunchRecipe.title);
+                if (mealPlanViewModel.userMeal.lunchRecipe != null)
+                {
+                    Result recipe = mealPlanViewModel.userMeal.lunchRecipe;
+                    Debug.WriteLine($"no null {recipe.title}");
+                    recipe.SelectedViewModelIndex = 0;
+                    await Navigation.PushAsync(new DetailRecipe(recipe));
+                }
             }
         }
 
         private async void DinnerToDetail_Tapped(object sender, EventArgs e)
         {
             Debug.WriteLine("check data dinner");
-            Debug.WriteLine(mealPlanViewModel.userMeal.dinnerRecipe.title);
-            if (mealPlanViewModel.userMeal.dinnerRecipe != null)
+            //Debug.WriteLine(mealPlanViewModel.userMeal.dinnerRecipe.title);
+            if (mealPlanViewModel.userMeal != null)
             {
-                Result recipe = mealPlanViewModel.userMeal.dinnerRecipe;
-                recipe.SelectedViewModelIndex = 0;
-                await Navigation.PushAsync(new DetailRecipe(recipe));
+                if (mealPlanViewModel.userMeal.dinnerRecipe != null)
+                {
+                    Result recipe = mealPlanViewModel.userMeal.dinnerRecipe;
+                    Debug.WriteLine($"no null {recipe.title}");
+                    recipe.SelectedViewModelIndex = 0;
+                    await Navigation.PushAsync(new DetailRecipe(recipe));
+                }
             }
+            
         }
     }
 }
