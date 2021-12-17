@@ -55,11 +55,45 @@ namespace Foody.Views
                 }    
                 if(mealPlanViewModel.userMeal.lunchRecipe != null)
                 {
+                    deleteLunch.IsVisible = true;
+                    resetLunch.IsVisible = true;
+                    addLunch.IsVisible = false;
+                    row1Lunch.Height = 0;
+                    row2Lunch.Height = new GridLength(1, GridUnitType.Star);
+                    imgLunch.Source = mealPlanViewModel.userMeal.lunchRecipe.image;
+                    timeLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.readyInMinutes.ToString() + "min";
+                    titleLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.title;
                     Debug.WriteLine(mealPlanViewModel.userMeal.lunchRecipe.title);
+                }
+                else
+                {
+                    Debug.WriteLine("Nulll");
+                    deleteLunch.IsVisible = false;
+                    resetLunch.IsVisible = false;
+                    addLunch.IsVisible = true;
+                    row1Lunch.Height = new GridLength(1, GridUnitType.Star);
+                    row2Lunch.Height = 0;
                 }
                 if (mealPlanViewModel.userMeal.dinnerRecipe != null)
                 {
+                    deletebinner.IsVisible = true;
+                    resetDinner.IsVisible = true;
+                    addDinner.IsVisible = false;
+                    row1Dinner.Height = 0;
+                    row2Dinner.Height = new GridLength(1, GridUnitType.Star);
+                    imgDinner.Source = mealPlanViewModel.userMeal.dinnerRecipe.image;
+                    timeDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.readyInMinutes.ToString() + "min";
+                    titleDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.title;
                     Debug.WriteLine(mealPlanViewModel.userMeal.dinnerRecipe.title);
+                }
+                else
+                {
+                    Debug.WriteLine("Nulll");
+                    deletebinner.IsVisible = false;
+                    resetDinner.IsVisible = false;
+                    addDinner.IsVisible = true;
+                    row1Dinner.Height = new GridLength(1, GridUnitType.Star);
+                    row2Dinner.Height = 0;
                 }
             }
             else

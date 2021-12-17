@@ -52,20 +52,12 @@ namespace Foody.Views
                         userMealPlanItem.breakfastRecipe = item._id;
                     }
                 }
-                else
-                {
-                    userMealPlanItem.breakfastRecipe = null;
-                }
                 if (mealPlanViewModel.Lunch.Count > 0)
                 {
                     foreach (var item in mealPlanViewModel.Lunch)
                     {
                         userMealPlanItem.lunchRecipe = item._id;
                     }
-                }
-                else
-                {
-                    userMealPlanItem.lunchRecipe = null;
                 }
                 if (mealPlanViewModel.Dinner.Count > 0)
                 {
@@ -74,14 +66,6 @@ namespace Foody.Views
                         userMealPlanItem.dinnerRecipe = item._id;
                     }
                 }
-                else
-                {
-                    userMealPlanItem.dinnerRecipe = null;
-                }
-                Debug.WriteLine("Check data add");
-                Debug.WriteLine(userMealPlanItem.breakfastRecipe);
-                Debug.WriteLine(userMealPlanItem.lunchRecipe);
-                Debug.WriteLine(userMealPlanItem.dinnerRecipe);
                 bool check = await mealPlanViewModel.AddUserMealPlannerItem(userMealPlanItem);
                 if (check)
                 {
