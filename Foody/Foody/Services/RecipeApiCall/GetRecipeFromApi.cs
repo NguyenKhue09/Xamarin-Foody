@@ -901,5 +901,36 @@ namespace Foody.Services.RecipeApiCall
 
             return Recipes;
         }
+
+        public async Task<bool> DeleteUserMealPlanItem(string type)
+        {
+            string userId = App.LoginViewModel.GoogleUser.UID;
+            Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/meal-plan/delete-user-meal-plan/{userId}/{type}"));
+
+            try
+            {
+
+                HttpResponseMessage response = await client.DeleteAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("ThanhCong");
+                    Debug.WriteLine(response.RequestMessage);
+                    return true;
+                }
+                else
+                {
+                    Debug.WriteLine(response.RequestMessage);
+                    return false;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                return false;
+            }
+        }
     }
 }
