@@ -25,7 +25,6 @@ namespace Foody.Views.DetailsRecipe
         {
             InitializeComponent();
             BindingContext = detailRecipeViewModel = new DetailRecipeViewModel(recipe);
-            //detailRecipeViewModel.getIngredient();
         }
 
         protected override void OnAppearing()
@@ -39,8 +38,6 @@ namespace Foody.Views.DetailsRecipe
 
             try
             {
-                //Code to execute on tapped event
-                //await(App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync("//tabbar/home", true);
                 await Navigation.PopAsync();
             }
             catch (Exception ex)
@@ -78,12 +75,11 @@ namespace Foody.Views.DetailsRecipe
         {
             detailRecipeViewModel.IsFavoriteRecipe = !detailRecipeViewModel.IsFavoriteRecipe;
 
-            Debug.WriteLine(detailRecipeViewModel.recipe.id);
-
             FavoriteRecipe favoriteRecipe = new FavoriteRecipe
             {
                 JsonRecipe = JsonConvert.SerializeObject(detailRecipeViewModel.recipe),
-                RecipeId = detailRecipeViewModel.recipe.id
+                RecipeId = detailRecipeViewModel.recipe.id,
+                userId = App.LoginViewModel.GoogleUser.UID
             };
 
             RecipeDatabase recipeDatabase = await RecipeDatabase.Instance;
@@ -92,13 +88,11 @@ namespace Foody.Views.DetailsRecipe
             {
                 FavoriteIcon.Source = "heart_red.png";
                 int x = await recipeDatabase.AddFavoriteRecipe(favoriteRecipe);
-                Debug.WriteLine($"Insert in {x}");
             } else
             {
                 FavoriteIcon.Source = "heart_outline.png";
-                FavoriteRecipe deleteFavoriteRecipe = await recipeDatabase.GetFavoriteRecipes(detailRecipeViewModel.recipe.id);
+                FavoriteRecipe deleteFavoriteRecipe = await recipeDatabase.GetFavoriteRecipes(detailRecipeViewModel.recipe.id, App.LoginViewModel.GoogleUser.UID);
                 int x = await recipeDatabase.DeleteFavoriteRecipe(deleteFavoriteRecipe);
-                Debug.WriteLine($"Delete in {x}");
             }
         }
 
@@ -106,7 +100,7 @@ namespace Foody.Views.DetailsRecipe
         {
             RecipeDatabase recipeDatabase = await RecipeDatabase.Instance;
 
-            FavoriteRecipe favoriteRecipe = await recipeDatabase.GetFavoriteRecipes(detailRecipeViewModel.recipe.id);
+            FavoriteRecipe favoriteRecipe = await recipeDatabase.GetFavoriteRecipes(detailRecipeViewModel.recipe.id, App.LoginViewModel.GoogleUser.UID);
 
             if(favoriteRecipe != null)
             {

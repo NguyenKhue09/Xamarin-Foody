@@ -105,7 +105,6 @@ namespace Foody.ViewModels
 
         private  void OnLoginComplete(GoogleUser googleUser, string message)
         {
-            Debug.WriteLine("Call onlogin compelete");
             if (googleUser != null)
             {
                 ObsGoogleUser = new GoogleUser

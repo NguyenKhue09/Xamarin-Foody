@@ -27,7 +27,6 @@ namespace Foody.ViewModels
             Recipe Results = await App.RecipeManager.GetMealPlanBreakfast();
             if (Results != null)
             {
-                Debug.WriteLine("Breakfast call api success");
                 result.AddRange(Results.results);
             }
             return result;
@@ -39,7 +38,6 @@ namespace Foody.ViewModels
             Recipe Results = await App.RecipeManager.GetMealPlanLunch();
             if (Results != null)
             {
-                Debug.WriteLine("Lunch call api success");
                 result.AddRange(Results.results);
             }
             return result;
@@ -51,7 +49,6 @@ namespace Foody.ViewModels
             Recipe Results = await App.RecipeManager.GetMealPlanDinner();
             if (Results != null)
             {
-                Debug.WriteLine("Dinner call api success");
                 result.AddRange(Results.results);
             }
             return result;

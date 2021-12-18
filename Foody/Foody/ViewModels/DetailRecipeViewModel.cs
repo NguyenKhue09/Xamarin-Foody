@@ -113,7 +113,6 @@ namespace Foody.ViewModels
         {
    
             NumberOfIngredient += 1;
-            Debug.WriteLine(NumberOfIngredient);
             changeAmountIngredients(NumberOfIngredient);
         }
         
@@ -122,8 +121,10 @@ namespace Foody.ViewModels
             for (int i = 0; i < newList.Count; i++)
             {
                 newList[i].amount = recipe.extendedIngredients[i].amount * amount;
-                //newList[i].amountIngre = new Fraction(Math.Round(newList[i].amount, 2)).ToString();
-                newList[i].amountIngre = Math.Round(newList[i].amount, 2).ToString();
+                //Debug.WriteLine($"amount {newList[i].amount}");
+                //Debug.WriteLine($"Rounded amount {Math.Round(newList[i].amount, 2)}");
+                newList[i].amountIngre = new Fraction(Math.Round(newList[i].amount, 2)).ToString();
+                //newList[i].amountIngre = Math.Round(newList[i].amount, 2).ToString();
                 ExtendedIngredients[i] = newList[i];
             }
             
@@ -132,7 +133,6 @@ namespace Foody.ViewModels
 
         public async Task<bool> AddIngredientsToShoppingList()
         {
-            Debug.WriteLine("Call function add to list");
             foreach (ExtendedIngredient item in ExtendedIngredients)
             {
                 
@@ -143,7 +143,8 @@ namespace Foody.ViewModels
                     name = item.name,
                     amount = item.amount,
                     unit = item.unit,
-                    image = item.image
+                    image = item.image,
+                    userId = App.LoginViewModel.GoogleUser.UID
                 };
 
                 bool response = await App.RecipeManager.AddIngredientsToShoppingList(itemShoppingList);

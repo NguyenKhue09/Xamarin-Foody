@@ -124,7 +124,6 @@ namespace Foody.ViewModels
             SearchRecipes.AddRange(results.results);
             if(results != null && results.results.Count > 0)
             {
-                Debug.WriteLine(results.results.Count.ToString());
                 await Navigation.PushAsync(new PageSearchRecipes(results));
             }    
         }
@@ -147,7 +146,6 @@ namespace Foody.ViewModels
             {
                 cuisineList.Add(value);
             }
-            Debug.WriteLine($"S + {value}");
         }
 
         public void chipCuisineUnSelected(string value)
@@ -164,7 +162,6 @@ namespace Foody.ViewModels
             {
                 intolerancesList.Add(value);
             }
-            Debug.WriteLine($"S + {value}");
         }
 
         public void chipIntolerancesUnSelected(string value)
@@ -173,7 +170,6 @@ namespace Foody.ViewModels
             {
                 intolerancesList.Remove(value);
             }
-            Debug.WriteLine($"U + {value}");
 
         }
         //
@@ -196,7 +192,6 @@ namespace Foody.ViewModels
         //search pantry manager
         async public void SearchUserPantryItem(string searchString)
         {
-            Debug.WriteLine("Call search pantry");
             PantryBuilderResult results = await App.RecipeManager.SearchPantryBuilder(searchString);
 
             if (results != null)
@@ -254,24 +249,6 @@ namespace Foody.ViewModels
             }
             return userPantryListGroups;
         }
-
-        //public void GetPantryBuilderList()
-        //{
-
-        //    var queryPantryBuilderAisle = from item in originalUserPantryItems
-        //                                  group item by item.aisle into newResults
-        //                                  orderby newResults.Key
-        //                                  select newResults;
-
-        //    foreach (var aisleGroup in queryPantryBuilderAisle)
-        //    {
-        //        UserPantryListGroupManagers.Add(new UserPantryListGroupManager(
-        //            aisleGroup.Key,
-        //            new ObservableCollection<ItemId>(aisleGroup.ToList())
-        //        ));
-        //    }
-
-        //}
 
         public void GetSelectedUserPantryItem()
         {
@@ -340,7 +317,6 @@ namespace Foody.ViewModels
                         userPantryListGroupManager.UserPantryListItems.Remove(itemId);
                         if (userPantryListGroupManager.UserPantryListItems.Count == 0)
                         {
-                            Debug.WriteLine("Empty list");
                             deleteUserPantryGroupManagerItem(userPantryListGroupManager);
                         }
                         break;

@@ -32,8 +32,6 @@ namespace Foody.Views
         {
             try
             {
-                //Code to execute on tapped event
-                //await Navigation.PushAsync(new Account());
                 await Shell.Current.GoToAsync("//tabbar/menu/Account", true);
 
             }
@@ -77,7 +75,7 @@ namespace Foody.Views
             homeViewModel.GetRecipes();
             homeViewModel.GetRandomRecipes();
             homeViewModel.FavoriteRecipes = await homeViewModel.GetAllFavoriteRecipes();
-            
+
             if (homeViewModel.FavoriteRecipes.Count > 0)
             {
                 favorite_Recipes_Foody.ItemsSource = homeViewModel.FavoriteRecipes;
@@ -89,14 +87,14 @@ namespace Foody.Views
                 lb.Height = 0;
                 col.Height = 0;
             }
+
         }
 
-       
+
         async private void favorite_Recipes_Foody_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (favorite_Recipes_Foody.SelectedItem != null)
             {
-                Debug.WriteLine("Choose");
                 Result recipe = (Result)favorite_Recipes_Foody.SelectedItem;
                 recipe.SelectedViewModelIndex = 0;
                 await Navigation.PushAsync(new DetailRecipe(recipe));
@@ -109,7 +107,6 @@ namespace Foody.Views
         {
             if (collectionView_Popular.SelectedItem != null)
             {
-                Debug.WriteLine("Choose");
                 Result recipe = (Result)collectionView_Popular.SelectedItem;
                 recipe.SelectedViewModelIndex = 0;
                 await Navigation.PushAsync(new DetailRecipe(recipe));
@@ -121,7 +118,6 @@ namespace Foody.Views
         {
             if (random_recipes.SelectedItem != null)
             {
-                Debug.WriteLine("Choose");
                 Result recipe = (Result)random_recipes.SelectedItem;
                 recipe.SelectedViewModelIndex = 0;
                 await Navigation.PushAsync(new DetailRecipe(recipe));

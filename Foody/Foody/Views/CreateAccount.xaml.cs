@@ -59,7 +59,6 @@ namespace Foody.Views
 
         private void RegisterUser_Tapped(object sender, EventArgs e)
         {
-            Debug.WriteLine("Create Acounnt");
             App.LoginViewModel.RegisterUser(txtUserEmail.Text, Password.Text);
         }
 

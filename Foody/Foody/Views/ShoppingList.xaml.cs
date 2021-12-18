@@ -47,7 +47,9 @@ namespace Foody.Views
             {
                 showTotalItemShoppingCart.IsVisible = false;
             }
+
             shoppingListViewModel.shoppingListGroupManagers = await shoppingListViewModel.GetShoppingList();
+
             if(shoppingListViewModel.shoppingListGroupManagers.Count >0)
             {
                 shoplist.ItemsSource = shoppingListViewModel.shoppingListGroupManagers;
@@ -99,7 +101,6 @@ namespace Foody.Views
 
         private void SelectedAllItem_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-            //shoppingListViewModel.IsSelectedAllShoppingListItem = !shoppingListViewModel.IsSelectedAllShoppingListItem;
             shoppingListViewModel.SelectAllShoppingListItem();
         }
 
@@ -156,7 +157,6 @@ namespace Foody.Views
 
         private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //shoppingListViewModel.SearchUserPantryItems.Clear();
             SearchBar searchBar = (SearchBar)sender;
             await Task.Delay(300);
             if (searchBar.Text != null)
@@ -190,42 +190,34 @@ namespace Foody.Views
             {
                 IngredientInform selectedItem = (IngredientInform)IngredientsSearch.SelectedItem;
                 AddIngredientToSPLImg.Source = "loading.gif";
-                IngredientInform ingredientInform = await App.RecipeManager.GetIngredientInform(selectedItem.id);
-                if(ingredientInform != null)
+               
+                ItemShoppingList itemShoppingList = new ItemShoppingList
                 {
-                    ItemShoppingList itemShoppingList = new ItemShoppingList
+                    id = selectedItem.id,
+                    aisle = selectedItem.aisle,
+                    name = selectedItem.name,
+                    amount = selectedItem.amount,
+                    unit = selectedItem.unit,
+                    image = selectedItem.image,
+                    userId = App.LoginViewModel.GoogleUser.UID
+                };
+                bool result  = await App.RecipeManager.AddIngredientsToShoppingList(itemShoppingList);
+                if(result)
+                {
+                    AddIngredientToSPLImg.Source = "plus1.png";
+                    shoppingListViewModel.shoppingListGroupManagers.Clear();
+                    shoppingListViewModel.IsShowSearchIngredientItem = false;
+                    shoppingListViewModel.shoppingListGroupManagers = await shoppingListViewModel.GetShoppingList();
+                    if (shoppingListViewModel.shoppingListGroupManagers.Count > 0)
                     {
-                        id = ingredientInform.id,
-                        aisle = ingredientInform.aisle,
-                        name = ingredientInform.name,
-                        amount = ingredientInform.amount,
-                        unit = ingredientInform.unit,
-                        image = ingredientInform.image
-                    };
-                    bool result  = await App.RecipeManager.AddIngredientsToShoppingList(itemShoppingList);
-                    if(result)
-                    {
-                        AddIngredientToSPLImg.Source = "plus1.png";
-                        shoppingListViewModel.shoppingListGroupManagers.Clear();
-                        shoppingListViewModel.IsShowSearchIngredientItem = false;
-                        shoppingListViewModel.shoppingListGroupManagers = await shoppingListViewModel.GetShoppingList();
-                        if (shoppingListViewModel.shoppingListGroupManagers.Count > 0)
-                        {
-                            shoplist.ItemsSource = shoppingListViewModel.shoppingListGroupManagers;
-                            btnAddToCart.IsVisible = true;
-                        }
-                        else
-                        {
-                            btnAddToCart.IsVisible = false;
-                        }
-                        SearchBarIngredient.Text = null;
-                    } else
-                    {
-                        AddIngredientToSPLImg.Source = "plus1.png";
-                        await DisplayAlert("Error", "Add CartIngredient to shopping list fail!", "OK");
-                        shoppingListViewModel.IsShowSearchIngredientItem = false;
-                        SearchBarIngredient.Text = null;
+                        shoplist.ItemsSource = shoppingListViewModel.shoppingListGroupManagers;
+                        btnAddToCart.IsVisible = true;
                     }
+                    else
+                    {
+                        btnAddToCart.IsVisible = false;
+                    }
+                    SearchBarIngredient.Text = null;
                 } else
                 {
                     AddIngredientToSPLImg.Source = "plus1.png";

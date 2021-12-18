@@ -19,7 +19,6 @@ namespace Foody.ViewModels
 {
     public class ShoppingListViewModel : BaseViewModel
     {
-        //public event PropertyChangedEventHandler PropertyChanged;
         public Command Checkmanager { get; }
         public Command CheckGroupAisleBelong { get; }
 
@@ -80,7 +79,6 @@ namespace Foody.ViewModels
         async public Task<ObservableCollection<ShoppingListGroupManager>> GetShoppingList()
         {
             originalShoppingLists = new ShoppingListResult();
-            //shoppingListGroupManagers = new ObservableCollection<ShoppingListGroupManager>();
             ObservableCollection<ShoppingListGroupManager> shoppingListGroups = new ObservableCollection<ShoppingListGroupManager>();
             originalShoppingLists = await App.RecipeManager.GetShoppingList();
 
@@ -146,8 +144,6 @@ namespace Foody.ViewModels
                     {
                         selectedShoppingtListItems.Remove(shoppingListItem);
                     }
-                    
-                    Debug.WriteLine(shoppingListItem.IngredientName + shoppingListItem.isChoose);
                 }
             }
         }
@@ -160,7 +156,6 @@ namespace Foody.ViewModels
                 {
                     
                         shoppingListItem.IsChoose = isSelectedAllShoppingListItem;
-                    //Debug.WriteLine(shoppingListItem.IngredientName + shoppingListItem.IsChoose);
                 }
             }
         }
@@ -169,7 +164,6 @@ namespace Foody.ViewModels
         {
 
             GetSelectedShoppingListItem();
-            //Debug.WriteLine(selectedShoppingtListItems.Count);
 
             foreach (ShoppingListItem shoppingListItem in selectedShoppingtListItems)
             {
@@ -186,7 +180,6 @@ namespace Foody.ViewModels
                 IsSelectedAllShoppingListItem = false;
             }
 
-            //Debug.WriteLine(IsSelectedAllShoppingListItem);
             
             return true;
         }
@@ -213,7 +206,6 @@ namespace Foody.ViewModels
                         shoppingListGroupManager.ShoppingListItems.Remove(shoppingListItem);
                         if (shoppingListGroupManager.ShoppingListItems.Count == 0)
                         {
-                            Debug.WriteLine("Empty list");
                             deleteShoppingListGroupManagerItem(shoppingListGroupManager);
                         }
                         break;
@@ -232,10 +224,10 @@ namespace Foody.ViewModels
             shoppingListGroupManagers.Remove(shoppingListGroupManager);
         }
 
-        async Task<IngredientInform> GetIngredientInform(int id)
-        {
-            return await App.RecipeManager.GetIngredientInform(id);
-        }
+        //async Task<IngredientInform> GetIngredientInform(int id)
+        //{
+        //    return await App.RecipeManager.GetIngredientInform(id);
+        //}
 
 
         async public void SearchIngredient(string searchString)
@@ -262,7 +254,6 @@ namespace Foody.ViewModels
                     {
                         ShowHeightResultSearch = "0,0,280,185";
                     }
-                    //Debug.WriteLine(ShowHeightResultSearch);
                     IsShowSearchIngredientItem = true;
                 }
                 else
@@ -273,14 +264,7 @@ namespace Foody.ViewModels
             
         }
 
-        //protected virtual void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
-        //{
-        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        //}
-
-
-
-
+        
         //Shopping cart 
        
         public void changeExpandIcon(string item)
@@ -362,7 +346,6 @@ namespace Foody.ViewModels
             {
                 if (item.id == shoppingCartItem.IngredientId)
                 {
-                    Debug.WriteLine(item.name);
                     result = await App.RecipeManager.DeleteShoppingCart(item._id);
                 }
             }
@@ -377,7 +360,6 @@ namespace Foody.ViewModels
                         shoppingCartGroupManager.ShoppingListItems.Remove(shoppingCartItem);
                         if (shoppingCartGroupManager.ShoppingListItems.Count == 0)
                         {
-                            Debug.WriteLine("Empty list");
                             deleteShoppingCartGroupManagerItem(shoppingCartGroupManager);
                             break;
                         }

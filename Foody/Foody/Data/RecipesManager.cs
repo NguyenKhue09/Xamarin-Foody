@@ -78,10 +78,10 @@ namespace Foody.Data
             return restService.AddShoppingCartToUserPantry();
         }
         // Ingredient
-        public Task<IngredientInform> GetIngredientInform(int id)
-        {
-            return restService.GetIngredientInform(id);
-        }
+        //public Task<IngredientInform> GetIngredientInform(int id)
+        //{
+        //    return restService.GetIngredientInform(id);
+        //}
 
         public Task<SearchIngredientsResult> SearchIngredients(string searchString)
         {

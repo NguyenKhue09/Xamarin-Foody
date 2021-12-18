@@ -10,6 +10,7 @@ namespace Foody.Models.Local
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
 
+        public string userId { get; set; }
         public int RecipeId { get; set; }
 
         public string JsonRecipe { get; set; }

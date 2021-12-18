@@ -22,7 +22,6 @@ namespace Foody.Views
             InitializeComponent();
             BindingContext = pantrySettingViewModel = new PantrySettingViewModel();
             pantrySettingViewModel.GetOriginalPantryBuilderItems();
-            //pantrySettingViewModel.GetPantryBuilderList();
         }
 
         private void BackToPantry_Tapped(object sender, EventArgs e)

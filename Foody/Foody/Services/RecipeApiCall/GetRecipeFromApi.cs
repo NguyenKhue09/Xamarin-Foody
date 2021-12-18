@@ -39,20 +39,12 @@ namespace Foody.Services.RecipeApiCall
 
         public async Task<Recipe> GetRecipes()
         {
-            Debug.WriteLine("Recipe");
             Recipe Recipes = new Recipe();
-
-            //Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/recipes/complexSearch?number=" +
-            //    $"{Constants.Constants.NUMBER}&apiKey={Constants.Constants.APIKEY}&type={Constants.Constants.RECIPE_TYPE}" +
-            //    $"&diet={Constants.Constants.DIET}&addRecipesInformation={Constants.Constants.ADDRECIPEINFORMATION}" +
-            //    $"&fillIngredients={Constants.Constants.FILLINGREDIENTS}&addRecipeNutrition={Constants.Constants.RECIPENUTRITION}", string.Empty));
-
             Uri uri = new Uri(string.Format("https://pantry-wizard.herokuapp.com/api/recipes/get-recipe"));
             try
             {
          
                 HttpResponseMessage response = await client.GetAsync(uri);
-                Debug.WriteLine("CallAPI");
                 if (response.IsSuccessStatusCode)
                 {
 
@@ -89,7 +81,6 @@ namespace Foody.Services.RecipeApiCall
             {
 
                 HttpResponseMessage response = await client.GetAsync(uri);
-                Debug.WriteLine("CallAPI");
                 if (response.IsSuccessStatusCode)
                 {
 
@@ -117,24 +108,17 @@ namespace Foody.Services.RecipeApiCall
         // popular Recipe 
         public async Task<Recipe> GetPopularRecipes()
         {
-            Debug.WriteLine("Popular");
             Recipe PopularRecipes  = new Recipe();
             string[] Diet = { "ketogenic", "gluten free", "vegan", "primal" };
             Random rnd = new Random();
             int index = rnd.Next(Diet.Length);
-            //Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/recipes/complexSearch?number=" +
-            //    $"{Constants.Constants.NUMBER}&apiKey={Constants.Constants.APIKEY}&type={Constants.Constants.POPULAR_RECIPE_TYPE}" +
-            //    $"&diet={Constants.Constants.POPULAR_DIET}&addRecipesInformation={Constants.Constants.ADDRECIPEINFORMATION}" +
-            //    $"&fillIngredients={Constants.Constants.FILLINGREDIENTS}&addRecipeNutrition={Constants.Constants.RECIPENUTRITION}", string.Empty));
             Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/recipes/search-recipe?diet={Diet[index]}&type=lunch"));
             try
             {
 
                 HttpResponseMessage response = await client.GetAsync(uri);
-                Debug.WriteLine("CallAPI");
                 if (response.IsSuccessStatusCode)
                 {
-
 
                     string content = await response.Content.ReadAsStringAsync();
                     PopularRecipes = JsonSerializer.Deserialize<Recipe>(content, serializerOptions);
@@ -165,7 +149,6 @@ namespace Foody.Services.RecipeApiCall
             {
 
                 HttpResponseMessage response = await client.GetAsync(uri);
-                Debug.WriteLine("CallAPI");
                 await pantryViewModel.showpopup_Clicked();
                 if (response.IsSuccessStatusCode)
                 {
@@ -202,21 +185,14 @@ namespace Foody.Services.RecipeApiCall
             int index = rnd.Next(Diet.Length);
             string[] Type = { "main course", "side dish", "dessert", "appetizer", "salad", "bread", "breakfast", "soup", "beverage", "sauce", "marinade", "fingerfood", "snack", "drink" };
             Random random = new Random();
-            Debug.WriteLine(Diet[index]);
             int index1 = random.Next(Type.Length);
             Recipe RandomRecipes = new Recipe();
-            Debug.WriteLine(Type[index1]);
 
-            //Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/recipes/complexSearch?number=" +
-            //   $"{Constants.Constants.NUMBER}&apiKey={Constants.Constants.APIKEY}&type={Constants.Constants.RANDOM_RECIPE_TYPE}" +
-            //   $"&diet={names[index]}&addRecipesInformation={Constants.Constants.ADDRECIPEINFORMATION}" +
-            //   $"&fillIngredients={Constants.Constants.FILLINGREDIENTS}&addRecipeNutrition={Constants.Constants.RECIPENUTRITION}", string.Empty));
             Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/recipes/search-recipe?diet={Diet[index]}&type={Type[index1]}"));
             try
             {
 
                 HttpResponseMessage response = await client.GetAsync(uri);
-                Debug.WriteLine("CallAPI");
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
@@ -241,8 +217,7 @@ namespace Foody.Services.RecipeApiCall
         // Shopping list api
         public async Task<bool> AddIngredientsToShoppingList(ItemShoppingList itemShoppingList)
         {
-            //Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/mealplanner/{Constants.Constants.USER_NAME}/shopping-list/items?" +
-            //    $"apiKey={Constants.Constants.APIKEY}&hash={Constants.Constants.HASH_USERNAME}"));
+           
             Uri uri = new Uri(string.Format("https://pantry-wizard.herokuapp.com/api/shopping-list/add-shopping-list-item"));
 
 
@@ -277,14 +252,14 @@ namespace Foody.Services.RecipeApiCall
         {
 
             ShoppingListResult = new ShoppingListResult();
+            string userId = App.LoginViewModel.GoogleUser.UID;
 
-            Uri uri = new Uri(string.Format("https://pantry-wizard.herokuapp.com/api/shopping-list/get-shopping-list-item"));
+            Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/shopping-list/get-shopping-list-item/{userId}"));
 
             try
             {
 
                 HttpResponseMessage response = await client.GetAsync(uri);
-                Debug.WriteLine("CallAPI");
                
                 if (response.IsSuccessStatusCode)
                 {
@@ -306,6 +281,7 @@ namespace Foody.Services.RecipeApiCall
             {
 
                 Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                ShoppingListResult.results = new List<Item>();
             }
 
             return ShoppingListResult;
@@ -385,7 +361,6 @@ namespace Foody.Services.RecipeApiCall
             {
 
                 HttpResponseMessage response = await client.GetAsync(uri);
-                Debug.WriteLine("CallAPI");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -449,7 +424,6 @@ namespace Foody.Services.RecipeApiCall
             {
 
                 HttpResponseMessage response = await client.GetAsync(uri);
-                Debug.WriteLine("CallAPI");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -473,37 +447,37 @@ namespace Foody.Services.RecipeApiCall
         }
 
         // Ingredient
-        public async Task<IngredientInform> GetIngredientInform(int id)
-        {
-            Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/food/ingredients/{id}/information?apiKey={Constants.Constants.APIKEY}&amount=1"));
+        //public async Task<IngredientInform> GetIngredientInform(int id)
+        //{
+        //    Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/food/ingredients/{id}/information?apiKey={Constants.Constants.APIKEY}&amount=1"));
 
-            ingredientInform = new IngredientInform();
+        //    ingredientInform = new IngredientInform();
 
-            try 
-            {
+        //    try 
+        //    {
 
-                HttpResponseMessage response = await client.GetAsync(uri);
+        //        HttpResponseMessage response = await client.GetAsync(uri);
 
-                if (response.IsSuccessStatusCode)
-                {
-                    string content = await response.Content.ReadAsStringAsync();
-                    ingredientInform = JsonSerializer.Deserialize<IngredientInform>(content, serializerOptions);
-                    Debug.WriteLine("ThanhCong");
-                }
-                else
-                {
-                    Debug.WriteLine("Thatbai");
-                    ingredientInform = null;
-                }
-            }
-            catch (Exception ex)
-            {
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            string content = await response.Content.ReadAsStringAsync();
+        //            ingredientInform = JsonSerializer.Deserialize<IngredientInform>(content, serializerOptions);
+        //            Debug.WriteLine("ThanhCong");
+        //        }
+        //        else
+        //        {
+        //            Debug.WriteLine("Thatbai");
+        //            ingredientInform = null;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                Debug.WriteLine(@"\tERROR {0}", ex.Message);
-            }
+        //        Debug.WriteLine(@"\tERROR {0}", ex.Message);
+        //    }
 
-            return ingredientInform;
-        }
+        //    return ingredientInform;
+        //}
 
         public async Task<SearchIngredientsResult> SearchIngredients(string searchString)
         {
@@ -548,7 +522,6 @@ namespace Foody.Services.RecipeApiCall
             {
 
                 HttpResponseMessage response = await client.GetAsync(uri);
-                Debug.WriteLine("CallAPI");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -646,7 +619,6 @@ namespace Foody.Services.RecipeApiCall
             {
 
                 HttpResponseMessage response = await client.GetAsync(uri);
-                Debug.WriteLine("CallAPI");
                 if (response.IsSuccessStatusCode)
                 {
 
@@ -772,7 +744,6 @@ namespace Foody.Services.RecipeApiCall
             {
 
                 HttpResponseMessage response = await client.GetAsync(uri);
-                Debug.WriteLine("CallAPI");
                 if (response.IsSuccessStatusCode)
                 {
 
@@ -799,7 +770,6 @@ namespace Foody.Services.RecipeApiCall
         // get meal planner type
         public async Task<Recipe> GetMealPlanLunch()
         {
-            Debug.WriteLine("Recipe");
             Recipe Recipes = new Recipe();
 
             Uri uri = new Uri(string.Format("https://pantry-wizard.herokuapp.com/api/recipes/get-meal-recipe?type=lunch"));
@@ -807,7 +777,6 @@ namespace Foody.Services.RecipeApiCall
             {
 
                 HttpResponseMessage response = await client.GetAsync(uri);
-                Debug.WriteLine("CallAPI");
                 if (response.IsSuccessStatusCode)
                 {
 
@@ -834,7 +803,6 @@ namespace Foody.Services.RecipeApiCall
 
         public async Task<Recipe> GetMealPlanDinner()
         {
-            Debug.WriteLine("Recipe");
             Recipe Recipes = new Recipe();
 
             Uri uri = new Uri(string.Format("https://pantry-wizard.herokuapp.com/api/recipes/get-meal-recipe?type=dinner"));
@@ -842,7 +810,6 @@ namespace Foody.Services.RecipeApiCall
             {
 
                 HttpResponseMessage response = await client.GetAsync(uri);
-                Debug.WriteLine("CallAPI");
                 if (response.IsSuccessStatusCode)
                 {
 
@@ -869,7 +836,6 @@ namespace Foody.Services.RecipeApiCall
 
         public async Task<Recipe> GetMealPlanBreakfast()
         {
-            Debug.WriteLine("Recipe");
             Recipe Recipes = new Recipe();
 
             Uri uri = new Uri(string.Format("https://pantry-wizard.herokuapp.com/api/recipes/get-meal-recipe?type=breakfast"));
@@ -877,7 +843,6 @@ namespace Foody.Services.RecipeApiCall
             {
 
                 HttpResponseMessage response = await client.GetAsync(uri);
-                Debug.WriteLine("CallAPI");
                 if (response.IsSuccessStatusCode)
                 {
 
@@ -915,12 +880,11 @@ namespace Foody.Services.RecipeApiCall
                 if (response.IsSuccessStatusCode)
                 {
                     Debug.WriteLine("ThanhCong");
-                    Debug.WriteLine(response.RequestMessage);
                     return true;
                 }
                 else
                 {
-                    Debug.WriteLine(response.RequestMessage);
+                    Debug.WriteLine("That bai");
                     return false;
 
                 }

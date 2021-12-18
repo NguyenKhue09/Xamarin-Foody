@@ -111,12 +111,6 @@ namespace Foody.Views
 
                 pantryViewModel.GetSearchRecipes(querySearch, cuisineList, intolerancesList);
 
-                Debug.WriteLine($"{querySearch}");
-                Debug.WriteLine($"{cuisineList}");
-                Debug.WriteLine($"{intolerancesList}");
-                // call api
-                Debug.WriteLine("Call api search");
-
             }
             catch (Exception ex)
             {
@@ -190,14 +184,12 @@ namespace Foody.Views
                 pantryViewModel.SearchUserPantryItem(searchBar.Text);
             }
             
-            Debug.WriteLine(pantryViewModel.SearchUserPantryItems.Count);
         }
 
         private async void collectionView_ingredients_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (collectionView_ingredients.SelectedItem != null)
             {
-                Debug.WriteLine("Choose");
                 Result recipe = (Result)collectionView_ingredients.SelectedItem;
                 recipe.SelectedViewModelIndex = 0;
                 await Navigation.PushAsync(new DetailRecipe(recipe));
@@ -210,7 +202,6 @@ namespace Foody.Views
         {
             if (collectionView_Popular.SelectedItem != null)
             {
-                Debug.WriteLine("Choose");
                 Result recipe = (Result)collectionView_Popular.SelectedItem;
                 recipe.SelectedViewModelIndex = 0;
                 await Navigation.PushAsync(new DetailRecipe(recipe));
@@ -223,7 +214,6 @@ namespace Foody.Views
         {
             if (collectionView_Random.SelectedItem != null)
             {
-                Debug.WriteLine("Choose");
                 Result recipe = (Result)collectionView_Random.SelectedItem;
                 recipe.SelectedViewModelIndex = 0;
                 await Navigation.PushAsync(new DetailRecipe(recipe));

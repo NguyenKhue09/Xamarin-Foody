@@ -68,9 +68,6 @@ namespace Foody.Views
                         Debug.WriteLine(shoppingCartItem.IsChoose);
                         if (!shoppingCartItem.isChoose)
                         {
-                            Debug.WriteLine("okeoke");
-                            Debug.WriteLine(shoppingCartItem.IsChoose);
-                            Debug.WriteLine("okeoke");
                             shoppingCart = shoppingCartItem;
                             break;
                         }
@@ -92,7 +89,8 @@ namespace Foody.Views
                             name = shoppingCart.IngredientName,
                             amount = shoppingCart.IngredientAmount,
                             unit = shoppingCart.IngredientUnits,
-                            image = shoppingCart.IngredientImg
+                            image = shoppingCart.IngredientImg,
+                            userId = App.LoginViewModel.GoogleUser.UID
                         };
 
                         bool response = await App.RecipeManager.AddIngredientsToShoppingList(itemShoppingList);
@@ -136,7 +134,6 @@ namespace Foody.Views
                     shoppingCartNull.Height = 200;
                     shoppingCart.Height = 0;
                 }
-                Debug.WriteLine("Delete Item ShoppingCart success");
             }    
         }
 
