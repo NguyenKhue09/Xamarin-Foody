@@ -143,7 +143,8 @@ namespace Foody.ViewModels
                     name = item.name,
                     amount = item.amount,
                     unit = item.unit,
-                    image = item.image
+                    image = item.image,
+                    userId = App.LoginViewModel.GoogleUser.UID
                 };
 
                 bool response = await App.RecipeManager.AddIngredientsToShoppingList(itemShoppingList);

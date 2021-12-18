@@ -89,7 +89,8 @@ namespace Foody.Views
                             name = shoppingCart.IngredientName,
                             amount = shoppingCart.IngredientAmount,
                             unit = shoppingCart.IngredientUnits,
-                            image = shoppingCart.IngredientImg
+                            image = shoppingCart.IngredientImg,
+                            userId = App.LoginViewModel.GoogleUser.UID
                         };
 
                         bool response = await App.RecipeManager.AddIngredientsToShoppingList(itemShoppingList);

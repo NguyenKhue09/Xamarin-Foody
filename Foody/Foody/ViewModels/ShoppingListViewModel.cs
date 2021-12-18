@@ -224,10 +224,10 @@ namespace Foody.ViewModels
             shoppingListGroupManagers.Remove(shoppingListGroupManager);
         }
 
-        async Task<IngredientInform> GetIngredientInform(int id)
-        {
-            return await App.RecipeManager.GetIngredientInform(id);
-        }
+        //async Task<IngredientInform> GetIngredientInform(int id)
+        //{
+        //    return await App.RecipeManager.GetIngredientInform(id);
+        //}
 
 
         async public void SearchIngredient(string searchString)

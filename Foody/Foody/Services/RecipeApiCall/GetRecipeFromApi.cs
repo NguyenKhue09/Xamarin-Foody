@@ -252,8 +252,9 @@ namespace Foody.Services.RecipeApiCall
         {
 
             ShoppingListResult = new ShoppingListResult();
+            string userId = App.LoginViewModel.GoogleUser.UID;
 
-            Uri uri = new Uri(string.Format("https://pantry-wizard.herokuapp.com/api/shopping-list/get-shopping-list-item"));
+            Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/shopping-list/get-shopping-list-item/{userId}"));
 
             try
             {
@@ -446,37 +447,37 @@ namespace Foody.Services.RecipeApiCall
         }
 
         // Ingredient
-        public async Task<IngredientInform> GetIngredientInform(int id)
-        {
-            Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/food/ingredients/{id}/information?apiKey={Constants.Constants.APIKEY}&amount=1"));
+        //public async Task<IngredientInform> GetIngredientInform(int id)
+        //{
+        //    Uri uri = new Uri(string.Format($"{Constants.Constants.BASEURL}/food/ingredients/{id}/information?apiKey={Constants.Constants.APIKEY}&amount=1"));
 
-            ingredientInform = new IngredientInform();
+        //    ingredientInform = new IngredientInform();
 
-            try 
-            {
+        //    try 
+        //    {
 
-                HttpResponseMessage response = await client.GetAsync(uri);
+        //        HttpResponseMessage response = await client.GetAsync(uri);
 
-                if (response.IsSuccessStatusCode)
-                {
-                    string content = await response.Content.ReadAsStringAsync();
-                    ingredientInform = JsonSerializer.Deserialize<IngredientInform>(content, serializerOptions);
-                    Debug.WriteLine("ThanhCong");
-                }
-                else
-                {
-                    Debug.WriteLine("Thatbai");
-                    ingredientInform = null;
-                }
-            }
-            catch (Exception ex)
-            {
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            string content = await response.Content.ReadAsStringAsync();
+        //            ingredientInform = JsonSerializer.Deserialize<IngredientInform>(content, serializerOptions);
+        //            Debug.WriteLine("ThanhCong");
+        //        }
+        //        else
+        //        {
+        //            Debug.WriteLine("Thatbai");
+        //            ingredientInform = null;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                Debug.WriteLine(@"\tERROR {0}", ex.Message);
-            }
+        //        Debug.WriteLine(@"\tERROR {0}", ex.Message);
+        //    }
 
-            return ingredientInform;
-        }
+        //    return ingredientInform;
+        //}
 
         public async Task<SearchIngredientsResult> SearchIngredients(string searchString)
         {

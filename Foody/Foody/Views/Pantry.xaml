@@ -469,6 +469,7 @@
                                     Grid.Column="0"
                                     ItemsSource="{Binding RandomRecipes}"
                                     HeightRequest="100"
+                                    SelectionMode="Single"
                                     SelectionChanged="collectionView_Random_SelectionChanged">
                                     <CollectionView.ItemsLayout>
                                         <GridItemsLayout
