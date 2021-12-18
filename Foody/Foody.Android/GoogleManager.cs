@@ -34,7 +34,6 @@ namespace Foody.Droid
         public Action<GoogleUser> _checkUserLogin;
         public Action _resetPassword;
         public Action<bool> _updateUserDetail;
-        //public static GoogleApiClient _googleApiClient { get; set; }
         public static GoogleSignInClient _googleApiClient { get; set; }
         public static GoogleManager Instance { get; private set; }
         Context _context;
@@ -52,12 +51,7 @@ namespace Foody.Droid
                                                              .RequestEmail()
                                                              .RequestProfile()
                                                              .Build();
-            //_googleApiClient = new GoogleApiClient.Builder((_context).ApplicationContext)
-            //	.AddConnectionCallbacks(this)
-            //	.AddOnConnectionFailedListener(this)
-            //	.AddApi(Auth.GOOGLE_SIGN_IN_API, gso)
-            //	.Build();
-            //.AddScope(new Scope(Scopes.Profile))
+           
             _googleApiClient = GoogleSignIn.GetClient(_context, gso);
             firebaseAuth = GetFirebaseAuth();
         }
@@ -93,9 +87,7 @@ namespace Foody.Droid
             _onLoginComplete = onLoginComplete;
             if (firebaseAuth.CurrentUser == null)
             {
-                //Intent signInIntent = Auth.GoogleSignInApi.GetSignInIntent(_googleApiClient);
                 (MainActivity.Instance).StartActivityForResult(_googleApiClient.SignInIntent, 1);
-                //_googleApiClient.Connect();
             }
             else
             {
@@ -242,8 +234,6 @@ namespace Foody.Droid
 
             GoogleSignIn.GetClient(_context, gsoBuilder.Build())?.SignOut();
 
-            //_googleApiClient.Disconnect();
-
             firebaseAuth.SignOut();
 
         }
@@ -334,7 +324,6 @@ namespace Foody.Droid
 
             if (result is DocumentSnapshot docRef)
             {
-                //Toast.MakeText(_context, $"{docRef.Get("Name")} + {docRef.Exists()}", ToastLength.Long).Show();
                 if (docRef.Exists())
                 {
                     _onGetUserDetailsComplete.Invoke(

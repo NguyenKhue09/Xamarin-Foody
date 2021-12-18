@@ -47,7 +47,9 @@ namespace Foody.Views
             {
                 showTotalItemShoppingCart.IsVisible = false;
             }
+
             shoppingListViewModel.shoppingListGroupManagers = await shoppingListViewModel.GetShoppingList();
+
             if(shoppingListViewModel.shoppingListGroupManagers.Count >0)
             {
                 shoplist.ItemsSource = shoppingListViewModel.shoppingListGroupManagers;
@@ -99,7 +101,6 @@ namespace Foody.Views
 
         private void SelectedAllItem_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-            //shoppingListViewModel.IsSelectedAllShoppingListItem = !shoppingListViewModel.IsSelectedAllShoppingListItem;
             shoppingListViewModel.SelectAllShoppingListItem();
         }
 
@@ -156,7 +157,6 @@ namespace Foody.Views
 
         private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //shoppingListViewModel.SearchUserPantryItems.Clear();
             SearchBar searchBar = (SearchBar)sender;
             await Task.Delay(300);
             if (searchBar.Text != null)

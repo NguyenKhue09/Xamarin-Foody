@@ -16,7 +16,6 @@ namespace Foody.ViewModels
 {
     public class HomeViewModel : BaseViewModel
     {
-        //public ObservableRangeCollection<Food> Foods { get; set; }
         public ObservableRangeCollection<Result> Recipes { get; set; }
         public ObservableRangeCollection<Result> RandomRecipes { get; set; }
         public ObservableRangeCollection<Result> PopularRecipes { get; set; }
@@ -28,14 +27,9 @@ namespace Foody.ViewModels
         public ICommand NavToMealPlanner => new Command(NavToMealPlannerPage);
         public HomeViewModel()
         {
-
-            //Foods = new ObservableRangeCollection<Food>();
             Recipes = new ObservableRangeCollection<Result>();
             RandomRecipes = new ObservableRangeCollection<Result>();
             FavoriteRecipes = new List<Result>();
-            //Foods.AddRange(Repository.Foods);
-
-           
         }
 
         async public void GetRecipes()
@@ -60,14 +54,24 @@ namespace Foody.ViewModels
             RecipeDatabase recipeDatabase = await RecipeDatabase.Instance;
 
             List<Result> results = new List<Result>();
-
-            List<FavoriteRecipe> favoriteRecipes = await recipeDatabase.GetAllFavoriteRecipes();
-            foreach(FavoriteRecipe favoriteRecipe in favoriteRecipes)
+            List<FavoriteRecipe> favoriteRecipes = new List<FavoriteRecipe>();
+            if (App.LoginViewModel.GoogleUser != null)
             {
-                Result result = JsonConvert.DeserializeObject<Result>(favoriteRecipe.JsonRecipe);
-                Debug.WriteLine(result.id);
-                results.Add(result);
+                favoriteRecipes = await recipeDatabase.GetAllFavoriteRecipes(App.LoginViewModel.GoogleUser.UID);
             }
+
+            if(favoriteRecipes != null)
+            {
+                foreach (FavoriteRecipe favoriteRecipe in favoriteRecipes)
+                {
+                    Result result = JsonConvert.DeserializeObject<Result>(favoriteRecipe.JsonRecipe);
+                    results.Add(result);
+                }
+            } else
+            {
+                results = null;
+            }
+            
 
             return results;
         }

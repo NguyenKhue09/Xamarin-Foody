@@ -75,7 +75,6 @@ namespace Foody.Views
                 bool check = await mealPlanViewModel.AddUserMealPlannerItem(userMealPlanItem);
                 if (check)
                 {
-                    Debug.WriteLine("Them thanh cong");
                     await Navigation.PopAsync();
                 }
             }

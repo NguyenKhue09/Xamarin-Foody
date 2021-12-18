@@ -35,7 +35,6 @@ namespace Foody.Views
 
         async public void NavToHomePage()
         {
-            Debug.WriteLine("Navigation");
             await (Application.Current.MainPage as Shell).GoToAsync("//tabbar/home", true);
         }
 
@@ -63,7 +62,6 @@ namespace Foody.Views
         {
             
             App.LoginViewModel.UserLoginGmailPassword(txtUserEmail.Text, Password.Text);
-            //App.LoginViewModel.GetUserDetails();
             if (App.LoginViewModel.IsLogin)
             {
                 await (Application.Current.MainPage as Shell).GoToAsync("//tabbar/home", true);

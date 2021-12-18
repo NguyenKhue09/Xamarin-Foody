@@ -33,7 +33,6 @@ namespace Foody.Views
         {
             if (favorite_Recipes_Foody.SelectedItem != null)
             {
-                Debug.WriteLine("Choose");
                 Result recipe = (Result)favorite_Recipes_Foody.SelectedItem;
                 recipe.SelectedViewModelIndex = 0;
                 await Navigation.PushAsync(new DetailRecipe(recipe));
