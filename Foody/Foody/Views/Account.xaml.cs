@@ -36,6 +36,15 @@ namespace Foody.Views
             
         }
 
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            if (Navigation.NavigationStack.Count > 1)
+            {
+                Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 1]);
+            }
+        }
+
         private void UpdateProfile_Tapped(object sender, EventArgs e)
         {
             if(UserNameEdit.Text != null || UserNameEdit.Text != "")

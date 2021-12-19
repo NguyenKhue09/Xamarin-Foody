@@ -1,6 +1,8 @@
 ﻿using Foody.Views;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace Foody
@@ -16,6 +18,5 @@ namespace Foody
             Routing.RegisterRoute("FavoriteRecipes", typeof(FavoriteRecipesPage));
 
         }
-
     }
 }

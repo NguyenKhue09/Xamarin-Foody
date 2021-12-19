@@ -33,6 +33,15 @@ namespace Foody.Views
             }
         }
 
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            if (Navigation.NavigationStack.Count > 1)
+            {
+                Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 1]);
+            }
+        }
+
         async public void NavToHomePage()
         {
             await (Application.Current.MainPage as Shell).GoToAsync("//tabbar/home", true);

@@ -16,7 +16,6 @@ namespace Foody.Views
         {
             InitializeComponent();
         }
-
         async private void MenuToHome_Tapped(object sender, EventArgs e)
         {
             await (Application.Current.MainPage as Shell).GoToAsync("//tabbar/home", true);

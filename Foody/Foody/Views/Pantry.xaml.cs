@@ -274,9 +274,9 @@ namespace Foody.Views
                     UserPantryItem userPantryItem = new UserPantryItem
                     {
                         userId = App.LoginViewModel.GoogleUser.UID,
-                        itemId = selectedItem._id
+                        itemId = new List<string>()
                     };
-
+                    userPantryItem.itemId.Add(selectedItem._id);
                     bool result = await App.RecipeManager.AddItemToUserPantry(userPantryItem);
                     if (result)
                     {

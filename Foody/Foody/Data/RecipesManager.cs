@@ -43,9 +43,9 @@ namespace Foody.Data
 
 
         // Shopping list api
-        public Task<bool> AddIngredientsToShoppingList(ItemShoppingList iemShoppingList)
+        public Task<bool> AddIngredientsToShoppingList(List<ItemShoppingList> itemShoppingLists)
         {
-            return restService.AddIngredientsToShoppingList(iemShoppingList);
+            return restService.AddIngredientsToShoppingList(itemShoppingLists);
         }
 
         public Task<ShoppingListResult> GetShoppingList()
@@ -57,10 +57,15 @@ namespace Foody.Data
         {
             return restService.DeleteShoppingListItem(itemId);
         }
-        //shopping cart api
-        public Task<bool> AddIngredientsToShoppingCart(ItemShoppingCart iemShoppingCart)
+
+        public Task<bool> DeleteManyShoppingListItem(List<string> listId)
         {
-            return restService.AddIngredientsToShoppingCart(iemShoppingCart);
+            return restService.DeleteManyShoppingListItem(listId);
+        }
+        //shopping cart api
+        public Task<bool> AddIngredientsToShoppingCart(List<ItemShoppingCart> itemShoppingCarts)
+        {
+            return restService.AddIngredientsToShoppingCart(itemShoppingCarts);
         }
 
         public Task<ShoppingCartResult> GetShoppingCart()
@@ -115,6 +120,10 @@ namespace Foody.Data
             return restService.DeleteUserPantryItem(itemId, userId);
         }
 
+        public Task<bool> DeleteManyUserPantryItem(List<string> listId)
+        {
+            return restService.DeleteManyUserPantryItem(listId);
+        }
         public Task<bool> DeleteAllUserPantryItem(string userId)
         {
             return restService.DeleteAllUserPantryItem(userId);
