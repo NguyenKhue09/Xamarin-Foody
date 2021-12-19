@@ -180,7 +180,14 @@ namespace Foody.Views
         {
             _ = await shoppingListViewModel.DeleteAllSelectedShoppingListItem();
             option.IsVisible = !option.IsVisible ? true : false;
-            btnAddToCart.IsVisible = false;
+            if (shoppingListViewModel.shoppingListGroupManagers.Count > 0)
+            {
+                btnAddToCart.IsVisible = true;
+            }
+            else
+            {
+                btnAddToCart.IsVisible = false;
+            }
         }
 
 
