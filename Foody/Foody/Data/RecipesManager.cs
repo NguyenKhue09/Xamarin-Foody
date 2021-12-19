@@ -43,9 +43,9 @@ namespace Foody.Data
 
 
         // Shopping list api
-        public Task<bool> AddIngredientsToShoppingList(ItemShoppingList iemShoppingList)
+        public Task<bool> AddIngredientsToShoppingList(List<ItemShoppingList> itemShoppingLists)
         {
-            return restService.AddIngredientsToShoppingList(iemShoppingList);
+            return restService.AddIngredientsToShoppingList(itemShoppingLists);
         }
 
         public Task<ShoppingListResult> GetShoppingList()

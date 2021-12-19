@@ -201,7 +201,9 @@ namespace Foody.Views
                     image = selectedItem.image,
                     userId = App.LoginViewModel.GoogleUser.UID
                 };
-                bool result  = await App.RecipeManager.AddIngredientsToShoppingList(itemShoppingList);
+                List<ItemShoppingList> itemShoppingLists = new List<ItemShoppingList>();
+                itemShoppingLists.Add(itemShoppingList);
+                bool result  = await App.RecipeManager.AddIngredientsToShoppingList(itemShoppingLists);
                 if(result)
                 {
                     AddIngredientToSPLImg.Source = "plus1.png";

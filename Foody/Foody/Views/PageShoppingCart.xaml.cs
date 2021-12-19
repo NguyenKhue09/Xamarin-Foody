@@ -56,6 +56,15 @@ namespace Foody.Views
             }
         }
 
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            if (Navigation.NavigationStack.Count > 1)
+            {
+                Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 1]);
+            }
+        }
+
         private async void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
             if(!e.Value)
@@ -92,8 +101,9 @@ namespace Foody.Views
                             image = shoppingCart.IngredientImg,
                             userId = App.LoginViewModel.GoogleUser.UID
                         };
-
-                        bool response = await App.RecipeManager.AddIngredientsToShoppingList(itemShoppingList);
+                        List<ItemShoppingList> itemShoppingLists = new List<ItemShoppingList>();
+                        itemShoppingLists.Add(itemShoppingList);
+                        bool response = await App.RecipeManager.AddIngredientsToShoppingList(itemShoppingLists);
                         if (response)
                         {
                             Debug.WriteLine("Add to shoppinglist succes");

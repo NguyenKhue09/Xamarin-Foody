@@ -215,7 +215,7 @@ namespace Foody.Services.RecipeApiCall
         }
 
         // Shopping list api
-        public async Task<bool> AddIngredientsToShoppingList(ItemShoppingList itemShoppingList)
+        public async Task<bool> AddIngredientsToShoppingList(List<ItemShoppingList> itemShoppingLists)
         {
            
             Uri uri = new Uri(string.Format("https://pantry-wizard.herokuapp.com/api/shopping-list/add-shopping-list-item"));
@@ -223,7 +223,7 @@ namespace Foody.Services.RecipeApiCall
 
             try
             {
-                string json = JsonSerializer.Serialize(itemShoppingList, serializerOptions);
+                string json = JsonSerializer.Serialize(itemShoppingLists, serializerOptions);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
                 HttpResponseMessage response = await client.PostAsync(uri, content);

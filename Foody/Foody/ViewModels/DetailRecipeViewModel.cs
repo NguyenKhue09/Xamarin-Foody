@@ -133,6 +133,7 @@ namespace Foody.ViewModels
 
         public async Task<bool> AddIngredientsToShoppingList()
         {
+            List<ItemShoppingList> itemShoppingLists = new List<ItemShoppingList>();
             foreach (ExtendedIngredient item in ExtendedIngredients)
             {
                 
@@ -147,10 +148,11 @@ namespace Foody.ViewModels
                     userId = App.LoginViewModel.GoogleUser.UID
                 };
 
-                bool response = await App.RecipeManager.AddIngredientsToShoppingList(itemShoppingList);
-                if (!response) return false;
-
+                itemShoppingLists.Add(itemShoppingList);
             }
+
+            bool response = await App.RecipeManager.AddIngredientsToShoppingList(itemShoppingLists);
+            if (!response) return false;
             return true;
         }
 
