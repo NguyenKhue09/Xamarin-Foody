@@ -703,6 +703,37 @@ namespace Foody.Services.RecipeApiCall
             }
         }
 
+        public async Task<bool> DeleteManyUserPantryItem(List<string> listId)
+        {
+            string userId = App.LoginViewModel.GoogleUser.UID;
+            Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/pantry/delete-many-user-pantry-item/{userId}"));
+
+            try
+            {
+                string json = JsonSerializer.Serialize(listId, serializerOptions);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(uri, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("ThanhCong");
+                    return true;
+                }
+                else
+                {
+                    return false;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                return false;
+            }
+        }
+
         public async Task<bool> DeleteAllUserPantryItem(string userId)
         {
             Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/pantry/delete-all-user-pantry-item/{userId}"));

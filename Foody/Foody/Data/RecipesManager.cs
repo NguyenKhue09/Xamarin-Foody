@@ -120,6 +120,10 @@ namespace Foody.Data
             return restService.DeleteUserPantryItem(itemId, userId);
         }
 
+        public Task<bool> DeleteManyUserPantryItem(List<string> listId)
+        {
+            return restService.DeleteManyUserPantryItem(listId);
+        }
         public Task<bool> DeleteAllUserPantryItem(string userId)
         {
             return restService.DeleteAllUserPantryItem(userId);
