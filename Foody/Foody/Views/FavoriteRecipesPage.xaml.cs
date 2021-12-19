@@ -3,6 +3,7 @@ using Foody.ViewModels;
 using Foody.Views.DetailsRecipe;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +37,15 @@ namespace Foody.Views
             {
                 row1.Height = new GridLength(1, GridUnitType.Star);
                 row2.Height = 0;
+            }
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            if (Navigation.NavigationStack.Count > 1)
+            {
+                Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 1]);
             }
         }
 
