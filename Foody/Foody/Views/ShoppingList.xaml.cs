@@ -107,6 +107,8 @@ namespace Foody.Views
         private async void Add_To_Cart_Tapped(object sender, EventArgs e)
         {
             shoppingListViewModel.GetSelectedShoppingListItem();
+            List<ItemShoppingCart> itemShoppingCarts = new List<ItemShoppingCart>();
+
             foreach (ShoppingListItem shoppingListItem in shoppingListViewModel.selectedShoppingtListItems)
             {
                 ItemShoppingCart itemShoppingCart = new ItemShoppingCart
@@ -119,16 +121,21 @@ namespace Foody.Views
                     image = shoppingListItem.IngredientImg,
                     userID = App.LoginViewModel.ObsGoogleUser.UID
                 };
-                bool checkDelete = await shoppingListViewModel.DeleteShoppingListItem(shoppingListItem);
-                if(checkDelete)
-                {
-                    bool check = await App.RecipeManager.AddIngredientsToShoppingCart(itemShoppingCart);
-                }
-                if(shoppingListViewModel.selectedShoppingtListItems.Count == 0)
+                itemShoppingCarts.Add(itemShoppingCart);
+                if (shoppingListViewModel.selectedShoppingtListItems.Count == 0)
                 {
                     break;
                 }    
             }
+
+            bool check = await App.RecipeManager.AddIngredientsToShoppingCart(itemShoppingCarts);
+            if(check)
+            {
+                _ = await shoppingListViewModel.DeleteAllSelectedShoppingListItem();
+            }
+           
+
+
             shoppingListViewModel.selectedShoppingtListItems.Clear();
             if (shoppingListViewModel.shoppingListGroupManagers.Count > 0)
             {

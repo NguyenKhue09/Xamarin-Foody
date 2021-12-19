@@ -162,8 +162,11 @@ namespace Foody.ViewModels
 
         public async Task<bool> DeleteAllSelectedShoppingListItem()
         {
-
-            GetSelectedShoppingListItem();
+            if(selectedShoppingtListItems.Count == 0 || selectedShoppingtListItems == null)
+            {
+                GetSelectedShoppingListItem();
+            }
+            
             List<string> listId = new List<string>();
 
             foreach (ShoppingListItem shoppingListItem in selectedShoppingtListItems)
