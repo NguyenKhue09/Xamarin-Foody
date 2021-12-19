@@ -39,7 +39,7 @@ namespace Foody.Views
 
         private void Signin_Tapped(object sender, EventArgs e)
         {
-            Navigation.PopAsync();
+            Navigation.PushAsync(new Login());
         }
 
         async private void ForgotPassword_Tapped(object sender, EventArgs e)

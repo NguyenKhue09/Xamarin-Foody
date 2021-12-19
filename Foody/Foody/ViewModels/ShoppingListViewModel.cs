@@ -172,14 +172,7 @@ namespace Foody.ViewModels
 
             foreach (ShoppingListItem shoppingListItem in selectedShoppingtListItems)
             {
-                //foreach (Item item in originalShoppingLists.results)
-                //{
-                //    if (item.id == shoppingListItem.IngredientId)
-                //    {
-                //        listId.Add(item._id);
-                //    }
-                //}
-
+               
                 listId.AddRange(shoppingListItem.IngredientIdList);
 
                 foreach (ShoppingListGroupManager shoppingListGroupManager in shoppingListGroupManagers)
