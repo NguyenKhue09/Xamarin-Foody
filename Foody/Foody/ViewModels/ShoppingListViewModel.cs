@@ -352,6 +352,7 @@ namespace Foody.ViewModels
             {
                 if (item.id == shoppingCartItem.IngredientId)
                 {
+                    // optimize chỗ này dc nè
                     result = await App.RecipeManager.DeleteShoppingCart(item._id);
                 }
             }
