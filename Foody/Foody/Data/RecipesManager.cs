@@ -57,6 +57,11 @@ namespace Foody.Data
         {
             return restService.DeleteShoppingListItem(itemId);
         }
+
+        public Task<bool> DeleteManyShoppingListItem(List<string> listId)
+        {
+            return restService.DeleteManyShoppingListItem(listId);
+        }
         //shopping cart api
         public Task<bool> AddIngredientsToShoppingCart(ItemShoppingCart iemShoppingCart)
         {

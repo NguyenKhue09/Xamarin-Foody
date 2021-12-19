@@ -317,6 +317,36 @@ namespace Foody.Services.RecipeApiCall
             }
         }
 
+        public async Task<bool> DeleteManyShoppingListItem(List<string> listId)
+        {
+            Uri uri = new Uri(string.Format($"https://pantry-wizard.herokuapp.com/api/shopping-list/delete-many-shopping-list-item"));
+
+            try
+            {
+                string json = JsonSerializer.Serialize(listId, serializerOptions);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(uri, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("ThanhCong");
+                    return true;
+                }
+                else
+                {
+                    return false;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+                return false;
+            }
+        }
+
         // Shopping cart api
         public async Task<bool> AddIngredientsToShoppingCart(ItemShoppingCart itemShoppingCart)
         {

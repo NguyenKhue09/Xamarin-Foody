@@ -164,15 +164,34 @@ namespace Foody.ViewModels
         {
 
             GetSelectedShoppingListItem();
+            List<string> listId = new List<string>();
 
             foreach (ShoppingListItem shoppingListItem in selectedShoppingtListItems)
             {
-                bool result = await DeleteShoppingListItem(shoppingListItem);
-                if (!result)
+                foreach (Item item in originalShoppingLists.results)
                 {
-                    return false;
+                    if (item.id == shoppingListItem.IngredientId)
+                    {
+                        listId.Add(item._id);
+                    }
+                }
+
+                foreach (ShoppingListGroupManager shoppingListGroupManager in shoppingListGroupManagers)
+                {
+                    if (shoppingListItem.IngredientAisle == shoppingListGroupManager.Aisle)
+                    {
+                        shoppingListGroupManager.ShoppingListItems.Remove(shoppingListItem);
+                        if (shoppingListGroupManager.ShoppingListItems.Count == 0)
+                        {
+                            deleteShoppingListGroupManagerItem(shoppingListGroupManager);
+                        }
+                        break;
+                    }
+
                 }
             }
+
+            bool result = await App.RecipeManager.DeleteManyShoppingListItem(listId);
 
             selectedShoppingtListItems.Clear();
             if (IsSelectedAllShoppingListItem)
@@ -181,7 +200,7 @@ namespace Foody.ViewModels
             }
 
             
-            return true;
+            return result;
         }
 
         public async Task<bool> DeleteShoppingListItem(ShoppingListItem shoppingListItem)
