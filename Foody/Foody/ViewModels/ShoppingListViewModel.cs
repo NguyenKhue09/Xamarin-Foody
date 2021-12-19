@@ -206,13 +206,7 @@ namespace Foody.ViewModels
         {
             bool result = false;
 
-            foreach (Item item in originalShoppingLists.results)
-            {
-                if (item.id == shoppingListItem.IngredientId)
-                {
-                    result = await App.RecipeManager.DeleteShoppingListItem(item._id);
-                }
-            }
+            result = await App.RecipeManager.DeleteManyShoppingListItem(shoppingListItem.IngredientIdList);
 
             if (result)
             {
@@ -358,6 +352,7 @@ namespace Foody.ViewModels
             {
                 if (item.id == shoppingCartItem.IngredientId)
                 {
+                    // optimize chỗ này dc nè
                     result = await App.RecipeManager.DeleteShoppingCart(item._id);
                 }
             }
