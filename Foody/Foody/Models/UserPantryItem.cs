@@ -8,6 +8,6 @@ namespace Foody.Models
     {
         public string userId { get; set; }
 
-        public string itemId { get; set; }
+        public List<string> itemId { get; set; }
     }
 }

@@ -71,6 +71,11 @@ namespace Foody.ViewModels
 
         public async void GetSelectedPantryBuidlerItem()
         {
+            UserPantryItem userPantryItem = new UserPantryItem
+            {
+                userId = App.LoginViewModel.GoogleUser.UID,
+                itemId = new List<string>()
+            };
             foreach (PantryBuilderListGroupManager group in PantryBuilderListGroupManagers)
             {
 
@@ -78,16 +83,12 @@ namespace Foody.ViewModels
                 {
                     if(item.IsChoose)
                     {
-                        UserPantryItem userPantryItem = new UserPantryItem
-                        {
-                            userId = App.LoginViewModel.GoogleUser.UID,
-                            itemId = item._id
-                        };
-                        _ = await App.RecipeManager.AddItemToUserPantry(userPantryItem);
+                        userPantryItem.itemId.Add(item._id);
                     }
                    
                 }
             }
+             _ = await App.RecipeManager.AddItemToUserPantry(userPantryItem);
              await (Application.Current.MainPage as Shell).GoToAsync("//tabbar/pantry", true);
         }
 
