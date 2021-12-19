@@ -110,12 +110,13 @@ namespace Foody.ViewModels
             foreach (var group in queryIngredientId)
             {
                 ShoppingListItem shoppingListItem = new ShoppingListItem();
+                shoppingListItem.IngredientIdList = new List<string>();
                 foreach (var item in group)
                 {
                     amount += item.amount;
                     shoppingListItem.IngredientName = item.name;
                     shoppingListItem.IngredientAisle = item.aisle;
-                    shoppingListItem.IngredientIdList = item._id;
+                    shoppingListItem.IngredientIdList.Add(item._id);
                     shoppingListItem.IngredientId = item.id;
                     shoppingListItem.IngredientUnits = item.unit;
                     shoppingListItem.IngredientImg = item.image;
@@ -171,13 +172,8 @@ namespace Foody.ViewModels
 
             foreach (ShoppingListItem shoppingListItem in selectedShoppingtListItems)
             {
-                foreach (Item item in originalShoppingLists.results)
-                {
-                    if (item.id == shoppingListItem.IngredientId)
-                    {
-                        listId.Add(item._id);
-                    }
-                }
+               
+                listId.AddRange(shoppingListItem.IngredientIdList);
 
                 foreach (ShoppingListGroupManager shoppingListGroupManager in shoppingListGroupManagers)
                 {
@@ -210,13 +206,7 @@ namespace Foody.ViewModels
         {
             bool result = false;
 
-            foreach (Item item in originalShoppingLists.results)
-            {
-                if (item.id == shoppingListItem.IngredientId)
-                {
-                    result = await App.RecipeManager.DeleteShoppingListItem(item._id);
-                }
-            }
+            result = await App.RecipeManager.DeleteManyShoppingListItem(shoppingListItem.IngredientIdList);
 
             if (result)
             {
@@ -329,12 +319,13 @@ namespace Foody.ViewModels
             foreach (var group in queryIngredientId)
             {
                 ShoppingListItem shoppingCartItem = new ShoppingListItem();
+                shoppingCartItem.IngredientIdList = new List<string>();
                 foreach (var item in group)
                 {
                     amount += item.amount;
                     shoppingCartItem.IngredientName = item.name;
                     shoppingCartItem.IngredientAisle = item.aisle;
-                    shoppingCartItem.IngredientIdList = item._id;
+                    shoppingCartItem.IngredientIdList.Add(item._id);
                     shoppingCartItem.IngredientId = item.id;
                     shoppingCartItem.IngredientUnits = item.unit;
                     shoppingCartItem.IngredientImg = item.image;
@@ -361,6 +352,7 @@ namespace Foody.ViewModels
             {
                 if (item.id == shoppingCartItem.IngredientId)
                 {
+                    // optimize chỗ này dc nè
                     result = await App.RecipeManager.DeleteShoppingCart(item._id);
                 }
             }
