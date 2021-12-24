@@ -16,8 +16,8 @@ namespace Foody.Services.RecipeApiCall
     {
         HttpClient client;
         JsonSerializerOptions serializerOptions;
-        private PantryViewModel pantryViewModel = new PantryViewModel();
-        private SearchPopUp searchPopUp = new SearchPopUp();
+        //private PantryViewModel pantryViewModel = new PantryViewModel();
+        //private SearchPopUp searchPopUp = new SearchPopUp();
 
         public Recipe Recipes { get; private set; }
      
@@ -149,20 +149,20 @@ namespace Foody.Services.RecipeApiCall
             {
 
                 HttpResponseMessage response = await client.GetAsync(uri);
-                await pantryViewModel.showpopup_Clicked();
+                //await pantryViewModel.showpopup_Clicked();
                 if (response.IsSuccessStatusCode)
                 {
                   
                     string content = await response.Content.ReadAsStringAsync();
                     SearchRecipesList = JsonSerializer.Deserialize<Recipe>(content, serializerOptions);
                     Debug.WriteLine("ThanhCong");
-                    await searchPopUp.closeSearchPopup();
+                    //await searchPopUp.closeSearchPopup();
                 }
                 else
                 {
                     Debug.WriteLine("Thatbai");
                     SearchRecipesList.results = new List<Result>();
-                    await searchPopUp.closeSearchPopup();
+                    //await searchPopUp.closeSearchPopup();
 
                 }
             }
@@ -171,7 +171,7 @@ namespace Foody.Services.RecipeApiCall
 
                 Debug.WriteLine(@"\tERROR {0}", ex.Message);
                 SearchRecipesList.results = new List<Result>();
-                await searchPopUp.closeSearchPopup();
+                //await searchPopUp.closeSearchPopup();
             }
 
             return SearchRecipesList;
@@ -273,7 +273,7 @@ namespace Foody.Services.RecipeApiCall
                 {
                     Debug.WriteLine("Thatbai");
                     ShoppingListResult.results = new List<Item>();
-                    await searchPopUp.closeSearchPopup();
+                    //await searchPopUp.closeSearchPopup();
 
                 }
             }
