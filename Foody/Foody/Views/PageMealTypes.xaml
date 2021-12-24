@@ -78,7 +78,7 @@
                                     BackgroundColor="#07BDF6" CornerRadius="15" 
                                     Margin="38,20">
                     <yummy:PancakeView.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="AddRecipetoMealPlan_Tapped"/>
+                        <TapGestureRecognizer Tapped="AddRecipetoMealPlan_Tapped" NumberOfTapsRequired="1"/>
                     </yummy:PancakeView.GestureRecognizers>
                     <yummy:PancakeView.BackgroundGradientStops>
                         <yummy:GradientStopCollection>
