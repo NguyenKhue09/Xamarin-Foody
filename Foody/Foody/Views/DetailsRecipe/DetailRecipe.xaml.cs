@@ -53,6 +53,8 @@ namespace Foody.Views.DetailsRecipe
 
         private async void AddItemToShoppingListAsync(object sender, EventArgs e)
         {
+            await detailRecipeViewModel.showLoadingPopup_Clicked();
+
             bool result = await detailRecipeViewModel.AddIngredientsToShoppingList();
             var messageOptions = new MessageOptions
             {
