@@ -16,6 +16,8 @@ namespace Foody.ViewModels
     {
         public int SelectedTabIndex { get; set; }
 
+        private SearchPopUp searchPopUp = new SearchPopUp();
+
         public List<string> cuisineList { get; set; }
         public List<string> intolerancesList { get; set; }
 
@@ -37,6 +39,8 @@ namespace Foody.ViewModels
 
         public bool isShowSearchIngredientItem = false;
 
+        public bool isShowSearchRecipe = false;
+
         public string showHeightResultSearch = "0,0,0,0";
 
         public string ShowHeightResultSearch
@@ -49,6 +53,12 @@ namespace Foody.ViewModels
         {
             get { return isShowSearchIngredientItem; }
             set { SetProperty(ref isShowSearchIngredientItem, value); }
+        }
+
+        public bool IsShowSearchRecipe
+        {
+            get { return isShowSearchRecipe; }
+            set { SetProperty(ref isShowSearchRecipe, value); }
         }
 
         public Command Checkmanager { get; }
@@ -121,13 +131,25 @@ namespace Foody.ViewModels
         async public void GetSearchRecipes(string query, string cuisine, string intolerances)
         {
             Recipe results = new Recipe();
-
-            results = await App.RecipeManager.SearchRecipes(query, cuisine, intolerances);
-            SearchRecipes.AddRange(results.results);
-            if(results != null && results.results.Count > 0)
+            if(!IsShowSearchRecipe)
             {
-                await Navigation.PushAsync(new PageSearchRecipes(results));
-            }    
+                IsShowSearchRecipe = true;
+                await showpopup_Clicked();
+                results = await App.RecipeManager.SearchRecipes(query, cuisine, intolerances);
+                SearchRecipes.AddRange(results.results);
+                if (results != null && results.results.Count > 0)
+                {
+                    IsShowSearchRecipe = false;
+                    await searchPopUp.closeSearchPopup();
+                    await Navigation.PushAsync(new PageSearchRecipes(results));
+                }
+                else
+                {
+                    IsShowSearchRecipe = false;
+                    await searchPopUp.closeSearchPopup();
+                }
+            }
+            
         }
 
         async public Task showpopup_Clicked()
