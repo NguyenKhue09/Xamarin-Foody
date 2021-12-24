@@ -33,20 +33,7 @@
                     TextColor="Black" 
                     HorizontalTextAlignment="Center"
                     HorizontalOptions="Center"></Label>
-                <ffimageloading:CachedImage
-                    x:Name="image_loading"
-                    CacheDuration="30"
-                    DownsampleToViewSize="True"
-                    FadeAnimationForCachedImages="True"
-                    FadeAnimationEnabled="True"
-                    FadeAnimationDuration="100"
-                    BackgroundColor="White"
-                    HeightRequest="70"
-                    WidthRequest="70"
-                    Aspect="AspectFit"
-                    CacheType="All"
-                    Source="loading.gif"
-                    Margin="0,8,0,0"/>
+                <ActivityIndicator IsRunning="true" Color="#07BDF6"  Margin="0,8,0,0" ScaleY="1.3" ScaleX="1.3"/>
             </StackLayout>
         </Frame>
 
