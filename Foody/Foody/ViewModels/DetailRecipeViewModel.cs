@@ -1,7 +1,9 @@
 ﻿using Foody.Converters;
 using Foody.Models;
+using Foody.Views.PopUp;
 using MvvmHelpers;
 using Newtonsoft.Json;
+using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -56,7 +58,9 @@ namespace Foody.ViewModels
 
         public Rectangle rect { get; set; }
 
-        List<ExtendedIngredient> newList; 
+        List<ExtendedIngredient> newList;
+
+        private LoadingPopup loadingPopUp = new LoadingPopup();
 
         public DetailRecipeViewModel(Result result)
         { 
@@ -100,6 +104,10 @@ namespace Foody.ViewModels
             return results;
         }
 
+        async public Task showLoadingPopup_Clicked()
+        {
+            await Navigation.PushPopupAsync(new LoadingPopup());
+        }
         public void SubCount()
         {
             if (numberOfIngredient > 1)
@@ -152,7 +160,14 @@ namespace Foody.ViewModels
             }
 
             bool response = await App.RecipeManager.AddIngredientsToShoppingList(itemShoppingLists);
-            if (!response) return false;
+            if (!response)
+            {
+                await loadingPopUp.closeLoadingPopup();
+                return false;
+            } else
+            {
+                await loadingPopUp.closeLoadingPopup();
+            }
             return true;
         }
 

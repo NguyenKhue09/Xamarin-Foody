@@ -5,7 +5,8 @@
              xmlns:controls="clr-namespace:Foody.ViewModels" 
              xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit"
              x:Class="Foody.Views.PagePantrySetting"
-             xmlns:local="clr-namespace:Foody.ViewModels" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:local="clr-namespace:Foody.ViewModels" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              Shell.TabBarIsVisible="False"
              BackgroundColor="#f5f5f5">
     <ContentPage.Content>

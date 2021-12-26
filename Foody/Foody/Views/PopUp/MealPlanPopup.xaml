@@ -5,9 +5,9 @@
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-    x:Class="Foody.Views.PopUp.SearchPopUp">
-    
-    
+    x:Class="Foody.Views.PopUp.MealPlanPopup">
+
+
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation 
             PositionIn="Center"
@@ -28,7 +28,7 @@
         <Frame CornerRadius="20"  HorizontalOptions="FillAndExpand" HeightRequest="150" HasShadow="False" WidthRequest="280">
             <StackLayout>
                 <Label 
-                    Text="Hang tight while we use our wizardly imagic-nation to find you delicous recipes!" 
+                    Text="Please wait while we genarate your daily meal plan. This might take a little bit, so please be patient." 
                     FontSize="20" 
                     TextColor="Black" 
                     HorizontalTextAlignment="Center"
