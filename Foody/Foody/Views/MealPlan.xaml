@@ -84,7 +84,7 @@
                                 <SwipeItem x:Name="addBreakfast"
                                    IconImageSource="plusWhite.png"
                                    BackgroundColor="#07BDF6"
-                                   Invoked="resetBreakfast_Invoked" />
+                                   Invoked="addBreakfast_Invoked" />
                             </SwipeItems>
                         </SwipeView.LeftItems>
                         <!-- Content -->
@@ -140,7 +140,7 @@
                                 <SwipeItem x:Name="addLunch"
                                IconImageSource="plusWhite.png"
                                BackgroundColor="#07BDF6"
-                               Invoked="resetLunch_Invoked" />
+                               Invoked="addLunch_Invoked" />
                             </SwipeItems>
                         </SwipeView.LeftItems>
                         <!-- Content -->
@@ -196,7 +196,7 @@
                                 <SwipeItem x:Name="addDinner"
                                IconImageSource="plusWhite.png"
                                BackgroundColor="#07BDF6"
-                               Invoked="resetDinner_Invoked" />
+                               Invoked="addDinner_Invoked" />
                             </SwipeItems>
                         </SwipeView.LeftItems>
                         <!-- Content -->

@@ -105,113 +105,123 @@ namespace Foody.Views
             }
         }
 
-        private async void deleteBreakfast_Invoked(object sender, EventArgs e)
+        private async void addBreakfast_Invoked(object sender, EventArgs e)
         {
-            bool check = await mealPlanViewModel.DeleteUserMealPlanItem("breakfast");
-            if (check)
+            var isUserDelete = await DisplayAlert("Add Recipe", "Would you like to add BREAKFAST meal for this day", "YES", "NO");
+            if (isUserDelete)
             {
-                mealPlanViewModel.userMeal = await mealPlanViewModel.GetUserMealPlanItem();
-                if (mealPlanViewModel.userMeal.breakfastRecipe != null || mealPlanViewModel.userMeal.lunchRecipe != null || mealPlanViewModel.userMeal.dinnerRecipe != null)
+                if (!mealPlanViewModel.IsLoadingPopupRunning)
                 {
-                    BackgroundColor = Color.FromHex("F5F5F5");
-                    row1.Height = 0;
-                    row2.Height = new GridLength(1, GridUnitType.Star);
-                    btnDelete.IsVisible = true;
-                    containRow1.IsVisible = false;
-                    if (mealPlanViewModel.userMeal.breakfastRecipe != null)
+                    mealPlanViewModel.IsLoadingPopupRunning = true;
+                    mealPlanViewModel.showLoadingPopup();
+
+                    UserMealPlanItem userMealPlanItem = new UserMealPlanItem();
+                    userMealPlanItem.userId = App.LoginViewModel.GoogleUser.UID;
+                    mealPlanViewModel.Breakfast.Clear();
+                    mealPlanViewModel.Breakfast = await mealPlanViewModel.GetMealPlanBreakfast();
+                    if (mealPlanViewModel.Breakfast.Count > 0)
                     {
-                        deleteBreakfast.IsVisible = true;
-                        resetBreakfast.IsVisible = true;
-                        addBreakfast.IsVisible = false;
-                        row1Breakfast.Height = 0;
-                        row2Breakfast.Height = new GridLength(1, GridUnitType.Star);
-                        imgBreakfast.Source = mealPlanViewModel.userMeal.breakfastRecipe.image;
-                        timeBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.readyInMinutes.ToString() + "min";
-                        titleBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.title;
+                        foreach (var item in mealPlanViewModel.Breakfast)
+                        {
+                            userMealPlanItem.breakfastRecipe = item._id;
+                        }
+                    }
+                    bool check = await mealPlanViewModel.AddUserMealPlannerItem(userMealPlanItem);
+                    if (check)
+                    {
+                        mealPlanViewModel.userMeal = await mealPlanViewModel.GetUserMealPlanItem();
+                        mealPlanViewModel.closeLoadindPopup();
+
+                        if (mealPlanViewModel.userMeal.breakfastRecipe != null || mealPlanViewModel.userMeal.lunchRecipe != null || mealPlanViewModel.userMeal.dinnerRecipe != null)
+                        {
+                            BackgroundColor = Color.FromHex("F5F5F5");
+                            row1.Height = 0;
+                            row2.Height = new GridLength(1, GridUnitType.Star);
+                            btnDelete.IsVisible = true;
+                            containRow1.IsVisible = false;
+                            if (mealPlanViewModel.userMeal.breakfastRecipe != null)
+                            {
+                                deleteBreakfast.IsVisible = true;
+                                resetBreakfast.IsVisible = true;
+                                addBreakfast.IsVisible = false;
+                                row1Breakfast.Height = 0;
+                                row2Breakfast.Height = new GridLength(1, GridUnitType.Star);
+                                imgBreakfast.Source = mealPlanViewModel.userMeal.breakfastRecipe.image;
+                                timeBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.readyInMinutes.ToString() + "min";
+                                titleBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.title;
+                            }
+                            else
+                            {
+                                deleteBreakfast.IsVisible = false;
+                                resetBreakfast.IsVisible = false;
+                                addBreakfast.IsVisible = true;
+                                row1Breakfast.Height = new GridLength(1, GridUnitType.Star);
+                                row2Breakfast.Height = 0;
+                            }
+                            if (mealPlanViewModel.userMeal.lunchRecipe != null)
+                            {
+                                deleteLunch.IsVisible = true;
+                                resetLunch.IsVisible = true;
+                                addLunch.IsVisible = false;
+                                row1Lunch.Height = 0;
+                                row2Lunch.Height = new GridLength(1, GridUnitType.Star);
+                                imgLunch.Source = mealPlanViewModel.userMeal.lunchRecipe.image;
+                                timeLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.readyInMinutes.ToString() + "min";
+                                titleLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.title;
+                            }
+                            else
+                            {
+                                deleteLunch.IsVisible = false;
+                                resetLunch.IsVisible = false;
+                                addLunch.IsVisible = true;
+                                row1Lunch.Height = new GridLength(1, GridUnitType.Star);
+                                row2Lunch.Height = 0;
+                            }
+                            if (mealPlanViewModel.userMeal.dinnerRecipe != null)
+                            {
+                                deletebinner.IsVisible = true;
+                                resetDinner.IsVisible = true;
+                                addDinner.IsVisible = false;
+                                row1Dinner.Height = 0;
+                                row2Dinner.Height = new GridLength(1, GridUnitType.Star);
+                                imgDinner.Source = mealPlanViewModel.userMeal.dinnerRecipe.image;
+                                timeDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.readyInMinutes.ToString() + "min";
+                                titleDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.title;
+                            }
+                            else
+                            {
+                                deletebinner.IsVisible = false;
+                                resetDinner.IsVisible = false;
+                                addDinner.IsVisible = true;
+                                row1Dinner.Height = new GridLength(1, GridUnitType.Star);
+                                row2Dinner.Height = 0;
+                            }
+                        }
+                        else
+                        {
+                            BackgroundColor = Color.FromHex("FFFFFF");
+                            row1.Height = new GridLength(1, GridUnitType.Star);
+                            row2.Height = 0;
+                            btnDelete.IsVisible = false;
+                            containRow1.IsVisible = true;
+                        }
                     }
                     else
                     {
-                        deleteBreakfast.IsVisible = false;
-                        resetBreakfast.IsVisible = false;
-                        addBreakfast.IsVisible = true;
-                        row1Breakfast.Height = new GridLength(1, GridUnitType.Star);
-                        row2Breakfast.Height = 0;
-                    }
-                    if (mealPlanViewModel.userMeal.lunchRecipe != null)
-                    {
-                        deleteLunch.IsVisible = true;
-                        resetLunch.IsVisible = true;
-                        addLunch.IsVisible = false;
-                        row1Lunch.Height = 0;
-                        row2Lunch.Height = new GridLength(1, GridUnitType.Star);
-                        imgLunch.Source = mealPlanViewModel.userMeal.lunchRecipe.image;
-                        timeLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.readyInMinutes.ToString() + "min";
-                        titleLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.title;
-                    }
-                    else
-                    {
-                        deleteLunch.IsVisible = false;
-                        resetLunch.IsVisible = false;
-                        addLunch.IsVisible = true;
-                        row1Lunch.Height = new GridLength(1, GridUnitType.Star);
-                        row2Lunch.Height = 0;
-                    }
-                    if (mealPlanViewModel.userMeal.dinnerRecipe != null)
-                    {
-                        deletebinner.IsVisible = true;
-                        resetDinner.IsVisible = true;
-                        addDinner.IsVisible = false;
-                        row1Dinner.Height = 0;
-                        row2Dinner.Height = new GridLength(1, GridUnitType.Star);
-                        imgDinner.Source = mealPlanViewModel.userMeal.dinnerRecipe.image;
-                        timeDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.readyInMinutes.ToString() + "min";
-                        titleDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.title;
-                    }
-                    else
-                    {
-                        deletebinner.IsVisible = false;
-                        resetDinner.IsVisible = false;
-                        addDinner.IsVisible = true;
-                        row1Dinner.Height = new GridLength(1, GridUnitType.Star);
-                        row2Dinner.Height = 0;
+                        mealPlanViewModel.closeLoadindPopup();
                     }
                 }
-                else
-                {
-                    BackgroundColor = Color.FromHex("FFFFFF");
-                    row1.Height = new GridLength(1, GridUnitType.Star);
-                    row2.Height = 0;
-                    btnDelete.IsVisible = false;
-                    containRow1.IsVisible = true;
-                }
-                mealPlanViewModel.userMeal.breakfastRecipe = null;
             }
         }
-
-        private async void resetBreakfast_Invoked(object sender, EventArgs e)
+        private async void deleteBreakfast_Invoked(object sender, EventArgs e)
         {
-            if(!mealPlanViewModel.IsLoadingPopupRunning)
+            var isUserDelete = await DisplayAlert("Delete Recipe", $"Are you sure that want to delte the recipe {mealPlanViewModel.userMeal.breakfastRecipe.title} ", "YES", "NO");
+            if (isUserDelete)
             {
-                mealPlanViewModel.IsLoadingPopupRunning = true;
-                mealPlanViewModel.showLoadingPopup();
-
-                UserMealPlanItem userMealPlanItem = new UserMealPlanItem();
-                userMealPlanItem.userId = App.LoginViewModel.GoogleUser.UID;
-                mealPlanViewModel.Breakfast.Clear();
-                mealPlanViewModel.Breakfast = await mealPlanViewModel.GetMealPlanBreakfast();
-                if (mealPlanViewModel.Breakfast.Count > 0)
-                {
-                    foreach (var item in mealPlanViewModel.Breakfast)
-                    {
-                        userMealPlanItem.breakfastRecipe = item._id;
-                    }
-                }
-                bool check = await mealPlanViewModel.AddUserMealPlannerItem(userMealPlanItem);
+                bool check = await mealPlanViewModel.DeleteUserMealPlanItem("breakfast");
                 if (check)
                 {
                     mealPlanViewModel.userMeal = await mealPlanViewModel.GetUserMealPlanItem();
-                    mealPlanViewModel.closeLoadindPopup();
-
                     if (mealPlanViewModel.userMeal.breakfastRecipe != null || mealPlanViewModel.userMeal.lunchRecipe != null || mealPlanViewModel.userMeal.dinnerRecipe != null)
                     {
                         BackgroundColor = Color.FromHex("F5F5F5");
@@ -285,9 +295,116 @@ namespace Foody.Views
                         btnDelete.IsVisible = false;
                         containRow1.IsVisible = true;
                     }
-                } else
+                    mealPlanViewModel.userMeal.breakfastRecipe = null;
+                }
+            }
+        }
+
+        private async void resetBreakfast_Invoked(object sender, EventArgs e)
+        {
+            var isUserDelete = await DisplayAlert("Replace Recipe", $"Are you sure that want to replace the recipe {mealPlanViewModel.userMeal.breakfastRecipe.title} with a different one?", "YES", "NO");
+            if (isUserDelete)
+            {
+                if (!mealPlanViewModel.IsLoadingPopupRunning)
                 {
-                    mealPlanViewModel.closeLoadindPopup();
+                    mealPlanViewModel.IsLoadingPopupRunning = true;
+                    mealPlanViewModel.showLoadingPopup();
+
+                    UserMealPlanItem userMealPlanItem = new UserMealPlanItem();
+                    userMealPlanItem.userId = App.LoginViewModel.GoogleUser.UID;
+                    mealPlanViewModel.Breakfast.Clear();
+                    mealPlanViewModel.Breakfast = await mealPlanViewModel.GetMealPlanBreakfast();
+                    if (mealPlanViewModel.Breakfast.Count > 0)
+                    {
+                        foreach (var item in mealPlanViewModel.Breakfast)
+                        {
+                            userMealPlanItem.breakfastRecipe = item._id;
+                        }
+                    }
+                    bool check = await mealPlanViewModel.AddUserMealPlannerItem(userMealPlanItem);
+                    if (check)
+                    {
+                        mealPlanViewModel.userMeal = await mealPlanViewModel.GetUserMealPlanItem();
+                        mealPlanViewModel.closeLoadindPopup();
+
+                        if (mealPlanViewModel.userMeal.breakfastRecipe != null || mealPlanViewModel.userMeal.lunchRecipe != null || mealPlanViewModel.userMeal.dinnerRecipe != null)
+                        {
+                            BackgroundColor = Color.FromHex("F5F5F5");
+                            row1.Height = 0;
+                            row2.Height = new GridLength(1, GridUnitType.Star);
+                            btnDelete.IsVisible = true;
+                            containRow1.IsVisible = false;
+                            if (mealPlanViewModel.userMeal.breakfastRecipe != null)
+                            {
+                                deleteBreakfast.IsVisible = true;
+                                resetBreakfast.IsVisible = true;
+                                addBreakfast.IsVisible = false;
+                                row1Breakfast.Height = 0;
+                                row2Breakfast.Height = new GridLength(1, GridUnitType.Star);
+                                imgBreakfast.Source = mealPlanViewModel.userMeal.breakfastRecipe.image;
+                                timeBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.readyInMinutes.ToString() + "min";
+                                titleBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.title;
+                            }
+                            else
+                            {
+                                deleteBreakfast.IsVisible = false;
+                                resetBreakfast.IsVisible = false;
+                                addBreakfast.IsVisible = true;
+                                row1Breakfast.Height = new GridLength(1, GridUnitType.Star);
+                                row2Breakfast.Height = 0;
+                            }
+                            if (mealPlanViewModel.userMeal.lunchRecipe != null)
+                            {
+                                deleteLunch.IsVisible = true;
+                                resetLunch.IsVisible = true;
+                                addLunch.IsVisible = false;
+                                row1Lunch.Height = 0;
+                                row2Lunch.Height = new GridLength(1, GridUnitType.Star);
+                                imgLunch.Source = mealPlanViewModel.userMeal.lunchRecipe.image;
+                                timeLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.readyInMinutes.ToString() + "min";
+                                titleLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.title;
+                            }
+                            else
+                            {
+                                deleteLunch.IsVisible = false;
+                                resetLunch.IsVisible = false;
+                                addLunch.IsVisible = true;
+                                row1Lunch.Height = new GridLength(1, GridUnitType.Star);
+                                row2Lunch.Height = 0;
+                            }
+                            if (mealPlanViewModel.userMeal.dinnerRecipe != null)
+                            {
+                                deletebinner.IsVisible = true;
+                                resetDinner.IsVisible = true;
+                                addDinner.IsVisible = false;
+                                row1Dinner.Height = 0;
+                                row2Dinner.Height = new GridLength(1, GridUnitType.Star);
+                                imgDinner.Source = mealPlanViewModel.userMeal.dinnerRecipe.image;
+                                timeDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.readyInMinutes.ToString() + "min";
+                                titleDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.title;
+                            }
+                            else
+                            {
+                                deletebinner.IsVisible = false;
+                                resetDinner.IsVisible = false;
+                                addDinner.IsVisible = true;
+                                row1Dinner.Height = new GridLength(1, GridUnitType.Star);
+                                row2Dinner.Height = 0;
+                            }
+                        }
+                        else
+                        {
+                            BackgroundColor = Color.FromHex("FFFFFF");
+                            row1.Height = new GridLength(1, GridUnitType.Star);
+                            row2.Height = 0;
+                            btnDelete.IsVisible = false;
+                            containRow1.IsVisible = true;
+                        }
+                    }
+                    else
+                    {
+                        mealPlanViewModel.closeLoadindPopup();
+                    }
                 }
             }
         }
@@ -299,193 +416,511 @@ namespace Foody.Views
 
         private async void DeleteAll_Tapped(object sender, EventArgs e)
         {
-            bool check = await mealPlanViewModel.DeleteUserMealPlanItem("all");
-            if (check)
+            var isUserDelete = await DisplayAlert("Delete Meal Plan?", "Are you sure that you want to delete this meal plan?", "YES", "NO");
+            if (isUserDelete)
             {
-                mealPlanViewModel.userMeal = await mealPlanViewModel.GetUserMealPlanItem();
-                if (mealPlanViewModel.userMeal.breakfastRecipe != null || mealPlanViewModel.userMeal.lunchRecipe != null || mealPlanViewModel.userMeal.dinnerRecipe != null)
+                bool check = await mealPlanViewModel.DeleteUserMealPlanItem("all");
+                if (check)
                 {
-                    BackgroundColor = Color.FromHex("F5F5F5");
-                    row1.Height = 0;
-                    row2.Height = new GridLength(1, GridUnitType.Star);
-                    btnDelete.IsVisible = true;
-                    containRow1.IsVisible = false;
-                    if (mealPlanViewModel.userMeal.breakfastRecipe != null)
+                    mealPlanViewModel.userMeal = await mealPlanViewModel.GetUserMealPlanItem();
+                    if (mealPlanViewModel.userMeal.breakfastRecipe != null || mealPlanViewModel.userMeal.lunchRecipe != null || mealPlanViewModel.userMeal.dinnerRecipe != null)
                     {
-                        deleteBreakfast.IsVisible = true;
-                        resetBreakfast.IsVisible = true;
-                        addBreakfast.IsVisible = false;
-                        row1Breakfast.Height = 0;
-                        row2Breakfast.Height = new GridLength(1, GridUnitType.Star);
-                        imgBreakfast.Source = mealPlanViewModel.userMeal.breakfastRecipe.image;
-                        timeBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.readyInMinutes.ToString() + "min";
-                        titleBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.title;
+                        BackgroundColor = Color.FromHex("F5F5F5");
+                        row1.Height = 0;
+                        row2.Height = new GridLength(1, GridUnitType.Star);
+                        btnDelete.IsVisible = true;
+                        containRow1.IsVisible = false;
+                        if (mealPlanViewModel.userMeal.breakfastRecipe != null)
+                        {
+                            deleteBreakfast.IsVisible = true;
+                            resetBreakfast.IsVisible = true;
+                            addBreakfast.IsVisible = false;
+                            row1Breakfast.Height = 0;
+                            row2Breakfast.Height = new GridLength(1, GridUnitType.Star);
+                            imgBreakfast.Source = mealPlanViewModel.userMeal.breakfastRecipe.image;
+                            timeBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.readyInMinutes.ToString() + "min";
+                            titleBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.title;
+                        }
+                        else
+                        {
+                            deleteBreakfast.IsVisible = false;
+                            resetBreakfast.IsVisible = false;
+                            addBreakfast.IsVisible = true;
+                            row1Breakfast.Height = new GridLength(1, GridUnitType.Star);
+                            row2Breakfast.Height = 0;
+                        }
+                        if (mealPlanViewModel.userMeal.lunchRecipe != null)
+                        {
+                            deleteLunch.IsVisible = true;
+                            resetLunch.IsVisible = true;
+                            addLunch.IsVisible = false;
+                            row1Lunch.Height = 0;
+                            row2Lunch.Height = new GridLength(1, GridUnitType.Star);
+                            imgLunch.Source = mealPlanViewModel.userMeal.lunchRecipe.image;
+                            timeLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.readyInMinutes.ToString() + "min";
+                            titleLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.title;
+                        }
+                        else
+                        {
+                            deleteLunch.IsVisible = false;
+                            resetLunch.IsVisible = false;
+                            addLunch.IsVisible = true;
+                            row1Lunch.Height = new GridLength(1, GridUnitType.Star);
+                            row2Lunch.Height = 0;
+                        }
+                        if (mealPlanViewModel.userMeal.dinnerRecipe != null)
+                        {
+                            deletebinner.IsVisible = true;
+                            resetDinner.IsVisible = true;
+                            addDinner.IsVisible = false;
+                            row1Dinner.Height = 0;
+                            row2Dinner.Height = new GridLength(1, GridUnitType.Star);
+                            imgDinner.Source = mealPlanViewModel.userMeal.dinnerRecipe.image;
+                            timeDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.readyInMinutes.ToString() + "min";
+                            titleDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.title;
+                        }
+                        else
+                        {
+                            deletebinner.IsVisible = false;
+                            resetDinner.IsVisible = false;
+                            addDinner.IsVisible = true;
+                            row1Dinner.Height = new GridLength(1, GridUnitType.Star);
+                            row2Dinner.Height = 0;
+                        }
                     }
                     else
                     {
-                        deleteBreakfast.IsVisible = false;
-                        resetBreakfast.IsVisible = false;
-                        addBreakfast.IsVisible = true;
-                        row1Breakfast.Height = new GridLength(1, GridUnitType.Star);
-                        row2Breakfast.Height = 0;
+                        BackgroundColor = Color.FromHex("FFFFFF");
+                        row1.Height = new GridLength(1, GridUnitType.Star);
+                        row2.Height = 0;
+                        btnDelete.IsVisible = false;
+                        containRow1.IsVisible = true;
                     }
-                    if (mealPlanViewModel.userMeal.lunchRecipe != null)
-                    {
-                        deleteLunch.IsVisible = true;
-                        resetLunch.IsVisible = true;
-                        addLunch.IsVisible = false;
-                        row1Lunch.Height = 0;
-                        row2Lunch.Height = new GridLength(1, GridUnitType.Star);
-                        imgLunch.Source = mealPlanViewModel.userMeal.lunchRecipe.image;
-                        timeLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.readyInMinutes.ToString() + "min";
-                        titleLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.title;
-                    }
-                    else
-                    {
-                        deleteLunch.IsVisible = false;
-                        resetLunch.IsVisible = false;
-                        addLunch.IsVisible = true;
-                        row1Lunch.Height = new GridLength(1, GridUnitType.Star);
-                        row2Lunch.Height = 0;
-                    }
-                    if (mealPlanViewModel.userMeal.dinnerRecipe != null)
-                    {
-                        deletebinner.IsVisible = true;
-                        resetDinner.IsVisible = true;
-                        addDinner.IsVisible = false;
-                        row1Dinner.Height = 0;
-                        row2Dinner.Height = new GridLength(1, GridUnitType.Star);
-                        imgDinner.Source = mealPlanViewModel.userMeal.dinnerRecipe.image;
-                        timeDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.readyInMinutes.ToString() + "min";
-                        titleDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.title;
-                    }
-                    else
-                    {
-                        deletebinner.IsVisible = false;
-                        resetDinner.IsVisible = false;
-                        addDinner.IsVisible = true;
-                        row1Dinner.Height = new GridLength(1, GridUnitType.Star);
-                        row2Dinner.Height = 0;
-                    }
-                }
-                else
-                {
-                    BackgroundColor = Color.FromHex("FFFFFF");
-                    row1.Height = new GridLength(1, GridUnitType.Star);
-                    row2.Height = 0;
-                    btnDelete.IsVisible = false;
-                    containRow1.IsVisible = true;
                 }
             }
         }
 
+        private async void addLunch_Invoked(object sender, EventArgs e)
+        {
+            var isUserDelete = await DisplayAlert("Add Recipe", "Would you like to add LUNCH meal for this day", "YES", "NO");
+            if (isUserDelete)
+            {
+                if (!mealPlanViewModel.IsLoadingPopupRunning)
+                {
+                    mealPlanViewModel.IsLoadingPopupRunning = true;
+                    mealPlanViewModel.showLoadingPopup();
+
+                    UserMealPlanItem userMealPlanItem = new UserMealPlanItem();
+                    userMealPlanItem.userId = App.LoginViewModel.GoogleUser.UID;
+                    mealPlanViewModel.Lunch.Clear();
+                    mealPlanViewModel.Lunch = await mealPlanViewModel.GetMealPlanLunch();
+                    if (mealPlanViewModel.Lunch.Count > 0)
+                    {
+                        foreach (var item in mealPlanViewModel.Lunch)
+                        {
+                            userMealPlanItem.lunchRecipe = item._id;
+                        }
+                    }
+                    bool check = await mealPlanViewModel.AddUserMealPlannerItem(userMealPlanItem);
+                    if (check)
+                    {
+                        mealPlanViewModel.userMeal = await mealPlanViewModel.GetUserMealPlanItem();
+                        mealPlanViewModel.closeLoadindPopup();
+
+                        if (mealPlanViewModel.userMeal.breakfastRecipe != null || mealPlanViewModel.userMeal.lunchRecipe != null || mealPlanViewModel.userMeal.dinnerRecipe != null)
+                        {
+                            BackgroundColor = Color.FromHex("F5F5F5");
+                            row1.Height = 0;
+                            row2.Height = new GridLength(1, GridUnitType.Star);
+                            btnDelete.IsVisible = true;
+                            containRow1.IsVisible = false;
+                            if (mealPlanViewModel.userMeal.breakfastRecipe != null)
+                            {
+                                deleteBreakfast.IsVisible = true;
+                                resetBreakfast.IsVisible = true;
+                                addBreakfast.IsVisible = false;
+                                row1Breakfast.Height = 0;
+                                row2Breakfast.Height = new GridLength(1, GridUnitType.Star);
+                                imgBreakfast.Source = mealPlanViewModel.userMeal.breakfastRecipe.image;
+                                timeBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.readyInMinutes.ToString() + "min";
+                                titleBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.title;
+                            }
+                            else
+                            {
+                                deleteBreakfast.IsVisible = false;
+                                resetBreakfast.IsVisible = false;
+                                addBreakfast.IsVisible = true;
+                                row1Breakfast.Height = new GridLength(1, GridUnitType.Star);
+                                row2Breakfast.Height = 0;
+                            }
+                            if (mealPlanViewModel.userMeal.lunchRecipe != null)
+                            {
+                                deleteLunch.IsVisible = true;
+                                resetLunch.IsVisible = true;
+                                addLunch.IsVisible = false;
+                                row1Lunch.Height = 0;
+                                row2Lunch.Height = new GridLength(1, GridUnitType.Star);
+                                imgLunch.Source = mealPlanViewModel.userMeal.lunchRecipe.image;
+                                timeLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.readyInMinutes.ToString() + "min";
+                                titleLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.title;
+                            }
+                            else
+                            {
+                                deleteLunch.IsVisible = false;
+                                resetLunch.IsVisible = false;
+                                addLunch.IsVisible = true;
+                                row1Lunch.Height = new GridLength(1, GridUnitType.Star);
+                                row2Lunch.Height = 0;
+                            }
+                            if (mealPlanViewModel.userMeal.dinnerRecipe != null)
+                            {
+                                deletebinner.IsVisible = true;
+                                resetDinner.IsVisible = true;
+                                addDinner.IsVisible = false;
+                                row1Dinner.Height = 0;
+                                row2Dinner.Height = new GridLength(1, GridUnitType.Star);
+                                imgDinner.Source = mealPlanViewModel.userMeal.dinnerRecipe.image;
+                                timeDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.readyInMinutes.ToString() + "min";
+                                titleDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.title;
+                            }
+                            else
+                            {
+                                deletebinner.IsVisible = false;
+                                resetDinner.IsVisible = false;
+                                addDinner.IsVisible = true;
+                                row1Dinner.Height = new GridLength(1, GridUnitType.Star);
+                                row2Dinner.Height = 0;
+                            }
+                        }
+                        else
+                        {
+                            BackgroundColor = Color.FromHex("FFFFFF");
+                            row1.Height = new GridLength(1, GridUnitType.Star);
+                            row2.Height = 0;
+                            btnDelete.IsVisible = false;
+                            containRow1.IsVisible = true;
+                        }
+                    }
+                    else
+                    {
+                        mealPlanViewModel.closeLoadindPopup();
+                    }
+                }
+            }
+        }
         private async void deleteLunch_Invoked(object sender, EventArgs e)
         {
-            bool check = await mealPlanViewModel.DeleteUserMealPlanItem("lunch");
-            if (check)
+            var isUserDelete = await DisplayAlert("Delete Recipe", $"Are you sure that want to delte the recipe {mealPlanViewModel.userMeal.lunchRecipe.title} ", "YES", "NO");
+            if (isUserDelete)
             {
-                mealPlanViewModel.userMeal = await mealPlanViewModel.GetUserMealPlanItem();
-                if (mealPlanViewModel.userMeal.breakfastRecipe != null || mealPlanViewModel.userMeal.lunchRecipe != null || mealPlanViewModel.userMeal.dinnerRecipe != null)
+                bool check = await mealPlanViewModel.DeleteUserMealPlanItem("lunch");
+                if (check)
                 {
-                    BackgroundColor = Color.FromHex("F5F5F5");
-                    row1.Height = 0;
-                    row2.Height = new GridLength(1, GridUnitType.Star);
-                    btnDelete.IsVisible = true;
-                    containRow1.IsVisible = false;
-                    if (mealPlanViewModel.userMeal.breakfastRecipe != null)
+                    mealPlanViewModel.userMeal = await mealPlanViewModel.GetUserMealPlanItem();
+                    if (mealPlanViewModel.userMeal.breakfastRecipe != null || mealPlanViewModel.userMeal.lunchRecipe != null || mealPlanViewModel.userMeal.dinnerRecipe != null)
                     {
-                        deleteBreakfast.IsVisible = true;
-                        resetBreakfast.IsVisible = true;
-                        addBreakfast.IsVisible = false;
-                        row1Breakfast.Height = 0;
-                        row2Breakfast.Height = new GridLength(1, GridUnitType.Star);
-                        imgBreakfast.Source = mealPlanViewModel.userMeal.breakfastRecipe.image;
-                        timeBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.readyInMinutes.ToString() + "min";
-                        titleBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.title;
+                        BackgroundColor = Color.FromHex("F5F5F5");
+                        row1.Height = 0;
+                        row2.Height = new GridLength(1, GridUnitType.Star);
+                        btnDelete.IsVisible = true;
+                        containRow1.IsVisible = false;
+                        if (mealPlanViewModel.userMeal.breakfastRecipe != null)
+                        {
+                            deleteBreakfast.IsVisible = true;
+                            resetBreakfast.IsVisible = true;
+                            addBreakfast.IsVisible = false;
+                            row1Breakfast.Height = 0;
+                            row2Breakfast.Height = new GridLength(1, GridUnitType.Star);
+                            imgBreakfast.Source = mealPlanViewModel.userMeal.breakfastRecipe.image;
+                            timeBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.readyInMinutes.ToString() + "min";
+                            titleBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.title;
+                        }
+                        else
+                        {
+                            deleteBreakfast.IsVisible = false;
+                            resetBreakfast.IsVisible = false;
+                            addBreakfast.IsVisible = true;
+                            row1Breakfast.Height = new GridLength(1, GridUnitType.Star);
+                            row2Breakfast.Height = 0;
+                        }
+                        if (mealPlanViewModel.userMeal.lunchRecipe != null)
+                        {
+                            deleteLunch.IsVisible = true;
+                            resetLunch.IsVisible = true;
+                            addLunch.IsVisible = false;
+                            row1Lunch.Height = 0;
+                            row2Lunch.Height = new GridLength(1, GridUnitType.Star);
+                            imgLunch.Source = mealPlanViewModel.userMeal.lunchRecipe.image;
+                            timeLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.readyInMinutes.ToString() + "min";
+                            titleLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.title;
+                        }
+                        else
+                        {
+                            deleteLunch.IsVisible = false;
+                            resetLunch.IsVisible = false;
+                            addLunch.IsVisible = true;
+                            row1Lunch.Height = new GridLength(1, GridUnitType.Star);
+                            row2Lunch.Height = 0;
+                        }
+                        if (mealPlanViewModel.userMeal.dinnerRecipe != null)
+                        {
+                            deletebinner.IsVisible = true;
+                            resetDinner.IsVisible = true;
+                            addDinner.IsVisible = false;
+                            row1Dinner.Height = 0;
+                            row2Dinner.Height = new GridLength(1, GridUnitType.Star);
+                            imgDinner.Source = mealPlanViewModel.userMeal.dinnerRecipe.image;
+                            timeDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.readyInMinutes.ToString() + "min";
+                            titleDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.title;
+                        }
+                        else
+                        {
+                            deletebinner.IsVisible = false;
+                            resetDinner.IsVisible = false;
+                            addDinner.IsVisible = true;
+                            row1Dinner.Height = new GridLength(1, GridUnitType.Star);
+                            row2Dinner.Height = 0;
+                        }
                     }
                     else
                     {
-                        deleteBreakfast.IsVisible = false;
-                        resetBreakfast.IsVisible = false;
-                        addBreakfast.IsVisible = true;
-                        row1Breakfast.Height = new GridLength(1, GridUnitType.Star);
-                        row2Breakfast.Height = 0;
+                        BackgroundColor = Color.FromHex("FFFFFF");
+                        row1.Height = new GridLength(1, GridUnitType.Star);
+                        row2.Height = 0;
+                        btnDelete.IsVisible = false;
+                        containRow1.IsVisible = true;
                     }
-                    if (mealPlanViewModel.userMeal.lunchRecipe != null)
-                    {
-                        deleteLunch.IsVisible = true;
-                        resetLunch.IsVisible = true;
-                        addLunch.IsVisible = false;
-                        row1Lunch.Height = 0;
-                        row2Lunch.Height = new GridLength(1, GridUnitType.Star);
-                        imgLunch.Source = mealPlanViewModel.userMeal.lunchRecipe.image;
-                        timeLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.readyInMinutes.ToString() + "min";
-                        titleLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.title;
-                    }
-                    else
-                    {
-                        deleteLunch.IsVisible = false;
-                        resetLunch.IsVisible = false;
-                        addLunch.IsVisible = true;
-                        row1Lunch.Height = new GridLength(1, GridUnitType.Star);
-                        row2Lunch.Height = 0;
-                    }
-                    if (mealPlanViewModel.userMeal.dinnerRecipe != null)
-                    {
-                        deletebinner.IsVisible = true;
-                        resetDinner.IsVisible = true;
-                        addDinner.IsVisible = false;
-                        row1Dinner.Height = 0;
-                        row2Dinner.Height = new GridLength(1, GridUnitType.Star);
-                        imgDinner.Source = mealPlanViewModel.userMeal.dinnerRecipe.image;
-                        timeDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.readyInMinutes.ToString() + "min";
-                        titleDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.title;
-                    }
-                    else
-                    {
-                        deletebinner.IsVisible = false;
-                        resetDinner.IsVisible = false;
-                        addDinner.IsVisible = true;
-                        row1Dinner.Height = new GridLength(1, GridUnitType.Star);
-                        row2Dinner.Height = 0;
-                    }
+                    mealPlanViewModel.userMeal.lunchRecipe = null;
                 }
-                else
-                {
-                    BackgroundColor = Color.FromHex("FFFFFF");
-                    row1.Height = new GridLength(1, GridUnitType.Star);
-                    row2.Height = 0;
-                    btnDelete.IsVisible = false;
-                    containRow1.IsVisible = true;
-                }
-                mealPlanViewModel.userMeal.lunchRecipe = null;
             }
         }
 
         private async void resetLunch_Invoked(object sender, EventArgs e)
         {
-            if (!mealPlanViewModel.IsLoadingPopupRunning)
+            var isUserDelete = await DisplayAlert("Replace Recipe", $"Are you sure that want to replace the recipe {mealPlanViewModel.userMeal.lunchRecipe.title} with a different one?", "YES", "NO");
+            if (isUserDelete)
             {
-                mealPlanViewModel.IsLoadingPopupRunning = true;
-                mealPlanViewModel.showLoadingPopup();
-
-                UserMealPlanItem userMealPlanItem = new UserMealPlanItem();
-                userMealPlanItem.userId = App.LoginViewModel.GoogleUser.UID;
-                mealPlanViewModel.Lunch.Clear();
-                mealPlanViewModel.Lunch = await mealPlanViewModel.GetMealPlanLunch();
-                if (mealPlanViewModel.Lunch.Count > 0)
+                if (!mealPlanViewModel.IsLoadingPopupRunning)
                 {
-                    foreach (var item in mealPlanViewModel.Lunch)
+                    mealPlanViewModel.IsLoadingPopupRunning = true;
+                    mealPlanViewModel.showLoadingPopup();
+
+                    UserMealPlanItem userMealPlanItem = new UserMealPlanItem();
+                    userMealPlanItem.userId = App.LoginViewModel.GoogleUser.UID;
+                    mealPlanViewModel.Lunch.Clear();
+                    mealPlanViewModel.Lunch = await mealPlanViewModel.GetMealPlanLunch();
+                    if (mealPlanViewModel.Lunch.Count > 0)
                     {
-                        userMealPlanItem.lunchRecipe = item._id;
+                        foreach (var item in mealPlanViewModel.Lunch)
+                        {
+                            userMealPlanItem.lunchRecipe = item._id;
+                        }
+                    }
+                    bool check = await mealPlanViewModel.AddUserMealPlannerItem(userMealPlanItem);
+                    if (check)
+                    {
+                        mealPlanViewModel.userMeal = await mealPlanViewModel.GetUserMealPlanItem();
+                        mealPlanViewModel.closeLoadindPopup();
+
+                        if (mealPlanViewModel.userMeal.breakfastRecipe != null || mealPlanViewModel.userMeal.lunchRecipe != null || mealPlanViewModel.userMeal.dinnerRecipe != null)
+                        {
+                            BackgroundColor = Color.FromHex("F5F5F5");
+                            row1.Height = 0;
+                            row2.Height = new GridLength(1, GridUnitType.Star);
+                            btnDelete.IsVisible = true;
+                            containRow1.IsVisible = false;
+                            if (mealPlanViewModel.userMeal.breakfastRecipe != null)
+                            {
+                                deleteBreakfast.IsVisible = true;
+                                resetBreakfast.IsVisible = true;
+                                addBreakfast.IsVisible = false;
+                                row1Breakfast.Height = 0;
+                                row2Breakfast.Height = new GridLength(1, GridUnitType.Star);
+                                imgBreakfast.Source = mealPlanViewModel.userMeal.breakfastRecipe.image;
+                                timeBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.readyInMinutes.ToString() + "min";
+                                titleBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.title;
+                            }
+                            else
+                            {
+                                deleteBreakfast.IsVisible = false;
+                                resetBreakfast.IsVisible = false;
+                                addBreakfast.IsVisible = true;
+                                row1Breakfast.Height = new GridLength(1, GridUnitType.Star);
+                                row2Breakfast.Height = 0;
+                            }
+                            if (mealPlanViewModel.userMeal.lunchRecipe != null)
+                            {
+                                deleteLunch.IsVisible = true;
+                                resetLunch.IsVisible = true;
+                                addLunch.IsVisible = false;
+                                row1Lunch.Height = 0;
+                                row2Lunch.Height = new GridLength(1, GridUnitType.Star);
+                                imgLunch.Source = mealPlanViewModel.userMeal.lunchRecipe.image;
+                                timeLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.readyInMinutes.ToString() + "min";
+                                titleLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.title;
+                            }
+                            else
+                            {
+                                deleteLunch.IsVisible = false;
+                                resetLunch.IsVisible = false;
+                                addLunch.IsVisible = true;
+                                row1Lunch.Height = new GridLength(1, GridUnitType.Star);
+                                row2Lunch.Height = 0;
+                            }
+                            if (mealPlanViewModel.userMeal.dinnerRecipe != null)
+                            {
+                                deletebinner.IsVisible = true;
+                                resetDinner.IsVisible = true;
+                                addDinner.IsVisible = false;
+                                row1Dinner.Height = 0;
+                                row2Dinner.Height = new GridLength(1, GridUnitType.Star);
+                                imgDinner.Source = mealPlanViewModel.userMeal.dinnerRecipe.image;
+                                timeDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.readyInMinutes.ToString() + "min";
+                                titleDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.title;
+                            }
+                            else
+                            {
+                                deletebinner.IsVisible = false;
+                                resetDinner.IsVisible = false;
+                                addDinner.IsVisible = true;
+                                row1Dinner.Height = new GridLength(1, GridUnitType.Star);
+                                row2Dinner.Height = 0;
+                            }
+                        }
+                        else
+                        {
+                            BackgroundColor = Color.FromHex("FFFFFF");
+                            row1.Height = new GridLength(1, GridUnitType.Star);
+                            row2.Height = 0;
+                            btnDelete.IsVisible = false;
+                            containRow1.IsVisible = true;
+                        }
+                    }
+                    else
+                    {
+                        mealPlanViewModel.closeLoadindPopup();
                     }
                 }
-                bool check = await mealPlanViewModel.AddUserMealPlannerItem(userMealPlanItem);
+            }
+        }
+
+        private async void addDinner_Invoked(object sender, EventArgs e)
+        {
+            var isUserDelete = await DisplayAlert("Add Recipe", "Would you like to add DINNER meal for this day", "YES", "NO");
+            if (isUserDelete)
+            {
+                if (!mealPlanViewModel.IsLoadingPopupRunning)
+                {
+                    mealPlanViewModel.IsLoadingPopupRunning = true;
+                    mealPlanViewModel.showLoadingPopup();
+
+                    UserMealPlanItem userMealPlanItem = new UserMealPlanItem();
+                    userMealPlanItem.userId = App.LoginViewModel.GoogleUser.UID;
+                    mealPlanViewModel.Dinner.Clear();
+                    mealPlanViewModel.Dinner = await mealPlanViewModel.GetMealPlanDinner();
+                    if (mealPlanViewModel.Dinner.Count > 0)
+                    {
+                        foreach (var item in mealPlanViewModel.Dinner)
+                        {
+                            userMealPlanItem.dinnerRecipe = item._id;
+                        }
+                    }
+                    bool check = await mealPlanViewModel.AddUserMealPlannerItem(userMealPlanItem);
+                    if (check)
+                    {
+                        mealPlanViewModel.userMeal = await mealPlanViewModel.GetUserMealPlanItem();
+                        mealPlanViewModel.closeLoadindPopup();
+
+                        if (mealPlanViewModel.userMeal.breakfastRecipe != null || mealPlanViewModel.userMeal.lunchRecipe != null || mealPlanViewModel.userMeal.dinnerRecipe != null)
+                        {
+                            BackgroundColor = Color.FromHex("F5F5F5");
+                            row1.Height = 0;
+                            row2.Height = new GridLength(1, GridUnitType.Star);
+                            btnDelete.IsVisible = true;
+                            containRow1.IsVisible = false;
+                            if (mealPlanViewModel.userMeal.breakfastRecipe != null)
+                            {
+                                deleteBreakfast.IsVisible = true;
+                                resetBreakfast.IsVisible = true;
+                                addBreakfast.IsVisible = false;
+                                row1Breakfast.Height = 0;
+                                row2Breakfast.Height = new GridLength(1, GridUnitType.Star);
+                                imgBreakfast.Source = mealPlanViewModel.userMeal.breakfastRecipe.image;
+                                timeBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.readyInMinutes.ToString() + "min";
+                                titleBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.title;
+                            }
+                            else
+                            {
+                                deleteBreakfast.IsVisible = false;
+                                resetBreakfast.IsVisible = false;
+                                addBreakfast.IsVisible = true;
+                                row1Breakfast.Height = new GridLength(1, GridUnitType.Star);
+                                row2Breakfast.Height = 0;
+                            }
+                            if (mealPlanViewModel.userMeal.lunchRecipe != null)
+                            {
+                                deleteLunch.IsVisible = true;
+                                resetLunch.IsVisible = true;
+                                addLunch.IsVisible = false;
+                                row1Lunch.Height = 0;
+                                row2Lunch.Height = new GridLength(1, GridUnitType.Star);
+                                imgLunch.Source = mealPlanViewModel.userMeal.lunchRecipe.image;
+                                timeLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.readyInMinutes.ToString() + "min";
+                                titleLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.title;
+                            }
+                            else
+                            {
+                                deleteLunch.IsVisible = false;
+                                resetLunch.IsVisible = false;
+                                addLunch.IsVisible = true;
+                                row1Lunch.Height = new GridLength(1, GridUnitType.Star);
+                                row2Lunch.Height = 0;
+                            }
+                            if (mealPlanViewModel.userMeal.dinnerRecipe != null)
+                            {
+                                deletebinner.IsVisible = true;
+                                resetDinner.IsVisible = true;
+                                addDinner.IsVisible = false;
+                                row1Dinner.Height = 0;
+                                row2Dinner.Height = new GridLength(1, GridUnitType.Star);
+                                imgDinner.Source = mealPlanViewModel.userMeal.dinnerRecipe.image;
+                                timeDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.readyInMinutes.ToString() + "min";
+                                titleDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.title;
+                            }
+                            else
+                            {
+                                deletebinner.IsVisible = false;
+                                resetDinner.IsVisible = false;
+                                addDinner.IsVisible = true;
+                                row1Dinner.Height = new GridLength(1, GridUnitType.Star);
+                                row2Dinner.Height = 0;
+                            }
+                        }
+                        else
+                        {
+                            BackgroundColor = Color.FromHex("FFFFFF");
+                            row1.Height = new GridLength(1, GridUnitType.Star);
+                            row2.Height = 0;
+                            btnDelete.IsVisible = false;
+                            containRow1.IsVisible = true;
+                        }
+                    }
+                    else
+                    {
+                        mealPlanViewModel.closeLoadindPopup();
+                    }
+                }
+            }
+        }
+        private async void deletebinner_Invoked(object sender, EventArgs e)
+        {
+            var isUserDelete = await DisplayAlert("Delete Recipe", $"Are you sure that want to delte the recipe {mealPlanViewModel.userMeal.dinnerRecipe.title} ", "YES", "NO");
+            if (isUserDelete)
+            {
+                bool check = await mealPlanViewModel.DeleteUserMealPlanItem("dinner");
                 if (check)
                 {
                     mealPlanViewModel.userMeal = await mealPlanViewModel.GetUserMealPlanItem();
-                    mealPlanViewModel.closeLoadindPopup();
-
                     if (mealPlanViewModel.userMeal.breakfastRecipe != null || mealPlanViewModel.userMeal.lunchRecipe != null || mealPlanViewModel.userMeal.dinnerRecipe != null)
                     {
                         BackgroundColor = Color.FromHex("F5F5F5");
@@ -559,200 +994,118 @@ namespace Foody.Views
                         btnDelete.IsVisible = false;
                         containRow1.IsVisible = true;
                     }
-                } else
-                {
-                    mealPlanViewModel.closeLoadindPopup();
+                    mealPlanViewModel.userMeal.dinnerRecipe = null;
                 }
-            }
-            
-        }
-
-        private async void deletebinner_Invoked(object sender, EventArgs e)
-        {
-            bool check = await mealPlanViewModel.DeleteUserMealPlanItem("dinner");
-            if (check)
-            {
-                mealPlanViewModel.userMeal = await mealPlanViewModel.GetUserMealPlanItem();
-                if (mealPlanViewModel.userMeal.breakfastRecipe != null || mealPlanViewModel.userMeal.lunchRecipe != null || mealPlanViewModel.userMeal.dinnerRecipe != null)
-                {
-                    BackgroundColor = Color.FromHex("F5F5F5");
-                    row1.Height = 0;
-                    row2.Height = new GridLength(1, GridUnitType.Star);
-                    btnDelete.IsVisible = true;
-                    containRow1.IsVisible = false;
-                    if (mealPlanViewModel.userMeal.breakfastRecipe != null)
-                    {
-                        deleteBreakfast.IsVisible = true;
-                        resetBreakfast.IsVisible = true;
-                        addBreakfast.IsVisible = false;
-                        row1Breakfast.Height = 0;
-                        row2Breakfast.Height = new GridLength(1, GridUnitType.Star);
-                        imgBreakfast.Source = mealPlanViewModel.userMeal.breakfastRecipe.image;
-                        timeBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.readyInMinutes.ToString() + "min";
-                        titleBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.title;
-                    }
-                    else
-                    {
-                        deleteBreakfast.IsVisible = false;
-                        resetBreakfast.IsVisible = false;
-                        addBreakfast.IsVisible = true;
-                        row1Breakfast.Height = new GridLength(1, GridUnitType.Star);
-                        row2Breakfast.Height = 0;
-                    }
-                    if (mealPlanViewModel.userMeal.lunchRecipe != null)
-                    {
-                        deleteLunch.IsVisible = true;
-                        resetLunch.IsVisible = true;
-                        addLunch.IsVisible = false;
-                        row1Lunch.Height = 0;
-                        row2Lunch.Height = new GridLength(1, GridUnitType.Star);
-                        imgLunch.Source = mealPlanViewModel.userMeal.lunchRecipe.image;
-                        timeLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.readyInMinutes.ToString() + "min";
-                        titleLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.title;
-                    }
-                    else
-                    {
-                        deleteLunch.IsVisible = false;
-                        resetLunch.IsVisible = false;
-                        addLunch.IsVisible = true;
-                        row1Lunch.Height = new GridLength(1, GridUnitType.Star);
-                        row2Lunch.Height = 0;
-                    }
-                    if (mealPlanViewModel.userMeal.dinnerRecipe != null)
-                    {
-                        deletebinner.IsVisible = true;
-                        resetDinner.IsVisible = true;
-                        addDinner.IsVisible = false;
-                        row1Dinner.Height = 0;
-                        row2Dinner.Height = new GridLength(1, GridUnitType.Star);
-                        imgDinner.Source = mealPlanViewModel.userMeal.dinnerRecipe.image;
-                        timeDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.readyInMinutes.ToString() + "min";
-                        titleDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.title;
-                    }
-                    else
-                    {
-                        deletebinner.IsVisible = false;
-                        resetDinner.IsVisible = false;
-                        addDinner.IsVisible = true;
-                        row1Dinner.Height = new GridLength(1, GridUnitType.Star);
-                        row2Dinner.Height = 0;
-                    }
-                }
-                else
-                {
-                    BackgroundColor = Color.FromHex("FFFFFF");
-                    row1.Height = new GridLength(1, GridUnitType.Star);
-                    row2.Height = 0;
-                    btnDelete.IsVisible = false;
-                    containRow1.IsVisible = true;
-                }
-                mealPlanViewModel.userMeal.dinnerRecipe = null;
             }
         }
 
         private async void resetDinner_Invoked(object sender, EventArgs e)
         {
-            if (!mealPlanViewModel.IsLoadingPopupRunning)
+            var isUserDelete = await DisplayAlert("Replace Recipe", $"Are you sure that want to replace the recipe {mealPlanViewModel.userMeal.dinnerRecipe.title} with a different one?", "YES", "NO");
+            if (isUserDelete)
             {
-                mealPlanViewModel.IsLoadingPopupRunning = true;
-                mealPlanViewModel.showLoadingPopup();
-
-                UserMealPlanItem userMealPlanItem = new UserMealPlanItem();
-                userMealPlanItem.userId = App.LoginViewModel.GoogleUser.UID;
-                mealPlanViewModel.Dinner.Clear();
-                mealPlanViewModel.Dinner = await mealPlanViewModel.GetMealPlanDinner();
-                if (mealPlanViewModel.Dinner.Count > 0)
+                if (!mealPlanViewModel.IsLoadingPopupRunning)
                 {
-                    foreach (var item in mealPlanViewModel.Dinner)
+                    mealPlanViewModel.IsLoadingPopupRunning = true;
+                    mealPlanViewModel.showLoadingPopup();
+
+                    UserMealPlanItem userMealPlanItem = new UserMealPlanItem();
+                    userMealPlanItem.userId = App.LoginViewModel.GoogleUser.UID;
+                    mealPlanViewModel.Dinner.Clear();
+                    mealPlanViewModel.Dinner = await mealPlanViewModel.GetMealPlanDinner();
+                    if (mealPlanViewModel.Dinner.Count > 0)
                     {
-                        userMealPlanItem.dinnerRecipe = item._id;
+                        foreach (var item in mealPlanViewModel.Dinner)
+                        {
+                            userMealPlanItem.dinnerRecipe = item._id;
+                        }
                     }
-                }
-                bool check = await mealPlanViewModel.AddUserMealPlannerItem(userMealPlanItem);
-                if (check)
-                {
-                    mealPlanViewModel.userMeal = await mealPlanViewModel.GetUserMealPlanItem();
-                    mealPlanViewModel.closeLoadindPopup();
-
-                    if (mealPlanViewModel.userMeal.breakfastRecipe != null || mealPlanViewModel.userMeal.lunchRecipe != null || mealPlanViewModel.userMeal.dinnerRecipe != null)
+                    bool check = await mealPlanViewModel.AddUserMealPlannerItem(userMealPlanItem);
+                    if (check)
                     {
-                        BackgroundColor = Color.FromHex("F5F5F5");
-                        row1.Height = 0;
-                        row2.Height = new GridLength(1, GridUnitType.Star);
-                        btnDelete.IsVisible = true;
-                        containRow1.IsVisible = false;
-                        if (mealPlanViewModel.userMeal.breakfastRecipe != null)
+                        mealPlanViewModel.userMeal = await mealPlanViewModel.GetUserMealPlanItem();
+                        mealPlanViewModel.closeLoadindPopup();
+
+                        if (mealPlanViewModel.userMeal.breakfastRecipe != null || mealPlanViewModel.userMeal.lunchRecipe != null || mealPlanViewModel.userMeal.dinnerRecipe != null)
                         {
-                            deleteBreakfast.IsVisible = true;
-                            resetBreakfast.IsVisible = true;
-                            addBreakfast.IsVisible = false;
-                            row1Breakfast.Height = 0;
-                            row2Breakfast.Height = new GridLength(1, GridUnitType.Star);
-                            imgBreakfast.Source = mealPlanViewModel.userMeal.breakfastRecipe.image;
-                            timeBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.readyInMinutes.ToString() + "min";
-                            titleBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.title;
+                            BackgroundColor = Color.FromHex("F5F5F5");
+                            row1.Height = 0;
+                            row2.Height = new GridLength(1, GridUnitType.Star);
+                            btnDelete.IsVisible = true;
+                            containRow1.IsVisible = false;
+                            if (mealPlanViewModel.userMeal.breakfastRecipe != null)
+                            {
+                                deleteBreakfast.IsVisible = true;
+                                resetBreakfast.IsVisible = true;
+                                addBreakfast.IsVisible = false;
+                                row1Breakfast.Height = 0;
+                                row2Breakfast.Height = new GridLength(1, GridUnitType.Star);
+                                imgBreakfast.Source = mealPlanViewModel.userMeal.breakfastRecipe.image;
+                                timeBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.readyInMinutes.ToString() + "min";
+                                titleBreakfast.Text = mealPlanViewModel.userMeal.breakfastRecipe.title;
+                            }
+                            else
+                            {
+                                deleteBreakfast.IsVisible = false;
+                                resetBreakfast.IsVisible = false;
+                                addBreakfast.IsVisible = true;
+                                row1Breakfast.Height = new GridLength(1, GridUnitType.Star);
+                                row2Breakfast.Height = 0;
+                            }
+                            if (mealPlanViewModel.userMeal.lunchRecipe != null)
+                            {
+                                deleteLunch.IsVisible = true;
+                                resetLunch.IsVisible = true;
+                                addLunch.IsVisible = false;
+                                row1Lunch.Height = 0;
+                                row2Lunch.Height = new GridLength(1, GridUnitType.Star);
+                                imgLunch.Source = mealPlanViewModel.userMeal.lunchRecipe.image;
+                                timeLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.readyInMinutes.ToString() + "min";
+                                titleLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.title;
+                            }
+                            else
+                            {
+                                deleteLunch.IsVisible = false;
+                                resetLunch.IsVisible = false;
+                                addLunch.IsVisible = true;
+                                row1Lunch.Height = new GridLength(1, GridUnitType.Star);
+                                row2Lunch.Height = 0;
+                            }
+                            if (mealPlanViewModel.userMeal.dinnerRecipe != null)
+                            {
+                                deletebinner.IsVisible = true;
+                                resetDinner.IsVisible = true;
+                                addDinner.IsVisible = false;
+                                row1Dinner.Height = 0;
+                                row2Dinner.Height = new GridLength(1, GridUnitType.Star);
+                                imgDinner.Source = mealPlanViewModel.userMeal.dinnerRecipe.image;
+                                timeDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.readyInMinutes.ToString() + "min";
+                                titleDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.title;
+                            }
+                            else
+                            {
+                                deletebinner.IsVisible = false;
+                                resetDinner.IsVisible = false;
+                                addDinner.IsVisible = true;
+                                row1Dinner.Height = new GridLength(1, GridUnitType.Star);
+                                row2Dinner.Height = 0;
+                            }
                         }
                         else
                         {
-                            deleteBreakfast.IsVisible = false;
-                            resetBreakfast.IsVisible = false;
-                            addBreakfast.IsVisible = true;
-                            row1Breakfast.Height = new GridLength(1, GridUnitType.Star);
-                            row2Breakfast.Height = 0;
-                        }
-                        if (mealPlanViewModel.userMeal.lunchRecipe != null)
-                        {
-                            deleteLunch.IsVisible = true;
-                            resetLunch.IsVisible = true;
-                            addLunch.IsVisible = false;
-                            row1Lunch.Height = 0;
-                            row2Lunch.Height = new GridLength(1, GridUnitType.Star);
-                            imgLunch.Source = mealPlanViewModel.userMeal.lunchRecipe.image;
-                            timeLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.readyInMinutes.ToString() + "min";
-                            titleLunch.Text = mealPlanViewModel.userMeal.lunchRecipe.title;
-                        }
-                        else
-                        {
-                            deleteLunch.IsVisible = false;
-                            resetLunch.IsVisible = false;
-                            addLunch.IsVisible = true;
-                            row1Lunch.Height = new GridLength(1, GridUnitType.Star);
-                            row2Lunch.Height = 0;
-                        }
-                        if (mealPlanViewModel.userMeal.dinnerRecipe != null)
-                        {
-                            deletebinner.IsVisible = true;
-                            resetDinner.IsVisible = true;
-                            addDinner.IsVisible = false;
-                            row1Dinner.Height = 0;
-                            row2Dinner.Height = new GridLength(1, GridUnitType.Star);
-                            imgDinner.Source = mealPlanViewModel.userMeal.dinnerRecipe.image;
-                            timeDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.readyInMinutes.ToString() + "min";
-                            titleDinner.Text = mealPlanViewModel.userMeal.dinnerRecipe.title;
-                        }
-                        else
-                        {
-                            deletebinner.IsVisible = false;
-                            resetDinner.IsVisible = false;
-                            addDinner.IsVisible = true;
-                            row1Dinner.Height = new GridLength(1, GridUnitType.Star);
-                            row2Dinner.Height = 0;
+                            BackgroundColor = Color.FromHex("FFFFFF");
+                            row1.Height = new GridLength(1, GridUnitType.Star);
+                            row2.Height = 0;
+                            btnDelete.IsVisible = false;
+                            containRow1.IsVisible = true;
                         }
                     }
                     else
                     {
-                        BackgroundColor = Color.FromHex("FFFFFF");
-                        row1.Height = new GridLength(1, GridUnitType.Star);
-                        row2.Height = 0;
-                        btnDelete.IsVisible = false;
-                        containRow1.IsVisible = true;
+                        mealPlanViewModel.closeLoadindPopup();
                     }
-                } else
-                {
-                    mealPlanViewModel.closeLoadindPopup();
                 }
             }
-            
         }
 
         private async void BreakfastToDetail_Tapped(object sender, EventArgs e)
@@ -783,7 +1136,6 @@ namespace Foody.Views
 
         private async void DinnerToDetail_Tapped(object sender, EventArgs e)
         {
-            
             if (mealPlanViewModel.userMeal != null)
             {
                 if (mealPlanViewModel.userMeal.dinnerRecipe != null)
@@ -793,7 +1145,6 @@ namespace Foody.Views
                     await Navigation.PushAsync(new DetailRecipe(recipe));
                 }
             }
-            
         }
     }
 }
