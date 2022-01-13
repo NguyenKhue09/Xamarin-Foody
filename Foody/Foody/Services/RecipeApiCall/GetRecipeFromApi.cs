@@ -407,7 +407,7 @@ namespace Foody.Services.RecipeApiCall
             }
             catch (Exception ex)
             {
-
+                ShoppingCartResult.resultsCart = new List<ItemCart>();
                 Debug.WriteLine(@"\tERROR {0}", ex.Message);
             }
 
@@ -533,7 +533,7 @@ namespace Foody.Services.RecipeApiCall
             }
             catch (Exception ex)
             {
-
+                results = null;
                 Debug.WriteLine(@"\tERROR {0}", ex.Message);
             }
 
@@ -569,7 +569,7 @@ namespace Foody.Services.RecipeApiCall
             }
             catch (Exception ex)
             {
-
+                PantryBuilderResult.pantryBuilder = new List<PantryBuilder>();
                 Debug.WriteLine(@"\tERROR {0}", ex.Message);
             }
 
@@ -600,7 +600,7 @@ namespace Foody.Services.RecipeApiCall
             }
             catch (Exception ex)
             {
-
+                results = null;
                 Debug.WriteLine(@"\tERROR {0}", ex.Message);
             }
 

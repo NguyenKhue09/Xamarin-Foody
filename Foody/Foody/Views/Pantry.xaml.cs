@@ -178,10 +178,11 @@ namespace Foody.Views
         private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
             SearchBar searchBar = (SearchBar)sender;
-            await Task.Delay(300);
-            if(searchBar.Text != null)
+            
+            if(searchBar.Text != null || searchBar.Text.Trim(' ') != "")
             {
-                pantryViewModel.SearchUserPantryItem(searchBar.Text);
+                await Task.Delay(300);
+                pantryViewModel.SearchUserPantryItem(searchBar.Text.Trim(' '));
             }
             
         }
