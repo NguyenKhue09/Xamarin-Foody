@@ -166,9 +166,9 @@ namespace Foody.Views
         {
             SearchBar searchBar = (SearchBar)sender;
             await Task.Delay(300);
-            if (searchBar.Text != null)
+            if (searchBar.Text != null || searchBar.Text.Trim(' ') != "")
             {
-                shoppingListViewModel.SearchIngredient(searchBar.Text);
+                shoppingListViewModel.SearchIngredient(searchBar.Text.Trim(' '));
             }
            
         }
